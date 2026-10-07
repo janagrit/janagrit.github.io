@@ -1,455 +1,326 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
-
+<html lang="en">
 <head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-26677062-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iana Grytsenko | Senior SDET</title>
+  <meta name="description" content="Iana Grytsenko, Senior SDET. Playwright and TypeScript test automation frameworks, CI/CD, AWS, and AI-assisted testing.">
+  <meta property="og:title" content="Iana Grytsenko | Senior SDET">
+  <meta property="og:description" content="I build test automation frameworks from scratch: Playwright, Cypress, TypeScript, CI/CD, AWS.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://janagrit.github.io/">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-alt: #f5f7fa;
+      --text: #1b2430;
+      --muted: #5b6776;
+      --line: #dfe4ea;
+      --accent: #1f4e8c;
+      --accent-soft: #e8f0fb;
+      --hero-a: #10233f;
+      --hero-b: #1f4e8c;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f141b;
+        --bg-alt: #161d27;
+        --text: #e6ebf2;
+        --muted: #9aa7b6;
+        --line: #283342;
+        --accent: #7fb0ee;
+        --accent-soft: #1b2a3f;
+        --hero-a: #0b1524;
+        --hero-b: #163a69;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+    a { color: var(--accent); }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+    .skip { position: absolute; left: -9999px; }
+    .skip:focus { left: 12px; top: 12px; background: var(--bg); padding: 8px 12px; z-index: 10; }
 
-  gtag('config', 'UA-26677062-2');
-</script>
+    nav { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--line); z-index: 5; }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 56px; }
+    nav .brand { font-weight: 700; color: var(--text); text-decoration: none; white-space: nowrap; }
+    nav ul { display: flex; flex-wrap: wrap; gap: 4px 18px; list-style: none; margin: 0; padding: 8px 0; }
+    nav ul a { color: var(--muted); text-decoration: none; font-size: 15px; }
+    nav ul a:hover { color: var(--accent); }
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Portfolio</title>
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
+    header.hero { background: linear-gradient(135deg, var(--hero-a), var(--hero-b)); color: #ffffff; padding: 72px 0 64px; }
+    .hero h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.1; margin: 0 0 10px; }
+    .hero .role { font-size: clamp(18px, 3vw, 24px); margin: 0 0 18px; color: #d5e3f7; }
+    .hero .pitch { max-width: 640px; margin: 0 0 28px; color: #eef4fc; }
+    .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn { display: inline-block; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 15px; }
+    .btn.primary { background: #ffffff; color: #10233f; }
+    .btn.ghost { border: 1px solid #a9c3e6; color: #ffffff; }
+
+    section { padding: 56px 0; }
+    section.alt { background: var(--bg-alt); }
+    h2 { font-size: 26px; margin: 0 0 24px; }
+    h3 { font-size: 19px; margin: 0; }
+
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-top: 28px; }
+    .stat { background: var(--accent-soft); border-radius: 8px; padding: 16px; }
+    .stat b { display: block; font-size: 26px; color: var(--accent); line-height: 1.2; }
+    .stat span { font-size: 14px; color: var(--muted); }
+
+    .job { border-left: 3px solid var(--accent); padding: 0 0 6px 18px; margin-bottom: 30px; }
+    .job:last-child { margin-bottom: 0; }
+    .job .meta { color: var(--muted); font-size: 15px; margin: 2px 0 10px; }
+    .job ul { margin: 0; padding-left: 20px; }
+    .job li { margin-bottom: 6px; }
+
+    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .card { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
+    section.alt .card { background: var(--bg); }
+    .card h3 { font-size: 16px; margin-bottom: 8px; color: var(--accent); }
+    .card p { margin: 0; font-size: 15.5px; }
+
+    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; }
+    .projects .card p { margin-bottom: 12px; }
+    .tags { font-size: 13.5px; color: var(--muted); margin-bottom: 12px; }
+
+    .edu { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; }
+    .edu .when { color: var(--muted); font-size: 14.5px; }
+    ul.plain { margin: 0; padding-left: 20px; }
+
+    .contact-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+    .contact-links a { border: 1px solid var(--line); border-radius: 6px; padding: 10px 16px; text-decoration: none; font-weight: 600; }
+    footer { border-top: 1px solid var(--line); padding: 22px 0; color: var(--muted); font-size: 14px; }
+  </style>
 </head>
 
 <body>
-    <div id="mobile-menu-open" class="shadow-large">
-        <i class="fa fa-bars" aria-hidden="true"></i>
+  <a class="skip" href="#main">Skip to main content</a>
+
+  <nav aria-label="Main">
+    <div class="wrap">
+      <a class="brand" href="#top">Iana Grytsenko</a>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
-    <!-- End #mobile-menu-toggle -->
-    <header>
-        <div id="mobile-menu-close">
-            <span>Close</span> <i class="fa fa-times" aria-hidden="true"></i>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="wrap">
+      <h1>Iana Grytsenko</h1>
+      <p class="role">Senior SDET | Test Automation Architect</p>
+      <p class="pitch">I build test infrastructure that outlasts the people who build it: Playwright and TypeScript frameworks designed from the ground up, wired into CI/CD, and trusted by the teams that ship on them.</p>
+      <div class="btns">
+        <a class="btn primary" href="#contact">Get in touch</a>
+        <a class="btn ghost" href="https://github.com/janagrit" rel="noopener">GitHub</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/ianagrytsenko" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section id="about">
+      <div class="wrap">
+        <h2>About</h2>
+        <p>I am a Senior SDET (Software Development Engineer in Test) with 6+ years in QA and test automation for SaaS and web platforms. I design automation frameworks from scratch, lead migrations between them, and take over unstructured test projects and turn them into something a team can maintain.</p>
+        <p>My philosophy: quality is not support. It is system design. I treat tests as production code, keep feedback loops fast, and use AI tooling such as Claude Code and MCP servers where it saves real time.</p>
+        <p>Before software I studied outer space law, and I work in English, Ukrainian, and Chinese.</p>
+        <div class="stats">
+          <div class="stat"><b>45%</b><span>more automated coverage after a Cypress to Playwright migration</span></div>
+          <div class="stat"><b>60%</b><span>fewer flaky-test false positives</span></div>
+          <div class="stat"><b>5+</b><span>product lines automated as the sole SDET</span></div>
+          <div class="stat"><b>9 weeks</b><span>to deliver a full E2E framework on a client project</span></div>
         </div>
-        <ul id="menu" class="shadow">
-            <li>
-                <a href="#about">About</a>
-            </li>
-            <li>
-                <a href="#experience">Experience</a>
-            </li>
-            <li>
-                <a href="#education">Education</a>
-            </li>
-            <li>
-                <a href="#projects">Projects</a>
-            </li>
-            <li>
-                <a href="#skills">Skills</a>
-            </li>
-            <li>
-                <a href="#contact">Contact</a>
-            </li>
+      </div>
+    </section>
+
+    <section id="experience" class="alt">
+      <div class="wrap">
+        <h2>Experience</h2>
+
+        <div class="job">
+          <h3>Senior SDET, Playwright/TypeScript Test Automation (Contract)</h3>
+          <p class="meta">Cooley LLP, Legal Technology | Remote | Jun 2026 - Sep 2026</p>
+          <ul>
+            <li>Inherited an early-stage Playwright/TypeScript project with a small, unstructured smoke suite and rebuilt it into a structured, maintainable framework with smoke and regression suites.</li>
+            <li>Designed and built end-to-end transfer automation from scratch for a multi-party, multi-role fund-transfer SaaS platform, across online, offline, and hybrid scenarios.</li>
+            <li>Established a Page Object Model architecture with reusable helper modules: 13 spec files, 23 page object classes, 12 helper modules.</li>
+            <li>Replaced a cache-based reuse pattern with isolated, self-contained test runs, reducing flakiness.</li>
+            <li>Used Claude Code with MCP servers to speed up spec generation, debugging of async auth flows, and failure analysis.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <h3>Senior SDET, Test Infrastructure and Frontend/Backend Automation</h3>
+          <p class="meta">California Community Colleges Technology Center | Remote | Sep 2022 - Feb 2026</p>
+          <ul>
+            <li>Sole automation engineer: built scalable test infrastructure from scratch across 5+ product lines on a cloud-native microservices architecture (AWS).</li>
+            <li>Led the migration from Cypress to Playwright, improving speed, parallelization, and stability, and raising automated test coverage by 45%.</li>
+            <li>Designed contract tests across microservices and tested event-driven AWS workflows (Lambda, SQS, SNS, API Gateway), including retries, idempotency, and dead-letter queues.</li>
+            <li>Integrated automation into Jenkins CI/CD with Docker-based execution on AWS EC2.</li>
+            <li>Mentored QA engineers, ran code reviews, and supported hiring.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <h3>QA Automation Engineer (BDD)</h3>
+          <p class="meta">Amtrak | On-site / Remote | Aug 2021 - Sep 2022</p>
+          <ul>
+            <li>Built and maintained BDD automation frameworks in Java, Selenium, and Cucumber for trip planning, route search, booking, and station flows.</li>
+            <li>Eliminated flaky tests by refactoring legacy test logic, cutting false-positive failures by 60%.</li>
+            <li>Owned Jenkins pipelines for automated smoke and regression runs.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <h3>QA Automation Engineer (TDD)</h3>
+          <p class="meta">HiLabs (Analytics) | Baltimore, MD | Jan 2020 - Aug 2021</p>
+          <ul>
+            <li>Designed a TDD automation framework in Java, Selenium, TestNG, and Maven for E2E, smoke, regression, and integration testing on a healthcare platform.</li>
+            <li>Validated backend data with Oracle and JDBC, and tested REST APIs with Postman and REST Assured.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <h2>Skills</h2>
+        <div class="skills">
+          <div class="card">
+            <h3>Test automation</h3>
+            <p>Playwright, Cypress, Selenium WebDriver, TypeScript, JavaScript, Java, Page Object Model, component testing, React Testing Library</p>
+          </div>
+          <div class="card">
+            <h3>API and contract testing</h3>
+            <p>REST, GraphQL, Postman, REST Assured, Swagger/OpenAPI, schema validation, contract testing, network interception and mocking</p>
+          </div>
+          <div class="card">
+            <h3>CI/CD and DevOps</h3>
+            <p>Jenkins, GitHub Actions, GitLab CI, Azure DevOps Pipelines, Docker, Git, Maven</p>
+          </div>
+          <div class="card">
+            <h3>Cloud (AWS)</h3>
+            <p>Lambda, SQS, SNS, API Gateway, EC2, IAM, CloudWatch, serverless and microservices architectures</p>
+          </div>
+          <div class="card">
+            <h3>AI-assisted testing</h3>
+            <p>Claude Code, Model Context Protocol (MCP) servers, AI-assisted test generation and failure analysis</p>
+          </div>
+          <div class="card">
+            <h3>Practices</h3>
+            <p>Test strategy, shift-left testing, BDD, TDD, flaky-test remediation, code reviews, mentoring, Agile/Scrum, Jira</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="alt">
+      <div class="wrap">
+        <h2>Projects</h2>
+        <div class="projects">
+
+          <!--
+            Playwright demo project. Remove this comment block's opening and closing lines
+            once the repository is public on GitHub, and check that the link opens.
+
+          <div class="card">
+            <h3>Playwright + TypeScript framework</h3>
+            <p class="tags">Playwright | TypeScript | axe-core | GitHub Actions</p>
+            <p>Test automation framework for a public marketing website: data-driven smoke tests, navigation journeys, link checks, accessibility scans, and visual regression, on desktop and mobile.</p>
+            <a href="https://github.com/janagrit/nvidia-playwright-demo" rel="noopener">View on GitHub</a>
+          </div>
+          -->
+
+          <div class="card">
+            <h3>Duo Bank test automation</h3>
+            <p class="tags">Java | Selenium | Cucumber | BDD</p>
+            <p>Automated testing of a web banking application: functional, regression, integration, and cross-browser testing.</p>
+            <a href="https://github.com/janagrit/DuoBank-sprint4-gurus" rel="noopener">View on GitHub</a>
+          </div>
+
+          <div class="card">
+            <h3>Online auction web app</h3>
+            <p class="tags">Python | Django | SQL</p>
+            <p>Auction web application built with Django for CS50's Web Programming with Python and JavaScript.</p>
+            <a href="https://github.com/janagrit/online-auction" rel="noopener">View on GitHub</a>
+          </div>
+
+          <div class="card">
+            <h3>More on GitHub</h3>
+            <p class="tags">All repositories</p>
+            <p>Other repositories and experiments.</p>
+            <a href="https://github.com/janagrit" rel="noopener">github.com/janagrit</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="wrap">
+        <h2>Education</h2>
+        <div class="edu">
+          <div class="card">
+            <h3>M.S. in Computer Science</h3>
+            <p>New York Institute of Technology (NYIT)</p>
+            <p class="when">2015</p>
+          </div>
+          <div class="card">
+            <h3>PhD in Political Science (Outer Space Law)</h3>
+            <p>Tongji University, Shanghai, China</p>
+            <p class="when">2015 - 2020</p>
+          </div>
+          <div class="card">
+            <h3>B.S. and M.S. in Computer Science</h3>
+            <p>Dnipro University of Technology, Ukraine</p>
+            <p class="when">2009 - 2013</p>
+          </div>
+        </div>
+
+        <h2 style="margin-top:40px">Certifications</h2>
+        <ul class="plain">
+          <li>AWS Cloud Technical Essentials</li>
+          <li>Software QA and Test Automation Engineering Certificate</li>
+          <li>Introduction to Agents, Mercor</li>
+          <li>CS50's Web Programming with Python and JavaScript, 2021</li>
+          <li>HSK 4 (Mandarin Chinese), Tongji University</li>
         </ul>
-    </header>
-    <!-- End header -->
+      </div>
+    </section>
 
-
-
-    <div id="lead">
-        <div id="lead-content">
-            <h2>Iana Grytsenko</h2>
-            <h2>SQA Automation Engineer</h2>
-             <h2>&</h2>
-             <h2>The Space Enthusiast</h2>
-
-<!--             <a href="https://docs.google.com/document/d/1WtW_Uj01HWwGJzOOzTaozNCEbdcxLrftyzAnEGCxOY8/edit" class="btn-rounded-white">Download Resume</a> -->
+    <section id="contact" class="alt">
+      <div class="wrap">
+        <h2>Contact</h2>
+        <p>Open to Senior SDET, Staff QA Engineer, Test Architect, and Quality Engineering roles. Remote preferred, open to hybrid and on-site.</p>
+        <div class="contact-links">
+          <a href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a>
+          <a href="https://www.linkedin.com/in/ianagrytsenko" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/janagrit" rel="noopener">GitHub</a>
         </div>
-        <!-- End #lead-content -->
+      </div>
+    </section>
 
-        <div id="lead-overlay"></div>
+  </main>
 
-        <div id="lead-down">
-            <span>
-                <i class="fa fa-chevron-down" aria-hidden="true"></i>
-            </span>
-        </div>
-        <!-- End #lead-down -->
-    </div>
-    <!-- End #lead -->
-
-    <div id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h2 class="heading">About Me</h2>
-                </div>
-                <div class="col-md-8">
-                    <p class="lead">
-
-                        
-                        <p>
-                       
-                        SQA Automation Engineer | Web application | Java | Selenium Web Driver| Selenium Grid | Jenkin |CI/CD | Postman | Jira | 
-                        </p>
-                        <br>
-
-
-                        <p>
-                        I have a diverse study and work background and its my employment asset. My goal is to utilize my linguistic and cultural competence to work in dynamic stable environment.
-
-                        <br>
-                        <br>
-                     In my childhood I always liked to discover and fix the old TV that stayed in the living room. My mom used to call me "little man", because I was the one who fixed stuff in the house. I believe my skills and abilities were discovered at a very young age, where we don't have many obligations to study and work to land a decent job. Kids always do what they like and that's the key for the right way to develop a professional career.       </p>
-
-                       
-                     <br>
-                    <p>
-                     I always accomplish my proffessional goals by being useful in my projects and helping our customers.
-                    </p>
-                
-	
-                   
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End #about -->
-
-    <div id="experience" class="background-alt">
-        <h2 class="heading">Experience</h2>
-        <div id="experience-timeline">
-		<div data-date="March 2020 — February 2022">
-                <h3>Daxx (Kiev, Ukraine)</h3>
-                <h4>Scrum Master</h4>
-                <p>
-              
-               </br>
-               
-• Testing of new features and bugfix verification 
-• Create and update test documentation: test plan, test cases, test reports 
-• Followed Agile testing methodology, facilitated daily SCRUM meetings conducted in selectors call and tested each SPRINT deliverables.
-• Remove impediments to the Development Team’s progress; 
-• Support the Product Owner, especially with respect to maintaining the product backlog. 
-• Foster an environment of trust and collaboration within teams;
-
-</br>
-
-
-</br>
- 
-
-                </p>
-            </div>
-
-	<div data-date="May 2013 – July 2015">
-                <h3>国泰君安软件 Guotai Junan  (Shanghai, China)</h3>
-                <h4>QA Tester</h4>
-                <p> 
-                    • Creation and implementation of automated Web Browser and API tests, for re-developed software products.
-• Write test code scripts and release every 2 to 4 weeks following the strict implementation of test-driven development.
-• Collaborate with global engineering teams to deliver software
-• Be a part of the team and hold the responsibility for architecture and design, and come up with better solutions
-• Use JIRA for analyzing User Stories, New Features/Enhancements and tracking/documenting defects.
-• Provided feedback on and suggestions for improving QA Procedures to QA Project and Technical Leads
- 23F 669 Xinzha Road Jingan District Shanghai, 200041 China . WEBSITE www.guotaigroup.com.cn
-
-                </p>
-            </div>
-		
-            	
-
-            <div data-date="November 2015 – March 2016">
-                <h3>PrivatBank, OutSourcing Department (Ukraine)</h3>
-                <h4>QA Manual/Automation Tester</h4>
-                <p>•During the work experience I rotated through different departments (works across different departments) such as outsourcing, legal operational department and financial department.
-Tested products using different platforms Web, Windows, Mac OS and Linux. Wrote test cases, test scenarios, test plans. Performed regression testing, positive and negative testing, usability and localization testing, bug fix testing. 
-Developed automation scripts for test build environment setup and build installation on Windows and Mac using Java set the environment path. Maintain a web automation framework based on Selenium, Java, TestNG and Cucumber. Participated in R&D for new projects with no initial information available.
-• Troubleshoot hardware and software errors by running diagnostics, documenting problems and resolutions, prioritizing problems, and assessing impact of issues
-• Provide documentation and technical specifications to IT staff for planning and implementing new or upgrades of IT infrastructure
-• Lead desktop and helpdesk support efforts, making sure all desktop applications, workstations, and related equipment problems are resolved in a timely manner with limited disruptions
-• Responsible for capacity, storage planning, and database performance
-• ​Performed functional, end-to-end testing for a money transfer and Point Of Sale functionality. 
-• Achieved 70% coverage of functionality with auto-tests written in Selenium, using Selenium WebDriver, Maven, JUNIT, POM and JAVA Object Oriented programming conducted in IntelliJ IDEA.
-• Wrote test specification: test cases, checklists, covering 90% of major user scenarios of money transfers via Western Union, RIA, MoneyGram and SWIFT. 
-• Defined the product specification and requirements, collaborated with the product management team to specify new use cases for a money transfer and POS functionality. 
-• Standardized bug reports leading to a 30% decrease in time taken to communicate the issue measured by the quantity of comments in a given task.
-
-              </p>
-            </div>
-
-        </div>
-    </div>
-    <!-- End #experience -->
-
-    <div id="education">
-        <h2 class="heading">Education</h2>
-        <div class="education-block">
-            <h3>Computer Science for Web Programming Professional Certificate, the US </h3>
-            <span class="education-date">2021</span>
-            <h4>CS50's Web Programming with Python and JavaScript 
-Python, Django, SQL, Models, Migrations, JavaScript, User Interfaces, CI/CD, Scalability and Security
-</h4>
-
-            <p>CS50's Web Programming with Python and JavaScript 
-                Python, Django, SQL, Models, Migrations, JavaScript, User Interfaces, CI/CD, Scalability and Security
-
-            </p>
-
-            
-
-
-
-
-            <p> Software Automation Tester, SQAE Program
-
-
-
-            </p>
-        </div>
-        
-
-        <div class="education-block">
-            <h3>Tongji University, Shanghai, China</h3>
-            <span class="education-date">September 2015 - June 2020</span>
-            <h4>PhD in Political Science in Outer Space Law</h4>
-            
-                <p>
-				Relevant Coursework: Research China-US space relations under the framework of International Space Law; Laws and Policies on space activities; US and Chinese space activities; 
-            
-        </div>
-
-        <div class="education-block">
-            <h3>Tongji University, Shanghai, China</h3>
-            <span class="education-date">July 2014 - June 2015</span>
-            <h4>Certificate (Mandarin) HSK4, Shanghai, China </h4>
-            
-                <p>
-                Relevant Coursework: Chinese language (Mandarin), HSK proficiency level IV
-            
-        </div>
-
-        <div class="education-block">
-            <h3>Dnipro University of Technology, Ukraine</h3>
-            <span class="education-date">August 2009 - June 2013</span>
-            <h4>Bachelor&Masters of Science, Computer Science</h4>
-            <p>
-                    Department of Software Engineering (DoSE):
-                    (https://pzks.nmu.org.ua/en/)
-            </p>
-            <hr>
-            <p>
-
-
-                <br>
-                Data Structures (Java),
-                Web Applications,
-                Database Applications,
-                Distributed Systems,
-                Computer Systems (C and Unix),
-                Great Theoretical Ideas in Computer Science
-                <br>
-<!--                Software Automation Tester, SQAE Program-->
-<!--                - SDLC and STLC, Agile, Scrum;-->
-<!--                - Auto Testing with Java OCA certification-->
-<!--                - Experience both in UI and API automation-->
-<!--                - Experience in building test automation frameworks from scratch-->
-<!--                - Experience with automation in micro-service architecture-->
-<!--                - Cucumber(Gherkin)-->
-        <ul>
-            <li>
-                Relevant Coursework:
-                <br>
-                Software Development & SDLC,
-                Java Programming,
-                IntelliJ IDEA/Eclipse environments,
-                Agile/Scrum methodologies,
-                Software Testing Life Cycle (STLC),
-                Object Oriented Programming,
-                JIRA, HTML & CSS,
-                GIT AND GITHUB,
-                Domain Knowledge,
-                Selenium,
-                Maven & TestNG,
-                Data & Database,
-                Cucumber,
-                API, Jenkins on AWS.
-            </li>
-        </ul>
-
-
-            </p>
-        </div>
-        <!-- End .education-block -->
-    </div>
-    <!-- End #education -->
-
-
-     <div id="projects" class="background-alt">
-        <h2 class="heading">Projects</h2>
-        <div class="container">
-            <div class="row">
-                <div class="project shadow-large">
-                    <div class="project-image">
-                        <img src="images/duobank.jpg" />
-                    </div>
-                    <!-- End .project-image -->
-                    <div class="project-info">
-
-
-                        <h3>Duo Bank</h3>
-
-
-                        <p>
-                            Web Application Testing. Unit, Integration, performance testing, cross-browser testing, regression testing, functional Testing.
-                        </p>
-                        <a href="https://github.com/janagrit/DuoBank-sprint4-gurus">View Project</a>
-                    </div>
-                    <!-- End .project-info -->
-                </div>
-                <!-- End .project -->
-            
-            <div class="project shadow-large">
-                    <div class="project-image">
-                        <img src="images/privat24.jpg" />
-                    </div>
-                    <!-- End .project-image -->
-                    <div class="project-info">
-
-
-                       <h3>Testing Privat24 Internet Bank</h3>
-
-
-                        <p>
-                            Using manual and automation technics to test Privat24 Internet banking application web version; 
-                            - testing new internet services: “cash desk”, new design, accessibility of the cards of any bank of the world, acceptance testing, POS features.
-
-                        </p>
-                        <a href="https://github.com/janagrit/privat24">View Project</a>
-                    </div>
-                    <!-- End .project-info -->
-                </div>
-                <!-- End .project -->
-            
-
-                <div class="project shadow-large">
-                    <div class="project-image">
-                        <img src="images/net.png" />
-                    </div>
-                    <!-- End .project-image -->
-                    <div class="project-info">
-                        <h3>Online Auction Test Version Application</h3>
-                        <p>
-                            Building a recommendation website using Django and Python.
-                            As a part of the data science team that implemented a backend I cooperate respectively on this project
-
-                        </p>
-                        <a href="https://github.com/janagrit/online-auction">View Project</a>
-                    </div>
-                    <!-- End .project-info -->
-                </div>
-                <!-- End .project -->
-            
-            
-        <div class="project shadow-large">
-                    <div class="project-image">
-                        <img src="images/python.png" />
-                    </div>
-                    <!-- End .project-image -->
-                    <div class="project-info">
-                        <h3>Employee Search Managment (Banked in MySQL)</h3>
-                        <p>
-                            Design a front-end for Google Search, Google Image Search, and Google Advanced Search.
-                            Wiki-like local application for the use of authorized employees.
-                        </p>
-                        <a href="https://github.com/janagrit/Search_Wiki">View Project</a>
-                    </div>
-                    <!-- End .project-info -->
-                </div>
-                <!-- End .project -->
-                
-                
-                
-            </div>
-        </div>
-    </div>
-    <!-- End #projects -->
-
-
-
-
-
-
-
-
-
-    <div id="skills">
-        <h2 class="heading">TECHNICAL PROFICIENCIES</h2>
-        <ul>
-             <li>
-Applications:  Selenium WebDriver, Maven, Cucumber, JUnit, TestNJ,
-                Jenkins, GIT, SOAP, UI, REST, MS SQL Server, HP / ALM Quality Center, Bugzilla, JIRA, HP Quick
-Test Professional (QTP), Browser Stack, Jing, VMWare, Desktop, Client-
-Server, Postman, Web-based applications.</li>
-          
-           <h2 class="heading">Platforms: MacOS, Windows, Linux/UNIX</h2>
-            <li>Languages: Java (preferred one), Python, SQL, Groovy, Gherkin</li>
-            <li>CSS, Selenium, Oracle, AWS</li>
-        </ul>
-		
-		
-		
-    </div>
-    <!-- End #skills -->
-
-    <div id="contact">
-        <h2>Get in Touch</h2>
-    
-        <!-- End #contact-form -->
-    </div>
-    <!-- End #contact -->
-
-
-
-    <!-- Footer -->
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-5 copyright">
-
-                    <p>
-                        email: IanaGrytsenko@gmail.com;
-                        
-                        <br>
-                        phone: +1 (616) 320 4555 
-
-                    </p>
-                </div>
-                <div class="col-sm-2 top">
-                    <span id="to-top">
-                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                    </span>
-                </div>
-                <div class="col-sm-5 social">
-                    
-                             <a href="https://www.linkedin.com/in/iana-grytsenko/" target="_blank" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >Linkedin</a>
-
-                            <a href="https://twitter.com/GritJana" target="_blank" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >Twitter</a>
-                        
-                </div>
-            </div>
-        </div>
-
-
-    </footer>
-    <!-- End footer -->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/scripts.min.js"></script>
+  <footer>
+    <div class="wrap">Iana Grytsenko | NYC | Updated October 2026</div>
+  </footer>
 </body>
-
 </html>
-
