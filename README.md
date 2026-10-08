@@ -1,6 +1,6 @@
-# SDET Portfolio
+# QA Engineering Portfolio
 
-Personal portfolio of **Iana Grytsenko**, Senior SDET and Test Automation Architect.
+Personal portfolio of **Iana Grytsenko**, Senior QA Engineer and Test Automation Architect.
 
 Live site: [janagrit.github.io](https://janagrit.github.io)
 
@@ -34,7 +34,7 @@ I build test automation frameworks from scratch with Playwright, Cypress, and Ty
 
 ## How the site is built
 
-The whole site is one file, `index.html`: plain HTML and CSS with no frameworks, build step, or JavaScript. It is responsive, supports light and dark mode, and is hosted on GitHub Pages from the `master` branch.
+The whole site is one file, `index.html`: plain HTML and CSS with no frameworks, build step, or JavaScript. It uses Google Fonts (Fraunces, Instrument Sans, JetBrains Mono), is responsive, supports light and dark mode, and is hosted on GitHub Pages from the `master` branch.
 
 To edit it, open `index.html`, click the pencil icon, make the change, and commit. The live site updates in one to two minutes.
 
