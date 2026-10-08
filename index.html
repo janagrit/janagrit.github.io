@@ -3,324 +3,566 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Iana Grytsenko | Senior SDET</title>
-  <meta name="description" content="Iana Grytsenko, Senior SDET. Playwright and TypeScript test automation frameworks, CI/CD, AWS, and AI-assisted testing.">
-  <meta property="og:title" content="Iana Grytsenko | Senior SDET">
+  <title>Iana Grytsenko | Senior QA Engineer</title>
+  <meta name="description" content="Iana Grytsenko, Senior QA Engineer and test automation architect. Playwright and TypeScript frameworks, CI/CD, AWS, and AI-assisted testing.">
+  <meta property="og:title" content="Iana Grytsenko | Senior QA Engineer">
   <meta property="og:description" content="I build test automation frameworks from scratch: Playwright, Cypress, TypeScript, CI/CD, AWS.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://janagrit.github.io/">
+  <meta name="color-scheme" content="light dark">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
+    /* ---------- tokens ---------- */
     :root {
-      --bg: #ffffff;
-      --bg-alt: #f5f7fa;
-      --text: #1b2430;
-      --muted: #5b6776;
-      --line: #dfe4ea;
-      --accent: #1f4e8c;
-      --accent-soft: #e8f0fb;
-      --hero-a: #10233f;
-      --hero-b: #1f4e8c;
+      --paper: #f2ede4;
+      --paper-deep: #e8e1d4;
+      --ink: #1f1a16;
+      --ink-soft: #3d352e;
+      --muted: #6b6158;
+      --rule: #cfc5b6;
+      --accent: #b03a0e;      /* text-safe vermilion */
+      --mark: #d2491a;        /* decorative strokes */
+      --serif: "Fraunces", "Iowan Old Style", Georgia, serif;
+      --sans: "Instrument Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+      --gutter: clamp(16px, 4vw, 56px);
+      --max: 1320px;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #0f141b;
-        --bg-alt: #161d27;
-        --text: #e6ebf2;
-        --muted: #9aa7b6;
-        --line: #283342;
-        --accent: #7fb0ee;
-        --accent-soft: #1b2a3f;
-        --hero-a: #0b1524;
-        --hero-b: #163a69;
+        --paper: #1a1714;
+        --paper-deep: #221e1a;
+        --ink: #efe7da;
+        --ink-soft: #d6ccbd;
+        --muted: #a39686;
+        --rule: #3a332c;
+        --accent: #f08a5d;
+        --mark: #e8673a;
       }
     }
+
+    /* ---------- base ---------- */
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body {
       margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
       font-size: 17px;
       line-height: 1.6;
+      overflow-x: clip;
+      font-feature-settings: "ss01", "kern";
     }
-    a { color: var(--accent); }
-    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-    .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+    /* paper grain */
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 50;
+      opacity: .07;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    @media (prefers-color-scheme: dark) { body::before { mix-blend-mode: screen; opacity: .05; } }
+    ::selection { background: var(--mark); color: var(--paper); }
+
+    a { color: inherit; text-decoration-color: var(--mark); text-decoration-thickness: 1px; text-underline-offset: .18em; }
+    a:hover { color: var(--accent); }
+    a:focus-visible { outline: 2px dashed var(--accent); outline-offset: 4px; border-radius: 2px; }
+
     .skip { position: absolute; left: -9999px; }
-    .skip:focus { left: 12px; top: 12px; background: var(--bg); padding: 8px 12px; z-index: 10; }
+    .skip:focus { left: 16px; top: 16px; background: var(--ink); color: var(--paper); padding: 8px 12px; z-index: 60; }
 
-    nav { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--line); z-index: 5; }
-    nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 56px; }
-    nav .brand { font-weight: 700; color: var(--text); text-decoration: none; white-space: nowrap; }
-    nav ul { display: flex; flex-wrap: wrap; gap: 4px 18px; list-style: none; margin: 0; padding: 8px 0; }
-    nav ul a { color: var(--muted); text-decoration: none; font-size: 15px; }
-    nav ul a:hover { color: var(--accent); }
+    .page { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+    .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(12px, 2vw, 28px); }
 
-    header.hero { background: linear-gradient(135deg, var(--hero-a), var(--hero-b)); color: #ffffff; padding: 72px 0 64px; }
-    .hero h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.1; margin: 0 0 10px; }
-    .hero .role { font-size: clamp(18px, 3vw, 24px); margin: 0 0 18px; color: #d5e3f7; }
-    .hero .pitch { max-width: 640px; margin: 0 0 28px; color: #eef4fc; }
-    .btns { display: flex; flex-wrap: wrap; gap: 12px; }
-    .btn { display: inline-block; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 15px; }
-    .btn.primary { background: #ffffff; color: #10233f; }
-    .btn.ghost { border: 1px solid #a9c3e6; color: #ffffff; }
+    .mono { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
+    .muted { color: var(--muted); }
 
-    section { padding: 56px 0; }
-    section.alt { background: var(--bg-alt); }
-    h2 { font-size: 26px; margin: 0 0 24px; }
-    h3 { font-size: 19px; margin: 0; }
+    /* ---------- top strip ---------- */
+    .strip {
+      display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+      gap: 8px 24px; padding: 18px 0 14px; border-bottom: 1px solid var(--rule);
+    }
+    .strip .run { color: var(--muted); }
+    .strip .run b { color: var(--accent); font-weight: 500; }
+    .strip nav ul { display: flex; flex-wrap: wrap; gap: 4px 20px; list-style: none; margin: 0; padding: 0; }
+    .strip nav a { text-decoration: none; }
+    .strip nav a:hover { text-decoration: underline; }
 
-    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-top: 28px; }
-    .stat { background: var(--accent-soft); border-radius: 8px; padding: 16px; }
-    .stat b { display: block; font-size: 26px; color: var(--accent); line-height: 1.2; }
-    .stat span { font-size: 14px; color: var(--muted); }
+    /* ---------- hero ---------- */
+    .hero { position: relative; padding: clamp(48px, 9vw, 120px) 0 clamp(56px, 8vw, 110px); }
+    .hero .kicker { grid-column: 1 / span 6; margin: 0 0 clamp(18px, 3vw, 34px); color: var(--muted); }
+    .hero h1 {
+      grid-column: 1 / -1;
+      margin: 0;
+      font-family: var(--serif);
+      font-weight: 350;
+      font-size: clamp(64px, 14.5vw, 212px);
+      line-height: .84;
+      letter-spacing: -.035em;
+      font-variation-settings: "opsz" 144, "SOFT" 60, "WONK" 1;
+    }
+    .hero h1 .l1 { display: block; }
+    .hero h1 .l2 { display: block; padding-left: 13vw; position: relative; width: fit-content; font-style: italic; font-weight: 300; }
+    .hero h1 .scribble { position: absolute; left: 13vw; right: -2%; bottom: -.16em; width: calc(100% - 13vw + 2%); height: .22em; overflow: visible; }
+    .hero .role {
+      grid-column: 2 / span 5; margin: clamp(36px, 5vw, 64px) 0 0;
+      font-family: var(--mono); font-size: 13px; letter-spacing: .06em; text-transform: uppercase;
+    }
+    .hero .role span { color: var(--accent); }
+    .hero blockquote {
+      grid-column: 7 / span 5; margin: clamp(28px, 4vw, 56px) 0 0;
+      font-family: var(--serif); font-style: italic; font-weight: 340;
+      font-size: clamp(22px, 2.4vw, 32px); line-height: 1.22;
+      font-variation-settings: "opsz" 48, "SOFT" 100, "WONK" 1;
+    }
+    .hero blockquote p { margin: 0; }
+    .hero .pitch { grid-column: 7 / span 5; margin: 22px 0 0; color: var(--ink-soft); max-width: 46ch; }
+    .hero .links { grid-column: 7 / span 6; margin-top: 26px; display: flex; flex-wrap: wrap; gap: 6px 22px; }
+    .hero .links a { font-family: var(--mono); font-size: 13px; letter-spacing: .03em; }
 
-    .job { border-left: 3px solid var(--accent); padding: 0 0 6px 18px; margin-bottom: 30px; }
-    .job:last-child { margin-bottom: 0; }
-    .job .meta { color: var(--muted); font-size: 15px; margin: 2px 0 10px; }
-    .job ul { margin: 0; padding-left: 20px; }
-    .job li { margin-bottom: 6px; }
+    .stamp {
+      position: absolute; right: 2%; top: clamp(40px, 7vw, 100px);
+      width: 148px; height: 148px; border-radius: 50%;
+      border: 1.5px solid var(--accent); color: var(--accent);
+      display: grid; place-items: center; text-align: center;
+      transform: rotate(-11deg);
+      font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; line-height: 1.5;
+    }
+    .stamp::before { content: ""; position: absolute; inset: 6px; border: 1px dashed var(--accent); border-radius: 50%; opacity: .6; }
+    .stamp b { display: block; font-family: var(--serif); font-style: italic; text-transform: none; letter-spacing: 0; font-weight: 500; font-size: 19px; margin: 2px 0; }
 
-    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-    .card { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
-    section.alt .card { background: var(--bg); }
-    .card h3 { font-size: 16px; margin-bottom: 8px; color: var(--accent); }
-    .card p { margin: 0; font-size: 15.5px; }
+    /* ---------- sections ---------- */
+    section { padding: clamp(64px, 9vw, 128px) 0; border-top: 1px solid var(--rule); }
+    .sec-label { grid-column: 1 / span 2; margin: 6px 0 0; color: var(--muted); }
+    .sec-label em { font-style: normal; color: var(--accent); }
+    h2 {
+      font-family: var(--serif); font-weight: 340; margin: 0 0 clamp(28px, 4vw, 48px);
+      font-size: clamp(38px, 5.6vw, 76px); line-height: .98; letter-spacing: -.025em;
+      font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 0;
+    }
+    h2 i { font-weight: 300; font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1; }
 
-    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; }
-    .projects .card p { margin-bottom: 12px; }
-    .tags { font-size: 13.5px; color: var(--muted); margin-bottom: 12px; }
+    /* about */
+    .about h2 { grid-column: 3 / span 8; }
+    .about .body { grid-column: 3 / span 6; }
+    .about .body p { margin: 0 0 1.1em; }
+    .about .body p:first-child::first-letter {
+      float: left; font-family: var(--serif); font-size: 4.4em; line-height: .8; padding: .06em .08em 0 0;
+      color: var(--accent); font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+    }
+    .notes { grid-column: 10 / span 3; align-self: start; display: grid; gap: 34px; margin-top: 8px; }
+    .note {
+      font-family: var(--serif); font-style: italic; font-size: 17px; line-height: 1.38; color: var(--ink-soft);
+      font-variation-settings: "opsz" 18, "SOFT" 100, "WONK" 1;
+      position: relative; padding-left: 16px; border-left: 1px solid var(--mark);
+    }
+    .note:nth-child(1) { transform: rotate(-1.4deg); }
+    .note:nth-child(2) { transform: rotate(.9deg); margin-left: 18px; }
+    .note .mono { display: block; font-style: normal; margin-bottom: 6px; color: var(--accent); font-size: 10.5px; }
 
-    .edu { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; }
-    .edu .when { color: var(--muted); font-size: 14.5px; }
-    ul.plain { margin: 0; padding-left: 20px; }
+    .stats { grid-column: 1 / -1; margin-top: clamp(48px, 7vw, 96px); row-gap: 40px; }
+    .stat { position: relative; }
+    .stat b {
+      display: block; font-family: var(--serif); font-weight: 300; line-height: .85; letter-spacing: -.04em;
+      font-size: clamp(64px, 9vw, 132px); font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 0;
+    }
+    .stat b small { font-size: .42em; letter-spacing: -.01em; font-style: italic; }
+    .stat span { display: block; margin-top: 14px; max-width: 24ch; font-family: var(--mono); font-size: 12px; line-height: 1.55; color: var(--muted); }
+    .stat:nth-child(1) { grid-column: 2 / span 3; }
+    .stat:nth-child(2) { grid-column: 6 / span 3; margin-top: 70px; }
+    .stat:nth-child(3) { grid-column: 10 / span 3; margin-top: 18px; }
+    .stat:nth-child(4) { grid-column: 4 / span 4; margin-top: 10px; }
+    .stat .ring { position: absolute; left: -.22em; top: -.2em; width: 1.95em; height: 1.25em; font-size: clamp(64px, 9vw, 132px); overflow: visible; pointer-events: none; }
 
-    .contact-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
-    .contact-links a { border: 1px solid var(--line); border-radius: 6px; padding: 10px 16px; text-decoration: none; font-weight: 600; }
-    footer { border-top: 1px solid var(--line); padding: 22px 0; color: var(--muted); font-size: 14px; }
+    /* experience ledger */
+    .experience h2 { grid-column: 3 / span 9; }
+    .ledger { grid-column: 1 / -1; list-style: none; margin: 0; padding: 0; }
+    .entry { padding: clamp(28px, 3.5vw, 44px) 0; border-top: 1px solid var(--rule); align-items: start; }
+    .entry:last-child { border-bottom: 1px solid var(--rule); }
+    .entry .when { grid-column: 1 / span 2; margin: 8px 0 0; color: var(--muted); font-family: var(--mono); font-size: 12px; line-height: 1.6; }
+    .entry .who { grid-column: 3 / span 4; margin: 0; }
+    .entry h3 {
+      margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 2.8vw, 38px); line-height: 1.04; letter-spacing: -.015em;
+      font-variation-settings: "opsz" 72, "SOFT" 50, "WONK" 0;
+    }
+    .entry .title { margin: 10px 0 0; font-size: 15px; color: var(--ink-soft); }
+    .entry .where { margin: 6px 0 0; }
+    .entry .stack { margin: 16px 0 0; max-width: 34ch; font-family: var(--mono); font-size: 11.5px; line-height: 1.7; color: var(--muted); }
+    .entry .stack b { display: block; font-weight: 500; color: var(--accent); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; }
+    .entry ul { grid-column: 7 / span 6; list-style: none; margin: 6px 0 0; padding: 0; }
+    .entry li { position: relative; padding-left: 28px; margin-bottom: 10px; font-size: 16px; }
+    .entry li::before { content: "✓"; position: absolute; left: 0; top: 1px; font-family: var(--mono); font-size: 13px; color: var(--accent); }
+    .tally { grid-column: 7 / span 6; margin: 22px 0 0; color: var(--muted); }
+    .tally b { color: var(--accent); font-weight: 500; }
+
+    /* practice */
+    .practice .prose {
+      grid-column: 2 / span 10; margin: 0;
+      font-family: var(--serif); font-weight: 320; font-size: clamp(24px, 3vw, 40px); line-height: 1.3; letter-spacing: -.01em;
+      color: var(--muted); font-variation-settings: "opsz" 72, "SOFT" 80, "WONK" 0;
+    }
+    .practice .prose p { margin: 0 0 .7em; }
+    .practice .prose p:nth-child(2) { padding-left: 8%; }
+    .practice .prose p:nth-child(3) { padding-left: 3%; }
+    .practice .prose strong { color: var(--ink); font-weight: 420; }
+    .practice .prose em { color: var(--accent); }
+    .practice h2 { grid-column: 3 / span 8; }
+
+    /* work */
+    .work h2 { grid-column: 3 / span 9; }
+    .projects { grid-column: 1 / -1; list-style: none; margin: 0; padding: 0; }
+    .project { padding: clamp(24px, 3vw, 36px) 0; border-top: 1px solid var(--rule); align-items: baseline; }
+    .project:last-child { border-bottom: 1px solid var(--rule); }
+    .project .n { grid-column: 1 / span 1; color: var(--muted); }
+    .project h3 { grid-column: 2 / span 6; margin: 0; font-family: var(--serif); font-weight: 340; font-size: clamp(30px, 4.2vw, 58px); line-height: 1; letter-spacing: -.02em; }
+    .project:nth-child(2) h3 { grid-column: 3 / span 6; font-style: italic; }
+    .project:nth-child(3) h3 { grid-column: 2 / span 6; }
+    .project h3 a { text-decoration: none; }
+    .project h3 a::after { content: " ↗"; font-size: .45em; vertical-align: .6em; color: var(--accent); transition: transform .2s; display: inline-block; }
+    .project h3 a:hover::after { transform: translate(3px, -3px); }
+    .project .desc { grid-column: 9 / span 4; margin: 0; font-size: 15.5px; color: var(--ink-soft); }
+    .project .desc .mono { display: block; margin-bottom: 8px; color: var(--muted); font-size: 11px; }
+
+    /* education */
+    .education h2 { grid-column: 3 / span 8; }
+    .degrees { grid-column: 3 / span 6; list-style: none; margin: 0; padding: 0; }
+    .degrees li { padding: 18px 0; border-top: 1px solid var(--rule); }
+    .degrees li:last-child { border-bottom: 1px solid var(--rule); }
+    .degrees h3 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 23px; line-height: 1.2; }
+    .degrees p { margin: 4px 0 0; color: var(--ink-soft); font-size: 15.5px; }
+    .degrees .mono { color: var(--muted); }
+    .certs { grid-column: 10 / span 3; align-self: start; }
+    .certs h3 { margin: 0 0 12px; color: var(--accent); }
+    .certs ul { list-style: none; margin: 0; padding: 0; font-size: 15px; }
+    .certs li { padding: 8px 0; border-top: 1px dashed var(--rule); }
+
+    /* contact */
+    .contact { padding-bottom: clamp(56px, 7vw, 96px); }
+    .contact h2 { grid-column: 3 / span 9; }
+    .contact .lede { grid-column: 3 / span 6; margin: 0 0 18px; color: var(--ink-soft); }
+    .contact .big {
+      grid-column: 3 / -1; margin: 0; position: relative; width: fit-content; max-width: 100%;
+      font-family: var(--serif); font-weight: 320; font-style: italic;
+      font-size: clamp(30px, 6.4vw, 96px); line-height: 1; letter-spacing: -.03em;
+      font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+      overflow-wrap: anywhere;
+    }
+    .contact .big a { text-decoration: none; }
+    .contact .big svg { position: absolute; left: 0; bottom: -.18em; width: 100%; height: .2em; overflow: visible; }
+    .contact .elsewhere { grid-column: 3 / -1; margin-top: 40px; display: flex; flex-wrap: wrap; gap: 8px 28px; }
+    .contact .elsewhere a { font-family: var(--mono); font-size: 13px; }
+
+    footer { border-top: 1px solid var(--rule); padding: 26px 0 40px; }
+    footer .grid > * { margin: 0; }
+    footer .colophon { grid-column: 3 / span 7; color: var(--muted); font-size: 11.5px; line-height: 1.8; }
+    footer .sig { grid-column: 11 / span 2; text-align: right; font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--accent); transform: rotate(-4deg); }
+
+    /* hand-drawn strokes */
+    .ink path { fill: none; stroke: var(--mark); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+    @media (prefers-reduced-motion: no-preference) {
+      .ink path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.4s cubic-bezier(.6,.05,.3,1) .5s forwards; }
+      .ink.late path { animation-delay: 1.1s; }
+      .hero h1 .l1, .hero h1 .l2 { animation: rise .9s cubic-bezier(.2,.7,.2,1) both; }
+      .hero h1 .l2 { animation-delay: .12s; }
+      @keyframes draw { to { stroke-dashoffset: 0; } }
+      @keyframes rise { from { opacity: 0; transform: translateY(.12em); } }
+    }
+
+    /* ---------- smaller screens ---------- */
+    @media (max-width: 900px) {
+      .grid > * { grid-column: 1 / -1 !important; }
+      .stamp { position: relative; right: auto; top: auto; margin: 0 0 28px auto; width: 124px; height: 124px; font-size: 9.5px; }
+      .stamp b { font-size: 16px; }
+      .hero h1 .l2 { padding-left: 8vw; }
+      .hero h1 .scribble { left: 8vw; width: calc(100% - 8vw + 2%); }
+      .hero .role { margin-top: 36px; }
+      .hero blockquote { margin-top: 20px; }
+      .sec-label { margin-bottom: 14px; }
+      .notes { margin-top: 28px; gap: 24px; }
+      .note:nth-child(2) { margin-left: 0; }
+      .stats { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; }
+      .stats .stat { grid-column: auto !important; margin-top: 0 !important; }
+      .stats .stat:nth-child(even) { margin-top: 36px !important; }
+      .entry .when { margin: 0 0 8px; }
+      .entry ul { margin-top: 18px; }
+      .tally { margin-top: 18px; }
+      .practice .prose p:nth-child(n) { padding-left: 0; }
+      .project .n { margin-bottom: 6px; }
+      .project .desc { margin-top: 12px; }
+      .certs { margin-top: 40px; }
+      footer .sig { text-align: left; margin-top: 16px; }
+    }
+    @media (max-width: 480px) {
+      body { font-size: 16px; }
+      .stats { grid-template-columns: 1fr; }
+      .stats .stat:nth-child(even) { margin-top: 0 !important; padding-left: 18%; }
+    }
   </style>
 </head>
 
 <body>
   <a class="skip" href="#main">Skip to main content</a>
 
-  <nav aria-label="Main">
-    <div class="wrap">
-      <a class="brand" href="#top">Iana Grytsenko</a>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <header class="hero" id="top">
-    <div class="wrap">
-      <h1>Iana Grytsenko</h1>
-      <p class="role">Senior SDET | Test Automation Architect</p>
-      <p class="pitch">I build test infrastructure that outlasts the people who build it: Playwright and TypeScript frameworks designed from the ground up, wired into CI/CD, and trusted by the teams that ship on them.</p>
-      <div class="btns">
-        <a class="btn primary" href="#contact">Get in touch</a>
-        <a class="btn ghost" href="https://github.com/janagrit" rel="noopener">GitHub</a>
-        <a class="btn ghost" href="https://www.linkedin.com/in/ianagrytsenko" rel="noopener">LinkedIn</a>
-      </div>
-    </div>
-  </header>
-
-  <main id="main">
-
-    <section id="about">
-      <div class="wrap">
-        <h2>About</h2>
-        <p>I am a Senior SDET (Software Development Engineer in Test) with 6+ years in QA and test automation for SaaS and web platforms. I design automation frameworks from scratch, lead migrations between them, and take over unstructured test projects and turn them into something a team can maintain.</p>
-        <p>My philosophy: quality is not support. It is system design. I treat tests as production code, keep feedback loops fast, and use AI tooling such as Claude Code and MCP servers where it saves real time.</p>
-        <p>Before software I studied outer space law, and I work in English, Ukrainian, and Chinese.</p>
-        <div class="stats">
-          <div class="stat"><b>45%</b><span>more automated coverage after a Cypress to Playwright migration</span></div>
-          <div class="stat"><b>60%</b><span>fewer flaky-test false positives</span></div>
-          <div class="stat"><b>5+</b><span>product lines automated as the sole SDET</span></div>
-          <div class="stat"><b>9 weeks</b><span>to deliver a full E2E framework on a client project</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience" class="alt">
-      <div class="wrap">
-        <h2>Experience</h2>
-
-        <div class="job">
-          <h3>Senior SDET, Playwright/TypeScript Test Automation (Contract)</h3>
-          <p class="meta">Cooley LLP, Legal Technology | Remote | Jun 2026 - Sep 2026</p>
-          <ul>
-            <li>Inherited an early-stage Playwright/TypeScript project with a small, unstructured smoke suite and rebuilt it into a structured, maintainable framework with smoke and regression suites.</li>
-            <li>Designed and built end-to-end transfer automation from scratch for a multi-party, multi-role fund-transfer SaaS platform, across online, offline, and hybrid scenarios.</li>
-            <li>Established a Page Object Model architecture with reusable helper modules: 13 spec files, 23 page object classes, 12 helper modules.</li>
-            <li>Replaced a cache-based reuse pattern with isolated, self-contained test runs, reducing flakiness.</li>
-            <li>Used Claude Code with MCP servers to speed up spec generation, debugging of async auth flows, and failure analysis.</li>
-          </ul>
-        </div>
-
-        <div class="job">
-          <h3>Senior SDET, Test Infrastructure and Frontend/Backend Automation</h3>
-          <p class="meta">California Community Colleges Technology Center | Remote | Sep 2022 - Feb 2026</p>
-          <ul>
-            <li>Sole automation engineer: built scalable test infrastructure from scratch across 5+ product lines on a cloud-native microservices architecture (AWS).</li>
-            <li>Led the migration from Cypress to Playwright, improving speed, parallelization, and stability, and raising automated test coverage by 45%.</li>
-            <li>Designed contract tests across microservices and tested event-driven AWS workflows (Lambda, SQS, SNS, API Gateway), including retries, idempotency, and dead-letter queues.</li>
-            <li>Integrated automation into Jenkins CI/CD with Docker-based execution on AWS EC2.</li>
-            <li>Mentored QA engineers, ran code reviews, and supported hiring.</li>
-          </ul>
-        </div>
-
-        <div class="job">
-          <h3>QA Automation Engineer (BDD)</h3>
-          <p class="meta">Amtrak | On-site / Remote | Aug 2021 - Sep 2022</p>
-          <ul>
-            <li>Built and maintained BDD automation frameworks in Java, Selenium, and Cucumber for trip planning, route search, booking, and station flows.</li>
-            <li>Eliminated flaky tests by refactoring legacy test logic, cutting false-positive failures by 60%.</li>
-            <li>Owned Jenkins pipelines for automated smoke and regression runs.</li>
-          </ul>
-        </div>
-
-        <div class="job">
-          <h3>QA Automation Engineer (TDD)</h3>
-          <p class="meta">HiLabs (Analytics) | Baltimore, MD | Jan 2020 - Aug 2021</p>
-          <ul>
-            <li>Designed a TDD automation framework in Java, Selenium, TestNG, and Maven for E2E, smoke, regression, and integration testing on a healthcare platform.</li>
-            <li>Validated backend data with Oracle and JDBC, and tested REST APIs with Postman and REST Assured.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills">
-      <div class="wrap">
-        <h2>Skills</h2>
-        <div class="skills">
-          <div class="card">
-            <h3>Test automation</h3>
-            <p>Playwright, Cypress, Selenium WebDriver, TypeScript, JavaScript, Java, Page Object Model, component testing, React Testing Library</p>
-          </div>
-          <div class="card">
-            <h3>API and contract testing</h3>
-            <p>REST, GraphQL, Postman, REST Assured, Swagger/OpenAPI, schema validation, contract testing, network interception and mocking</p>
-          </div>
-          <div class="card">
-            <h3>CI/CD and DevOps</h3>
-            <p>Jenkins, GitHub Actions, GitLab CI, Azure DevOps Pipelines, Docker, Git, Maven</p>
-          </div>
-          <div class="card">
-            <h3>Cloud (AWS)</h3>
-            <p>Lambda, SQS, SNS, API Gateway, EC2, IAM, CloudWatch, serverless and microservices architectures</p>
-          </div>
-          <div class="card">
-            <h3>AI-assisted testing</h3>
-            <p>Claude Code, Model Context Protocol (MCP) servers, AI-assisted test generation and failure analysis</p>
-          </div>
-          <div class="card">
-            <h3>Practices</h3>
-            <p>Test strategy, shift-left testing, BDD, TDD, flaky-test remediation, code reviews, mentoring, Agile/Scrum, Jira</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="alt">
-      <div class="wrap">
-        <h2>Projects</h2>
-        <div class="projects">
-
-          <!--
-            Playwright demo project. Remove this comment block's opening and closing lines
-            once the repository is public on GitHub, and check that the link opens.
-
-          <div class="card">
-            <h3>Playwright + TypeScript framework</h3>
-            <p class="tags">Playwright | TypeScript | axe-core | GitHub Actions</p>
-            <p>Test automation framework for a public marketing website: data-driven smoke tests, navigation journeys, link checks, accessibility scans, and visual regression, on desktop and mobile.</p>
-            <a href="https://github.com/janagrit/nvidia-playwright-demo" rel="noopener">View on GitHub</a>
-          </div>
-          -->
-
-          <div class="card">
-            <h3>Duo Bank test automation</h3>
-            <p class="tags">Java | Selenium | Cucumber | BDD</p>
-            <p>Automated testing of a web banking application: functional, regression, integration, and cross-browser testing.</p>
-            <a href="https://github.com/janagrit/DuoBank-sprint4-gurus" rel="noopener">View on GitHub</a>
-          </div>
-
-          <div class="card">
-            <h3>Online auction web app</h3>
-            <p class="tags">Python | Django | SQL</p>
-            <p>Auction web application built with Django for CS50's Web Programming with Python and JavaScript.</p>
-            <a href="https://github.com/janagrit/online-auction" rel="noopener">View on GitHub</a>
-          </div>
-
-          <div class="card">
-            <h3>More on GitHub</h3>
-            <p class="tags">All repositories</p>
-            <p>Other repositories and experiments.</p>
-            <a href="https://github.com/janagrit" rel="noopener">github.com/janagrit</a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section id="education">
-      <div class="wrap">
-        <h2>Education</h2>
-        <div class="edu">
-          <div class="card">
-            <h3>M.S. in Computer Science</h3>
-            <p>New York Institute of Technology (NYIT)</p>
-            <p class="when">2015</p>
-          </div>
-          <div class="card">
-            <h3>PhD in Political Science (Outer Space Law)</h3>
-            <p>Tongji University, Shanghai, China</p>
-            <p class="when">2015 - 2020</p>
-          </div>
-          <div class="card">
-            <h3>B.S. and M.S. in Computer Science</h3>
-            <p>Dnipro University of Technology, Ukraine</p>
-            <p class="when">2009 - 2013</p>
-          </div>
-        </div>
-
-        <h2 style="margin-top:40px">Certifications</h2>
-        <ul class="plain">
-          <li>AWS Cloud Technical Essentials</li>
-          <li>Software QA and Test Automation Engineering Certificate</li>
-          <li>Introduction to Agents, Mercor</li>
-          <li>CS50's Web Programming with Python and JavaScript, 2021</li>
-          <li>HSK 4 (Mandarin Chinese), Tongji University</li>
+  <div class="page">
+    <header class="strip mono" id="top">
+      <span>Iana Grytsenko &mdash; Portfolio</span>
+      <span class="run" aria-hidden="true">run #2026.10 &middot; 4 roles &middot; <b>0 flaky</b></span>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#practice">Practice</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-      </div>
-    </section>
+      </nav>
+    </header>
 
-    <section id="contact" class="alt">
-      <div class="wrap">
-        <h2>Contact</h2>
-        <p>Open to Senior SDET, Staff QA Engineer, Test Architect, and Quality Engineering roles. Remote preferred, open to hybrid and on-site.</p>
-        <div class="contact-links">
-          <a href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a>
-          <a href="https://www.linkedin.com/in/ianagrytsenko" rel="noopener">LinkedIn</a>
-          <a href="https://github.com/janagrit" rel="noopener">GitHub</a>
+    <main id="main">
+
+      <div class="hero">
+        <div class="stamp" aria-label="Currently open to Senior QA and Test Architect roles">
+          <span aria-hidden="true">Currently<b>open to</b>Senior QA &amp;<br>Test Architect<br>roles</span>
+        </div>
+        <div class="grid">
+          <p class="kicker mono">Test infrastructure &middot; Distributed systems &middot; AI tooling</p>
+          <h1>
+            <span class="l1">Iana</span>
+            <span class="l2">Grytsenko<svg class="scribble ink" viewBox="0 0 600 30" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 18 C 90 8, 170 24, 260 14 S 430 6, 520 16 C 548 19, 572 12, 596 9 M 380 24 C 440 20, 500 22, 560 19"/></svg></span>
+          </h1>
+          <p class="role">Senior QA Engineer <span>/</span> Test Automation Architect</p>
+          <blockquote>
+            <p>&ldquo;Quality is not support. It is system design.&rdquo;</p>
+          </blockquote>
+          <p class="pitch">I build test infrastructure that outlasts the people who build it: Playwright and TypeScript frameworks designed from the ground up, wired into CI/CD, and trusted by the teams that ship on them.</p>
+          <p class="links">
+            <a href="mailto:ianagrytsenko@gmail.com">Email</a>
+            <a href="https://github.com/janagrit" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/ianagrytsenko" rel="noopener">LinkedIn</a>
+          </p>
         </div>
       </div>
-    </section>
 
-  </main>
+      <section class="about" id="about" aria-labelledby="about-h">
+        <div class="grid">
+          <p class="sec-label mono"><em>&sect; 01</em><br>About</p>
+          <h2 id="about-h">Tests are production code. <i>I treat them that way.</i></h2>
+          <div class="body">
+            <p>I am a Senior QA Engineer with 6+ years in QA and test automation. I design test infrastructure, automation frameworks and validation pipelines from scratch, and I work with product and infrastructure teams to decide how complex distributed systems get tested across web, mobile web and backend services.</p>
+            <p>I keep feedback loops fast and let production telemetry, not guesswork, tell me where coverage is thin. I use AI tooling such as Claude Code and MCP servers where it saves real time, and I review what the AI produces as carefully as anyone else's code.</p>
+          </div>
+          <aside class="notes" aria-label="Side notes">
+            <p class="note"><span class="mono">Before software</span>A PhD in political science, on outer space law, at Tongji University in Shanghai.</p>
+            <p class="note"><span class="mono">Languages</span>I work in English, Українська and 中文.</p>
+          </aside>
 
-  <footer>
-    <div class="wrap">Iana Grytsenko | NYC | Updated October 2026</div>
-  </footer>
+          <div class="stats grid">
+            <div class="stat">
+              <b>45<small>%</small></b>
+              <svg class="ring ink late" viewBox="0 0 260 150" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M150 14 C 70 6, 10 40, 14 82 C 18 128, 120 146, 196 126 C 252 110, 258 52, 206 28 C 170 12, 120 10, 92 20"/></svg>
+              <span>more automated coverage after a Cypress to Playwright migration</span>
+            </div>
+            <div class="stat">
+              <b>60<small>%</small></b>
+              <span>fewer flaky-test false positives</span>
+            </div>
+            <div class="stat">
+              <b>5+</b>
+              <span>product lines automated as the sole SDET</span>
+            </div>
+            <div class="stat">
+              <b>9 <small>weeks</small></b>
+              <span>to deliver a full end-to-end framework on a client project</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="experience" id="experience" aria-labelledby="exp-h">
+        <div class="grid">
+          <p class="sec-label mono"><em>&sect; 02</em><br>Experience</p>
+          <h2 id="exp-h">Four teams, <i>one habit:</i> leave the suite greener than I found it.</h2>
+          <ol class="ledger">
+            <li class="entry grid">
+              <p class="when">Jun 2026 &ndash;<br>Sep 2026</p>
+              <div class="who">
+                <h3>Cooley LLP</h3>
+                <p class="title">Senior SDET, Test Automation Framework and Validation Pipelines (Contract)</p>
+                <p class="where mono muted">Legal technology &middot; Remote</p>
+                <p class="stack"><b>Stack</b>Playwright, TypeScript, Azure DevOps Pipelines, Azure AD B2C/MSAL, REST APIs, Claude Code, MCP</p>
+              </div>
+              <ul>
+                <li>Inherited a small, unstructured Playwright smoke suite and rebuilt it into a maintainable framework with smoke and regression suites.</li>
+                <li>Built end-to-end automation from scratch for a multi-party fund-transfer platform, covering five role combinations (Admin, GP, GP+TP, LP+TP, LP+RP) across online, offline and hybrid scenarios.</li>
+                <li>Delivered it in 9 weeks on a Page Object Model architecture: 13 spec files, 23 page objects, 12 helper modules.</li>
+                <li>Split offline and online runs and replaced cache-based reuse with isolated, self-contained tests, which cut flakiness and made failures easier to debug.</li>
+                <li>Built a central network interception layer that records, mocks and asserts on API responses, so the UI is checked against its service contracts.</li>
+                <li>Ran the suite in parallel across 5 Playwright configurations (desktop and mobile web) in Azure DevOps, with code coverage and static analysis.</li>
+                <li>Fixed persistent Azure AD B2C/MSAL session instability with storage-state management, token handling and simulated cookie expiry. Documented product defects and independently verified a production hotfix.</li>
+                <li>Used Claude Code with MCP servers to speed up spec writing, async auth debugging and failure analysis in pipeline runs.</li>
+              </ul>
+            </li>
+            <li class="entry grid">
+              <p class="when">Sep 2022 &ndash;<br>Feb 2026</p>
+              <div class="who">
+                <h3>California Community Colleges Technology Center</h3>
+                <p class="title">Senior SDET, Test Infrastructure and Quality Tooling</p>
+                <p class="where mono muted">Education &middot; Remote</p>
+                <p class="stack"><b>Stack</b>Playwright, Cypress, TypeScript, Jenkins, Docker, AWS (Lambda, SQS, SNS, API Gateway, EC2, IAM, CloudWatch, SSM), Keycloak, React, Allure, Xray</p>
+              </div>
+              <ul>
+                <li>As the sole automation engineer, built test infrastructure and quality tooling from scratch across 5+ product lines on AWS microservices, covering every level of the testing pyramid.</li>
+                <li>Led the Cypress to Playwright migration: faster, parallel, more stable, and 45% more automated coverage.</li>
+                <li>Designed contract tests for service boundaries, schema compliance and backward compatibility, catching integration failures before deployment.</li>
+                <li>Tested event-driven serverless workflows for resilience: retries, idempotency, dead-letter queues and out-of-order delivery. Load-tested SQS queue depth and Lambda concurrency under high throughput.</li>
+                <li>Correlated CloudWatch logs and metrics with Allure results to trace production failures to root cause and decide where new coverage was needed.</li>
+                <li>Shifted testing left with React component tests, and worked with the Java/Spring Boot backend teams on testability and service-level tests.</li>
+                <li>Piloted AI-assisted test creation (Testsigma), reviewing the generated tests for quality and accuracy. Added Allure reporting with PII masking.</li>
+                <li>Set automation standards, mentored QA engineers, ran code reviews and helped with hiring.</li>
+              </ul>
+            </li>
+            <li class="entry grid">
+              <p class="when">Aug 2021 &ndash;<br>Sep 2022</p>
+              <div class="who">
+                <h3>Amtrak</h3>
+                <p class="title">QA Automation Engineer (BDD)</p>
+                <p class="where mono muted">Travel &middot; On-site / Remote</p>
+                <p class="stack"><b>Stack</b>Java, Selenium WebDriver, Cucumber, Maven, Jenkins, Jira</p>
+              </div>
+              <ul>
+                <li>Built and maintained BDD frameworks in Java, Selenium and Cucumber for trip planning, route search, booking and station flows.</li>
+                <li>Refactored legacy test logic and cut false-positive failures by 60%, which made CI results trustworthy again.</li>
+                <li>Owned the Jenkins pipelines for smoke and regression runs.</li>
+              </ul>
+            </li>
+            <li class="entry grid">
+              <p class="when">Jan 2020 &ndash;<br>Aug 2021</p>
+              <div class="who">
+                <h3>HiLabs</h3>
+                <p class="title">QA Automation Engineer (TDD)</p>
+                <p class="where mono muted">Healthcare analytics &middot; Baltimore, MD</p>
+                <p class="stack"><b>Stack</b>Java, Selenium WebDriver, TestNG, Maven, Jenkins, Oracle, JDBC, Postman, REST Assured</p>
+              </div>
+              <ul>
+                <li>Designed a TDD framework in Java, Selenium, TestNG and Maven for end-to-end, smoke, regression and integration testing on a healthcare platform with strict compliance requirements.</li>
+                <li>Checked backend data with Oracle and JDBC, and tested REST APIs with Postman and REST Assured.</li>
+              </ul>
+            </li>
+          </ol>
+          <p class="tally mono">4 passed &middot; 0 failed &middot; <b>0 flaky</b> &middot; 6+ yrs elapsed</p>
+        </div>
+      </section>
+
+      <section class="practice" id="practice" aria-labelledby="practice-h">
+        <div class="grid">
+          <p class="sec-label mono"><em>&sect; 03</em><br>Practice</p>
+          <h2 id="practice-h">The toolbox, <i>in a sentence or three.</i></h2>
+          <div class="prose">
+            <p>I write tests in <strong>Playwright</strong>, <strong>Cypress</strong> and <strong>Selenium</strong>, mostly in <strong>TypeScript</strong>, sometimes in <strong>Java</strong>, from component to <strong>end-to-end</strong>, on web and <strong>mobile web</strong>.</p>
+            <p>Underneath the UI I check <strong>REST</strong> and <strong>GraphQL</strong> APIs, <em>contracts between services</em>, and event-driven <strong>AWS</strong> workflows, including how they fail: <strong>retries</strong>, <strong>dead-letter queues</strong>, and load.</p>
+            <p>It all runs in <strong>Azure DevOps</strong>, <strong>GitHub Actions</strong>, <strong>GitLab CI</strong> or <strong>Jenkins</strong> inside <strong>Docker</strong>. <strong>CloudWatch</strong> and <strong>Allure</strong> show me where the gaps are, and <strong>Claude Code</strong> with <strong>MCP</strong> servers helps me write specs and read failures faster.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="work" id="work" aria-labelledby="work-h">
+        <div class="grid">
+          <p class="sec-label mono"><em>&sect; 04</em><br>Selected work</p>
+          <h2 id="work-h">Things you can <i>open and run.</i></h2>
+          <ol class="projects">
+
+            <!--
+              Playwright demo project. Remove this comment block's opening and closing lines
+              once the repository is public on GitHub, and check that the link opens.
+              Then renumber the projects below.
+
+            <li class="project grid">
+              <span class="n mono">00</span>
+              <h3><a href="https://github.com/janagrit/nvidia-playwright-demo" rel="noopener">Playwright + TypeScript framework</a></h3>
+              <p class="desc"><span class="mono">Playwright / TypeScript / axe-core / GitHub Actions</span>Framework for a public marketing site: data-driven smoke tests, navigation journeys, link checks, accessibility scans and visual regression, on desktop and mobile.</p>
+            </li>
+            -->
+
+            <li class="project grid">
+              <span class="n mono">01</span>
+              <h3><a href="https://github.com/janagrit/DuoBank-sprint4-gurus" rel="noopener">Duo Bank test automation</a></h3>
+              <p class="desc"><span class="mono">Java / Selenium / Cucumber / BDD</span>Automated testing of a web banking app: functional, regression, integration and cross-browser.</p>
+            </li>
+            <li class="project grid">
+              <span class="n mono">02</span>
+              <h3><a href="https://github.com/janagrit/online-auction" rel="noopener">Online auction</a></h3>
+              <p class="desc"><span class="mono">Python / Django / SQL</span>An auction web app built for CS50's Web Programming with Python and JavaScript.</p>
+            </li>
+            <li class="project grid">
+              <span class="n mono">03</span>
+              <h3><a href="https://github.com/janagrit" rel="noopener">Everything else</a></h3>
+              <p class="desc"><span class="mono">github.com/janagrit</span>Other repositories, experiments and works in progress.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="education" id="education" aria-labelledby="edu-h">
+        <div class="grid">
+          <p class="sec-label mono"><em>&sect; 05</em><br>Education</p>
+          <h2 id="edu-h">Computer science, <i>and a detour through orbit.</i></h2>
+          <ul class="degrees">
+            <li>
+              <h3>M.S. in Computer Science</h3>
+              <p>New York Institute of Technology <span class="mono">&middot; 2015</span></p>
+            </li>
+            <li>
+              <h3>PhD in Political Science, Outer Space Law</h3>
+              <p>Tongji University, Shanghai <span class="mono">&middot; 2015&ndash;2020</span></p>
+            </li>
+            <li>
+              <h3>B.S. and M.S. in Computer Science</h3>
+              <p>Dnipro University of Technology, Ukraine <span class="mono">&middot; 2009&ndash;2013</span></p>
+            </li>
+          </ul>
+          <div class="certs">
+            <h3 class="mono">Certificates</h3>
+            <ul>
+              <li>AWS Cloud Technical Essentials</li>
+              <li>Software QA and Test Automation Engineering</li>
+              <li>Introduction to Agents (agent orchestration), Mercor</li>
+              <li>CS50 Web Programming with Python and JavaScript, 2021</li>
+              <li>HSK 4, Mandarin Chinese</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contact" aria-labelledby="contact-h">
+        <div class="grid">
+          <p class="sec-label mono"><em>&sect; 06</em><br>Contact</p>
+          <h2 id="contact-h">Let&rsquo;s build something <i>that doesn&rsquo;t break.</i></h2>
+          <p class="lede">Open to Senior QA, Staff QA, Test Architect and Quality Engineering roles. Remote preferred; hybrid and on-site welcome.</p>
+          <p class="big">
+            <a href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a>
+            <svg class="ink" viewBox="0 0 600 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 12 C 120 4, 260 16, 380 9 S 540 6, 594 11"/></svg>
+          </p>
+          <p class="elsewhere">
+            <a href="https://www.linkedin.com/in/ianagrytsenko" rel="noopener">LinkedIn &nearr;</a>
+            <a href="https://github.com/janagrit" rel="noopener">GitHub &nearr;</a>
+          </p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div class="grid">
+        <p class="colophon mono">Colophon &mdash; Set in Fraunces, Instrument Sans and JetBrains Mono. Hand-set in a single HTML file: no frameworks, no build step, no tracking. New York, updated October 2026.</p>
+        <p class="sig">&mdash; Iana</p>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
