@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Iana Grytsenko | Senior SDET</title>
-  <meta name="description" content="Iana Grytsenko, Senior SDET. Test infrastructure and Playwright/TypeScript automation frameworks built from scratch, CI/CD, AWS, and AI-assisted testing.">
-  <meta property="og:title" content="Iana Grytsenko | Senior SDET">
-  <meta property="og:description" content="Test infrastructure and automation frameworks teams can trust: Playwright, TypeScript, CI/CD, AWS.">
+  <title>Iana Grytsenko | Test Automation Architect</title>
+  <meta name="description" content="Iana Grytsenko, Test Automation Architect and SDET. I design test frameworks end to end and build them with Playwright, TypeScript, CI/CD and AWS.">
+  <meta property="og:title" content="Iana Grytsenko | Test Automation Architect">
+  <meta property="og:description" content="I design test frameworks end to end and build them myself: Playwright, TypeScript, CI/CD, AWS.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://janagrit.github.io/">
   <meta property="og:image" content="https://janagrit.github.io/images/lead-bg2.jpg">
@@ -89,7 +89,7 @@
         border-top: 1px solid var(--border); padding-bottom: env(safe-area-inset-bottom);
         box-shadow: 0 -6px 24px rgba(20, 33, 61, .06);
       }
-      .tabbar ul { display: grid; grid-template-columns: repeat(5, 1fr); list-style: none; margin: 0; padding: 0; height: 64px; }
+      .tabbar ul { display: grid; grid-template-columns: repeat(4, 1fr); list-style: none; margin: 0; padding: 0; height: 64px; }
       .tabbar a {
         position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; height: 100%;
         font-size: 11px; font-weight: 500; color: var(--dim); text-decoration: none; -webkit-tap-highlight-color: transparent;
@@ -130,36 +130,8 @@
     .facts li:last-child { border-bottom: 1px solid var(--border); }
     .facts span { color: var(--dim); font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; padding-top: 2px; white-space: nowrap; }
     .facts b { font-weight: 500; text-align: right; }
-
-    /* experience */
-    .timeline { list-style: none; margin: 40px 0 0; padding: 0; }
-    .job { display: grid; grid-template-columns: 220px 1fr; gap: 8px 40px; padding: 28px 0; border-top: 1px solid var(--border); }
-    .job:last-child { border-bottom: 1px solid var(--border); }
-    .job .when { font-family: var(--mono); font-size: 12px; color: var(--dim); padding-top: 6px; }
-    .job .when b { display: block; font-family: var(--sans); font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
-    .job h3 { font-size: 20px; line-height: 1.25; }
-    .job .co { margin: 4px 0 0; color: var(--text-2); font-size: 15px; }
-    .job ul { margin: 14px 0 0; padding: 0; list-style: none; }
-    .job li { position: relative; padding-left: 24px; margin-bottom: 8px; color: var(--text-2); font-size: 15.5px; }
-    .job li::before { content: "✓"; position: absolute; left: 0; top: 0; font-family: var(--mono); font-size: 13px; color: var(--accent); }
-    .job .stack { margin: 12px 0 0; font-family: var(--mono); font-size: 12px; color: var(--dim); }
-
-    .more { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; margin-top: 56px; }
-    .more h3 { font-size: 20px; margin-bottom: 16px; }
-    .skills { display: grid; gap: 14px; margin: 0; }
-    .skills div { display: grid; grid-template-columns: 130px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
-    .skills dt { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--dim); padding-top: 3px; }
-    .skills dd { margin: 0; font-size: 15px; }
-    .edu { list-style: none; margin: 0; padding: 0; }
-    .edu li { padding: 12px 0; border-top: 1px solid var(--border); font-size: 15px; }
-    .edu li b { display: block; font-weight: 600; }
-    .edu li span { color: var(--text-2); }
-    .edu .yr { font-family: var(--mono); font-size: 12px; color: var(--dim); }
-    .certs { margin-top: 28px; }
-    .certs ul { margin: 0; padding-left: 18px; color: var(--text-2); font-size: 15px; }
-    .certs li { margin-bottom: 6px; }
-    .resume-link { display: inline-block; margin-top: 32px; color: var(--accent); font-weight: 600; text-decoration: none; }
-    .resume-link:hover { text-decoration: underline; }
+    .more-link { color: var(--accent); font-weight: 600; text-decoration: none; }
+    .more-link:hover { text-decoration: underline; }
 
     /* projects */
     .card { position: relative; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; }
@@ -216,21 +188,17 @@
 
     /* ---------- responsive ---------- */
     @media (max-width: 900px) {
-      .hero, .intro, .more, .contact .cols { grid-template-columns: 1fr; }
+      .hero, .intro, .contact .cols { grid-template-columns: 1fr; }
       .hero .photo { order: -1; max-width: 360px; aspect-ratio: 1 / 1; }
       .photo img { transform: scale(1.5); }
-      .intro, .more { gap: 32px; }
+      .intro { gap: 32px; }
       .stats { grid-template-columns: 1fr 1fr; }
       .featured { grid-template-columns: 1fr; gap: 20px; }
       .featured .body { padding: 0 8px 8px; }
       .grid2, .services .cards { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
-      .job { grid-template-columns: 1fr; gap: 4px; }
-      .job .when { padding-top: 0; }
-      .job .when b { display: inline; margin-right: 8px; }
       .steps { grid-template-columns: 1fr; }
-      .skills div { grid-template-columns: 1fr; gap: 4px; }
       .row2 { grid-template-columns: 1fr; }
       .hero .photo { max-width: none; aspect-ratio: 4 / 3; }
       .photo img { transform: scale(1.6); object-position: 57% 96%; transform-origin: 57% 96%; }
@@ -248,7 +216,6 @@
       <nav aria-label="Sections">
         <ul class="toptabs">
           <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -268,10 +235,10 @@
       <div class="wrap">
         <div class="hero">
           <div>
-            <p class="pill">Open to Senior SDET &amp; QA roles</p>
+            <p class="pill">Open to Test Architect &amp; Senior SDET roles</p>
             <h1 id="about-h">Iana Grytsenko</h1>
-            <p class="role">Senior SDET &middot; Test Automation</p>
-            <p class="sub">I design test infrastructure and automation frameworks from scratch with Playwright and TypeScript, wire them into CI/CD, and keep them simple enough that the team who inherits them actually uses them.</p>
+            <p class="role">Test Automation Architect &middot; SDET</p>
+            <p class="sub">I design the whole test framework, from architecture and test data to mocking layers and CI/CD, and then build it myself, writing code to the same standard as the developers next to me.</p>
             <div class="ctas">
               <a class="btn" href="#contact">Get in touch
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -293,9 +260,10 @@
         <div class="intro">
           <div>
             <h2>Tests are production code. I treat them that way.</h2>
-            <p>I&rsquo;m a Senior SDET with <b>6+ years in QA and test automation</b> for SaaS and web platforms. I work with product and infrastructure teams to decide how complex distributed systems get tested, across web, mobile web and backend services.</p>
+            <p>I&rsquo;m a test automation architect and SDET with <b>6+ years</b> in test automation for SaaS and web platforms. I don&rsquo;t hand over a plan and walk away: I <b>design the framework and write the code</b>, review pull requests alongside developers, and work with product and infrastructure teams on how distributed systems get tested across web, mobile web and backend.</p>
             <p>I let production telemetry, not guesswork, decide where coverage goes. I use AI tools such as <b>Claude Code and MCP servers</b> where they save real time, and I review what they produce as carefully as anyone else&rsquo;s code.</p>
-            <p>Before software I wrote a PhD on outer space law in Shanghai. I hold an M.S. in Computer Science from New York Institute of Technology.</p>
+            <p>Before software I wrote a PhD on outer space law in Shanghai.</p>
+            <p><a class="more-link" href="https://www.linkedin.com/in/ianagrytsenko" rel="noopener">Full work history and education on LinkedIn &nearr;</a></p>
           </div>
           <ul class="facts">
             <li><span>Based in</span><b>New York</b></li>
@@ -309,97 +277,6 @@
       </div>
     </section>
 
-    <!-- ================= EXPERIENCE ================= -->
-    <section id="experience" aria-labelledby="exp-h">
-      <div class="wrap">
-        <p class="label">Experience</p>
-        <h2 id="exp-h">Four teams. Each suite left greener than I found it.</h2>
-        <ol class="timeline">
-          <li class="job">
-            <p class="when"><b>Cooley LLP</b>Jun 2026 &ndash; Sep 2026</p>
-            <div>
-              <h3>Senior SDET, Test Automation Framework and Validation Pipelines</h3>
-              <p class="co">Contract &middot; Legal technology &middot; Remote</p>
-              <ul>
-                <li>Rebuilt a small, unstructured Playwright smoke suite into a full framework for a multi-party fund-transfer platform, delivered in 9 weeks.</li>
-                <li>Built a central network interception layer to record, mock and assert on API responses against service contracts.</li>
-                <li>Ran the suite in parallel across 5 desktop and mobile-web configurations in Azure DevOps, and fixed persistent Azure AD B2C/MSAL session instability.</li>
-              </ul>
-              <p class="stack">Playwright &middot; TypeScript &middot; Azure DevOps &middot; Claude Code &middot; MCP</p>
-            </div>
-          </li>
-          <li class="job">
-            <p class="when"><b>CCC Technology Center</b>Sep 2022 &ndash; Feb 2026</p>
-            <div>
-              <h3>Senior SDET, Test Infrastructure and Quality Tooling</h3>
-              <p class="co">California Community Colleges Technology Center &middot; Remote</p>
-              <ul>
-                <li>As the only automation engineer, built test infrastructure from scratch across 5+ product lines on AWS microservices.</li>
-                <li>Led the Cypress to Playwright migration: faster, parallel, more stable, and 45% more automated coverage.</li>
-                <li>Tested event-driven AWS workflows for resilience (retries, idempotency, dead-letter queues) and traced production failures with CloudWatch and Allure.</li>
-              </ul>
-              <p class="stack">Playwright &middot; Cypress &middot; TypeScript &middot; Jenkins &middot; Docker &middot; AWS</p>
-            </div>
-          </li>
-          <li class="job">
-            <p class="when"><b>Amtrak</b>Aug 2021 &ndash; Sep 2022</p>
-            <div>
-              <h3>QA Automation Engineer (BDD)</h3>
-              <p class="co">Travel &middot; On-site / Remote</p>
-              <ul>
-                <li>Built BDD frameworks for trip planning, route search, booking and station flows.</li>
-                <li>Refactored legacy test logic and cut false-positive failures by 60%.</li>
-              </ul>
-              <p class="stack">Java &middot; Selenium &middot; Cucumber &middot; Jenkins</p>
-            </div>
-          </li>
-          <li class="job">
-            <p class="when"><b>HiLabs</b>Jan 2020 &ndash; Aug 2021</p>
-            <div>
-              <h3>QA Automation Engineer (TDD)</h3>
-              <p class="co">Healthcare analytics &middot; Baltimore, MD</p>
-              <ul>
-                <li>Designed a TDD framework for a healthcare platform with strict compliance requirements.</li>
-                <li>Validated backend data with Oracle and JDBC, and REST APIs with Postman and REST Assured.</li>
-              </ul>
-              <p class="stack">Java &middot; Selenium &middot; TestNG &middot; Maven</p>
-            </div>
-          </li>
-        </ol>
-
-        <div class="more">
-          <div>
-            <h3>Skills</h3>
-            <dl class="skills">
-              <div><dt>Automation</dt><dd>Playwright, Cypress, Selenium WebDriver, Page Object Model, component, API and E2E testing</dd></div>
-              <div><dt>Backend</dt><dd>REST, GraphQL, contract testing, microservices, event-driven and serverless systems</dd></div>
-              <div><dt>Cloud &amp; CI</dt><dd>AWS (Lambda, SQS, SNS, API Gateway, EC2, CloudWatch), Docker, GitHub Actions, Azure DevOps, GitLab CI, Jenkins</dd></div>
-              <div><dt>Quality signal</dt><dd>Allure reporting, code coverage, flaky-test remediation, production monitoring</dd></div>
-              <div><dt>AI tooling</dt><dd>Claude Code, Model Context Protocol (MCP), AI-assisted test generation and review</dd></div>
-              <div><dt>Languages</dt><dd>TypeScript, JavaScript, Java, SQL</dd></div>
-            </dl>
-          </div>
-          <div>
-            <h3>Education</h3>
-            <ul class="edu">
-              <li><b>M.S. in Computer Science</b><span>New York Institute of Technology</span> <span class="yr">&middot; 2015</span></li>
-              <li><b>PhD in Political Science, Outer Space Law</b><span>Tongji University, Shanghai</span> <span class="yr">&middot; 2015&ndash;2020</span></li>
-              <li><b>B.S. and M.S. in Computer Science</b><span>Dnipro University of Technology</span> <span class="yr">&middot; 2009&ndash;2013</span></li>
-            </ul>
-            <div class="certs">
-              <h3>Certificates</h3>
-              <ul>
-                <li>AWS Cloud Technical Essentials</li>
-                <li>Software QA and Test Automation Engineering</li>
-                <li>Introduction to Agents, Mercor</li>
-                <li>CS50 Web Programming with Python and JavaScript</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <a class="resume-link" href="https://www.linkedin.com/in/ianagrytsenko" rel="noopener">Full work history on LinkedIn &nearr;</a>
-      </div>
-    </section>
 
     <!-- ================= PROJECTS ================= -->
     <section id="projects" aria-labelledby="projects-h">
@@ -500,7 +377,7 @@
         <div>
           <p class="label">Contact</p>
           <h2 id="contact-h">Let&rsquo;s talk.</h2>
-          <p class="lede">I&rsquo;m open to Senior SDET, Staff QA and Test Architect roles, full-time or contract, remote, hybrid or on-site. I also take on consulting projects.</p>
+          <p class="lede">I&rsquo;m open to Test Architect, Senior SDET and Staff QA roles, full-time or contract, remote, hybrid or on-site. I also take on consulting projects.</p>
           <a class="email" href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a>
           <p class="elsewhere">
             <a href="https://www.linkedin.com/in/ianagrytsenko" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3V9.75zM9.5 9.75h3.83v1.54h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.66 4.8 6.13V21h-4v-4.98c0-1.19-.02-2.72-1.66-2.72-1.66 0-1.91 1.3-1.91 2.63V21h-4V9.75z"/></svg>LinkedIn</a>
@@ -540,7 +417,6 @@
   <nav class="tabbar" aria-label="Sections">
     <ul>
       <li><a href="#about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>About</a></li>
-      <li><a href="#experience"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg>Experience</a></li>
       <li><a href="#projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Projects</a></li>
       <li><a href="#services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6z"/></svg>Services</a></li>
       <li><a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Contact</a></li>
