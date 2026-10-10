@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" data-persona="all">
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Iana Grytsenko | Test Automation Consulting</title>
-  <meta name="description" content="Playwright and TypeScript test automation for SaaS and web teams: new frameworks, flaky-suite rescue, and migrations to Playwright, wired into your CI/CD.">
-  <meta property="og:title" content="Iana Grytsenko | Test Automation Consulting">
-  <meta property="og:description" content="Test suites your team can trust: Playwright frameworks, flaky-suite rescue, and migrations.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Iana Grytsenko | Senior SDET</title>
+  <meta name="description" content="Iana Grytsenko, Senior SDET. Test infrastructure and Playwright/TypeScript automation frameworks built from scratch, CI/CD, AWS, and AI-assisted testing.">
+  <meta property="og:title" content="Iana Grytsenko | Senior SDET">
+  <meta property="og:description" content="Test infrastructure and automation frameworks teams can trust: Playwright, TypeScript, CI/CD, AWS.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://janagrit.github.io/">
   <meta property="og:image" content="https://janagrit.github.io/images/lead-bg2.jpg">
   <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#faf8f5">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,23 +34,25 @@
       --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
       --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
       --max: 1120px;
+      --bar-h: 64px;
+      --tabs-h: 0px;
     }
 
     /* ---------- base ---------- */
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; padding-bottom: var(--tabs-h); }
     a { color: inherit; }
     a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
     .skip { position: absolute; left: -9999px; }
     .skip:focus { left: 16px; top: 16px; background: var(--accent); color: var(--accent-ink); padding: 8px 12px; z-index: 60; }
     .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
     @media (max-width: 480px) { .wrap { padding: 0 16px; } }
-    .label { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 0 0 20px; }
+    .label { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px; }
     h1, h2, h3 { font-family: var(--display); font-weight: 500; letter-spacing: -.02em; margin: 0; }
-    h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.15; max-width: 22ch; }
-    .dim { color: var(--dim); }
-    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.15; max-width: 24ch; }
+    .lede { color: var(--text-2); font-size: 17px; max-width: 60ch; margin: 16px 0 0; }
 
     .btn {
       display: inline-flex; align-items: center; gap: 10px; font: 600 15px/1 var(--sans); text-decoration: none; cursor: pointer;
@@ -57,165 +60,182 @@
       transition: transform .15s, box-shadow .15s;
     }
     .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(15, 118, 110, .22); }
-    .btn.ghost { background: transparent; color: var(--text); border-color: var(--border); }
-    .btn.ghost:hover { border-color: var(--text-2); box-shadow: none; }
+    .btn.ghost { background: var(--card); color: var(--text); border-color: var(--border); }
+    .btn.ghost:hover { border-color: var(--dim); box-shadow: none; }
     .btn svg { width: 16px; height: 16px; }
 
-    /* ---------- top bar ---------- */
-    .bar { position: sticky; top: 0; z-index: 30; background: rgba(250, 248, 245, .88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
-    .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; }
-    .logo { font-family: var(--display); font-weight: 600; font-size: 18px; text-decoration: none; letter-spacing: -.01em; }
+    /* ---------- top bar + desktop tabs ---------- */
+    .bar { position: sticky; top: 0; z-index: 30; background: rgba(250, 248, 245, .9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: var(--bar-h); }
+    .logo { font-family: var(--display); font-weight: 600; font-size: 18px; text-decoration: none; letter-spacing: -.01em; white-space: nowrap; }
     .logo span { color: var(--accent); }
-    .bar nav { display: flex; align-items: center; gap: 22px; font-size: 14px; color: var(--text-2); }
-    .bar nav a { text-decoration: none; }
-    .bar nav a:hover { color: var(--text); }
-    .bar .btn { padding: 9px 14px; font-size: 14px; }
-    @media (max-width: 760px) { .bar nav .lnk { display: none; } }
-    @media (max-width: 420px) { .bar .book { display: none; } }
+    .toptabs { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+    .toptabs a { display: block; padding: 8px 14px; border-radius: 8px; font-size: 14px; font-weight: 500; color: var(--text-2); text-decoration: none; transition: background .15s, color .15s; }
+    .toptabs a:hover { color: var(--text); background: var(--card-hover); }
+    .toptabs a[aria-current] { color: var(--accent); background: var(--accent-soft); }
+    .bar .social { display: none; }
 
-    /* ---------- view as (impersonation) ---------- */
-    .viewas { position: relative; }
-    .viewas > button {
-      display: inline-flex; align-items: center; gap: 8px; font: 500 14px/1 var(--sans); cursor: pointer;
-      background: transparent; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px;
-    }
-    .viewas > button:hover { border-color: var(--text-2); }
-    .viewas > button svg { width: 16px; height: 16px; }
-    .menu {
-      position: absolute; right: 0; top: calc(100% + 8px); width: 270px; padding: 8px;
-      background: var(--card); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 16px 40px rgba(20, 33, 61, .12);
-    }
-    .menu[hidden] { display: none; }
-    .menu p { margin: 4px 10px 8px; font-size: 12px; color: var(--dim); }
-    .menu button {
-      display: block; width: 100%; text-align: left; border: 0; background: none; color: var(--text); cursor: pointer;
-      font: 14px/1.35 var(--sans); padding: 9px 10px; border-radius: 6px;
-    }
-    .menu button small { display: block; color: var(--dim); font-size: 12px; }
-    .menu button:hover { background: var(--card-hover); }
-    .menu button[aria-checked="true"] { font-weight: 600; }
-    .menu button[aria-checked="true"]::after { content: " ✓"; color: var(--accent); }
-    @media (max-width: 480px) { .menu { position: fixed; left: 16px; right: 16px; top: 68px; width: auto; } .viewas .long { display: none; } }
-
-    .banner { background: var(--accent); color: var(--accent-ink); font-size: 14px; }
-    .banner[hidden] { display: none; }
-    .banner .wrap { padding-top: 10px; padding-bottom: 10px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 14px; text-align: center; }
-    .banner button { font: 600 13px/1 var(--sans); background: none; border: 1px solid currentColor; color: inherit; border-radius: 999px; padding: 6px 12px; cursor: pointer; }
-
-    .fit { display: none; margin-top: 40px; padding: 24px; border: 1px solid var(--accent); background: var(--accent-soft); border-radius: 12px; max-width: 760px; }
-    .fit h2 { font-size: 20px; max-width: none; margin-bottom: 10px; }
-    .fit p { margin: 0 0 10px; color: var(--text-2); }
-    .fit p:last-child { margin: 0; }
-    .fit b { color: var(--text); font-weight: 600; }
-    [data-persona="founder"] .fit[data-for="founder"],
-    [data-persona="manager"] .fit[data-for="manager"],
-    [data-persona="engineer"] .fit[data-for="engineer"] { display: block; }
-
-    mark { background: transparent; color: inherit; border-radius: 3px; transition: background .3s, box-shadow .3s; }
-    [data-persona="founder"] mark[data-for~="founder"],
-    [data-persona="manager"] mark[data-for~="manager"],
-    [data-persona="engineer"] mark[data-for~="engineer"] { background: var(--accent-soft); box-shadow: 0 0 0 2px var(--accent-soft); color: var(--text); }
-    [data-persona="founder"] .card[data-for~="founder"],
-    [data-persona="manager"] .card[data-for~="manager"],
-    [data-persona="engineer"] .card[data-for~="engineer"] { border-color: var(--accent); }
-
-    /* ---------- hero with photo ---------- */
-    .hero { position: relative; min-height: min(88vh, 780px); display: flex; align-items: center; background: var(--bg) url("images/lead-bg2.jpg") 75% 40% / cover no-repeat; border-bottom: 1px solid var(--border); }
-    .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg) 0%, rgba(250, 248, 245, .94) 36%, rgba(250, 248, 245, .55) 56%, rgba(250, 248, 245, 0) 76%), linear-gradient(0deg, var(--bg) 0%, rgba(250, 248, 245, 0) 26%); }
-    .hero .wrap { position: relative; width: 100%; padding-top: 72px; padding-bottom: 72px; }
-    .hero .txt { max-width: 600px; }
-    .pill { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; color: var(--text-2); border: 1px solid var(--border); background: rgba(255, 255, 255, .8); border-radius: 999px; padding: 6px 12px; margin: 0 0 28px; }
-    .pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
-    .hero h1 { font-size: clamp(38px, 6vw, 64px); line-height: 1.04; letter-spacing: -.03em; }
-    .hero h1 .dim { color: #5b6b86; }
-    .hero .sub { margin: 24px 0 0; color: var(--text-2); font-size: 17px; max-width: 52ch; }
-    .hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    /* ---------- mobile bottom tabs ---------- */
+    .tabbar { display: none; }
     @media (max-width: 760px) {
-      .hero { display: block; min-height: 0; background-size: auto 56vh; background-position: 58% top; }
-      .hero::before { background: linear-gradient(180deg, rgba(250, 248, 245, 0) 0, rgba(250, 248, 245, 0) calc(56vh - 160px), var(--bg) 56vh); }
-      .hero .wrap { padding-top: calc(56vh - 70px); padding-bottom: 48px; }
+      :root { --bar-h: 56px; --tabs-h: calc(64px + env(safe-area-inset-bottom)); }
+      .toptabs { display: none; }
+      .bar .social { display: flex; gap: 6px; }
+      .bar .social a { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 8px; color: var(--text-2); border: 1px solid var(--border); background: var(--card); }
+      .bar .social svg { width: 18px; height: 18px; }
+      .tabbar {
+        display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+        background: rgba(255, 255, 255, .96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid var(--border); padding-bottom: env(safe-area-inset-bottom);
+        box-shadow: 0 -6px 24px rgba(20, 33, 61, .06);
+      }
+      .tabbar ul { display: grid; grid-template-columns: repeat(5, 1fr); list-style: none; margin: 0; padding: 0; height: 64px; }
+      .tabbar a {
+        position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; height: 100%;
+        font-size: 11px; font-weight: 500; color: var(--dim); text-decoration: none; -webkit-tap-highlight-color: transparent;
+      }
+      .tabbar svg { width: 22px; height: 22px; }
+      .tabbar a[aria-current] { color: var(--accent); }
+      .tabbar a[aria-current]::before { content: ""; position: absolute; top: 0; left: 28%; right: 28%; height: 3px; border-radius: 0 0 3px 3px; background: var(--accent); }
     }
 
     /* ---------- sections ---------- */
-    section { padding: clamp(72px, 10vw, 112px) 0; border-bottom: 1px solid var(--border); }
-    .problem p.big { font-family: var(--display); font-size: clamp(22px, 2.8vw, 30px); line-height: 1.35; letter-spacing: -.01em; margin: 0; max-width: 34ch; color: var(--text); }
-    .problem p.big .dim { color: var(--text-2); }
+    section { padding: clamp(64px, 9vw, 104px) 0; border-bottom: 1px solid var(--border); scroll-margin-top: var(--bar-h); }
+    section:last-of-type { border-bottom: 0; }
 
-    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
-    .card { position: relative; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; transition: background .2s, border-color .2s; }
-    .card:hover { background: var(--card-hover); }
-    .card .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
-    .icon { width: 38px; height: 38px; border-radius: 8px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(15, 118, 110, .22); }
-    .icon svg { width: 18px; height: 18px; }
+    /* about / hero */
+    .about { padding-top: clamp(40px, 6vw, 72px); }
+    .hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; color: var(--text-2); border: 1px solid var(--border); background: var(--card); border-radius: 999px; padding: 6px 12px; margin: 0 0 24px; }
+    .pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+    .hero h1 { font-size: clamp(42px, 6.4vw, 72px); line-height: 1; letter-spacing: -.035em; }
+    .hero .role { margin: 14px 0 0; font-family: var(--display); font-size: clamp(19px, 2.2vw, 24px); color: var(--accent); letter-spacing: -.01em; }
+    .hero .sub { margin: 20px 0 0; color: var(--text-2); font-size: 17px; max-width: 50ch; }
+    .hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .photo { margin: 0; aspect-ratio: 4 / 5; border-radius: 16px; overflow: hidden; background: var(--card-hover); border: 1px solid var(--border); box-shadow: 0 24px 60px rgba(20, 33, 61, .12); }
+    /* zoom from the bottom so the shop sign above the door stays out of frame */
+    .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 57% 100%; transform: scale(1.35); transform-origin: 57% 100%; display: block; }
+
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: clamp(48px, 7vw, 80px); background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .stat { background: var(--card); padding: 24px; }
+    .stat b { display: block; font-family: var(--display); font-weight: 500; font-size: clamp(34px, 4.2vw, 48px); line-height: 1; letter-spacing: -.03em; color: var(--accent); }
+    .stat span { display: block; margin-top: 10px; font-size: 14px; color: var(--text-2); }
+
+    .intro { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; margin-top: clamp(48px, 7vw, 80px); }
+    .intro p { margin: 0 0 16px; color: var(--text-2); }
+    .intro p b { color: var(--text); font-weight: 500; }
+    .intro h2 { margin-bottom: 20px; }
+    .facts { list-style: none; margin: 0; padding: 0; font-size: 15px; align-self: start; }
+    .facts li { padding: 12px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 16px; }
+    .facts li:last-child { border-bottom: 1px solid var(--border); }
+    .facts span { color: var(--dim); font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; padding-top: 2px; white-space: nowrap; }
+    .facts b { font-weight: 500; text-align: right; }
+
+    /* experience */
+    .timeline { list-style: none; margin: 40px 0 0; padding: 0; }
+    .job { display: grid; grid-template-columns: 220px 1fr; gap: 8px 40px; padding: 28px 0; border-top: 1px solid var(--border); }
+    .job:last-child { border-bottom: 1px solid var(--border); }
+    .job .when { font-family: var(--mono); font-size: 12px; color: var(--dim); padding-top: 6px; }
+    .job .when b { display: block; font-family: var(--sans); font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .job h3 { font-size: 20px; line-height: 1.25; }
+    .job .co { margin: 4px 0 0; color: var(--text-2); font-size: 15px; }
+    .job ul { margin: 14px 0 0; padding: 0; list-style: none; }
+    .job li { position: relative; padding-left: 24px; margin-bottom: 8px; color: var(--text-2); font-size: 15.5px; }
+    .job li::before { content: "✓"; position: absolute; left: 0; top: 0; font-family: var(--mono); font-size: 13px; color: var(--accent); }
+    .job .stack { margin: 12px 0 0; font-family: var(--mono); font-size: 12px; color: var(--dim); }
+
+    .more { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; margin-top: 56px; }
+    .more h3 { font-size: 20px; margin-bottom: 16px; }
+    .skills { display: grid; gap: 14px; margin: 0; }
+    .skills div { display: grid; grid-template-columns: 130px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
+    .skills dt { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--dim); padding-top: 3px; }
+    .skills dd { margin: 0; font-size: 15px; }
+    .edu { list-style: none; margin: 0; padding: 0; }
+    .edu li { padding: 12px 0; border-top: 1px solid var(--border); font-size: 15px; }
+    .edu li b { display: block; font-weight: 600; }
+    .edu li span { color: var(--text-2); }
+    .edu .yr { font-family: var(--mono); font-size: 12px; color: var(--dim); }
+    .certs { margin-top: 28px; }
+    .certs ul { margin: 0; padding-left: 18px; color: var(--text-2); font-size: 15px; }
+    .certs li { margin-bottom: 6px; }
+    .resume-link { display: inline-block; margin-top: 32px; color: var(--accent); font-weight: 600; text-decoration: none; }
+    .resume-link:hover { text-decoration: underline; }
+
+    /* projects */
+    .card { position: relative; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; }
     .card .n { font-family: var(--mono); font-size: 12px; color: var(--dim); }
     .card .n.live { display: inline-flex; align-items: center; gap: 6px; color: var(--warm); font-weight: 500; }
     .card .n.live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--warm); }
-    .card h3 { font-size: 19px; margin-bottom: 10px; }
+    .card h3 { font-size: 20px; margin: 8px 0 10px; }
     .card p { margin: 0; color: var(--text-2); font-size: 15px; }
-    .card .proof { margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--border); font-family: var(--mono); font-size: 12px; color: var(--text-2); }
+    .card .proof { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border); font-family: var(--mono); font-size: 12px; color: var(--text-2); }
     .card .proof b { color: var(--accent); font-weight: 500; }
-    .also { margin: 28px 0 0; color: var(--text-2); font-size: 15px; max-width: 70ch; }
-    .also b { color: var(--text); font-weight: 500; }
-    @media (max-width: 900px) { .cards { grid-template-columns: 1fr; } }
-    .projects .cards { grid-template-columns: repeat(2, 1fr); }
-    @media (max-width: 760px) { .projects .cards { grid-template-columns: 1fr; } }
-    .card .links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 16px; font-size: 14px; }
+    .card .links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 18px; font-size: 14px; font-weight: 500; }
     .card .links a { color: var(--accent); text-decoration: none; }
     .card .links a:hover { text-decoration: underline; }
 
-    .steps { display: grid; gap: 12px; margin-top: 48px; }
-    .step { display: grid; grid-template-columns: 200px 1fr; gap: 24px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
-    .step .head { border-right: 1px solid var(--border); padding-right: 24px; }
-    .step .icon { margin-bottom: 14px; }
-    .step .k { display: block; font-family: var(--mono); font-size: 12px; color: var(--dim); }
-    .step h3 { font-size: 18px; }
-    .step p { margin: 0; color: var(--text-2); }
-    @media (max-width: 640px) { .step { grid-template-columns: 1fr; gap: 14px; } .step .head { border-right: 0; padding-right: 0; } }
+    .featured { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; margin-top: 40px; padding: 16px; }
+    .featured .shot { display: block; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); aspect-ratio: 16 / 10; background: var(--card-hover); }
+    .featured .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; transition: transform .4s; }
+    .featured .shot:hover img { transform: scale(1.02); }
+    .featured .body { padding: 8px 16px 8px 0; }
+    .featured h3 { font-size: clamp(22px, 2.6vw, 28px); }
+    .grid2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
 
-    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 48px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-    .stat { background: var(--card); padding: 28px 24px; }
-    .stat b { display: block; font-family: var(--display); font-weight: 500; font-size: clamp(36px, 4.4vw, 52px); line-height: 1; letter-spacing: -.03em; color: var(--accent); }
-    .stat span { display: block; margin-top: 12px; font-size: 14px; color: var(--text-2); }
-    .work { list-style: none; margin: 32px 0 0; padding: 0; }
-    .work li { display: grid; grid-template-columns: 1fr auto; gap: 4px 24px; padding: 18px 0; border-top: 1px solid var(--border); }
-    .work li:last-child { border-bottom: 1px solid var(--border); }
-    .work b { font-family: var(--display); font-weight: 500; font-size: 17px; }
-    .work .what { grid-column: 1; color: var(--text-2); font-size: 15px; }
-    .work .when { grid-column: 2; grid-row: 1; font-family: var(--mono); font-size: 12px; color: var(--dim); align-self: center; }
-    @media (max-width: 760px) { .stats { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 420px) { .stats { grid-template-columns: 1fr; } .work li { grid-template-columns: 1fr; } .work .when { grid-column: 1; grid-row: auto; } }
+    /* services */
+    .services .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+    .icon { width: 38px; height: 38px; border-radius: 8px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(15, 118, 110, .22); }
+    .icon svg { width: 18px; height: 18px; }
+    .services .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; list-style: none; margin: 32px 0 0; padding: 0; counter-reset: s; }
+    .steps li { padding: 18px 0 0; border-top: 2px solid var(--accent); font-size: 15px; color: var(--text-2); }
+    .steps li b { display: block; font-family: var(--display); font-size: 17px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+    .steps li b::before { counter-increment: s; content: "0" counter(s) "  "; font-family: var(--mono); font-size: 12px; color: var(--accent); white-space: pre; }
+    .also { margin: 28px 0 0; color: var(--text-2); font-size: 15px; max-width: 72ch; }
+    .also b { color: var(--text); font-weight: 500; }
 
-    .about .cols { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; margin-top: 32px; }
-    .about .cols p { margin: 0 0 16px; color: var(--text-2); }
-    .about .cols p b { color: var(--text); font-weight: 500; }
-    .facts { list-style: none; margin: 0; padding: 0; font-size: 15px; }
-    .facts li { padding: 12px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 16px; }
-    .facts li:last-child { border-bottom: 1px solid var(--border); }
-    .facts span { color: var(--dim); font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; padding-top: 2px; }
-    .facts b { font-weight: 500; text-align: right; }
-    @media (max-width: 860px) { .about .cols { grid-template-columns: 1fr; gap: 24px; } }
-
-    /* order form */
-    .order .cols { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: start; }
-    .order .lede { color: var(--text-2); margin: 20px 0 0; max-width: 44ch; }
-    .order .direct { margin-top: 24px; font-family: var(--mono); font-size: 13px; color: var(--text-2); }
-    .order .direct a { color: var(--accent); }
-    form { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; display: grid; gap: 16px; }
+    /* contact */
+    .contact .cols { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: start; }
+    .email { display: inline-block; margin-top: 28px; font-family: var(--display); font-size: clamp(20px, 2.6vw, 28px); font-weight: 500; letter-spacing: -.01em; color: var(--accent); text-decoration: none; border-bottom: 2px solid currentColor; overflow-wrap: anywhere; }
+    .email:hover { color: var(--text); }
+    .elsewhere { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .elsewhere a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); font-size: 14px; font-weight: 500; text-decoration: none; }
+    .elsewhere a:hover { border-color: var(--dim); }
+    .elsewhere svg { width: 16px; height: 16px; }
+    form { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; display: grid; gap: 16px; }
     .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    label { display: grid; gap: 6px; font-size: 13px; color: var(--text-2); }
-    input, select, textarea { font: 15px/1.4 var(--sans); color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 11px 12px; width: 100%; }
+    label { display: grid; gap: 6px; font-size: 13px; font-weight: 500; color: var(--text-2); }
+    input, select, textarea { font: 16px/1.4 var(--sans); color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 11px 12px; width: 100%; }
     textarea { min-height: 120px; resize: vertical; }
     select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%2364708a' stroke-width='1.6'%3E%3Cpath d='m2 4 4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 34px; }
     form .btn { justify-self: start; }
     form .hint { margin: 0; font-size: 12px; color: var(--dim); }
-    @media (max-width: 860px) { .order .cols { grid-template-columns: 1fr; gap: 32px; } }
-    @media (max-width: 480px) { .row2 { grid-template-columns: 1fr; } }
 
-    footer { padding: 28px 0 40px; font-family: var(--mono); font-size: 12px; color: var(--dim); }
+    footer { padding: 28px 0 36px; font-family: var(--mono); font-size: 12px; color: var(--dim); border-top: 1px solid var(--border); }
     footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
-    footer nav { display: flex; gap: 20px; }
-    footer a { text-decoration: none; }
-    footer a:hover { color: var(--text); }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 900px) {
+      .hero, .intro, .more, .contact .cols { grid-template-columns: 1fr; }
+      .hero .photo { order: -1; max-width: 360px; aspect-ratio: 1 / 1; }
+      .photo img { transform: scale(1.5); }
+      .intro, .more { gap: 32px; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .featured { grid-template-columns: 1fr; gap: 20px; }
+      .featured .body { padding: 0 8px 8px; }
+      .grid2, .services .cards { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .job { grid-template-columns: 1fr; gap: 4px; }
+      .job .when { padding-top: 0; }
+      .job .when b { display: inline; margin-right: 8px; }
+      .steps { grid-template-columns: 1fr; }
+      .skills div { grid-template-columns: 1fr; gap: 4px; }
+      .row2 { grid-template-columns: 1fr; }
+      .hero .photo { max-width: none; aspect-ratio: 4 / 3; }
+      .photo img { transform: scale(1.6); object-position: 57% 96%; transform-origin: 57% 96%; }
+    }
+    @media (max-width: 380px) { .stats { grid-template-columns: 1fr; } .facts li { flex-direction: column; gap: 2px; } .facts b { text-align: left; } }
   </style>
 </head>
 
@@ -224,203 +244,62 @@
 
   <header class="bar">
     <div class="wrap">
-      <a class="logo" href="#top">Iana Grytsenko<span>.</span></a>
-      <nav aria-label="Main">
-        <a class="lnk" href="#services">Services</a>
-        <a class="lnk" href="#process">How it works</a>
-        <a class="lnk" href="#projects">Projects</a>
-        <a class="lnk" href="#about">About</a>
-        <div class="viewas">
-          <button type="button" id="viewas-btn" aria-haspopup="true" aria-expanded="false" aria-controls="viewas-menu">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
-            <span id="viewas-label">View as</span>
-          </button>
-          <div class="menu" id="viewas-menu" role="menu" hidden>
-            <p>See what matters to you on this page.</p>
-            <button role="menuitemradio" data-persona="all" aria-checked="true">Everyone<small>The full page</small></button>
-            <button role="menuitemradio" data-persona="founder" aria-checked="false">Founder / CTO<small>Release risk, speed, cost of bugs</small></button>
-            <button role="menuitemradio" data-persona="manager" aria-checked="false">Engineering manager<small>Flaky CI, coverage, team handover</small></button>
-            <button role="menuitemradio" data-persona="engineer" aria-checked="false">Engineer / QA lead<small>Architecture, stack, how it's built</small></button>
-          </div>
-        </div>
-        <a class="btn book" href="#order">Book a call</a>
+      <a class="logo" href="#about">Iana Grytsenko<span>.</span></a>
+      <nav aria-label="Sections">
+        <ul class="toptabs">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
       </nav>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/ianagrytsenko" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3V9.75zM9.5 9.75h3.83v1.54h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.66 4.8 6.13V21h-4v-4.98c0-1.19-.02-2.72-1.66-2.72-1.66 0-1.91 1.3-1.91 2.63V21h-4V9.75z"/></svg></a>
+        <a href="https://github.com/janagrit" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg></a>
+      </div>
     </div>
   </header>
 
-  <div class="banner" id="banner" role="status" hidden>
-    <div class="wrap">
-      <span>You are viewing this page as a <b id="banner-who">founder</b>. What matters to you is highlighted.</span>
-      <button type="button" id="banner-exit">Exit view</button>
-    </div>
-  </div>
-
   <main id="main">
-    <div class="hero" id="top">
+
+    <!-- ================= ABOUT ================= -->
+    <section class="about" id="about" aria-labelledby="about-h">
       <div class="wrap">
-        <div class="txt">
-          <p class="pill">Iana Grytsenko / Test automation consulting</p>
-          <h1>Your tests fail for the wrong reasons. <span class="dim">I build suites your team can trust.</span></h1>
-          <p class="sub">Playwright and TypeScript test automation for SaaS and web teams: new frameworks, flaky-suite rescue, and migrations, wired into your CI/CD.</p>
-          <div class="ctas">
-            <a class="btn" href="#order">Book a free 30-minute call
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-            <a class="btn ghost" href="#services">See services</a>
+        <div class="hero">
+          <div>
+            <p class="pill">Open to Senior SDET &amp; QA roles</p>
+            <h1 id="about-h">Iana Grytsenko</h1>
+            <p class="role">Senior SDET &middot; Test Automation</p>
+            <p class="sub">I design test infrastructure and automation frameworks from scratch with Playwright and TypeScript, wire them into CI/CD, and keep them simple enough that the team who inherits them actually uses them.</p>
+            <div class="ctas">
+              <a class="btn" href="#contact">Get in touch
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a class="btn ghost" href="#projects">See my work</a>
+            </div>
           </div>
+          <figure class="photo">
+            <img src="images/lead-bg2.jpg" width="1170" height="883" alt="Iana Grytsenko, smiling, standing in a doorway in New York">
+          </figure>
         </div>
-      </div>
-    </div>
 
-    <div class="wrap">
-      <aside class="fit" data-for="founder" aria-label="For founders">
-        <h2>If you&rsquo;re a founder or CTO</h2>
-        <p>You need releases that don&rsquo;t break in front of customers, without hiring a full QA team first.</p>
-        <p><b>Start with:</b> a framework from scratch. In about 9 weeks you get automated checks on your critical flows, running on every pull request, that your developers can keep up after I hand it over.</p>
-      </aside>
-      <aside class="fit" data-for="manager" aria-label="For engineering managers">
-        <h2>If you manage an engineering team</h2>
-        <p>Your CI is red often enough that people re-run it instead of reading it, and test upkeep is eating sprint time.</p>
-        <p><b>Start with:</b> a flaky-suite rescue, or a migration to Playwright if you&rsquo;re on Cypress or Selenium. Past results: 60% fewer false positives, 45% more coverage.</p>
-      </aside>
-      <aside class="fit" data-for="engineer" aria-label="For engineers">
-        <h2>If you&rsquo;re an engineer or QA lead</h2>
-        <p>Playwright + TypeScript, Page Object Model, a central network-interception layer for API mocking and contract checks, isolated tests, and parallel runs across browser and device configs.</p>
-        <p><b>See:</b> the &ldquo;How it works&rdquo; steps below, or my code at <a href="https://github.com/janagrit" rel="noopener">github.com/janagrit</a>.</p>
-      </aside>
-    </div>
-
-    <section class="problem" aria-labelledby="problem-h">
-      <div class="wrap">
-        <p class="label">01 / The problem</p>
-        <h2 id="problem-h" class="sr-only">The problem</h2>
-        <p class="big">Most teams have tests. Few trust them. <span class="dim">Red builds get <mark data-for="manager">re-run until they pass</mark>, the coverage number looks fine while <mark data-for="founder">real bugs reach customers</mark>, and the one person who understood the framework has moved on.</span> Every ignored failure is a release risk.</p>
-      </div>
-    </section>
-
-    <section id="services" aria-labelledby="services-h">
-      <div class="wrap">
-        <p class="label">02 / Services</p>
-        <h2 id="services-h">Three engagements that make releases boring again.</h2>
-        <div class="cards">
-          <article class="card" data-for="founder engineer">
-            <div class="top">
-              <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 13 9 5 9-5"/></svg></span>
-              <span class="n">01</span>
-            </div>
-            <h3>Framework from scratch</h3>
-            <p>A Playwright and TypeScript framework built around your critical user flows, with <mark data-for="engineer">API mocking, smoke and regression suites</mark>, and <mark data-for="founder">runs on every pull request</mark> in your CI.</p>
-            <p class="proof"><b>9 weeks</b> to a full end-to-end framework for a legal-tech platform</p>
-          </article>
-          <article class="card" data-for="manager">
-            <div class="top">
-              <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="4"/></svg></span>
-              <span class="n">02</span>
-            </div>
-            <h3>Flaky-suite rescue</h3>
-            <p>An audit of why your tests fail, then fixes at the root: <mark data-for="engineer">isolated test data, stable auth sessions, real waits</mark> instead of sleeps, so <mark data-for="manager">a red build means a real bug</mark>.</p>
-            <p class="proof"><b>60% fewer</b> false-positive failures on a Java/Selenium suite</p>
-          </article>
-          <article class="card" data-for="manager engineer">
-            <div class="top">
-              <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h13l-4-4M20 17H7l4 4"/></svg></span>
-              <span class="n">03</span>
-            </div>
-            <h3>Migration to Playwright</h3>
-            <p>Move from Cypress or Selenium <mark data-for="manager">without freezing feature work</mark>: suite by suite, with <mark data-for="engineer">parallel runs</mark> and faster feedback at each step.</p>
-            <p class="proof"><b>45% more</b> automated coverage after a Cypress migration</p>
-          </article>
-        </div>
-        <p class="also"><b>Also available:</b> API and contract testing, resilience tests for event-driven AWS workflows (SQS, Lambda, retries, dead-letter queues), and setting up <mark data-for="engineer">AI-assisted test workflows with Claude Code and MCP</mark>.</p>
-      </div>
-    </section>
-
-    <section id="process" aria-labelledby="process-h">
-      <div class="wrap">
-        <p class="label">03 / How it works</p>
-        <h2 id="process-h">A clear scope with a finish line.</h2>
-        <div class="steps">
-          <div class="step">
-            <div class="head">
-              <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg></span>
-              <span class="k">Step 01</span>
-              <h3>Audit</h3>
-            </div>
-            <p>I read your codebase, CI pipeline and current tests, map the user flows that matter most, and find where failures really come from. <mark data-for="founder manager">You get a written plan with scope and timeline</mark> before any build work starts.</p>
-          </div>
-          <div class="step">
-            <div class="head">
-              <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 4l-4 16"/></svg></span>
-              <span class="k">Step 02</span>
-              <h3>Build</h3>
-            </div>
-            <p>Framework, tests and pipeline changes land in your repository as <mark data-for="engineer">small, reviewed pull requests</mark>. Each week you see what runs, how long it takes, and what it caught.</p>
-          </div>
-          <div class="step">
-            <div class="head">
-              <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 14l2 2 4-4"/></svg></span>
-              <span class="k">Step 03</span>
-              <h3>Handover</h3>
-            </div>
-            <p>Documentation, a recorded walkthrough and pairing sessions, so <mark data-for="manager founder">your team owns the suite</mark> after I leave and adding a test takes minutes, not a meeting.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="results" aria-labelledby="results-h">
-      <div class="wrap">
-        <p class="label">04 / Results</p>
-        <h2 id="results-h">What this work has delivered before.</h2>
         <div class="stats">
           <div class="stat"><b>45%</b><span>more automated coverage after a Cypress to Playwright migration</span></div>
           <div class="stat"><b>60%</b><span>fewer flaky-test false positives</span></div>
           <div class="stat"><b>5+</b><span>product lines automated as the only SDET</span></div>
           <div class="stat"><b>9 wks</b><span>to a full end-to-end framework on a client project</span></div>
         </div>
-        <ul class="work">
-          <li><b>Cooley LLP</b><span class="when">2026</span><span class="what">Rebuilt a Playwright smoke suite into a full framework for a multi-party fund-transfer platform, running across 5 configurations in Azure DevOps.</span></li>
-          <li><b>California Community Colleges Technology Center</b><span class="when">2022&ndash;2026</span><span class="what">Built test infrastructure from scratch across 5+ product lines on AWS microservices; led the move from Cypress to Playwright.</span></li>
-          <li><b>Amtrak</b><span class="when">2021&ndash;2022</span><span class="what">BDD frameworks for trip planning and booking flows; cut false-positive failures by 60%.</span></li>
-          <li><b>HiLabs</b><span class="when">2020&ndash;2021</span><span class="what">TDD framework for a healthcare analytics platform with strict compliance requirements.</span></li>
-        </ul>
-      </div>
-    </section>
 
-    <section class="projects" id="projects" aria-labelledby="projects-h">
-      <div class="wrap">
-        <p class="label">05 / Our projects</p>
-        <h2 id="projects-h">Products we build and test ourselves.</h2>
-        <div class="cards">
-          <article class="card project">
-            <div class="top">
-              <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
-              <span class="n live">Live</span>
-            </div>
-            <h3>MomUp &middot; Kids Nearby Berlin</h3>
-            <p>An app for parents in Berlin: kids&rsquo; activities on a map, play events, kids&rsquo; clothes sales with a daily email, and a members-only mom chat. In German, English and Russian, and installable on the phone.</p>
-            <p class="proof"><b>My role</b> web developer &amp; QA, built for <a href="https://www.instagram.com/momup_app/" rel="noopener">@momup_app</a></p>
-            <p class="proof"><b>Built with</b> JavaScript, Supabase (Postgres, row-level security, Realtime), GitHub Actions, Leaflet &middot; installable web app</p>
-            <p class="links">
-              <a href="https://momup-app.github.io/" rel="noopener">Open the app &nearr;</a>
-              <a href="https://github.com/momup-app/momup-app.github.io" rel="noopener">Code &nearr;</a>
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="about" id="about" aria-labelledby="about-h">
-      <div class="wrap">
-        <p class="label">06 / About</p>
-        <h2 id="about-h">You work with me directly. No junior handoff.</h2>
-        <div class="cols">
+        <div class="intro">
           <div>
-            <p>I&rsquo;m Iana, a Senior SDET with <b>6+ years in QA and test automation</b> for SaaS and web platforms. I design test frameworks and validation pipelines from scratch and keep them simple enough that the team who inherits them actually uses them.</p>
+            <h2>Tests are production code. I treat them that way.</h2>
+            <p>I&rsquo;m a Senior SDET with <b>6+ years in QA and test automation</b> for SaaS and web platforms. I work with product and infrastructure teams to decide how complex distributed systems get tested, across web, mobile web and backend services.</p>
             <p>I let production telemetry, not guesswork, decide where coverage goes. I use AI tools such as <b>Claude Code and MCP servers</b> where they save real time, and I review what they produce as carefully as anyone else&rsquo;s code.</p>
             <p>Before software I wrote a PhD on outer space law in Shanghai. I hold an M.S. in Computer Science from New York Institute of Technology.</p>
           </div>
           <ul class="facts">
-            <li><span>Based in</span><b>New York, working remotely</b></li>
+            <li><span>Based in</span><b>New York</b></li>
+            <li><span>Work style</span><b>Remote, hybrid or on-site</b></li>
             <li><span>Stack</span><b>Playwright, Cypress, Selenium, TypeScript, Java</b></li>
             <li><span>CI/CD</span><b>GitHub Actions, Azure DevOps, GitLab, Jenkins</b></li>
             <li><span>Cloud</span><b>AWS, Docker</b></li>
@@ -430,30 +309,219 @@
       </div>
     </section>
 
-    <section class="order" id="order" aria-labelledby="order-h">
+    <!-- ================= EXPERIENCE ================= -->
+    <section id="experience" aria-labelledby="exp-h">
+      <div class="wrap">
+        <p class="label">Experience</p>
+        <h2 id="exp-h">Four teams. Each suite left greener than I found it.</h2>
+        <ol class="timeline">
+          <li class="job">
+            <p class="when"><b>Cooley LLP</b>Jun 2026 &ndash; Sep 2026</p>
+            <div>
+              <h3>Senior SDET, Test Automation Framework and Validation Pipelines</h3>
+              <p class="co">Contract &middot; Legal technology &middot; Remote</p>
+              <ul>
+                <li>Rebuilt a small, unstructured Playwright smoke suite into a full framework for a multi-party fund-transfer platform, delivered in 9 weeks.</li>
+                <li>Built a central network interception layer to record, mock and assert on API responses against service contracts.</li>
+                <li>Ran the suite in parallel across 5 desktop and mobile-web configurations in Azure DevOps, and fixed persistent Azure AD B2C/MSAL session instability.</li>
+              </ul>
+              <p class="stack">Playwright &middot; TypeScript &middot; Azure DevOps &middot; Claude Code &middot; MCP</p>
+            </div>
+          </li>
+          <li class="job">
+            <p class="when"><b>CCC Technology Center</b>Sep 2022 &ndash; Feb 2026</p>
+            <div>
+              <h3>Senior SDET, Test Infrastructure and Quality Tooling</h3>
+              <p class="co">California Community Colleges Technology Center &middot; Remote</p>
+              <ul>
+                <li>As the only automation engineer, built test infrastructure from scratch across 5+ product lines on AWS microservices.</li>
+                <li>Led the Cypress to Playwright migration: faster, parallel, more stable, and 45% more automated coverage.</li>
+                <li>Tested event-driven AWS workflows for resilience (retries, idempotency, dead-letter queues) and traced production failures with CloudWatch and Allure.</li>
+              </ul>
+              <p class="stack">Playwright &middot; Cypress &middot; TypeScript &middot; Jenkins &middot; Docker &middot; AWS</p>
+            </div>
+          </li>
+          <li class="job">
+            <p class="when"><b>Amtrak</b>Aug 2021 &ndash; Sep 2022</p>
+            <div>
+              <h3>QA Automation Engineer (BDD)</h3>
+              <p class="co">Travel &middot; On-site / Remote</p>
+              <ul>
+                <li>Built BDD frameworks for trip planning, route search, booking and station flows.</li>
+                <li>Refactored legacy test logic and cut false-positive failures by 60%.</li>
+              </ul>
+              <p class="stack">Java &middot; Selenium &middot; Cucumber &middot; Jenkins</p>
+            </div>
+          </li>
+          <li class="job">
+            <p class="when"><b>HiLabs</b>Jan 2020 &ndash; Aug 2021</p>
+            <div>
+              <h3>QA Automation Engineer (TDD)</h3>
+              <p class="co">Healthcare analytics &middot; Baltimore, MD</p>
+              <ul>
+                <li>Designed a TDD framework for a healthcare platform with strict compliance requirements.</li>
+                <li>Validated backend data with Oracle and JDBC, and REST APIs with Postman and REST Assured.</li>
+              </ul>
+              <p class="stack">Java &middot; Selenium &middot; TestNG &middot; Maven</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="more">
+          <div>
+            <h3>Skills</h3>
+            <dl class="skills">
+              <div><dt>Automation</dt><dd>Playwright, Cypress, Selenium WebDriver, Page Object Model, component, API and E2E testing</dd></div>
+              <div><dt>Backend</dt><dd>REST, GraphQL, contract testing, microservices, event-driven and serverless systems</dd></div>
+              <div><dt>Cloud &amp; CI</dt><dd>AWS (Lambda, SQS, SNS, API Gateway, EC2, CloudWatch), Docker, GitHub Actions, Azure DevOps, GitLab CI, Jenkins</dd></div>
+              <div><dt>Quality signal</dt><dd>Allure reporting, code coverage, flaky-test remediation, production monitoring</dd></div>
+              <div><dt>AI tooling</dt><dd>Claude Code, Model Context Protocol (MCP), AI-assisted test generation and review</dd></div>
+              <div><dt>Languages</dt><dd>TypeScript, JavaScript, Java, SQL</dd></div>
+            </dl>
+          </div>
+          <div>
+            <h3>Education</h3>
+            <ul class="edu">
+              <li><b>M.S. in Computer Science</b><span>New York Institute of Technology</span> <span class="yr">&middot; 2015</span></li>
+              <li><b>PhD in Political Science, Outer Space Law</b><span>Tongji University, Shanghai</span> <span class="yr">&middot; 2015&ndash;2020</span></li>
+              <li><b>B.S. and M.S. in Computer Science</b><span>Dnipro University of Technology</span> <span class="yr">&middot; 2009&ndash;2013</span></li>
+            </ul>
+            <div class="certs">
+              <h3>Certificates</h3>
+              <ul>
+                <li>AWS Cloud Technical Essentials</li>
+                <li>Software QA and Test Automation Engineering</li>
+                <li>Introduction to Agents, Mercor</li>
+                <li>CS50 Web Programming with Python and JavaScript</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <a class="resume-link" href="https://www.linkedin.com/in/ianagrytsenko" rel="noopener">Full work history on LinkedIn &nearr;</a>
+      </div>
+    </section>
+
+    <!-- ================= PROJECTS ================= -->
+    <section id="projects" aria-labelledby="projects-h">
+      <div class="wrap">
+        <p class="label">Projects</p>
+        <h2 id="projects-h">Things I&rsquo;ve built and tested.</h2>
+
+        <article class="card featured">
+          <a class="shot" href="https://momup-app.github.io/" rel="noopener" tabindex="-1" aria-hidden="true">
+            <img src="images/momup.jpg" width="1120" height="700" loading="lazy" alt="">
+          </a>
+          <div class="body">
+            <span class="n live">Live</span>
+            <h3>MomUp &middot; Kids Nearby Berlin</h3>
+            <p>An app for parents in Berlin: kids&rsquo; activities on a map, play events, kids&rsquo; clothes sales with a daily email, and a members-only mom chat. In German, English and Russian, and installable on the phone.</p>
+            <p class="proof"><b>My role</b> web developer &amp; QA, built for <a href="https://www.instagram.com/momup_app/" rel="noopener">@momup_app</a></p>
+            <p class="proof"><b>Built with</b> JavaScript, Supabase (Postgres, row-level security, Realtime), GitHub Actions, Leaflet</p>
+            <p class="links">
+              <a href="https://momup-app.github.io/" rel="noopener">Open the app &nearr;</a>
+              <a href="https://github.com/momup-app/momup-app.github.io" rel="noopener">Code &nearr;</a>
+            </p>
+          </div>
+        </article>
+
+        <div class="grid2">
+          <article class="card">
+            <span class="n">Test automation</span>
+            <h3>Duo Bank</h3>
+            <p>Automated testing of a web banking app: functional, regression, integration and cross-browser.</p>
+            <p class="proof"><b>Built with</b> Java, Selenium, Cucumber, BDD</p>
+            <p class="links"><a href="https://github.com/janagrit/DuoBank-sprint4-gurus" rel="noopener">Code &nearr;</a></p>
+          </article>
+          <article class="card">
+            <span class="n">Web app</span>
+            <h3>Online auction</h3>
+            <p>An auction web app built for Harvard&rsquo;s CS50 Web Programming course.</p>
+            <p class="proof"><b>Built with</b> Python, Django, SQL</p>
+            <p class="links"><a href="https://github.com/janagrit/online-auction" rel="noopener">Code &nearr;</a></p>
+          </article>
+          <article class="card">
+            <span class="n">Everything else</span>
+            <h3>More on GitHub</h3>
+            <p>Other repositories, experiments and work in progress.</p>
+            <p class="proof"><b>Profile</b> github.com/janagrit</p>
+            <p class="links"><a href="https://github.com/janagrit" rel="noopener">Open GitHub &nearr;</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SERVICES ================= -->
+    <section class="services" id="services" aria-labelledby="services-h">
+      <div class="wrap">
+        <p class="label">Services</p>
+        <h2 id="services-h">Need help with a test suite? I also take on consulting projects.</h2>
+        <p class="lede">Most teams have tests. Few trust them. Red builds get re-run until they pass, and real bugs still reach customers. These are the three ways I usually help.</p>
+        <div class="cards">
+          <article class="card">
+            <div class="top">
+              <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 13 9 5 9-5"/></svg></span>
+              <span class="n">01</span>
+            </div>
+            <h3>Framework from scratch</h3>
+            <p>A Playwright and TypeScript framework built around your critical user flows, with API mocking, smoke and regression suites, running on every pull request.</p>
+            <p class="proof"><b>9 weeks</b> to a full end-to-end framework for a legal-tech platform</p>
+          </article>
+          <article class="card">
+            <div class="top">
+              <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="4"/></svg></span>
+              <span class="n">02</span>
+            </div>
+            <h3>Flaky-suite rescue</h3>
+            <p>An audit of why your tests fail, then fixes at the root: isolated test data, stable auth sessions, real waits instead of sleeps, so a red build means a real bug.</p>
+            <p class="proof"><b>60% fewer</b> false-positive failures on a Java/Selenium suite</p>
+          </article>
+          <article class="card">
+            <div class="top">
+              <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h13l-4-4M20 17H7l4 4"/></svg></span>
+              <span class="n">03</span>
+            </div>
+            <h3>Migration to Playwright</h3>
+            <p>Move from Cypress or Selenium without freezing feature work: suite by suite, with parallel runs and faster feedback at each step.</p>
+            <p class="proof"><b>45% more</b> automated coverage after a Cypress migration</p>
+          </article>
+        </div>
+        <ol class="steps" aria-label="How a project runs">
+          <li><b>Audit</b>I read your code, CI and tests, and you get a written plan with scope and timeline.</li>
+          <li><b>Build</b>Changes land as small, reviewed pull requests, with a weekly update on what runs and what it caught.</li>
+          <li><b>Handover</b>Docs, a recorded walkthrough and pairing, so your team owns the suite after I leave.</li>
+        </ol>
+        <p class="also"><b>Also available:</b> API and contract testing, resilience tests for event-driven AWS workflows, and setting up AI-assisted test workflows with Claude Code and MCP.</p>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="contact" id="contact" aria-labelledby="contact-h">
       <div class="wrap cols">
         <div>
-          <p class="label">07 / Get started</p>
-          <h2 id="order-h">Tell me where your tests hurt.</h2>
-          <p class="lede">The first call is 30 minutes and free. We talk about your product, your pipeline and what keeps breaking, and you leave with a clear next step, whether or not we work together.</p>
-          <p class="direct">Prefer email? <a href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a></p>
+          <p class="label">Contact</p>
+          <h2 id="contact-h">Let&rsquo;s talk.</h2>
+          <p class="lede">I&rsquo;m open to Senior SDET, Staff QA and Test Architect roles, full-time or contract, remote, hybrid or on-site. I also take on consulting projects.</p>
+          <a class="email" href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a>
+          <p class="elsewhere">
+            <a href="https://www.linkedin.com/in/ianagrytsenko" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3V9.75zM9.5 9.75h3.83v1.54h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.66 4.8 6.13V21h-4v-4.98c0-1.19-.02-2.72-1.66-2.72-1.66 0-1.91 1.3-1.91 2.63V21h-4V9.75z"/></svg>LinkedIn</a>
+            <a href="https://github.com/janagrit" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>GitHub</a>
+          </p>
         </div>
-        <form id="order-form" action="mailto:ianagrytsenko@gmail.com" method="post" enctype="text/plain">
+        <form id="contact-form" action="mailto:ianagrytsenko@gmail.com" method="post" enctype="text/plain">
           <div class="row2">
             <label>Your name<input name="name" autocomplete="name" required></label>
             <label>Company<input name="company" autocomplete="organization"></label>
           </div>
-          <label>What do you need?
-            <select name="service">
-              <option>Framework from scratch</option>
-              <option>Flaky-suite rescue</option>
-              <option>Migration to Playwright</option>
-              <option>API, contract or AWS testing</option>
-              <option>Not sure yet</option>
+          <label>What&rsquo;s this about?
+            <select name="topic">
+              <option>A full-time role</option>
+              <option>A contract role</option>
+              <option>A consulting project</option>
+              <option>Something else</option>
             </select>
           </label>
-          <label>A few words about your product and tests<textarea name="message" placeholder="What you ship, what you test today, and what keeps breaking."></textarea></label>
-          <button class="btn" type="submit">Request a call
+          <label>Message<textarea name="message" placeholder="The role or project, and anything I should know."></textarea></label>
+          <button class="btn" type="submit">Send message
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
           <p class="hint">This opens your email app with the message filled in. Nothing is stored on this site.</p>
         </form>
@@ -464,64 +532,59 @@
   <footer>
     <div class="wrap">
       <span>&copy; 2026 Iana Grytsenko</span>
-      <nav aria-label="Elsewhere">
-        <a href="mailto:ianagrytsenko@gmail.com">Email</a>
-        <a href="https://www.linkedin.com/in/ianagrytsenko" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/janagrit" rel="noopener">GitHub</a>
-      </nav>
+      <span>New York &middot; Updated October 2026</span>
     </div>
   </footer>
 
+  <!-- mobile bottom tabs -->
+  <nav class="tabbar" aria-label="Sections">
+    <ul>
+      <li><a href="#about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>About</a></li>
+      <li><a href="#experience"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg>Experience</a></li>
+      <li><a href="#projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Projects</a></li>
+      <li><a href="#services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6z"/></svg>Services</a></li>
+      <li><a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Contact</a></li>
+    </ul>
+  </nav>
+
   <script>
     (function () {
-      var NAMES = { all: "Everyone", founder: "founder", manager: "engineering manager", engineer: "engineer" };
-      var root = document.documentElement;
-      var btn = document.getElementById("viewas-btn");
-      var menu = document.getElementById("viewas-menu");
-      var label = document.getElementById("viewas-label");
-      var banner = document.getElementById("banner");
-      var items = menu.querySelectorAll("button");
-
-      function setPersona(p, save) {
-        if (!NAMES[p]) p = "all";
-        root.setAttribute("data-persona", p);
-        items.forEach(function (b) { b.setAttribute("aria-checked", String(b.dataset.persona === p)); });
-        label.innerHTML = p === "all" ? "View as" : '<span class="long">Viewing as </span>' + NAMES[p];
-        banner.hidden = p === "all";
-        document.getElementById("banner-who").textContent = NAMES[p];
-        if (save) {
-          try { localStorage.setItem("persona", p); } catch (e) {}
-          var url = new URL(location.href);
-          if (p === "all") url.searchParams.delete("as"); else url.searchParams.set("as", p);
-          history.replaceState(null, "", url);
-        }
-      }
-
-      function toggleMenu(open) {
-        menu.hidden = !open;
-        btn.setAttribute("aria-expanded", String(open));
-        if (open) items[0].focus();
-      }
-
-      btn.addEventListener("click", function () { toggleMenu(menu.hidden); });
-      items.forEach(function (b) {
-        b.addEventListener("click", function () { setPersona(b.dataset.persona, true); toggleMenu(false); btn.focus(); });
+      // Highlight the tab for the section currently on screen.
+      var links = document.querySelectorAll(".toptabs a, .tabbar a");
+      var sections = Array.prototype.map.call(document.querySelectorAll(".toptabs a"), function (a) {
+        return document.querySelector(a.getAttribute("href"));
       });
-      document.addEventListener("click", function (e) { if (!e.target.closest(".viewas")) toggleMenu(false); });
-      document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !menu.hidden) { toggleMenu(false); btn.focus(); } });
-      document.getElementById("banner-exit").addEventListener("click", function () { setPersona("all", true); });
 
-      var start = new URLSearchParams(location.search).get("as");
-      if (!start) { try { start = localStorage.getItem("persona"); } catch (e) {} }
-      setPersona(start || "all", false);
+      function setActive(id) {
+        links.forEach(function (a) {
+          if (a.getAttribute("href") === "#" + id) a.setAttribute("aria-current", "location");
+          else a.removeAttribute("aria-current");
+        });
+      }
 
-      // Order form: compose an email instead of posting anywhere.
-      document.getElementById("order-form").addEventListener("submit", function (e) {
+      function update() {
+        var line = window.innerHeight * 0.35;
+        var current = sections[0].id;
+        sections.forEach(function (s) { if (s.getBoundingClientRect().top <= line) current = s.id; });
+        // At the very bottom, the last section is current even if it is short.
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = sections[sections.length - 1].id;
+        setActive(current);
+      }
+
+      var ticking = false;
+      window.addEventListener("scroll", function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(function () { update(); ticking = false; }); }
+      }, { passive: true });
+      window.addEventListener("resize", update);
+      update();
+
+      // Contact form: compose an email instead of posting anywhere.
+      document.getElementById("contact-form").addEventListener("submit", function (e) {
         e.preventDefault();
         var f = e.target;
-        var subject = "Test automation inquiry: " + f.service.value;
+        var subject = "From your website: " + f.topic.value;
         var body = "Name: " + f.name.value + "\nCompany: " + (f.company.value || "-") +
-          "\nService: " + f.service.value + "\n\n" + f.message.value;
+          "\nAbout: " + f.topic.value + "\n\n" + f.message.value;
         location.href = "mailto:ianagrytsenko@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
       });
     })();
