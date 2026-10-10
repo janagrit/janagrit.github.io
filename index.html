@@ -10,7 +10,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://janagrit.github.io/">
   <meta property="og:image" content="https://janagrit.github.io/images/lead-bg2.jpg">
-  <meta name="color-scheme" content="dark">
+  <meta name="color-scheme" content="light">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,16 +18,17 @@
   <style>
     /* ---------- tokens ---------- */
     :root {
-      --bg: #0b0b0d;
-      --card: #121215;
-      --card-hover: #18181c;
-      --border: #24242a;
-      --text: #f2f2f2;
-      --text-2: #a6a6a6;
-      --dim: #737373;
-      --accent: #f5a524;
-      --accent-ink: #1a1206;
-      --accent-soft: rgba(245, 165, 36, .14);
+      --bg: #faf8f5;          /* warm off-white */
+      --card: #ffffff;
+      --card-hover: #f4f1ec;
+      --border: #e2dcd2;      /* sand */
+      --text: #14213d;        /* deep navy */
+      --text-2: #44506a;
+      --dim: #64708a;
+      --accent: #0f766e;      /* "tests passed" teal */
+      --accent-ink: #ffffff;
+      --accent-soft: rgba(15, 118, 110, .10);
+      --warm: #b45309;        /* amber, kept for the Live badge */
       --display: "Space Grotesk", "Inter", system-ui, sans-serif;
       --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
       --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
@@ -55,13 +56,13 @@
       background: var(--accent); color: var(--accent-ink); border: 1px solid var(--accent); border-radius: 8px; padding: 14px 20px;
       transition: transform .15s, box-shadow .15s;
     }
-    .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(245, 165, 36, .25); }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(15, 118, 110, .22); }
     .btn.ghost { background: transparent; color: var(--text); border-color: var(--border); }
     .btn.ghost:hover { border-color: var(--text-2); box-shadow: none; }
     .btn svg { width: 16px; height: 16px; }
 
     /* ---------- top bar ---------- */
-    .bar { position: sticky; top: 0; z-index: 30; background: rgba(11, 11, 13, .82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .bar { position: sticky; top: 0; z-index: 30; background: rgba(250, 248, 245, .88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
     .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; }
     .logo { font-family: var(--display); font-weight: 600; font-size: 18px; text-decoration: none; letter-spacing: -.01em; }
     .logo span { color: var(--accent); }
@@ -82,7 +83,7 @@
     .viewas > button svg { width: 16px; height: 16px; }
     .menu {
       position: absolute; right: 0; top: calc(100% + 8px); width: 270px; padding: 8px;
-      background: var(--card); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 16px 40px rgba(0, 0, 0, .5);
+      background: var(--card); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 16px 40px rgba(20, 33, 61, .12);
     }
     .menu[hidden] { display: none; }
     .menu p { margin: 4px 10px 8px; font-size: 12px; color: var(--dim); }
@@ -120,18 +121,18 @@
 
     /* ---------- hero with photo ---------- */
     .hero { position: relative; min-height: min(88vh, 780px); display: flex; align-items: center; background: var(--bg) url("images/lead-bg2.jpg") 75% 40% / cover no-repeat; border-bottom: 1px solid var(--border); }
-    .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg) 0%, rgba(11, 11, 13, .92) 34%, rgba(11, 11, 13, .55) 56%, rgba(11, 11, 13, .15) 78%), linear-gradient(0deg, var(--bg) 0%, rgba(11, 11, 13, 0) 30%); }
+    .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg) 0%, rgba(250, 248, 245, .94) 36%, rgba(250, 248, 245, .55) 56%, rgba(250, 248, 245, 0) 76%), linear-gradient(0deg, var(--bg) 0%, rgba(250, 248, 245, 0) 26%); }
     .hero .wrap { position: relative; width: 100%; padding-top: 72px; padding-bottom: 72px; }
     .hero .txt { max-width: 600px; }
-    .pill { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; color: var(--text-2); border: 1px solid var(--border); background: rgba(18, 18, 21, .7); border-radius: 999px; padding: 6px 12px; margin: 0 0 28px; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; color: var(--text-2); border: 1px solid var(--border); background: rgba(255, 255, 255, .8); border-radius: 999px; padding: 6px 12px; margin: 0 0 28px; }
     .pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
     .hero h1 { font-size: clamp(38px, 6vw, 64px); line-height: 1.04; letter-spacing: -.03em; }
-    .hero h1 .dim { color: #8c8c8c; }
+    .hero h1 .dim { color: #5b6b86; }
     .hero .sub { margin: 24px 0 0; color: var(--text-2); font-size: 17px; max-width: 52ch; }
     .hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
     @media (max-width: 760px) {
       .hero { display: block; min-height: 0; background-size: auto 56vh; background-position: 58% top; }
-      .hero::before { background: linear-gradient(180deg, rgba(11, 11, 13, .1) 0, rgba(11, 11, 13, .1) calc(56vh - 160px), var(--bg) 56vh); }
+      .hero::before { background: linear-gradient(180deg, rgba(250, 248, 245, 0) 0, rgba(250, 248, 245, 0) calc(56vh - 160px), var(--bg) 56vh); }
       .hero .wrap { padding-top: calc(56vh - 70px); padding-bottom: 48px; }
     }
 
@@ -144,9 +145,11 @@
     .card { position: relative; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; transition: background .2s, border-color .2s; }
     .card:hover { background: var(--card-hover); }
     .card .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
-    .icon { width: 38px; height: 38px; border-radius: 8px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(245, 165, 36, .25); }
+    .icon { width: 38px; height: 38px; border-radius: 8px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(15, 118, 110, .22); }
     .icon svg { width: 18px; height: 18px; }
     .card .n { font-family: var(--mono); font-size: 12px; color: var(--dim); }
+    .card .n.live { display: inline-flex; align-items: center; gap: 6px; color: var(--warm); font-weight: 500; }
+    .card .n.live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--warm); }
     .card h3 { font-size: 19px; margin-bottom: 10px; }
     .card p { margin: 0; color: var(--text-2); font-size: 15px; }
     .card .proof { margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--border); font-family: var(--mono); font-size: 12px; color: var(--text-2); }
@@ -170,7 +173,7 @@
     @media (max-width: 640px) { .step { grid-template-columns: 1fr; gap: 14px; } .step .head { border-right: 0; padding-right: 0; } }
 
     .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 48px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-    .stat { background: var(--bg); padding: 28px 24px; }
+    .stat { background: var(--card); padding: 28px 24px; }
     .stat b { display: block; font-family: var(--display); font-weight: 500; font-size: clamp(36px, 4.4vw, 52px); line-height: 1; letter-spacing: -.03em; color: var(--accent); }
     .stat span { display: block; margin-top: 12px; font-size: 14px; color: var(--text-2); }
     .work { list-style: none; margin: 32px 0 0; padding: 0; }
@@ -202,7 +205,7 @@
     label { display: grid; gap: 6px; font-size: 13px; color: var(--text-2); }
     input, select, textarea { font: 15px/1.4 var(--sans); color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 11px 12px; width: 100%; }
     textarea { min-height: 120px; resize: vertical; }
-    select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23a6a6a6' stroke-width='1.6'%3E%3Cpath d='m2 4 4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 34px; }
+    select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%2364708a' stroke-width='1.6'%3E%3Cpath d='m2 4 4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 34px; }
     form .btn { justify-self: start; }
     form .hint { margin: 0; font-size: 12px; color: var(--dim); }
     @media (max-width: 860px) { .order .cols { grid-template-columns: 1fr; gap: 32px; } }
@@ -391,7 +394,7 @@
           <article class="card project">
             <div class="top">
               <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
-              <span class="n">Live</span>
+              <span class="n live">Live</span>
             </div>
             <h3>MomUp &middot; Kids Nearby Berlin</h3>
             <p>An app for parents in Berlin: kids&rsquo; activities on a map, play events, kids&rsquo; clothes sales with a daily email, and a members-only mom chat. In German, English and Russian, and installable on the phone.</p>
