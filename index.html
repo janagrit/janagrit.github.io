@@ -16,6 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add("js");</script>
   <style>
     :root {
       --bg: #fbfbfd;
@@ -33,7 +34,6 @@
       --radius: 18px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
       color: var(--text);
@@ -43,10 +43,13 @@
       -webkit-font-smoothing: antialiased;
     }
     a { color: var(--accent); text-decoration: none; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+    .skip { position: absolute; left: -9999px; }
+    .skip:focus { left: 16px; top: 12px; z-index: 100; background: var(--accent); color: #fff; padding: 8px 14px; border-radius: 8px; }
     img { display: block; max-width: 100%; }
 
     /* ---------- nav ---------- */
-    nav {
+    .topnav {
       position: sticky; top: 0; z-index: 50;
       background: rgba(251, 251, 253, .8);
       backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
@@ -60,9 +63,9 @@
     .nav-brand span { color: var(--sub); font-weight: 500; }
     .nav-links { display: flex; gap: 28px; font-size: 15px; }
     .nav-links a { color: var(--text); }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover, .nav-links a[aria-current] { color: var(--accent); }
 
-    section { max-width: var(--max); margin: 0 auto; padding: 96px 24px 0; }
+    section { max-width: var(--max); margin: 0 auto; padding: 96px 24px 0; scroll-margin-top: 56px; }
     .eyebrow {
       font-size: 13px; font-weight: 600; letter-spacing: .12em;
       text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
@@ -95,10 +98,12 @@
     }
     .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0,113,227,.3); color: #fff; }
     .btn.ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); box-shadow: none; }
-    .hero-photo img {
-      border-radius: 24px; aspect-ratio: 4/5; object-fit: cover;
-      box-shadow: 0 24px 60px rgba(0,0,0,.12);
+    .hero-photo .frame {
+      border-radius: 24px; aspect-ratio: 4/5; overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,.12); background: var(--border);
     }
+    /* zoom from the bottom so the shop sign above the door stays out of frame */
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 57% 100%; transform: scale(1.35); transform-origin: 57% 100%; }
     .hero-photo figcaption { margin-top: 12px; font-size: 14px; color: var(--sub); }
 
     /* ---------- stats ---------- */
@@ -183,6 +188,30 @@
     .step p { color: var(--sub); font-size: 15px; }
     .services-note { margin-top: 32px; color: var(--sub); font-size: 15.5px; max-width: 720px; }
 
+    /* ---------- website audit ---------- */
+    .audit-checks { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .check { padding-top: 22px; border-top: 2px solid var(--text); }
+    .check .n { font-family: var(--mono); font-size: 14px; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
+    .check h3 { font-size: 22px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 4px; }
+    .check .why { font-size: 15.5px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+    .check p { color: var(--sub); font-size: 15.5px; }
+    .readout {
+      margin-top: 56px; background: var(--dark); color: #f5f5f7; border-radius: var(--radius);
+      padding: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: start;
+    }
+    .readout h3 { font-size: 26px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 18px; }
+    .readout ol { list-style: none; display: grid; gap: 18px; }
+    .readout li b { display: block; font-size: 16.5px; margin-bottom: 2px; }
+    .readout li b span { font-family: var(--mono); color: #0a84ff; font-size: 14px; margin-right: 8px; }
+    .readout li p, .readout .gets li { color: var(--dark-sub); font-size: 15.5px; }
+    .readout .gets { list-style: none; display: grid; gap: 10px; margin-bottom: 28px; }
+    .readout .gets li::before { content: "✓  "; color: #4cd964; font-family: var(--mono); }
+    .readout .example { font-family: var(--mono); font-size: 13.5px; line-height: 2; color: var(--dark-sub); background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 18px 20px; margin-bottom: 28px; }
+    .readout .example .hl { color: #0a84ff; }
+    .readout a.more { color: #0a84ff; }
+    .audit-cta { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; }
+    .audit-cta p { color: var(--sub); font-size: 15.5px; }
+
     /* ---------- contact ---------- */
     .contact { text-align: center; padding: 120px 24px 96px; }
     .contact h2 { font-size: clamp(34px, 5vw, 56px); font-weight: 700; letter-spacing: -.035em; margin-bottom: 18px; }
@@ -192,33 +221,59 @@
     footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; color: var(--sub); font-size: 14px; }
 
     /* ---------- reveal ---------- */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+      .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+      .js .reveal.visible { opacity: 1; transform: none; }
+    }
+
+    .tabbar { display: none; }
 
     @media (max-width: 860px) {
-      .hero-grid, .logic-grid, .work-card { grid-template-columns: 1fr; }
+      .hero-grid, .logic-grid, .work-card, .readout { grid-template-columns: 1fr; }
       .stats { grid-template-columns: repeat(2, 1fr); }
-      .services-grid, .process, .about-strip { grid-template-columns: 1fr; }
+      .services-grid, .process, .about-strip, .audit-checks { grid-template-columns: 1fr; }
       .nav-links { display: none; }
       section { padding-top: 64px; }
-      .work-card { padding: 30px 26px; }
+      .work-card, .readout { padding: 30px 26px; }
+      .section-title br { display: none; }
+      .hero-photo .frame { aspect-ratio: 4/3; }
+      .hero-photo img { transform: scale(1.6); object-position: 57% 96%; transform-origin: 57% 96%; }
+      body { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+      .tabbar {
+        display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+        background: rgba(255, 255, 255, .94); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        border-top: 1px solid var(--border); padding-bottom: env(safe-area-inset-bottom);
+      }
+      .tabbar ul { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); height: 64px; }
+      .tabbar a {
+        position: relative; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+        font-size: 11px; font-weight: 500; color: var(--sub); -webkit-tap-highlight-color: transparent;
+      }
+      .tabbar svg { width: 22px; height: 22px; }
+      .tabbar a[aria-current] { color: var(--accent); }
+      .tabbar a[aria-current]::before { content: ""; position: absolute; top: 0; left: 28%; right: 28%; height: 3px; border-radius: 0 0 3px 3px; background: var(--accent); }
     }
+    @media (max-width: 420px) { .nav-brand span { display: none; } }
   </style>
 </head>
 <body>
+  <a class="skip" href="#main">Skip to main content</a>
 
-  <nav>
+  <nav class="topnav" aria-label="Sections">
     <div class="nav-inner">
-      <a class="nav-brand" href="#">Iana Grytsenko <span>· Test Automation Architect</span></a>
+      <a class="nav-brand" href="#about">Iana Grytsenko <span>· Test Automation Architect</span></a>
       <div class="nav-links">
         <a href="#work">Work</a>
+        <a href="#audit">Website audit</a>
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
   </nav>
 
-  <section class="hero">
+  <main id="main">
+  <section class="hero" id="about">
     <div class="hero-grid">
       <div>
         <div class="eyebrow">Test Automation Architect · SDET</div>
@@ -230,7 +285,7 @@
         </div>
       </div>
       <figure class="hero-photo">
-        <img src="images/lead-bg2.jpg" alt="Iana Grytsenko, smiling, standing in a doorway in New York">
+        <div class="frame"><img src="images/lead-bg2.jpg" width="1170" height="883" fetchpriority="high" alt="Iana Grytsenko, smiling, standing in a doorway in New York"></div>
         <figcaption>Based in New York · Remote, hybrid or on-site</figcaption>
       </figure>
     </div>
@@ -324,7 +379,7 @@
           <h3>Duo Bank</h3>
           <p class="work-desc">Automated testing of a web banking app: functional, regression, integration and cross-browser coverage.</p>
           <p class="work-stack"><strong>Built with</strong> Java, Selenium, Cucumber, BDD</p>
-          <a class="more" href="https://github.com/janagrit">Code</a>
+          <a class="more" href="https://github.com/janagrit/DuoBank-sprint4-gurus">Code</a>
         </div>
         <div class="work-visual">
           <div><span class="hl">scope:</span> functional · regression · integration</div>
@@ -344,6 +399,63 @@
       <div class="fact"><div class="k">CI/CD · Cloud</div><div class="v">GitHub Actions, Azure DevOps, GitLab, Jenkins · AWS, Docker</div></div>
       <div class="fact"><div class="k">Languages</div><div class="v">English, Українська, 中文</div></div>
       <div class="fact"><div class="k">More code</div><div class="v"><a href="https://github.com/janagrit">github.com/janagrit</a></div></div>
+    </div>
+  </section>
+
+  <section id="audit">
+    <div class="eyebrow reveal">Website audit · for businesses</div>
+    <h2 class="section-title reveal">Most business websites lose customers<br>to problems nobody sees.</h2>
+    <p class="section-sub reveal">Pages Google can&rsquo;t read, buttons a screen reader can&rsquo;t reach, links that go nowhere, layouts that break on a phone. I find them with automated tests and hand you a plain-English list of what to fix first. A focused engagement, not an open-ended retainer.</p>
+
+    <div class="audit-checks">
+      <div class="check reveal">
+        <div class="n">01</div>
+        <h3>Findability</h3>
+        <div class="why">Can Google and your customers find you?</div>
+        <p>Page titles, headings, meta descriptions, canonical links, social previews and structured data, checked on every key page.</p>
+      </div>
+      <div class="check reveal">
+        <div class="n">02</div>
+        <h3>Accessibility</h3>
+        <div class="why">Can everyone use your site?</div>
+        <p>An automated scan against WCAG 2.2 AA plus image alt text, so customers using screen readers or keyboards aren&rsquo;t turned away.</p>
+      </div>
+      <div class="check reveal">
+        <div class="n">03</div>
+        <h3>Reliability</h3>
+        <div class="why">Does it work on the phone in their hand?</div>
+        <p>Broken links, layouts that overflow on mobile, and visual checks that catch when an update quietly breaks your homepage.</p>
+      </div>
+    </div>
+
+    <div class="readout reveal">
+      <div>
+        <h3>How it works</h3>
+        <ol>
+          <li><b><span>01</span>Working session</b><p>30 minutes, free. Your site, your customers, and the pages that matter most. No deck, no pitch.</p></li>
+          <li><b><span>02</span>Audit</b><p>I build a Playwright test suite for your site and run every check against every key page, then review the results by hand.</p></li>
+          <li><b><span>03</span>Readout</b><p>A written report where every failure becomes a recommendation: severity, business impact and the fix, with quick wins first.</p></li>
+        </ol>
+      </div>
+      <div>
+        <h3>What you get</h3>
+        <ul class="gets">
+          <li>A prioritized findings report you can hand to your web developer</li>
+          <li>The test suite itself, so you can re-run it after every fix</li>
+          <li>Screenshots of every page on desktop and mobile</li>
+        </ul>
+        <div class="example">
+          <div><span class="hl">example:</span> Uptic Hospitality</div>
+          <div><span class="hl">$</span> npm test <span class="hl">&rarr;</span> 19 passed, 3 failed</div>
+          <div><span class="hl">&rarr;</span> 15-minute WordPress fixes first, trust next</div>
+        </div>
+        <a class="more" href="https://github.com/janagrit/uptic-site-audit">See the example audit</a>
+      </div>
+    </div>
+
+    <div class="audit-cta reveal">
+      <a class="btn" href="mailto:ianagrytsenko@gmail.com?subject=Website%20audit%3A%20working%20session">Book a free working session</a>
+      <p>Small businesses, agencies and startups. Any platform: WordPress, Shopify, Webflow or custom.</p>
     </div>
   </section>
 
@@ -391,13 +503,53 @@
     </div>
   </section>
 
+  </main>
+
   <footer>© 2026 Iana Grytsenko</footer>
 
+  <nav class="tabbar" aria-label="Sections">
+    <ul>
+      <li><a href="#about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>About</a></li>
+      <li><a href="#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Work</a></li>
+      <li><a href="#audit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5M8.5 11l2 2 3.5-3.5"/></svg>Audit</a></li>
+      <li><a href="#services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6z"/></svg>Services</a></li>
+      <li><a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Contact</a></li>
+    </ul>
+  </nav>
+
   <script>
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    // Fade sections in as they scroll into view (CSS skips this when reduced motion is on).
+    const reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      reveals.forEach(el => io.observe(el));
+      // Safety net: never leave content hidden if the observer doesn't fire.
+      setTimeout(() => reveals.forEach(el => el.classList.add('visible')), 3000);
+    } else {
+      reveals.forEach(el => el.classList.add('visible'));
+    }
+
+    // Highlight the tab for the section currently on screen.
+    const tabLinks = document.querySelectorAll('.nav-links a, .tabbar a');
+    const spySections = ['about', 'work', 'audit', 'services', 'contact'].map(id => document.getElementById(id));
+    function updateTabs() {
+      const line = window.innerHeight * 0.35;
+      let current = spySections[0].id;
+      spySections.forEach(s => { if (s.getBoundingClientRect().top <= line) current = s.id; });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = 'contact';
+      tabLinks.forEach(a => {
+        if (a.getAttribute('href') === '#' + current) a.setAttribute('aria-current', 'location');
+        else a.removeAttribute('aria-current');
+      });
+    }
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(() => { updateTabs(); ticking = false; }); }
+    }, { passive: true });
+    window.addEventListener('resize', updateTabs);
+    updateTabs();
   </script>
 </body>
 </html>
