@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Two Kinds of QA: Learned Before AI, and Learned With It | Iana Grytsenko</title>
+  <meta name="description" content="QA engineers who learned before AI and those who learned with it bring different strengths and blind spots. What each should borrow from the other.">
+  <link rel="canonical" href="https://janagrit.github.io/articles/qa-before-and-after-ai.html">
+  <meta property="og:title" content="Two Kinds of QA: Learned Before AI, and Learned With It">
+  <meta property="og:description" content="Different strengths, different blind spots, and what each should borrow from the other.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://janagrit.github.io/articles/qa-before-and-after-ai.html">
+  <meta property="og:image" content="https://janagrit.github.io/images/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="article:published_time" content="2026-10-14">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.ico?v=2" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Two Kinds of QA: Learned Before AI, and Learned With It","datePublished":"2026-10-14","author":{"@type":"Person","name":"Iana Grytsenko","url":"https://janagrit.github.io/"},"image":"https://janagrit.github.io/images/og.jpg"}</script>
+  <link rel="stylesheet" href="article.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <nav class="topnav" aria-label="Main">
+    <div class="in">
+      <a class="brand" href="../"><img src="../icon-192.png?v=2" width="34" height="34" alt="">Iana Grytsenko</a>
+      <a class="back" href="../#articles">&larr; All articles</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="in">
+      <p class="kicker">Article &middot; The QA profession</p>
+      <h1>Two kinds of QA: learned before AI, and learned with it</h1>
+      <p class="meta">Iana Grytsenko &middot; October 14, 2026 &middot; 6 min read</p>
+    </div>
+  </header>
+
+  <main id="main">
+    <article>
+      <p class="intro">Today&rsquo;s QA teams mix two kinds of engineers. Some learned testing before AI assistants existed. Others learned it with an AI assistant open from day one. Neither is better. They break things differently, they miss different bugs, and the best teams use both.</p>
+
+      <p>I&rsquo;m the first kind. I learned test automation with Java and Selenium, by writing every locator and every wait by hand. Today an AI writes much of my test code. So I&rsquo;ve seen both ways of working up close, and I&rsquo;ve watched what each one catches and what each one lets through.</p>
+
+      <h2><span class="n">01</span>The QA who learned before AI</h2>
+      <p>We learned the slow way. A test failed, and we read the stack trace line by line. A test was flaky, and we spent an afternoon finding the race condition. Nobody generated our test data or explained the codebase to us. We read it.</p>
+      <p><strong>What that gave us:</strong></p>
+      <ul>
+        <li><strong>A debugging instinct.</strong> When a build goes red, we know where to look first, because we&rsquo;ve looked in the wrong places many times before.</li>
+        <li><strong>Healthy distrust of green.</strong> We&rsquo;ve seen tests that pass while checking nothing, so a passing suite is a question, not an answer.</li>
+        <li><strong>Test design fundamentals.</strong> Boundary values, equivalence classes, state transitions, risk-based priorities. We learned these because we couldn&rsquo;t afford to test everything.</li>
+        <li><strong>Knowing what&rsquo;s under the UI:</strong> HTTP, the DOM, SQL, how a browser actually waits for a page.</li>
+      </ul>
+      <p><strong>Where we fall short:</strong></p>
+      <ul>
+        <li>Spending hours on boilerplate an assistant would write in a minute, out of habit or pride.</li>
+        <li>Using AI as fancy autocomplete instead of rethinking the workflow around it.</li>
+        <li>Expecting every test to be deterministic. AI features aren&rsquo;t, and pass/fail thinking alone doesn&rsquo;t fit them.</li>
+      </ul>
+
+      <h2><span class="n">02</span>The QA who learned with AI</h2>
+      <p>This generation never stared at a blank spec file. Ask for a Playwright framework with page objects, and it exists before lunch. Ask what a confusing function does, and the answer comes back in seconds.</p>
+      <p><strong>What that gives them:</strong></p>
+      <ul>
+        <li><strong>Speed.</strong> A first framework in a day instead of a week, and far less fear of an unfamiliar codebase.</li>
+        <li><strong>Comfort with AI products.</strong> They test chatbots and agents without being thrown by answers that change from run to run.</li>
+        <li><strong>Natural use of AI for the boring parts:</strong> test data, edge-case brainstorming, refactoring, documentation.</li>
+      </ul>
+      <p><strong>Where they fall short:</strong></p>
+      <ul>
+        <li><strong>Tests that can&rsquo;t fail.</strong> AI is very good at writing a test that passes. A test that has never failed proves nothing.</li>
+        <li><strong>Stuck when the AI is wrong.</strong> If the assistant&rsquo;s fix doesn&rsquo;t work and its second fix doesn&rsquo;t either, there&rsquo;s no debugging habit to fall back on.</li>
+        <li><strong>Flakiness hidden by retries.</strong> Adding a retry makes the build green, so the real timing bug ships.</li>
+        <li><strong>Coverage that looks great on a dashboard</strong> while the risky paths stay untested, because nobody asked which paths were risky.</li>
+      </ul>
+
+      <h2><span class="n">03</span>Side by side</h2>
+      <table>
+        <thead><tr><th>Situation</th><th>Learned before AI</th><th>Learned with AI</th></tr></thead>
+        <tbody>
+          <tr><td>Writing a new test</td><td>Slower, but every assertion is deliberate</td><td>Fast, but assertions need a second look</td></tr>
+          <tr><td>A red build</td><td>Reads the trace, forms a theory, checks it</td><td>Pastes the error into the assistant</td></tr>
+          <tr><td>A flaky test</td><td>Hunts the race condition</td><td>Risk of adding a retry and moving on</td></tr>
+          <tr><td>Testing an AI feature</td><td>Has to unlearn pure pass/fail</td><td>Already thinks in scores and baselines</td></tr>
+          <tr><td>A new codebase</td><td>Reads it, slowly</td><td>Gets a tour in minutes</td></tr>
+          <tr><td>Deciding what to test</td><td>Risk-based, from habit</td><td>Whatever the prompt suggested</td></tr>
+        </tbody>
+      </table>
+      <p>These are tendencies, not rules. I&rsquo;ve met careful engineers in both groups, and careless ones too.</p>
+
+      <h2><span class="n">04</span>What each should borrow from the other</h2>
+      <p><strong>If you learned before AI:</strong></p>
+      <ul>
+        <li>Let the assistant write the boilerplate, and spend the saved hours on test design and exploratory testing.</li>
+        <li>Learn to test non-deterministic systems: evaluation metrics, adversarial scenarios, and a baseline the scores can&rsquo;t drop below.</li>
+        <li>Use AI to get through a new codebase fast, then check its explanation against the code.</li>
+      </ul>
+      <p><strong>If you learned with AI:</strong></p>
+      <ul>
+        <li>Make every new test fail once, on purpose, before you trust it.</li>
+        <li>When a build breaks, write down your own guess before asking the assistant. Then compare.</li>
+        <li>Learn the fundamentals the assistant leans on: HTTP status codes, the DOM, SQL joins, how waits work.</li>
+        <li>Never fix flakiness with a retry. Find out why it&rsquo;s flaky.</li>
+      </ul>
+
+      <h2><span class="n">05</span>What I look for when hiring</h2>
+      <p>When I&rsquo;ve helped with QA hiring, the question that matters isn&rsquo;t <em>when</em> someone learned. It&rsquo;s whether they can tell when the AI is wrong. Three questions surface that quickly:</p>
+      <ol>
+        <li><strong>&ldquo;Show me a test you wrote that caught a real bug.&rdquo;</strong> It shows whether their tests check things that matter.</li>
+        <li><strong>&ldquo;Make this test fail.&rdquo;</strong> Hand over a passing test with a weak assertion. Good candidates find the weakness fast.</li>
+        <li><strong>&ldquo;How would you test something that answers differently every time?&rdquo;</strong> It shows whether they can move past pure pass/fail.</li>
+      </ol>
+
+      <h2><span class="n">06</span>Where I stand</h2>
+      <p>The fundamentals I learned the slow way are exactly what let me use AI safely now. I can let it write fast because I can tell when what it wrote is wrong. I wrote more about that workflow in <a href="claude-code-qa-workflow.html">How I test with Claude Code</a>.</p>
+      <p><strong>The short version:</strong> AI made writing tests cheap. It didn&rsquo;t make judging them cheap. The QA engineers who do best, whichever way they learned, are the ones who still ask: would this test fail if the feature broke?</p>
+    </article>
+
+    <section class="cta" aria-label="Contact">
+      <p>Building a QA team that uses AI well? I&rsquo;m happy to compare notes.</p>
+      <a class="pill" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener">Book a 30-minute call</a>
+    </section>
+  </main>
+
+  <footer>&copy; 2026 Iana Grytsenko &middot; <a href="../">janagrit.github.io</a></footer>
+</body>
+</html>

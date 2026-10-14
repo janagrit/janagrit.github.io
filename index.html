@@ -187,7 +187,7 @@
 
     /* ---------- articles ---------- */
     .articles { padding: clamp(80px, 10vw, 128px) 0 0; }
-    .art-list { margin-top: 48px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .art-list { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .art { display: block; color: var(--ink); background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; position: relative; overflow: hidden; transition: transform .2s, box-shadow .2s; }
     .art::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 3px; background: var(--grad); }
     .art:hover { text-decoration: none; transform: translateY(-4px); box-shadow: 0 22px 50px rgba(25, 21, 47, .1); }
@@ -252,7 +252,7 @@
     .tabbar { display: none; }
 
     @media (max-width: 1020px) {
-      .proj-grid { grid-template-columns: 1fr 1fr; }
+      .proj-grid, .art-list { grid-template-columns: 1fr 1fr; }
       .engage { grid-template-columns: 1fr; }
       .building { grid-template-columns: 1fr 1fr; }
       .building .k { grid-column: 1 / -1; }
@@ -501,6 +501,12 @@
         <p class="eyebrow reveal">Articles</p>
         <h2 class="h2 reveal" id="art-h">Notes from the work</h2>
         <div class="art-list">
+          <a class="art reveal" href="articles/qa-before-and-after-ai.html">
+            <div class="meta">The QA profession &middot; 6 min read</div>
+            <h3>Two kinds of QA: learned before AI, and learned with it</h3>
+            <p>Different strengths, different blind spots, and what each should borrow from the other.</p>
+            <span class="more">Read the article &rarr;</span>
+          </a>
           <a class="art reveal" href="articles/claude-code-qa-workflow.html">
             <div class="meta">AI-assisted QA &middot; 5 min read</div>
             <h3>How I test with Claude Code</h3>
