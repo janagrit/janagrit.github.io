@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>How I Test with Claude Code | Iana Grytsenko</title>
+  <meta name="description" content="My AI-assisted QA workflow: how I start a project, write tests first, catch flaky tests and keep AI quality from slipping, with Claude Code.">
+  <link rel="canonical" href="https://janagrit.github.io/articles/claude-code-qa-workflow.html">
+  <meta property="og:title" content="How I Test with Claude Code">
+  <meta property="og:description" content="My AI-assisted QA workflow: start right, test first, catch flaky tests, and keep AI quality from slipping.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://janagrit.github.io/articles/claude-code-qa-workflow.html">
+  <meta property="og:image" content="https://janagrit.github.io/images/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="article:published_time" content="2026-10-13">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.ico?v=2" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How I Test with Claude Code","datePublished":"2026-10-13","author":{"@type":"Person","name":"Iana Grytsenko","url":"https://janagrit.github.io/"},"image":"https://janagrit.github.io/images/og.jpg"}</script>
+  <style>
+    :root {
+      --bg: #fafafa; --white: #ffffff; --ink: #19152f; --sub: #5c5870; --line: #e6e4ee;
+      --violet: #b26ff8; --violet-ink: #6d3fd6;
+      --grad: linear-gradient(90deg, #9a5cf0 0%, #7a63ee 45%, #1e85e9 100%);
+      --grad-btn: linear-gradient(90deg, #7a4fe0 0%, #1668c9 100%);
+      --sans: "Public Sans", -apple-system, "Segoe UI", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 18px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--violet-ink); }
+    a:focus-visible { outline: 2px solid var(--violet-ink); outline-offset: 3px; border-radius: 6px; }
+    .skip { position: absolute; left: -9999px; }
+    .skip:focus { left: 16px; top: 12px; z-index: 100; background: var(--ink); color: #fff; padding: 8px 14px; border-radius: 8px; }
+
+    .topnav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+    .topnav .in { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; color: var(--ink); font-weight: 600; text-decoration: none; }
+    .brand img { width: 34px; height: 34px; border-radius: 9px; }
+    .back { font-size: 15px; font-weight: 600; text-decoration: none; }
+    .back:hover { text-decoration: underline; }
+
+    header.hero { background: #000; color: #fff; text-align: center; position: relative; overflow: hidden; }
+    header.hero::after { content: ""; position: absolute; left: -20%; right: -20%; bottom: -70%; height: 100%; border-radius: 50%; background: radial-gradient(ellipse at 50% 0%, rgba(134,113,243,.5) 0%, rgba(30,133,233,.2) 18%, rgba(0,0,0,0) 42%); box-shadow: 0 -1px 0 rgba(178,111,248,.55); }
+    header.hero .in { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 72px 24px 120px; }
+    .kicker { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #c9b5ff; }
+    h1 { margin-top: 18px; font-weight: 300; font-size: clamp(36px, 6vw, 64px); line-height: 1.08; letter-spacing: -.025em; }
+    .meta { margin-top: 20px; color: rgba(255,255,255,.7); font-size: 15px; }
+
+    article { max-width: 720px; margin: 0 auto; padding: 56px 24px 40px; }
+    article > p.intro { font-size: 21px; font-weight: 300; color: var(--ink); }
+    article h2 { margin: 52px 0 14px; font-size: 28px; font-weight: 600; letter-spacing: -.015em; line-height: 1.25; }
+    article h2 .n { display: block; font-size: 14px; font-weight: 600; letter-spacing: .14em; color: var(--violet-ink); margin-bottom: 6px; }
+    article p { margin-top: 16px; color: #3b3752; }
+    article ul, article ol { margin: 16px 0 0 24px; color: #3b3752; }
+    article li { margin-top: 8px; }
+    article strong { color: var(--ink); }
+    code { font-family: var(--mono); font-size: .86em; background: rgba(134,113,243,.1); color: #3d2a85; padding: 2px 6px; border-radius: 6px; }
+    .prompt { margin-top: 18px; background: #0d0b1a; color: #e8e4ff; border-radius: 14px; padding: 18px 20px; font-family: var(--mono); font-size: 14.5px; line-height: 1.75; overflow-x: auto; }
+    .prompt .dim { color: #8a84a6; display: block; margin-bottom: 4px; font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; }
+    .note { margin-top: 22px; border-left: 3px solid var(--violet); background: var(--white); padding: 16px 20px; border-radius: 0 12px 12px 0; color: #3b3752; }
+    table { width: 100%; margin-top: 18px; border-collapse: collapse; font-size: 16px; background: var(--white); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+    th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--sub); background: #f4f3f8; }
+    tr:last-child td { border-bottom: 0; }
+
+    .cta { max-width: 720px; margin: 0 auto 80px; padding: 32px 24px; text-align: center; border-top: 1px solid var(--line); }
+    .cta p { color: var(--sub); }
+    .pill { display: inline-block; margin-top: 18px; padding: 14px 28px; border-radius: 999px; background: var(--grad-btn); color: #fff; font-weight: 600; text-decoration: none; }
+    .pill:hover { box-shadow: 0 10px 28px rgba(122,79,224,.35); }
+    footer { background: #000; color: rgba(255,255,255,.55); font-size: 14px; text-align: center; padding: 26px 24px 30px; }
+    footer a { color: #fff; }
+    @media (max-width: 600px) { body { font-size: 17px; } th, td { padding: 10px; font-size: 15px; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <nav class="topnav" aria-label="Main">
+    <div class="in">
+      <a class="brand" href="../"><img src="../icon-192.png?v=2" width="34" height="34" alt="">Iana Grytsenko</a>
+      <a class="back" href="../#articles">&larr; All articles</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="in">
+      <p class="kicker">Article &middot; AI-assisted QA</p>
+      <h1>How I test with Claude Code</h1>
+      <p class="meta">Iana Grytsenko &middot; October 13, 2026 &middot; 5 min read</p>
+    </div>
+  </header>
+
+  <main id="main">
+    <article>
+      <p class="intro">I use Claude Code every day, but I don&rsquo;t let it decide what &ldquo;done&rdquo; means. The AI writes a lot of my test code. My job is the system around it: the order things happen in, the checks that catch its mistakes, and the review before anything is merged. This is that system.</p>
+
+      <p>Claude Code runs inside VS Code. On top of it I use a set of open-source <em>skills</em>: reusable instructions for jobs like test-driven development or running a full verification pass. A skill is installed once on my machine, and then I can call it by name in any project.</p>
+
+      <h2><span class="n">01</span>The first ten minutes decide the next ten weeks</h2>
+      <p>Before any test gets written in a new project, I do four things:</p>
+      <ol>
+        <li><strong>Get a tour.</strong> I ask Claude to map the project: how it&rsquo;s structured, how to run it, where the risky parts are. I read the answer against the code, because a wrong mental model at this stage costs days later.</li>
+        <li><strong>Write down the rules.</strong> The <code>/init</code> command creates a <code>CLAUDE.md</code> file with the run commands and conventions. Claude reads it at the start of every session, so I don&rsquo;t repeat myself and it doesn&rsquo;t forget.</li>
+        <li><strong>Keep junk out of git.</strong> A <code>.gitignore</code> for dependencies, virtual environments, test reports and secrets goes in before the first commit. If Source Control suddenly shows thousands of changes, something wasn&rsquo;t ignored.</li>
+        <li><strong>Commit a clean starting point,</strong> so every later step can be undone.</li>
+      </ol>
+
+      <h2><span class="n">02</span>Tests first, even when the AI writes them</h2>
+      <p>AI is very good at writing a test that passes. That&rsquo;s exactly the problem: a test that has never failed proves nothing. So for every feature or scenario I ask for the failing test first, watch it fail for the right reason, and only then ask for the code.</p>
+      <div class="prompt"><span class="dim">Prompt</span>Use the tdd-workflow skill to add a smoke test for site search: write the failing test first and show me it failing, then make it pass.</div>
+      <p>On end-to-end work I also ask for page objects and fixtures from the start. A Playwright suite without structure is fast to write and slow to live with.</p>
+
+      <h2><span class="n">03</span>Green once isn&rsquo;t green</h2>
+      <p>A suite that passes once can still be flaky. Before I trust new tests, I run the whole thing several times in a row and treat any test that changes its answer as a bug.</p>
+      <div class="prompt"><span class="dim">Prompt</span>Use the verification-loop skill: install dependencies, build, run every test three times, and list anything that failed even once.</div>
+      <div class="note">This habit comes straight from real projects. On a Java and Selenium suite, fixing flaky tests at the root cut false-positive failures by 60% and made the CI results trustworthy again.</div>
+
+      <h2><span class="n">04</span>Testing AI needs its own rules</h2>
+      <p>When the thing under test is an AI agent, &ldquo;does it pass?&rdquo; becomes &ldquo;how often does it misbehave, and is that getting worse?&rdquo;. Two practices matter most:</p>
+      <ul>
+        <li><strong>Attack it on purpose.</strong> I design adversarial scenarios: trying to make the agent reveal data it shouldn&rsquo;t, ignore its instructions, or invent answers. Each one gets a metric that fails on a real leak.</li>
+        <li><strong>Lock in a baseline.</strong> Today&rsquo;s scores become the floor. If a prompt or model change drops any metric below it, the build fails.</li>
+      </ul>
+      <p>My <a href="https://github.com/janagrit/aviaryai-eval-demo">AI agent evaluation demo</a> does both: a strict voice agent contains 10 out of 10 attacks, a deliberately weak one leaks as a control, and a regression gate runs on every pull request.</p>
+
+      <h2><span class="n">05</span>Nothing merges unreviewed, including AI code</h2>
+      <p>Before every commit I run <code>/code-review</code>, then read the diff myself. I review AI-written tests the way I review a colleague&rsquo;s: does each assertion check something that matters, and would this test fail if the feature broke?</p>
+
+      <h2><span class="n">06</span>Which tool for which job</h2>
+      <table>
+        <thead><tr><th>When I want to&hellip;</th><th>I use</th></tr></thead>
+        <tbody>
+          <tr><td>Understand a project I just opened</td><td><code>codebase-onboarding</code></td></tr>
+          <tr><td>Add a feature or a test safely</td><td><code>tdd-workflow</code></td></tr>
+          <tr><td>Write or repair Playwright tests</td><td><code>e2e-testing</code></td></tr>
+          <tr><td>Prove everything still works</td><td><code>verification-loop</code></td></tr>
+          <tr><td>Check a live page on phone and desktop</td><td><code>browser-qa</code></td></tr>
+          <tr><td>Design evaluations for an AI feature</td><td><code>eval-harness</code></td></tr>
+          <tr><td>Stop AI quality from slipping</td><td><code>ai-regression-testing</code></td></tr>
+          <tr><td>Review before committing</td><td><code>/code-review</code></td></tr>
+        </tbody>
+      </table>
+
+      <h2><span class="n">07</span>What this looks like in practice</h2>
+      <p>The same steps, in a different order for each kind of project:</p>
+      <ul>
+        <li><strong>A test suite for a company website</strong>, like my <a href="https://github.com/janagrit/uptic-site-audit">Uptic Hospitality audit</a>: project setup with page objects, smoke tests written test-first, accessibility and visual checks, a three-run flakiness pass, review, then CI on every push.</li>
+        <li><strong>An AI evaluation project:</strong> record the starting scores, look for missing failure modes, add each scenario test-first, then lock in the baseline.</li>
+        <li><strong>A live app I test</strong>, like <a href="https://momup-app.github.io/">Kids Nearby</a>: end-to-end tests for the main user flows, a full verification run, then a check of the live site on real screen sizes.</li>
+      </ul>
+
+      <h2><span class="n">08</span>The short version</h2>
+      <p>Let the AI write. Make it prove the test can fail. Run everything more than once. Give AI quality a floor it can&rsquo;t drop below. Read every diff before it merges.</p>
+    </article>
+
+    <section class="cta" aria-label="Contact">
+      <p>Want this kind of workflow on your team, or have questions about it?</p>
+      <a class="pill" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener">Book a 30-minute call</a>
+    </section>
+  </main>
+
+  <footer>&copy; 2026 Iana Grytsenko &middot; <a href="../">janagrit.github.io</a></footer>
+</body>
+</html>
