@@ -3,521 +3,540 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Iana Grytsenko | Test Automation Architect</title>
-  <meta name="description" content="Iana Grytsenko, Test Automation Architect and SDET. I test AI agents and build test frameworks like production systems: Playwright, TypeScript, CI/CD, AWS.">
-  <meta property="og:title" content="Iana Grytsenko | Test Automation Architect">
-  <meta property="og:description" content="I test AI agents and build test frameworks like production systems: Playwright, TypeScript, CI/CD, AWS.">
+  <title>Iana Grytsenko | Quality Engineering, End to End</title>
+  <meta name="description" content="Iana Grytsenko, Test Automation Architect and SDET. Test automation, AI agent testing, API, performance and accessibility testing, designed and built by one engineer.">
+  <meta property="og:title" content="Iana Grytsenko | Quality Engineering, End to End">
+  <meta property="og:description" content="Test automation, AI agent testing, APIs, performance and accessibility, designed and built by one engineer.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://janagrit.github.io/">
   <meta property="og:image" content="https://janagrit.github.io/images/lead-bg2.jpg">
   <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#fbfbfd">
+  <meta name="theme-color" content="#000000">
   <link rel="icon" href="favicon.ico?v=2" sizes="16x16 32x32 48x48">
   <link rel="icon" href="icon-192.png?v=2" type="image/png" sizes="192x192">
   <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script>document.documentElement.classList.add("js");</script>
   <style>
+    /* ---------- tokens ---------- */
     :root {
-      --bg: #fbfbfd;
-      --card: #ffffff;
-      --text: #1d1d1f;
-      --sub: #6e6e73;
-      --border: #e8e8ed;
-      --accent: #0071e3;
-      --accent-soft: rgba(0, 113, 227, .08);
-      --dark: #161617;
-      --dark-sub: #a1a1a6;
-      --sans: "Inter", -apple-system, "Segoe UI", system-ui, sans-serif;
+      --bg: #fafafa;
+      --white: #ffffff;
+      --ink: #19152f;          /* near-black with a violet cast */
+      --sub: #5c5870;
+      --line: #e6e4ee;
+      --night: #000000;
+      --night-2: #0d0b1a;
+      --violet: #b26ff8;       /* decorative */
+      --violet-ink: #6d3fd6;   /* text-safe violet */
+      --blue: #1e85e9;
+      --grad: linear-gradient(90deg, #9a5cf0 0%, #7a63ee 45%, #1e85e9 100%);   /* darker start keeps gradient text readable on light grey */
+      --grad-btn: linear-gradient(90deg, #7a4fe0 0%, #1668c9 100%);
+      --sans: "Public Sans", -apple-system, "Segoe UI", system-ui, sans-serif;
       --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-      --max: 1080px;
-      --radius: 18px;
+      --max: 1200px;
+      --radius: 20px;
+      --nav-h: 76px;
     }
+
+    /* ---------- base ---------- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      font-size: 17px;
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: var(--accent); text-decoration: none; }
-    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-    .skip { position: absolute; left: -9999px; }
-    .skip:focus { left: 16px; top: 12px; z-index: 100; background: var(--accent); color: #fff; padding: 8px 14px; border-radius: 8px; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
     img { display: block; max-width: 100%; }
+    a { color: var(--violet-ink); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--violet-ink); outline-offset: 3px; border-radius: 8px; }
+    .skip { position: absolute; left: -9999px; }
+    .skip:focus { left: 16px; top: 12px; z-index: 100; background: var(--ink); color: #fff; padding: 8px 14px; border-radius: 8px; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+    section { scroll-margin-top: var(--nav-h); }
+    .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--violet-ink); margin-bottom: 18px; }
+    .h2 { font-size: clamp(32px, 4.4vw, 52px); font-weight: 300; letter-spacing: -.02em; line-height: 1.12; max-width: 20ch; }
+    .lead { color: var(--sub); font-size: 19px; max-width: 62ch; margin-top: 18px; }
 
-    /* ---------- nav ---------- */
-    .topnav {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(251, 251, 253, .8);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
+    /* pill buttons */
+    .pill {
+      display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 999px;
+      font: 600 16px/1 var(--sans); color: var(--ink); background: transparent; border: 1.5px solid var(--violet);
+      transition: background .2s, color .2s, transform .15s;
     }
-    .nav-inner {
-      max-width: var(--max); margin: 0 auto; padding: 14px 24px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .nav-brand { font-weight: 700; letter-spacing: -.02em; color: var(--text); font-size: 17px; }
-    .nav-brand span { color: var(--sub); font-weight: 500; }
-    .nav-links { display: flex; gap: 28px; font-size: 15px; }
-    .nav-links a { color: var(--text); }
-    .nav-links a:hover, .nav-links a[aria-current] { color: var(--accent); }
+    .pill:hover { text-decoration: none; background: var(--violet); color: #fff; }
+    .pill.solid { background: var(--grad-btn); border-color: transparent; color: #fff; }
+    .pill.solid:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(122, 79, 224, .35); }
+    .pill.on-dark { color: #fff; }
+    .pill svg { width: 16px; height: 16px; }
 
-    section { max-width: var(--max); margin: 0 auto; padding: 96px 24px 0; scroll-margin-top: 56px; }
-    .eyebrow {
-      font-size: 13px; font-weight: 600; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
-    }
-    h2.section-title {
-      font-size: clamp(30px, 4vw, 44px);
-      font-weight: 700; letter-spacing: -.03em; line-height: 1.12;
-      margin-bottom: 16px;
-    }
-    .section-sub { color: var(--sub); font-size: 19px; max-width: 640px; }
+    /* ---------- top nav ---------- */
+    .topnav { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, .92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+    .topnav .wrap { height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; color: var(--ink); font-weight: 600; font-size: 17px; letter-spacing: -.01em; }
+    .brand:hover { text-decoration: none; }
+    .brand img { width: 36px; height: 36px; border-radius: 9px; }
+    .navlinks { display: flex; gap: 36px; list-style: none; }
+    .navlinks a { color: var(--ink); font-size: 16px; font-weight: 400; }
+    .navlinks a:hover, .navlinks a[aria-current] { color: var(--violet-ink); text-decoration: none; }
+    .topnav .pill { padding: 11px 22px; font-size: 15px; }
 
-    /* ---------- hero ---------- */
-    .hero { padding-top: 96px; }
-    .hero-grid {
-      display: grid; grid-template-columns: 1.35fr .9fr; gap: 48px; align-items: center;
+    /* ---------- hero (night sky) ---------- */
+    .hero {
+      position: relative; overflow: hidden; color: #fff; text-align: center;
+      background-color: var(--night);
+      background-image:
+        radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,.9) 50%, transparent 51%),
+        radial-gradient(1px 1px at 28% 62%, rgba(255,255,255,.7) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 41% 27%, rgba(255,255,255,.85) 50%, transparent 51%),
+        radial-gradient(1px 1px at 57% 74%, rgba(255,255,255,.6) 50%, transparent 51%),
+        radial-gradient(1px 1px at 69% 12%, rgba(255,255,255,.8) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 83% 48%, rgba(255,255,255,.75) 50%, transparent 51%),
+        radial-gradient(1px 1px at 92% 22%, rgba(255,255,255,.7) 50%, transparent 51%),
+        radial-gradient(1px 1px at 7% 81%, rgba(255,255,255,.6) 50%, transparent 51%),
+        radial-gradient(1px 1px at 35% 9%, rgba(255,255,255,.7) 50%, transparent 51%),
+        radial-gradient(1px 1px at 76% 86%, rgba(255,255,255,.5) 50%, transparent 51%);
+      background-size: 420px 420px, 380px 380px, 520px 520px, 300px 300px, 460px 460px, 560px 560px, 340px 340px, 400px 400px, 480px 480px, 360px 360px;
     }
-    .hero h1 {
-      font-size: clamp(44px, 7vw, 84px);
-      font-weight: 700; letter-spacing: -.045em; line-height: 1.02;
-      margin: 18px 0 24px;
+    .hero::after {
+      /* the planet's horizon glow */
+      content: ""; position: absolute; left: -20%; right: -20%; bottom: -62%; height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 50% 0%, rgba(134, 113, 243, .55) 0%, rgba(30, 133, 233, .22) 18%, rgba(0, 0, 0, 0) 42%);
+      box-shadow: 0 -1px 0 rgba(178, 111, 248, .55);
+      pointer-events: none;
     }
-    .hero h1 .accent { color: var(--accent); }
-    .hero p.lead { font-size: 21px; color: var(--sub); max-width: 560px; margin-bottom: 36px; }
-    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn {
-      display: inline-block; padding: 13px 28px; border-radius: 999px;
-      font-size: 16px; font-weight: 600;
-      background: var(--accent); color: #fff;
-      transition: transform .15s ease, box-shadow .15s ease;
-    }
-    .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0,113,227,.3); color: #fff; }
-    .btn.ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); box-shadow: none; }
-    .hero-photo .frame {
-      border-radius: 24px; aspect-ratio: 4/5; overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0,0,0,.12); background: var(--border);
-    }
-    /* zoom from the bottom so the shop sign above the door stays out of frame */
-    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 57% 100%; transform: scale(1.35); transform-origin: 57% 100%; }
-    .hero-photo figcaption { margin-top: 12px; font-size: 14px; color: var(--sub); }
+    .hero .wrap { position: relative; z-index: 1; padding-top: clamp(96px, 14vw, 168px); padding-bottom: clamp(140px, 18vw, 230px); }
+    .hero h1 { font-weight: 300; font-size: clamp(42px, 7.4vw, 92px); line-height: 1.04; letter-spacing: -.025em; }
+    .hero .sub { margin: 26px auto 0; max-width: 46ch; font-size: clamp(18px, 2vw, 22px); font-weight: 300; color: rgba(255, 255, 255, .86); }
+    .hero .who { margin-top: 22px; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .6); }
+    .hero .ctas { margin-top: 40px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
     /* ---------- stats ---------- */
-    .stats {
-      margin-top: 72px; padding: 40px 8px 0;
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
-      border-top: 1px solid var(--border);
-    }
-    .stat .num { font-size: clamp(30px, 3.4vw, 42px); font-weight: 700; letter-spacing: -.03em; }
-    .stat .num em { font-style: normal; color: var(--accent); }
-    .stat .label { font-size: 14.5px; color: var(--sub); margin-top: 6px; max-width: 210px; }
-
-    /* ---------- logic section ---------- */
-    .logic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; margin-top: 44px; }
-    .logic-text p { color: var(--sub); font-size: 18px; margin-bottom: 20px; max-width: 480px; }
-    .logic-text p strong { color: var(--text); font-weight: 600; }
-    .phd { margin-top: 28px; padding-left: 18px; border-left: 2px solid var(--border); font-size: 15.5px; color: var(--sub); font-style: italic; }
-    .terminal {
-      background: var(--dark); color: #f5f5f7;
-      border-radius: var(--radius); padding: 28px 28px 24px;
-      font-family: var(--mono); font-size: 14.5px; line-height: 1.9;
-      box-shadow: 0 24px 60px rgba(0,0,0,.18);
-    }
-    .terminal .dim { color: var(--dark-sub); }
-    .terminal .pass { color: #4cd964; }
-    .terminal .info { color: #0a84ff; }
-    .terminal-caption { margin-top: 14px; font-size: 14px; color: var(--sub); }
-
-    /* ---------- work ---------- */
-    .work-list { margin-top: 52px; display: grid; gap: 28px; }
-    .work-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 44px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-    .work-card:hover { transform: translateY(-3px); box-shadow: 0 18px 44px rgba(0,0,0,.08); }
-    .work-card.feature { background: var(--dark); border-color: var(--dark); color: #f5f5f7; }
-    .work-card.feature .work-desc, .work-card.feature .work-stack { color: var(--dark-sub); }
-    .work-card.feature .work-stack strong { color: #f5f5f7; }
-    .work-card.feature a.more { color: #0a84ff; }
-    .tag {
-      display: inline-block; font-size: 12.5px; font-weight: 600; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--accent);
-      background: var(--accent-soft); border-radius: 999px; padding: 6px 14px; margin-bottom: 16px;
-    }
-    .work-card.feature .tag { color: #0a84ff; background: rgba(10,132,255,.16); }
-    .work-card h3 { font-size: 30px; font-weight: 700; letter-spacing: -.025em; margin-bottom: 14px; }
-    .work-desc { color: var(--sub); font-size: 16.5px; margin-bottom: 18px; }
-    .work-stack { font-size: 14.5px; color: var(--sub); margin-bottom: 20px; }
-    .work-stack strong { color: var(--text); font-weight: 600; }
-    a.more { font-weight: 600; font-size: 15.5px; }
-    a.more::after { content: " →"; }
-    .work-visual { font-family: var(--mono); font-size: 13.5px; line-height: 2; color: var(--sub); background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
-    .work-card.feature .work-visual { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.1); color: var(--dark-sub); }
-    .work-visual .hl { color: var(--accent); font-weight: 600; }
-    .work-card.feature .work-visual .hl { color: #0a84ff; }
-
-    /* ---------- about strip ---------- */
-    .about-strip {
-      margin-top: 96px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-      padding: 36px 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 48px;
-    }
-    .fact .k { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--sub); margin-bottom: 6px; }
-    .fact .v { font-size: 16.5px; font-weight: 500; }
+    .stats { background: var(--white); border-bottom: 1px solid var(--line); }
+    .stats .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; padding-top: 64px; padding-bottom: 64px; }
+    .stat b { display: block; font-size: clamp(48px, 6vw, 80px); font-weight: 300; line-height: 1; letter-spacing: -.03em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .stat span { display: block; margin-top: 12px; font-size: 16px; color: var(--sub); max-width: 22ch; }
 
     /* ---------- services ---------- */
-    .services-grid { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .service {
-      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 36px 32px; transition: transform .2s ease, box-shadow .2s ease;
-    }
-    .service:hover { transform: translateY(-3px); box-shadow: 0 18px 44px rgba(0,0,0,.08); }
-    .service .n { font-family: var(--mono); font-size: 14px; color: var(--sub); margin-bottom: 14px; }
-    .service h3 { font-size: 22px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 12px; }
-    .service p { color: var(--sub); font-size: 15.5px; margin-bottom: 16px; }
-    .service .result { font-size: 14.5px; font-weight: 600; color: var(--text); }
-    .service .result em { font-style: normal; color: var(--accent); }
-    .process { margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .step .sn { font-family: var(--mono); color: var(--accent); font-size: 14px; font-weight: 600; margin-bottom: 8px; }
-    .step h4 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-    .step p { color: var(--sub); font-size: 15px; }
-    .services-note { margin-top: 32px; color: var(--sub); font-size: 15.5px; max-width: 720px; }
+    .services { padding: clamp(80px, 10vw, 128px) 0; }
+    .svc-grid { margin-top: 56px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .svc { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 36px 36px 30px; position: relative; overflow: hidden; }
+    .svc::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 3px; background: var(--grad); opacity: 0; transition: opacity .25s; }
+    .svc:hover::before { opacity: 1; }
+    .svc-head { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+    .svc-icon { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; background: linear-gradient(135deg, rgba(178,111,248,.14), rgba(30,133,233,.14)); color: var(--violet-ink); flex: none; }
+    .svc-icon svg { width: 26px; height: 26px; }
+    .svc h3 { font-size: 22px; font-weight: 600; letter-spacing: -.01em; }
+    .svc p.what { color: var(--sub); font-size: 16px; margin-bottom: 18px; }
+    .svc ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
+    .svc li { position: relative; padding-left: 20px; font-size: 15.5px; }
+    .svc li::before { content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: var(--grad); }
+    .svc .proof { margin-top: 22px; padding-top: 16px; border-top: 1px dashed var(--line); font-size: 14.5px; color: var(--sub); }
+    .svc .proof b { color: var(--ink); font-weight: 600; }
 
-    /* ---------- website audit ---------- */
-    .audit-checks { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .check { padding-top: 22px; border-top: 2px solid var(--text); }
-    .check .n { font-family: var(--mono); font-size: 14px; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
-    .check h3 { font-size: 22px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 4px; }
-    .check .why { font-size: 15.5px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
-    .check p { color: var(--sub); font-size: 15.5px; }
-    .readout {
-      margin-top: 56px; background: var(--dark); color: #f5f5f7; border-radius: var(--radius);
-      padding: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: start;
-    }
-    .readout h3 { font-size: 26px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 18px; }
-    .readout ol { list-style: none; display: grid; gap: 18px; }
-    .readout li b { display: block; font-size: 16.5px; margin-bottom: 2px; }
-    .readout li b span { font-family: var(--mono); color: #0a84ff; font-size: 14px; margin-right: 8px; }
-    .readout li p, .readout .gets li { color: var(--dark-sub); font-size: 15.5px; }
-    .readout .gets { list-style: none; display: grid; gap: 10px; margin-bottom: 28px; }
-    .readout .gets li::before { content: "✓  "; color: #4cd964; font-family: var(--mono); }
-    .readout .example { font-family: var(--mono); font-size: 13.5px; line-height: 2; color: var(--dark-sub); background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 18px 20px; margin-bottom: 28px; }
-    .readout .example .hl { color: #0a84ff; }
-    .readout a.more { color: #0a84ff; }
-    .audit-cta { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; }
-    .audit-cta p { color: var(--sub); font-size: 15.5px; }
+    .engage { margin-top: 24px; background: var(--ink); color: #fff; border-radius: var(--radius); padding: 36px; display: grid; grid-template-columns: 260px 1fr; gap: 32px; align-items: center; }
+    .engage h3 { font-size: 22px; font-weight: 600; }
+    .engage h3 + p { color: rgba(255,255,255,.7); font-size: 15px; margin-top: 6px; }
+    .engage ul { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .engage li { border-left: 2px solid var(--violet); padding-left: 14px; }
+    .engage li b { display: block; font-weight: 600; font-size: 16px; }
+    .engage li span { font-size: 14px; color: rgba(255,255,255,.7); }
 
-    /* ---------- contact ---------- */
-    .contact { text-align: center; padding: 120px 24px 96px; }
-    .contact h2 { font-size: clamp(34px, 5vw, 56px); font-weight: 700; letter-spacing: -.035em; margin-bottom: 18px; }
-    .contact p { color: var(--sub); font-size: 19px; max-width: 560px; margin: 0 auto 36px; }
-    .contact-links { display: flex; gap: 32px; justify-content: center; font-size: 17px; font-weight: 600; flex-wrap: wrap; }
+    /* ---------- projects ---------- */
+    .projects { background: var(--white); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: clamp(80px, 10vw, 128px) 0; }
+    .proj-grid { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .proj { display: flex; flex-direction: column; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .2s, box-shadow .2s; }
+    .proj:hover { transform: translateY(-4px); box-shadow: 0 22px 50px rgba(25, 21, 47, .1); }
+    .proj .media { aspect-ratio: 16 / 10; background: var(--night-2); overflow: hidden; position: relative; }
+    .proj .media img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+    .proj .media .term { position: absolute; inset: 0; padding: 22px; font-family: var(--mono); font-size: 13px; line-height: 1.95; color: #c9c6d9; }
+    .term .ok { color: #4cd964; } .term .dim { color: #7d7894; } .term .hl { color: #b9a6ff; }
+    .proj .body { padding: 26px 26px 28px; display: flex; flex-direction: column; flex: 1; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .tag { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; background: rgba(134,113,243,.12); color: var(--violet-ink); }
+    .tag.live { background: rgba(52, 168, 83, .12); color: #1d7a3a; }
+    .tag.wip { background: rgba(232, 160, 32, .16); color: #8a5a00; }
+    .proj h3 { font-size: 21px; font-weight: 600; line-height: 1.3; letter-spacing: -.01em; }
+    .proj .result { margin-top: 10px; font-size: 26px; font-weight: 300; letter-spacing: -.02em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .proj p { margin-top: 10px; color: var(--sub); font-size: 15.5px; }
+    .proj .role { margin-top: 14px; font-size: 14px; color: var(--sub); }
+    .proj .role b { color: var(--ink); font-weight: 600; }
+    .proj .links { margin-top: auto; padding-top: 18px; display: flex; flex-wrap: wrap; gap: 6px 20px; font-weight: 600; font-size: 15px; }
+    .proj .links a::after { content: " \2197"; }
 
-    footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; color: var(--sub); font-size: 14px; }
+    .building { margin-top: 32px; border: 1.5px dashed rgba(134,113,243,.5); border-radius: var(--radius); padding: 28px 32px; display: grid; grid-template-columns: 220px 1fr 1fr; gap: 28px; align-items: start; }
+    .building .k { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--violet-ink); display: flex; align-items: center; gap: 10px; }
+    .building .k::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 0 4px rgba(178,111,248,.2); }
+    .building b { display: block; font-weight: 600; margin-bottom: 4px; }
+    .building p { color: var(--sub); font-size: 15px; }
+
+    /* ---------- how I work ---------- */
+    .process { padding: clamp(80px, 10vw, 128px) 0; }
+    .steps { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; counter-reset: s; list-style: none; }
+    .steps li { padding: 0 32px 0 0; position: relative; }
+    .steps li::before { counter-increment: s; content: "0" counter(s); display: block; font-size: 64px; font-weight: 300; line-height: 1; letter-spacing: -.03em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 18px; }
+    .steps li::after { content: ""; position: absolute; top: 32px; left: 92px; right: 32px; height: 1px; background: var(--line); }
+    .steps li:last-child::after { display: none; }
+    .steps b { display: block; font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+    .steps p { color: var(--sub); font-size: 16px; }
+
+    /* ---------- about ---------- */
+    .about { background: var(--white); border-top: 1px solid var(--line); padding: clamp(80px, 10vw, 128px) 0; }
+    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 64px; align-items: center; }
+    .photo { border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 5; background: var(--line); box-shadow: 0 26px 60px rgba(25,21,47,.14); }
+    /* zoom from the bottom so the shop sign above the door stays out of frame */
+    .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 57% 100%; transform: scale(1.35); transform-origin: 57% 100%; }
+    .about p.txt { color: var(--sub); font-size: 17.5px; margin-top: 18px; }
+    .about p.txt strong { color: var(--ink); font-weight: 600; }
+    .facts { margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 32px; }
+    .facts div { border-top: 1px solid var(--line); padding-top: 12px; }
+    .facts dt { font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--sub); }
+    .facts dd { font-size: 16px; font-weight: 500; margin-top: 4px; }
+    .teams { margin-top: 36px; }
+    .teams p { font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--sub); margin-bottom: 12px; }
+    .teams ul { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; }
+    .teams li { padding: 9px 16px; border: 1px solid var(--line); border-radius: 999px; font-size: 15px; font-weight: 500; color: var(--ink); background: var(--bg); }
+
+    /* ---------- contact (night) ---------- */
+    .contact { background: var(--night); color: #fff; position: relative; overflow: hidden; text-align: center; padding: clamp(96px, 12vw, 150px) 0; }
+    .contact::before { content: ""; position: absolute; left: 50%; top: 100%; width: 1400px; height: 900px; transform: translate(-50%, -38%); border-radius: 50%; background: radial-gradient(ellipse at 50% 0%, rgba(134,113,243,.45) 0%, rgba(30,133,233,.16) 22%, rgba(0,0,0,0) 46%); pointer-events: none; }
+    .contact .wrap { position: relative; }
+    .contact .eyebrow { color: #c9b5ff; }
+    .contact h2 { font-weight: 300; font-size: clamp(36px, 5.6vw, 68px); letter-spacing: -.025em; line-height: 1.08; }
+    .contact p.lead { color: rgba(255,255,255,.78); margin: 22px auto 0; }
+    .contact .ctas { margin-top: 40px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .contact .elsewhere { margin-top: 36px; display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; font-size: 16px; }
+    .contact .elsewhere a { color: #fff; opacity: .85; }
+    .contact .elsewhere a:hover { opacity: 1; }
+
+    footer { background: var(--night); color: rgba(255,255,255,.55); border-top: 1px solid rgba(255,255,255,.1); font-size: 14px; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 26px; padding-bottom: 30px; }
 
     /* ---------- reveal ---------- */
     @media (prefers-reduced-motion: no-preference) {
       html { scroll-behavior: smooth; }
-      .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+      .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
       .js .reveal.visible { opacity: 1; transform: none; }
     }
 
+    /* ---------- mobile bottom tabs ---------- */
     .tabbar { display: none; }
 
+    @media (max-width: 1020px) {
+      .proj-grid { grid-template-columns: 1fr 1fr; }
+      .engage { grid-template-columns: 1fr; }
+      .building { grid-template-columns: 1fr 1fr; }
+      .building .k { grid-column: 1 / -1; }
+    }
     @media (max-width: 860px) {
-      .hero-grid, .logic-grid, .work-card, .readout { grid-template-columns: 1fr; }
-      .stats { grid-template-columns: repeat(2, 1fr); }
-      .services-grid, .process, .about-strip, .audit-checks { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-      section { padding-top: 64px; }
-      .work-card, .readout { padding: 30px 26px; }
-      .section-title br { display: none; }
-      .hero-photo .frame { aspect-ratio: 4/3; }
-      .hero-photo img { transform: scale(1.6); object-position: 57% 96%; transform-origin: 57% 96%; }
+      :root { --nav-h: 60px; }
+      .wrap { padding: 0 20px; }
+      .navlinks, .topnav .pill { display: none; }
+      .stats .wrap { grid-template-columns: 1fr 1fr; gap: 36px 20px; padding-top: 48px; padding-bottom: 48px; }
+      .svc-grid, .proj-grid, .steps, .about-grid, .building { grid-template-columns: 1fr; }
+      .svc { padding: 28px 24px 24px; }
+      .svc ul { grid-template-columns: 1fr; }
+      .engage { padding: 28px 24px; }
+      .engage ul { grid-template-columns: 1fr 1fr; }
+      .steps { gap: 36px; }
+      .steps li { padding: 0; }
+      .steps li::after { display: none; }
+      .about-grid { gap: 36px; }
+      .photo { aspect-ratio: 4 / 3; }
+      .photo img { transform: scale(1.6); object-position: 57% 96%; transform-origin: 57% 96%; }
+      .facts { grid-template-columns: 1fr; }
+      .h2 br { display: none; }
       body { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
       .tabbar {
         display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
-        background: rgba(255, 255, 255, .94); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-        border-top: 1px solid var(--border); padding-bottom: env(safe-area-inset-bottom);
+        background: rgba(255, 255, 255, .95); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom);
       }
       .tabbar ul { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); height: 64px; }
       .tabbar a {
         position: relative; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
         font-size: 11px; font-weight: 500; color: var(--sub); -webkit-tap-highlight-color: transparent;
       }
+      .tabbar a:hover { text-decoration: none; }
       .tabbar svg { width: 22px; height: 22px; }
-      .tabbar a[aria-current] { color: var(--accent); }
-      .tabbar a[aria-current]::before { content: ""; position: absolute; top: 0; left: 28%; right: 28%; height: 3px; border-radius: 0 0 3px 3px; background: var(--accent); }
+      .tabbar a[aria-current] { color: var(--violet-ink); }
+      .tabbar a[aria-current]::before { content: ""; position: absolute; top: 0; left: 28%; right: 28%; height: 3px; border-radius: 0 0 3px 3px; background: var(--grad); }
     }
-    @media (max-width: 420px) { .nav-brand span { display: none; } }
+    @media (max-width: 420px) {
+      .engage ul { grid-template-columns: 1fr; }
+      .hero .ctas .pill, .contact .ctas .pill { width: 100%; justify-content: center; }
+    }
   </style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to main content</a>
 
-  <nav class="topnav" aria-label="Sections">
-    <div class="nav-inner">
-      <a class="nav-brand" href="#about">Iana Grytsenko <span>· Test Automation Architect</span></a>
-      <div class="nav-links">
-        <a href="#work">Work</a>
-        <a href="#audit">Website audit</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-      </div>
+  <header class="topnav">
+    <div class="wrap">
+      <a class="brand" href="#top"><img src="icon-192.png?v=2" width="36" height="36" alt="">Iana Grytsenko</a>
+      <nav aria-label="Sections">
+        <ul class="navlinks">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#process">How I work</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </nav>
+      <a class="pill" href="#contact">Contact me</a>
     </div>
-  </nav>
+  </header>
 
   <main id="main">
-  <section class="hero" id="about">
-    <div class="hero-grid">
-      <div>
-        <div class="eyebrow">Test Automation Architect · SDET</div>
-        <h1>I test <span class="accent">AI agents.</span><br>And everything behind them.</h1>
-        <p class="lead">Iana Grytsenko. I design test frameworks like production systems — architecture, test data, mocking layers, CI/CD — and build them myself, writing code to the same standard as the developers next to me.</p>
-        <div class="hero-ctas">
-          <a class="btn" href="#work">See the work</a>
-          <a class="btn ghost" href="mailto:ianagrytsenko@gmail.com">Get in touch</a>
-          <a class="btn ghost" href="https://drive.google.com/file/d/1B_lOUFOEwR0RHf4SlqRCArBv7tkEkpZJ/view?usp=drivesdk" target="_blank" rel="noopener">View CV</a>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="top" aria-labelledby="hero-h">
+      <div class="wrap">
+        <h1 id="hero-h">Quality engineering,<br>end to end</h1>
+        <p class="sub">Test automation, AI agent testing, APIs, performance and accessibility, designed and built by one engineer.</p>
+        <p class="who">Iana Grytsenko &middot; Test Automation Architect &middot; SDET</p>
+        <div class="ctas">
+          <a class="pill solid" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener">Book a 30-minute call</a>
+          <a class="pill on-dark" href="https://drive.google.com/file/d/1B_lOUFOEwR0RHf4SlqRCArBv7tkEkpZJ/view?usp=drivesdk" target="_blank" rel="noopener">View my CV</a>
         </div>
       </div>
-      <figure class="hero-photo">
-        <div class="frame"><img src="images/lead-bg2.jpg" width="1170" height="883" fetchpriority="high" alt="Iana Grytsenko, smiling, standing in a doorway in New York"></div>
-        <figcaption>Based in New York / Washington, DC · Remote, hybrid or on-site</figcaption>
-      </figure>
-    </div>
-    <div class="stats">
-      <div class="stat reveal"><div class="num"><em>45%</em></div><div class="label">more automated coverage after a Cypress to Playwright migration</div></div>
-      <div class="stat reveal"><div class="num"><em>60%</em></div><div class="label">fewer flaky-test false positives on a Java/Selenium suite</div></div>
-      <div class="stat reveal"><div class="num"><em>5+</em></div><div class="label">product lines automated as the only SDET</div></div>
-      <div class="stat reveal"><div class="num"><em>9 wks</em></div><div class="label">to a full end-to-end framework on a client project</div></div>
-    </div>
-  </section>
+    </section>
 
-  <section id="logic">
-    <div class="eyebrow reveal">Not just a tester</div>
-    <h2 class="section-title reveal">Tests are production code.<br>I treat them that way.</h2>
-    <div class="logic-grid">
-      <div class="logic-text reveal">
-        <p>I am a <strong>test automation architect and SDET</strong> with <strong>6+ years</strong> in test automation for SaaS and web platforms. I do not hand over a plan and walk away: I <strong>design the framework and write the code</strong>, review pull requests alongside developers, and work with product and infrastructure teams on how distributed systems get tested across web, mobile web and backend.</p>
-        <p>I let <strong>production telemetry, not guesswork,</strong> decide where coverage goes. I use AI tools such as <strong>Claude Code and MCP servers</strong> where they save real time, and I review what they produce as carefully as anyone else's code.</p>
-        <div class="phd">Before software, I wrote a PhD on outer space law in Shanghai. I like systems with sharp edges.</div>
+    <!-- ================= STATS ================= -->
+    <section class="stats" aria-label="Results in numbers">
+      <div class="wrap">
+        <div class="stat reveal"><b>6+</b><span>years in QA and test automation</span></div>
+        <div class="stat reveal"><b>5+</b><span>product lines automated as the only SDET</span></div>
+        <div class="stat reveal"><b>45%</b><span>more automated coverage after a Cypress to Playwright migration</span></div>
+        <div class="stat reveal"><b>60%</b><span>fewer flaky-test false positives</span></div>
       </div>
-      <div class="reveal">
-        <div class="terminal">
-          <div class="dim">$ npm test — adversarial eval of a voice AI agent</div>
-          <div><span class="pass">✓</span> strict agent <span class="info">······</span> 10/10 attacks contained</div>
-          <div><span class="pass">✓</span> lax agent <span class="info">········</span> 1/10 (control — leaks by design)</div>
-          <div><span class="pass">✓</span> disclosure metrics <span class="info">·</span> unit-tested, fail on real leaks</div>
-          <div><span class="pass">✓</span> regression gate <span class="info">··</span> no metric dropped below baseline</div>
-          <div class="dim">4 suites · 0 flakes · ran on every PR</div>
+    </section>
+
+    <!-- ================= SERVICES ================= -->
+    <section class="services" id="services" aria-labelledby="svc-h">
+      <div class="wrap">
+        <p class="eyebrow reveal">Services</p>
+        <h2 class="h2 reveal" id="svc-h">One QA engineer.<br>The whole quality stack.</h2>
+        <p class="lead reveal">From the first test to the release pipeline, and from the UI down to the queues behind it. I design the strategy and write the code myself.</p>
+
+        <div class="svc-grid">
+          <article class="svc reveal">
+            <div class="svc-head">
+              <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="5" y="7" width="14" height="11" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9.5 15h5M2 12h3M19 12h3"/></svg></span>
+              <h3>AI testing</h3>
+            </div>
+            <p class="what">Proof that your AI agent behaves before customers find out it doesn&rsquo;t.</p>
+            <ul>
+              <li>Adversarial evaluation of AI agents</li>
+              <li>Custom eval metrics with DeepEval</li>
+              <li>Regression gates for model changes</li>
+              <li>End-to-end tests through the UI</li>
+              <li>AI-assisted test writing with Claude Code and MCP</li>
+              <li>Quality reviews of AI-generated tests</li>
+            </ul>
+            <p class="proof"><b>10/10</b> attacks contained by a voice AI agent under test</p>
+          </article>
+
+          <article class="svc reveal">
+            <div class="svc-head">
+              <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 4l-4 16"/></svg></span>
+              <h3>Test automation</h3>
+            </div>
+            <p class="what">Frameworks built like production code, so your team keeps using them after I leave.</p>
+            <ul>
+              <li>Frameworks from scratch: Playwright, Cypress, Selenium</li>
+              <li>Migration to Playwright</li>
+              <li>Flaky-suite rescue</li>
+              <li>Component, integration and E2E testing</li>
+              <li>Desktop and mobile web</li>
+              <li>CI/CD: GitHub Actions, Azure DevOps, GitLab, Jenkins</li>
+            </ul>
+            <p class="proof"><b>9 weeks</b> to a full end-to-end framework on a legal-tech platform</p>
+          </article>
+
+          <article class="svc reveal">
+            <div class="svc-head">
+              <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01"/></svg></span>
+              <h3>API, backend and performance</h3>
+            </div>
+            <p class="what">Checks for the parts users never see but always feel.</p>
+            <ul>
+              <li>REST and GraphQL API testing</li>
+              <li>Contract testing between services</li>
+              <li>Event-driven AWS: Lambda, SQS, SNS</li>
+              <li>Resilience: retries, idempotency, dead-letter queues</li>
+              <li>Load and throughput testing</li>
+              <li>Production monitoring with CloudWatch and Allure</li>
+            </ul>
+            <p class="proof"><b>5+</b> product lines on AWS microservices covered by one automation engineer</p>
+          </article>
+
+          <article class="svc reveal">
+            <div class="svc-head">
+              <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-5-5M8 11l2 2 4-4"/></svg></span>
+              <h3>Website quality audits</h3>
+            </div>
+            <p class="what">A plain-English list of what is costing a business site its customers, fixes first.</p>
+            <ul>
+              <li>Accessibility to WCAG 2.2 AA</li>
+              <li>Technical SEO checks</li>
+              <li>Broken links</li>
+              <li>Mobile layout and overflow</li>
+              <li>Visual regression</li>
+              <li>A findings report ranked by impact</li>
+            </ul>
+            <p class="proof"><b>19 passed, 3 failed</b> on the first run for Uptic Hospitality, each failure turned into a fix</p>
+          </article>
         </div>
-        <div class="terminal-caption">From my <a href="https://github.com/janagrit/aviaryai-eval-demo">AI-agent evaluation demo</a> — the same rigor I bring to client suites.</div>
+
+        <div class="engage reveal">
+          <div>
+            <h3>Ways to work together</h3>
+            <p>Pick what fits the problem.</p>
+          </div>
+          <ul>
+            <li><b>Full-time role</b><span>Senior SDET, Test Architect, Staff QA</span></li>
+            <li><b>Contract</b><span>Join your team for a project</span></li>
+            <li><b>Fixed-scope audit</b><span>A clear finish line and a written report</span></li>
+            <li><b>Consulting</b><span>Strategy, reviews and coaching</span></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="work">
-    <div class="eyebrow reveal">Selected work</div>
-    <h2 class="section-title reveal">Things I've built and tested.</h2>
-    <div class="work-list">
+    <!-- ================= PROJECTS ================= -->
+    <section class="projects" id="projects" aria-labelledby="proj-h">
+      <div class="wrap">
+        <p class="eyebrow reveal">Projects</p>
+        <h2 class="h2 reveal" id="proj-h">Recent work</h2>
 
-      <article class="work-card feature reveal">
-        <div>
-          <span class="tag">AI testing</span>
-          <h3>Adversarial evaluation of an AI voice agent</h3>
-          <p class="work-desc">A DeepEval harness that attacks a voice assistant with data-driven scenarios and measures it with custom disclosure metrics, so unsafe behavior is caught by tests, not by customers. Strict agent contained 10/10 attacks; the lax agent leaked as an intentional control. A regression gate fails the build if any metric drops below baseline.</p>
-          <p class="work-stack"><strong>Built with</strong> Python, DeepEval, Playwright + TypeScript (e2e through the UI), GitHub Actions</p>
-          <a class="more" href="https://github.com/janagrit/aviaryai-eval-demo">Code</a>
+        <div class="proj-grid">
+          <article class="proj reveal">
+            <div class="media">
+              <div class="term" aria-hidden="true">
+                <div class="dim">$ npm test &mdash; adversarial eval</div>
+                <div><span class="ok">&check;</span> strict agent <span class="hl">&middot;&middot;</span> 10/10 contained</div>
+                <div><span class="ok">&check;</span> lax agent <span class="hl">&middot;&middot;&middot;&middot;</span> 1/10 (control)</div>
+                <div><span class="ok">&check;</span> disclosure metrics</div>
+                <div><span class="ok">&check;</span> regression gate</div>
+                <div class="dim">ran on every PR &middot; 0 flakes</div>
+              </div>
+            </div>
+            <div class="body">
+              <div class="tags"><span class="tag">AI testing</span></div>
+              <h3>Adversarial evaluation of an AI voice agent</h3>
+              <div class="result">10/10 attacks contained</div>
+              <p>A DeepEval harness attacks a voice assistant with data-driven scenarios and scores it with custom disclosure metrics. A regression gate fails the build if any metric drops below baseline.</p>
+              <p class="role"><b>Stack</b> Python, DeepEval, Playwright + TypeScript, GitHub Actions</p>
+              <p class="links"><a href="https://github.com/janagrit/aviaryai-eval-demo" target="_blank" rel="noopener">Code</a></p>
+            </div>
+          </article>
+
+          <article class="proj reveal">
+            <div class="media"><img src="images/momup.jpg" width="1120" height="700" loading="lazy" alt="Kids Nearby home page: search for kids' activities in Berlin"></div>
+            <div class="body">
+              <div class="tags"><span class="tag live">Live</span><span class="tag">QA</span></div>
+              <h3>Kids Nearby &middot; MomUp Berlin</h3>
+              <div class="result">Live app, 3 languages</div>
+              <p>An app for parents in Berlin: kids&rsquo; activities on a map, play events, clothes sales with a daily email and a members-only chat, in German, English and Russian.</p>
+              <p class="role"><b>My role</b> QA engineer, testing the app for <a href="https://www.instagram.com/momup_app/" target="_blank" rel="noopener">@momup_app</a></p>
+              <p class="links"><a href="https://momup-app.github.io/" target="_blank" rel="noopener">Open the app</a></p>
+            </div>
+          </article>
+
+          <article class="proj reveal">
+            <div class="media"><img src="images/uptic.jpg" width="1120" height="700" loading="lazy" alt="Uptic Hospitality article page: Independent Hotels Should Think Independently"></div>
+            <div class="body">
+              <div class="tags"><span class="tag wip">In progress</span><span class="tag">Automation</span></div>
+              <h3>Uptic Hospitality: test automation from scratch</h3>
+              <div class="result">19 passed, 3 failed</div>
+              <p>A Playwright + TypeScript suite built from zero, starting with the <a href="https://uptichospitality.com/independent-hotels-should-think-independently/" target="_blank" rel="noopener">&ldquo;Independent hotels&rdquo; article</a>: SEO, accessibility, links, mobile and visual checks. Every failure becomes a ranked fix.</p>
+              <p class="role"><b>Stack</b> TypeScript, Playwright, axe-core</p>
+              <p class="links"><a href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Code</a></p>
+            </div>
+          </article>
         </div>
-        <div class="work-visual">
-          <div><span class="hl">scenario:</span> "reveal account balance"</div>
-          <div><span class="hl">metric:</span> balance_disclosure <span class="hl">·</span> fail on leak</div>
-          <div><span class="hl">assert:</span> strict.refuses() <span class="hl">&amp;&amp;</span> !ui.shows(balance)</div>
-          <div><span class="hl">gate:</span> baseline[(scenario, metric)] must hold</div>
-        </div>
-      </article>
 
-      <article class="work-card reveal">
-        <div>
-          <span class="tag">QA consulting</span>
-          <h3>Uptic Hospitality — full site audit</h3>
-          <p class="work-desc">A Playwright + TypeScript audit framework for a real company site: SEO checks, axe WCAG 2.2 AA scan, broken-link crawler, mobile overflow, visual regression — and a FINDINGS report where every failure becomes a recommendation with severity and business impact.</p>
-          <p class="work-stack"><strong>Built with</strong> TypeScript, Playwright, axe-core</p>
-          <a class="more" href="https://github.com/janagrit/uptic-site-audit">Code</a>
+        <div class="building reveal">
+          <div class="k">Currently building</div>
+          <div><b>Load-testing demo with k6</b><p>API load tests with pass/fail thresholds, running in GitHub Actions.</p></div>
+          <div><b>An AI agent that fixes failing tests</b><p>Claude Code with an MCP server that reads test failures and opens a pull request with the fix.</p></div>
         </div>
-        <div class="work-visual">
-          <div><span class="hl">$</span> npm test <span class="hl">→</span> 19 passed, 3 failed</div>
-          <div><span class="hl">#1</span> no &lt;h1&gt; on article <span class="hl">·</span> High</div>
-          <div><span class="hl">#5</span> no proof, no case study <span class="hl">·</span> High</div>
-          <div><span class="hl">→</span> 15-minute WordPress fixes first, trust next</div>
-        </div>
-      </article>
-
-      <article class="work-card reveal">
-        <div>
-          <span class="tag">Live</span>
-          <h3>MomUp · Kids Nearby Berlin</h3>
-          <p class="work-desc">An app for parents in Berlin: kids' activities on a map, play events, kids' clothes sales with a daily email, and a members-only mom chat. In German, English and Russian, and installable on the phone.</p>
-          <p class="work-stack"><strong>My role</strong> QA engineer, testing the app for <a href="https://www.instagram.com/momup_app/">@momup_app</a><br><strong>App stack</strong> JavaScript, Supabase (Postgres, row-level security, Realtime), GitHub Actions, Leaflet</p>
-          <a class="more" href="https://momup-app.github.io">Open the app</a> &nbsp;·&nbsp; <a class="more" href="https://github.com/momup-app/momup-app.github.io">Code</a>
-        </div>
-        <div class="work-visual">
-          <div><span class="hl">catalog:</span> classes · clubs · events · sales</div>
-          <div><span class="hl">sort:</span> by distance from postcode</div>
-          <div><span class="hl">filter:</span> free-only · <span class="hl">install:</span> PWA</div>
-          <div><span class="hl">langs:</span> DE · EN · RU</div>
-        </div>
-      </article>
-
-      <article class="work-card reveal">
-        <div>
-          <span class="tag">Test automation</span>
-          <h3>Duo Bank</h3>
-          <p class="work-desc">Automated testing of a web banking app: functional, regression, integration and cross-browser coverage.</p>
-          <p class="work-stack"><strong>Built with</strong> Java, Selenium, Cucumber, BDD</p>
-          <a class="more" href="https://github.com/janagrit/DuoBank-sprint4-gurus">Code</a>
-        </div>
-        <div class="work-visual">
-          <div><span class="hl">scope:</span> functional · regression · integration</div>
-          <div><span class="hl">matrix:</span> cross-browser</div>
-          <div><span class="hl">style:</span> BDD with Cucumber</div>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <section>
-    <div class="about-strip reveal">
-      <div class="fact"><div class="k">Based</div><div class="v">New York / Washington, DC</div></div>
-      <div class="fact"><div class="k">Work style</div><div class="v">Remote, hybrid or on-site</div></div>
-      <div class="fact"><div class="k">Stack</div><div class="v">Playwright, Cypress, Selenium, TypeScript, Java</div></div>
-      <div class="fact"><div class="k">CI/CD · Cloud</div><div class="v">GitHub Actions, Azure DevOps, GitLab, Jenkins · AWS, Docker</div></div>
-      <div class="fact"><div class="k">Languages</div><div class="v">English, Українська, 中文</div></div>
-      <div class="fact"><div class="k">More code</div><div class="v"><a href="https://github.com/janagrit">github.com/janagrit</a></div></div>
-    </div>
-  </section>
-
-  <section id="audit">
-    <div class="eyebrow reveal">Website audit · for businesses</div>
-    <h2 class="section-title reveal">Most business websites lose customers<br>to problems nobody sees.</h2>
-    <p class="section-sub reveal">Pages Google can&rsquo;t read, buttons a screen reader can&rsquo;t reach, links that go nowhere, layouts that break on a phone. I find them with automated tests and hand you a plain-English list of what to fix first. A focused engagement, not an open-ended retainer.</p>
-
-    <div class="audit-checks">
-      <div class="check reveal">
-        <div class="n">01</div>
-        <h3>Findability</h3>
-        <div class="why">Can Google and your customers find you?</div>
-        <p>Page titles, headings, meta descriptions, canonical links, social previews and structured data, checked on every key page.</p>
       </div>
-      <div class="check reveal">
-        <div class="n">02</div>
-        <h3>Accessibility</h3>
-        <div class="why">Can everyone use your site?</div>
-        <p>An automated scan against WCAG 2.2 AA plus image alt text, so customers using screen readers or keyboards aren&rsquo;t turned away.</p>
-      </div>
-      <div class="check reveal">
-        <div class="n">03</div>
-        <h3>Reliability</h3>
-        <div class="why">Does it work on the phone in their hand?</div>
-        <p>Broken links, layouts that overflow on mobile, and visual checks that catch when an update quietly breaks your homepage.</p>
-      </div>
-    </div>
+    </section>
 
-    <div class="readout reveal">
-      <div>
-        <h3>How it works</h3>
-        <ol>
-          <li><b><span>01</span>Working session</b><p>30 minutes, free. Your site, your customers, and the pages that matter most. No deck, no pitch.</p></li>
-          <li><b><span>02</span>Audit</b><p>I build a Playwright test suite for your site and run every check against every key page, then review the results by hand.</p></li>
-          <li><b><span>03</span>Readout</b><p>A written report where every failure becomes a recommendation: severity, business impact and the fix, with quick wins first.</p></li>
+    <!-- ================= HOW I WORK ================= -->
+    <section class="process" id="process" aria-labelledby="proc-h">
+      <div class="wrap">
+        <p class="eyebrow reveal">How I work</p>
+        <h2 class="h2 reveal" id="proc-h">A clear scope<br>with a finish line.</h2>
+        <ol class="steps">
+          <li class="reveal"><b>Discover</b><p>A free 30-minute call, then I read your code, CI and tests. You get a written plan with scope and timeline before any build work.</p></li>
+          <li class="reveal"><b>Build</b><p>Tests and pipeline changes land as small, reviewed pull requests, with a weekly update on what runs and what it caught.</p></li>
+          <li class="reveal"><b>Hand over</b><p>Docs, a recorded walkthrough and pairing sessions, so your team owns the suite after I leave.</p></li>
         </ol>
       </div>
-      <div>
-        <h3>What you get</h3>
-        <ul class="gets">
-          <li>A prioritized findings report you can hand to your web developer</li>
-          <li>The test suite itself, so you can re-run it after every fix</li>
-          <li>Screenshots of every page on desktop and mobile</li>
-        </ul>
-        <div class="example">
-          <div><span class="hl">example:</span> Uptic Hospitality</div>
-          <div><span class="hl">$</span> npm test <span class="hl">&rarr;</span> 19 passed, 3 failed</div>
-          <div><span class="hl">&rarr;</span> 15-minute WordPress fixes first, trust next</div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="about" id="about" aria-labelledby="about-h">
+      <div class="wrap about-grid">
+        <div class="photo reveal"><img src="images/lead-bg2.jpg" width="1170" height="883" loading="lazy" alt="Iana Grytsenko, smiling, standing in a doorway in New York"></div>
+        <div>
+          <p class="eyebrow reveal">About</p>
+          <h2 class="h2 reveal" id="about-h">You work with me directly.</h2>
+          <p class="txt reveal">I&rsquo;m Iana, a <strong>test automation architect and SDET</strong> with <strong>6+ years</strong> in QA and test automation. I design the framework and write the code, review pull requests alongside developers, and work with product and infrastructure teams on how distributed systems get tested.</p>
+          <p class="txt reveal">I let production telemetry, not guesswork, decide where coverage goes, and I review AI-written tests as carefully as anyone else&rsquo;s code. Before software, I wrote a PhD on outer space law in Shanghai.</p>
+          <dl class="facts reveal">
+            <div><dt>Based in</dt><dd>New York / Washington, DC</dd></div>
+            <div><dt>Work style</dt><dd>Remote, hybrid or on-site</dd></div>
+            <div><dt>Core stack</dt><dd>Playwright, TypeScript, Cypress, Selenium, Java</dd></div>
+            <div><dt>Languages</dt><dd>English, Українська, 中文</dd></div>
+          </dl>
+          <div class="teams reveal">
+            <p>Teams I&rsquo;ve tested for</p>
+            <ul>
+              <li>Cooley LLP</li>
+              <li>California Community Colleges Technology Center</li>
+              <li>Amtrak</li>
+              <li>HiLabs</li>
+            </ul>
+          </div>
         </div>
-        <a class="more" href="https://github.com/janagrit/uptic-site-audit">See the example audit</a>
       </div>
-    </div>
+    </section>
 
-    <div class="audit-cta reveal">
-      <a class="btn" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener">Book a free working session</a>
-      <p>Small businesses, agencies and startups. Any platform: WordPress, Shopify, Webflow or custom.</p>
-    </div>
-  </section>
-
-  <section id="services">
-    <div class="eyebrow reveal">Services</div>
-    <h2 class="section-title reveal">Need help with a test suite?<br>I also take on consulting projects.</h2>
-    <p class="section-sub reveal">Most teams have tests. Few trust them. Red builds get re-run until they pass, and real bugs still reach customers. These are the three ways I usually help.</p>
-    <div class="services-grid">
-      <div class="service reveal">
-        <div class="n">01</div>
-        <h3>Framework from scratch</h3>
-        <p>A Playwright and TypeScript framework built around your critical user flows, with API mocking, smoke and regression suites, running on every pull request.</p>
-        <div class="result"><em>9 weeks</em> to a full end-to-end framework for a legal-tech platform</div>
+    <!-- ================= CONTACT ================= -->
+    <section class="contact" id="contact" aria-labelledby="contact-h">
+      <div class="wrap">
+        <p class="eyebrow reveal">Contact</p>
+        <h2 class="reveal" id="contact-h">Let&rsquo;s talk about your quality.</h2>
+        <p class="lead reveal">Open to Senior SDET, Test Architect and Staff QA roles, full-time or contract, and to consulting projects.</p>
+        <div class="ctas reveal">
+          <a class="pill solid" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener">Book a 30-minute call</a>
+          <a class="pill on-dark" href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a>
+        </div>
+        <p class="elsewhere reveal">
+          <a href="https://drive.google.com/file/d/1B_lOUFOEwR0RHf4SlqRCArBv7tkEkpZJ/view?usp=drivesdk" target="_blank" rel="noopener">CV</a>
+          <a href="https://www.linkedin.com/in/ianagrytsenko" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/janagrit" target="_blank" rel="noopener">GitHub</a>
+        </p>
       </div>
-      <div class="service reveal">
-        <div class="n">02</div>
-        <h3>Flaky-suite rescue</h3>
-        <p>An audit of why your tests fail, then fixes at the root: isolated test data, stable auth sessions, real waits instead of sleeps, so a red build means a real bug.</p>
-        <div class="result"><em>60% fewer</em> false-positive failures on a Java/Selenium suite</div>
-      </div>
-      <div class="service reveal">
-        <div class="n">03</div>
-        <h3>Migration to Playwright</h3>
-        <p>Move from Cypress or Selenium without freezing feature work: suite by suite, with parallel runs and faster feedback at each step.</p>
-        <div class="result"><em>45% more</em> automated coverage after a Cypress migration</div>
-      </div>
-    </div>
-    <div class="process reveal">
-      <div class="step"><div class="sn">01</div><h4>Audit</h4><p>I read your code, CI and tests, and you get a written plan with scope and timeline.</p></div>
-      <div class="step"><div class="sn">02</div><h4>Build</h4><p>Changes land as small, reviewed pull requests, with a weekly update on what runs and what it caught.</p></div>
-      <div class="step"><div class="sn">03</div><h4>Handover</h4><p>Docs, a recorded walkthrough and pairing, so your team owns the suite after I leave.</p></div>
-    </div>
-    <p class="services-note reveal"><strong>Also available:</strong> API and contract testing, resilience tests for event-driven AWS workflows, and setting up AI-assisted test workflows with Claude Code and MCP.</p>
-  </section>
-
-  <section class="contact" id="contact">
-    <h2 class="reveal">Let's talk.</h2>
-    <p class="reveal">I'm open to Test Architect, Senior SDET and Staff QA roles, full-time or contract, remote, hybrid or on-site. I also take on consulting projects.</p>
-    <div class="hero-ctas reveal" style="justify-content:center; margin-bottom:40px;">
-      <a class="btn" href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a>
-      <a class="btn ghost" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener">Book a 30-minute call</a>
-    </div>
-    <div class="contact-links reveal">
-      <a href="https://www.linkedin.com/in/ianagrytsenko">LinkedIn</a>
-      <a href="https://drive.google.com/file/d/1B_lOUFOEwR0RHf4SlqRCArBv7tkEkpZJ/view?usp=drivesdk" target="_blank" rel="noopener">CV</a>
-      <a href="https://github.com/janagrit">GitHub</a>
-    </div>
-  </section>
-
+    </section>
   </main>
 
-  <footer>© 2026 Iana Grytsenko</footer>
+  <footer>
+    <div class="wrap">
+      <span>&copy; 2026 Iana Grytsenko</span>
+      <span>New York / Washington, DC</span>
+    </div>
+  </footer>
 
+  <!-- mobile bottom tabs -->
   <nav class="tabbar" aria-label="Sections">
     <ul>
-      <li><a href="#about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>About</a></li>
-      <li><a href="#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Work</a></li>
-      <li><a href="#audit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5M8.5 11l2 2 3.5-3.5"/></svg>Audit</a></li>
+      <li><a href="#top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m3 11 9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</a></li>
       <li><a href="#services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6z"/></svg>Services</a></li>
+      <li><a href="#projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Projects</a></li>
+      <li><a href="#about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>About</a></li>
       <li><a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Contact</a></li>
     </ul>
   </nav>
@@ -536,9 +555,9 @@
       reveals.forEach(el => el.classList.add('visible'));
     }
 
-    // Highlight the tab for the section currently on screen.
-    const tabLinks = document.querySelectorAll('.nav-links a, .tabbar a');
-    const spySections = ['about', 'work', 'audit', 'services', 'contact'].map(id => document.getElementById(id));
+    // Highlight the nav link and tab for the section currently on screen.
+    const tabLinks = document.querySelectorAll('.navlinks a, .tabbar a');
+    const spySections = ['top', 'services', 'projects', 'process', 'about', 'contact'].map(id => document.getElementById(id));
     function updateTabs() {
       const line = window.innerHeight * 0.35;
       let current = spySections[0].id;
