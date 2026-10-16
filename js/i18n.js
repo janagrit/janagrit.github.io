@@ -46,20 +46,17 @@
     'proj.title': 'Недавние работы',
     'p1.tags': '<span class="tag">Тестирование AI</span>',
     'p1.h': 'Состязательная оценка голосового AI-агента',
-    'p1.result': '10/10 атак отражено',
     'p1.p': 'Харнесс на DeepEval атакует голосового ассистента сценариями из набора данных и оценивает его собственными метриками раскрытия информации. Регрессионная проверка роняет сборку, если любая метрика опускается ниже базовой.',
     'p1.role': '<b>Стек</b> Python, DeepEval, Playwright + TypeScript, GitHub Actions',
     'p1.links': '<a href="https://github.com/janagrit/aviaryai-eval-demo" target="_blank" rel="noopener">Код</a>',
     'p2.alt': 'Главная страница Kids Nearby: поиск детских занятий в Берлине',
     'p2.tags': '<span class="tag live">Работает</span><span class="tag">QA</span>',
-    'p2.result': 'Живое приложение, 3 языка',
     'p2.p': 'Приложение для родителей в Берлине: детские занятия на карте, игровые встречи, распродажи детской одежды с ежедневной рассылкой и закрытый чат для участников. На немецком, английском и русском.',
     'p2.role': '<b>Моя роль</b> QA-инженер, тестирую приложение для <a href="https://www.instagram.com/momup_app/" target="_blank" rel="noopener">@momup_app</a>',
     'p2.links': '<a href="https://momup-app.github.io/" target="_blank" rel="noopener">Открыть приложение</a>',
     'p3.alt': 'Страница статьи Uptic Hospitality: Independent Hotels Should Think Independently',
     'p3.tags': '<span class="tag wip">В работе</span><span class="tag">Автоматизация</span>',
     'p3.h': 'Uptic Hospitality: автоматизация тестирования с нуля',
-    'p3.result': '19 пройдено, 3 упало',
     'p3.p': 'Тесты на Playwright + TypeScript, построенные с нуля, начиная со <a href="https://uptichospitality.com/independent-hotels-should-think-independently/" target="_blank" rel="noopener">статьи &laquo;Independent hotels&raquo;</a>: SEO, доступность, ссылки, мобильная версия и визуальные проверки. Каждое падение становится исправлением в списке приоритетов.',
     'p3.role': '<b>Стек</b> TypeScript, Playwright, axe-core',
     'p3.links': '<a href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Код</a>',
@@ -87,7 +84,6 @@
     'contact.eyebrow': 'Контакты',
     'contact.title': 'Давайте поговорим о качестве вашего продукта.',
     'contact.lead': 'Рассматриваю роли Senior SDET, Test Architect и Staff QA, в штат или по контракту, а также консалтинговые проекты.',
-    'contact.cv': 'Резюме по запросу',
     'footer.city': 'Нью-Йорк / Вашингтон'
   };
   var RU_TITLE = 'Яна Гриценко | Инженерия качества от и до';

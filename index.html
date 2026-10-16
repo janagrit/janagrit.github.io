@@ -178,7 +178,6 @@
     .tag.live { background: rgba(52, 168, 83, .12); color: #1d7a3a; }
     .tag.wip { background: rgba(232, 160, 32, .16); color: #8a5a00; }
     .proj h3 { font-size: 21px; font-weight: 600; line-height: 1.3; letter-spacing: -.01em; }
-    .proj .result { margin-top: 10px; font-size: 26px; font-weight: 300; letter-spacing: -.02em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .proj p { margin-top: 10px; color: var(--sub); font-size: 15.5px; }
     .proj .role { margin-top: 14px; font-size: 14px; color: var(--sub); }
     .proj .role b { color: var(--ink); font-weight: 600; }
@@ -345,7 +344,6 @@
         <p class="who" data-i18n="hero.who">Iana Grytsenko &middot; Test Automation Architect &middot; SDET</p>
         <div class="ctas">
           <a class="pill solid" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener" data-i18n="cta.call">Book a 30-minute call</a>
-         <!-- // <a class="pill on-dark" href="mailto:ianagrytsenko@gmail.com?subject=CV%20request&amp;body=Hi%20Iana%2C%0A%0ACould%20you%20send%20me%20your%20current%20CV%3F%0A%0ARole%20/%20company%3A%20%0A">Request my CV</a> -->
         </div>
       </div>
     </section>
@@ -463,17 +461,16 @@
             <div class="media">
               <div class="term" aria-hidden="true">
                 <div class="dim">$ npm test &mdash; adversarial eval</div>
-                <div><span class="ok">&check;</span> strict agent <span class="hl">&middot;&middot;</span> 10/10 contained</div>
-                <div><span class="ok">&check;</span> lax agent <span class="hl">&middot;&middot;&middot;&middot;</span> 1/10 (control)</div>
+                <div><span class="ok">&check;</span> strict agent <span class="hl">&middot;&middot;</span> attacks contained</div>
+                <div><span class="ok">&check;</span> lax agent <span class="hl">&middot;&middot;&middot;&middot;</span> control</div>
                 <div><span class="ok">&check;</span> disclosure metrics</div>
                 <div><span class="ok">&check;</span> regression gate</div>
-                <div class="dim">ran on every PR &middot; 0 flakes</div>
+                <div class="dim">runs on every pull request</div>
               </div>
             </div>
             <div class="body">
               <div class="tags" data-i18n="p1.tags"><span class="tag">AI testing</span></div>
               <h3 data-i18n="p1.h">Adversarial evaluation of an AI voice agent</h3>
-              <div class="result" data-i18n="p1.result">10/10 attacks contained</div>
               <p data-i18n="p1.p">A DeepEval harness attacks a voice assistant with data-driven scenarios and scores it with custom disclosure metrics. A regression gate fails the build if any metric drops below baseline.</p>
               <p class="role" data-i18n="p1.role"><b>Stack</b> Python, DeepEval, Playwright + TypeScript, GitHub Actions</p>
               <p class="links" data-i18n="p1.links"><a href="https://github.com/janagrit/aviaryai-eval-demo" target="_blank" rel="noopener">Code</a></p>
@@ -485,7 +482,6 @@
             <div class="body">
               <div class="tags" data-i18n="p2.tags"><span class="tag live">Live</span><span class="tag">QA</span></div>
               <h3>Kids Nearby &middot; MomUp Berlin</h3>
-              <div class="result" data-i18n="p2.result">Live app, 3 languages</div>
               <p data-i18n="p2.p">An app for parents in Berlin: kids&rsquo; activities on a map, play events, clothes sales with a daily email and a members-only chat, in German, English and Russian.</p>
               <p class="role" data-i18n="p2.role"><b>My role</b> QA engineer, testing the app for <a href="https://www.instagram.com/momup_app/" target="_blank" rel="noopener">@momup_app</a></p>
               <p class="links" data-i18n="p2.links"><a href="https://momup-app.github.io/" target="_blank" rel="noopener">Open the app</a></p>
@@ -497,7 +493,6 @@
             <div class="body">
               <div class="tags" data-i18n="p3.tags"><span class="tag wip">In progress</span><span class="tag">Automation</span></div>
               <h3 data-i18n="p3.h">Uptic Hospitality: test automation from scratch</h3>
-              <div class="result" data-i18n="p3.result">19 passed, 3 failed</div>
               <p data-i18n="p3.p">A Playwright + TypeScript suite built from zero, starting with the <a href="https://uptichospitality.com/independent-hotels-should-think-independently/" target="_blank" rel="noopener">&ldquo;Independent hotels&rdquo; article</a>: SEO, accessibility, links, mobile and visual checks. Every failure becomes a ranked fix.</p>
               <p class="role" data-i18n="p3.role"><b>Stack</b> TypeScript, Playwright, axe-core</p>
               <p class="links" data-i18n="p3.links"><a href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Code</a></p>
@@ -601,7 +596,6 @@
           <a class="pill on-dark" href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a>
         </div>
         <p class="elsewhere reveal">
-          <a href="mailto:ianagrytsenko@gmail.com?subject=CV%20request&amp;body=Hi%20Iana%2C%0A%0ACould%20you%20send%20me%20your%20current%20CV%3F%0A%0ARole%20/%20company%3A%20%0A" data-i18n="contact.cv">CV on request</a>
           <a href="https://www.linkedin.com/in/ianagrytsenko" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://github.com/janagrit" target="_blank" rel="noopener">GitHub</a>
         </p>
