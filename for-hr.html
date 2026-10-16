@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>For Recruiters | Iana Grytsenko</title>
+  <!-- Unlisted: shared by direct link only. Not in the nav or sitemap.xml. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Senior SDET: current role, what I built and the results, for recruiters and hiring managers.">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="favicon.ico?v=2" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="articles/article.css">
+  <style>
+    .numbers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 36px 0 8px; padding: 0; list-style: none; }
+    .numbers li { margin: 0; border: 1px solid var(--line); border-radius: 14px; padding: 18px 16px; background: var(--white); }
+    .numbers b { display: block; font-size: 32px; font-weight: 700; line-height: 1.1; color: var(--ink); }
+    .numbers span { display: block; margin-top: 6px; font-size: 14px; color: var(--sub); }
+    @media (max-width: 600px) { .numbers { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <nav class="topnav" aria-label="Main">
+    <div class="in">
+      <a class="brand" href="./"><img src="icon-192.png?v=2" width="34" height="34" alt="">Iana Grytsenko</a>
+      <a class="back" href="./">&larr; Portfolio</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="in">
+      <p class="kicker">For recruiters &amp; hiring managers</p>
+      <h1>Senior SDET at Cooley</h1>
+      <p class="meta">Playwright &middot; TypeScript &middot; role-based E2E testing</p>
+    </div>
+  </header>
+
+  <main id="main">
+    <article>
+      <p class="intro">I&rsquo;m a Senior SDET at Cooley, working on Vanilla, a fund-transfer platform.</p>
+
+      <h2>The situation</h2>
+      <p>I inherited a QA project that was behind and had been through two engineer departures. I reverse-engineered the undocumented business logic and rebuilt the test framework in Playwright and TypeScript.</p>
+
+      <h2>The hard part</h2>
+      <p>Role-based testing. Transfers pass through five stages, and what each persona can do changes at every stage.</p>
+
+      <h2>What I built</h2>
+      <p>An end-to-end framework that covers six transfer scenarios across 56 test cases. I also documented the framework so the team can onboard without relying on me.</p>
+
+      <ul class="numbers" aria-label="Results">
+        <li><b>6</b><span>transfer scenarios</span></li>
+        <li><b>56</b><span>test cases</span></li>
+        <li><b>~20&nbsp;min</b><span>full run</span></li>
+        <li><b>6</b><span>bugs caught before release</span></li>
+      </ul>
+    </article>
+
+    <section class="cta" aria-label="Contact">
+      <p>Open to Senior SDET, Test Architect and Staff QA roles, full-time or contract.</p>
+      <a class="pill" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener">Book a 30-minute call</a>
+      <a class="pill" href="mailto:ianagrytsenko@gmail.com?subject=CV%20request&amp;body=Hi%20Iana%2C%0A%0ACould%20you%20send%20me%20your%20current%20CV%3F%0A%0ARole%20/%20company%3A%20%0A">Request my CV</a>
+    </section>
+  </main>
+
+  <footer>&copy; 2026 Iana Grytsenko &middot; <a href="./">janagrit.github.io</a></footer>
+</body>
+</html>
