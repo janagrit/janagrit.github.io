@@ -95,6 +95,11 @@
     .navlinks a { color: var(--ink); font-size: 16px; font-weight: 400; }
     .navlinks a:hover, .navlinks a[aria-current] { color: var(--violet-ink); text-decoration: none; }
     .topnav .pill { padding: 11px 22px; font-size: 15px; }
+    .nav-end { display: flex; align-items: center; gap: 14px; flex: none; }
+    .langs { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid var(--line); border-radius: 999px; }
+    .langs button { font: 600 13px/1 var(--sans); color: var(--sub); background: transparent; border: 0; border-radius: 999px; padding: 8px 12px; cursor: pointer; }
+    .langs button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+    .langs button:hover:not([aria-pressed="true"]) { color: var(--ink); }
 
     /* ---------- hero (night sky) ---------- */
     .hero {
@@ -252,6 +257,12 @@
     /* ---------- mobile bottom tabs ---------- */
     .tabbar { display: none; }
 
+    .navlinks a, .brand { white-space: nowrap; }
+    /* Russian labels are longer: make room in the top bar on small laptops and tablets */
+    @media (max-width: 1100px) {
+      .navlinks { gap: 22px; }
+      .topnav .pill { display: none; }
+    }
     @media (max-width: 1020px) {
       .proj-grid, .art-list { grid-template-columns: 1fr 1fr; }
       .engage { grid-template-columns: 1fr; }
@@ -307,14 +318,20 @@
       <a class="brand" href="#top"><img src="icon-192.png?v=2" width="36" height="36" alt="">Iana Grytsenko</a>
       <nav aria-label="Main">
         <ul class="navlinks">
-          <li><a href="#services">Services</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#articles">Articles</a></li>
-          <li><a href="#process">How I work</a></li>
-          <li><a href="#about">About</a></li>
+          <li><a href="#services" data-i18n="nav.services">Services</a></li>
+          <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+          <li><a href="#articles" data-i18n="nav.articles">Articles</a></li>
+          <li><a href="#process" data-i18n="nav.process">How I work</a></li>
+          <li><a href="#about" data-i18n="nav.about">About</a></li>
         </ul>
       </nav>
-      <a class="pill" href="#contact">Contact me</a>
+      <div class="nav-end">
+        <div class="langs" role="group" aria-label="Language">
+          <button type="button" data-set="en" aria-pressed="true" lang="en">EN</button>
+          <button type="button" data-set="ru" aria-pressed="false" lang="ru">RU</button>
+        </div>
+        <a class="pill" href="#contact" data-i18n="nav.contact">Contact me</a>
+      </div>
     </div>
   </header>
 
@@ -323,11 +340,11 @@
     <!-- ================= HERO ================= -->
     <section class="hero" id="top" aria-labelledby="hero-h">
       <div class="wrap">
-        <h1 id="hero-h">Quality engineering,<br>end to end</h1>
-        <p class="sub">Test automation, AI agent testing, APIs, performance and accessibility, designed and built by one engineer.</p>
-        <p class="who">Iana Grytsenko &middot; Test Automation Architect &middot; SDET</p>
+        <h1 id="hero-h" data-i18n="hero.title">Quality engineering,<br>end to end</h1>
+        <p class="sub" data-i18n="hero.sub">Test automation, AI agent testing, APIs, performance and accessibility, designed and built by one engineer.</p>
+        <p class="who" data-i18n="hero.who">Iana Grytsenko &middot; Test Automation Architect &middot; SDET</p>
         <div class="ctas">
-          <a class="pill solid" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener">Book a 30-minute call</a>
+          <a class="pill solid" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener" data-i18n="cta.call">Book a 30-minute call</a>
          <!-- // <a class="pill on-dark" href="mailto:ianagrytsenko@gmail.com?subject=CV%20request&amp;body=Hi%20Iana%2C%0A%0ACould%20you%20send%20me%20your%20current%20CV%3F%0A%0ARole%20/%20company%3A%20%0A">Request my CV</a> -->
         </div>
       </div>
@@ -336,28 +353,28 @@
     <!-- ================= STATS ================= -->
     <section class="stats" aria-label="Results in numbers">
       <div class="wrap">
-        <div class="stat reveal"><b>6+</b><span>years in QA and test automation</span></div>
-        <div class="stat reveal"><b>5+</b><span>product lines automated as the only SDET</span></div>
-        <div class="stat reveal"><b>45%</b><span>more automated coverage after a Cypress to Playwright migration</span></div>
-        <div class="stat reveal"><b>60%</b><span>fewer flaky-test false positives</span></div>
+        <div class="stat reveal"><b>6+</b><span data-i18n="stats.years">years in QA and test automation</span></div>
+        <div class="stat reveal"><b>5+</b><span data-i18n="stats.lines">product lines automated as the only SDET</span></div>
+        <div class="stat reveal"><b>45%</b><span data-i18n="stats.coverage">more automated coverage after a Cypress to Playwright migration</span></div>
+        <div class="stat reveal"><b>60%</b><span data-i18n="stats.flaky">fewer flaky-test false positives</span></div>
       </div>
     </section>
 
     <!-- ================= SERVICES ================= -->
     <section class="services" id="services" aria-labelledby="svc-h">
       <div class="wrap">
-        <p class="eyebrow reveal">Services</p>
-        <h2 class="h2 reveal" id="svc-h">One QA engineer.<br>The whole quality stack.</h2>
-        <p class="lead reveal">From the first test to the release pipeline, and from the UI down to the queues behind it. I design the strategy and write the code myself.</p>
+        <p class="eyebrow reveal" data-i18n="nav.services">Services</p>
+        <h2 class="h2 reveal" id="svc-h" data-i18n="svc.title">One QA engineer.<br>The whole quality stack.</h2>
+        <p class="lead reveal" data-i18n="svc.lead">From the first test to the release pipeline, and from the UI down to the queues behind it. I design the strategy and write the code myself.</p>
 
         <div class="svc-grid">
           <article class="svc reveal">
             <div class="svc-head">
               <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="5" y="7" width="14" height="11" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9.5 15h5M2 12h3M19 12h3"/></svg></span>
-              <h3>AI testing</h3>
+              <h3 data-i18n="svc.ai.h">AI testing</h3>
             </div>
-            <p class="what">Proof that your AI agent behaves before customers find out it doesn&rsquo;t.</p>
-            <ul>
+            <p class="what" data-i18n="svc.ai.what">Proof that your AI agent behaves before customers find out it doesn&rsquo;t.</p>
+            <ul data-i18n="svc.ai.list">
               <li>Adversarial evaluation of AI agents</li>
               <li>Custom eval metrics with DeepEval</li>
               <li>Regression gates for model changes</li>
@@ -365,16 +382,16 @@
               <li>AI-assisted test writing with Claude Code and MCP</li>
               <li>Quality reviews of AI-generated tests</li>
             </ul>
-            <p class="proof"><b>10/10</b> attacks contained by a voice AI agent under test</p>
+            <p class="proof" data-i18n="svc.ai.proof"><b>10/10</b> attacks contained by a voice AI agent under test</p>
           </article>
 
           <article class="svc reveal">
             <div class="svc-head">
               <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 4l-4 16"/></svg></span>
-              <h3>Test automation</h3>
+              <h3 data-i18n="svc.auto.h">Test automation</h3>
             </div>
-            <p class="what">Frameworks built like production code, so your team keeps using them after I leave.</p>
-            <ul>
+            <p class="what" data-i18n="svc.auto.what">Frameworks built like production code, so your team keeps using them after I leave.</p>
+            <ul data-i18n="svc.auto.list">
               <li>Frameworks from scratch: Playwright, Cypress, Selenium</li>
               <li>Migration to Playwright</li>
               <li>Flaky-suite rescue</li>
@@ -382,16 +399,16 @@
               <li>Desktop and mobile web</li>
               <li>CI/CD: GitHub Actions, Azure DevOps, GitLab, Jenkins</li>
             </ul>
-            <p class="proof"><b>9 weeks</b> to a full end-to-end framework on a legal-tech platform</p>
+            <p class="proof" data-i18n="svc.auto.proof"><b>9 weeks</b> to a full end-to-end framework on a legal-tech platform</p>
           </article>
 
           <article class="svc reveal">
             <div class="svc-head">
               <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01"/></svg></span>
-              <h3>API, backend and performance</h3>
+              <h3 data-i18n="svc.api.h">API, backend and performance</h3>
             </div>
-            <p class="what">Checks for the parts users never see but always feel.</p>
-            <ul>
+            <p class="what" data-i18n="svc.api.what">Checks for the parts users never see but always feel.</p>
+            <ul data-i18n="svc.api.list">
               <li>REST and GraphQL API testing</li>
               <li>Contract testing between services</li>
               <li>Event-driven AWS: Lambda, SQS, SNS</li>
@@ -399,16 +416,16 @@
               <li>Load and throughput testing</li>
               <li>Production monitoring with CloudWatch and Allure</li>
             </ul>
-            <p class="proof"><b>5+</b> product lines on AWS microservices covered by one automation engineer</p>
+            <p class="proof" data-i18n="svc.api.proof"><b>5+</b> product lines on AWS microservices covered by one automation engineer</p>
           </article>
 
           <article class="svc reveal">
             <div class="svc-head">
               <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-5-5M8 11l2 2 4-4"/></svg></span>
-              <h3>Website quality audits</h3>
+              <h3 data-i18n="svc.audit.h">Website quality audits</h3>
             </div>
-            <p class="what">A plain-English list of what is costing a business site its customers, fixes first.</p>
-            <ul>
+            <p class="what" data-i18n="svc.audit.what">A plain-English list of what is costing a business site its customers, fixes first.</p>
+            <ul data-i18n="svc.audit.list">
               <li>Accessibility to WCAG 2.2 AA</li>
               <li>Technical SEO checks</li>
               <li>Broken links</li>
@@ -416,16 +433,16 @@
               <li>Visual regression</li>
               <li>A findings report ranked by impact</li>
             </ul>
-            <p class="proof"><b>19 passed, 3 failed</b> on the first run for Uptic Hospitality, each failure turned into a fix</p>
+            <p class="proof" data-i18n="svc.audit.proof"><b>19 passed, 3 failed</b> on the first run for Uptic Hospitality, each failure turned into a fix</p>
           </article>
         </div>
 
         <div class="engage reveal">
           <div>
-            <h3>Ways to work together</h3>
-            <p>Pick what fits the problem.</p>
+            <h3 data-i18n="engage.h">Ways to work together</h3>
+            <p data-i18n="engage.p">Pick what fits the problem.</p>
           </div>
-          <ul>
+          <ul data-i18n="engage.list">
             <li><b>Full-time role</b><span>Senior SDET, Test Architect, Staff QA</span></li>
             <li><b>Contract</b><span>Join your team for a project</span></li>
             <li><b>Fixed-scope audit</b><span>A clear finish line and a written report</span></li>
@@ -438,8 +455,8 @@
     <!-- ================= PROJECTS ================= -->
     <section class="projects" id="projects" aria-labelledby="proj-h">
       <div class="wrap">
-        <p class="eyebrow reveal">Projects</p>
-        <h2 class="h2 reveal" id="proj-h">Recent work</h2>
+        <p class="eyebrow reveal" data-i18n="nav.projects">Projects</p>
+        <h2 class="h2 reveal" id="proj-h" data-i18n="proj.title">Recent work</h2>
 
         <div class="proj-grid">
           <article class="proj reveal">
@@ -454,44 +471,44 @@
               </div>
             </div>
             <div class="body">
-              <div class="tags"><span class="tag">AI testing</span></div>
-              <h3>Adversarial evaluation of an AI voice agent</h3>
-              <div class="result">10/10 attacks contained</div>
-              <p>A DeepEval harness attacks a voice assistant with data-driven scenarios and scores it with custom disclosure metrics. A regression gate fails the build if any metric drops below baseline.</p>
-              <p class="role"><b>Stack</b> Python, DeepEval, Playwright + TypeScript, GitHub Actions</p>
-              <p class="links"><a href="https://github.com/janagrit/aviaryai-eval-demo" target="_blank" rel="noopener">Code</a></p>
+              <div class="tags" data-i18n="p1.tags"><span class="tag">AI testing</span></div>
+              <h3 data-i18n="p1.h">Adversarial evaluation of an AI voice agent</h3>
+              <div class="result" data-i18n="p1.result">10/10 attacks contained</div>
+              <p data-i18n="p1.p">A DeepEval harness attacks a voice assistant with data-driven scenarios and scores it with custom disclosure metrics. A regression gate fails the build if any metric drops below baseline.</p>
+              <p class="role" data-i18n="p1.role"><b>Stack</b> Python, DeepEval, Playwright + TypeScript, GitHub Actions</p>
+              <p class="links" data-i18n="p1.links"><a href="https://github.com/janagrit/aviaryai-eval-demo" target="_blank" rel="noopener">Code</a></p>
             </div>
           </article>
 
           <article class="proj reveal">
-            <div class="media"><img src="images/momup.jpg" width="1120" height="700" loading="lazy" alt="Kids Nearby home page: search for kids' activities in Berlin"></div>
+            <div class="media"><img src="images/momup.jpg" width="1120" height="700" loading="lazy" data-i18n-alt="p2.alt" alt="Kids Nearby home page: search for kids' activities in Berlin"></div>
             <div class="body">
-              <div class="tags"><span class="tag live">Live</span><span class="tag">QA</span></div>
+              <div class="tags" data-i18n="p2.tags"><span class="tag live">Live</span><span class="tag">QA</span></div>
               <h3>Kids Nearby &middot; MomUp Berlin</h3>
-              <div class="result">Live app, 3 languages</div>
-              <p>An app for parents in Berlin: kids&rsquo; activities on a map, play events, clothes sales with a daily email and a members-only chat, in German, English and Russian.</p>
-              <p class="role"><b>My role</b> QA engineer, testing the app for <a href="https://www.instagram.com/momup_app/" target="_blank" rel="noopener">@momup_app</a></p>
-              <p class="links"><a href="https://momup-app.github.io/" target="_blank" rel="noopener">Open the app</a></p>
+              <div class="result" data-i18n="p2.result">Live app, 3 languages</div>
+              <p data-i18n="p2.p">An app for parents in Berlin: kids&rsquo; activities on a map, play events, clothes sales with a daily email and a members-only chat, in German, English and Russian.</p>
+              <p class="role" data-i18n="p2.role"><b>My role</b> QA engineer, testing the app for <a href="https://www.instagram.com/momup_app/" target="_blank" rel="noopener">@momup_app</a></p>
+              <p class="links" data-i18n="p2.links"><a href="https://momup-app.github.io/" target="_blank" rel="noopener">Open the app</a></p>
             </div>
           </article>
 
           <article class="proj reveal">
-            <div class="media"><img src="images/uptic.jpg" width="1120" height="700" loading="lazy" alt="Uptic Hospitality article page: Independent Hotels Should Think Independently"></div>
+            <div class="media"><img src="images/uptic.jpg" width="1120" height="700" loading="lazy" data-i18n-alt="p3.alt" alt="Uptic Hospitality article page: Independent Hotels Should Think Independently"></div>
             <div class="body">
-              <div class="tags"><span class="tag wip">In progress</span><span class="tag">Automation</span></div>
-              <h3>Uptic Hospitality: test automation from scratch</h3>
-              <div class="result">19 passed, 3 failed</div>
-              <p>A Playwright + TypeScript suite built from zero, starting with the <a href="https://uptichospitality.com/independent-hotels-should-think-independently/" target="_blank" rel="noopener">&ldquo;Independent hotels&rdquo; article</a>: SEO, accessibility, links, mobile and visual checks. Every failure becomes a ranked fix.</p>
-              <p class="role"><b>Stack</b> TypeScript, Playwright, axe-core</p>
-              <p class="links"><a href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Code</a></p>
+              <div class="tags" data-i18n="p3.tags"><span class="tag wip">In progress</span><span class="tag">Automation</span></div>
+              <h3 data-i18n="p3.h">Uptic Hospitality: test automation from scratch</h3>
+              <div class="result" data-i18n="p3.result">19 passed, 3 failed</div>
+              <p data-i18n="p3.p">A Playwright + TypeScript suite built from zero, starting with the <a href="https://uptichospitality.com/independent-hotels-should-think-independently/" target="_blank" rel="noopener">&ldquo;Independent hotels&rdquo; article</a>: SEO, accessibility, links, mobile and visual checks. Every failure becomes a ranked fix.</p>
+              <p class="role" data-i18n="p3.role"><b>Stack</b> TypeScript, Playwright, axe-core</p>
+              <p class="links" data-i18n="p3.links"><a href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Code</a></p>
             </div>
           </article>
         </div>
 
         <div class="building reveal">
-          <div class="k">Currently building</div>
-          <div><b>Load-testing demo with k6</b><p>API load tests with pass/fail thresholds, running in GitHub Actions.</p></div>
-          <div><b>An AI agent that fixes failing tests</b><p>Claude Code with an MCP server that reads test failures and opens a pull request with the fix.</p></div>
+          <div class="k" data-i18n="build.k">Currently building</div>
+          <div data-i18n="build.k6"><b>Load-testing demo with k6</b><p>API load tests with pass/fail thresholds, running in GitHub Actions.</p></div>
+          <div data-i18n="build.agent"><b>An AI agent that fixes failing tests</b><p>Claude Code with an MCP server that reads test failures and opens a pull request with the fix.</p></div>
         </div>
       </div>
     </section>
@@ -499,34 +516,34 @@
     <!-- ================= ARTICLES ================= -->
     <section class="articles" id="articles" aria-labelledby="art-h">
       <div class="wrap">
-        <p class="eyebrow reveal">Articles</p>
-        <h2 class="h2 reveal" id="art-h">Notes from the work</h2>
+        <p class="eyebrow reveal" data-i18n="nav.articles">Articles</p>
+        <h2 class="h2 reveal" id="art-h" data-i18n="art.title">Notes from the work</h2>
         <div class="art-list">
-          <a class="art reveal" href="articles/ai-agent-noise.html">
+          <a class="art reveal" href="articles/ai-agent-noise.html" data-i18n="art.noise">
             <div class="meta">AI tools &middot; 6 min read</div>
             <h3>Cutting through the AI agent noise: Hermes Agent, ECC and Arena compared</h3>
             <p>Three popular GitHub projects, three different jobs. Comparison tables: what each one is, where to use it, and why.</p>
             <span class="more">Read the article &rarr;</span>
           </a>
-          <a class="art reveal" href="articles/resume-improvements.html">
+          <a class="art reveal" href="articles/resume-improvements.html" data-i18n="art.resume" data-i18n-href="art.resume.href">
             <div class="meta">Tips &middot; EN / RU &middot; under 5 min</div>
             <h3>5 resume improvements: in less than 5 minutes</h3>
             <p>Copy-ready AI prompts: read your resume like a recruiter, rewrite it with results, pass ATS filters, and tailor it to each job.</p>
             <span class="more">Get the prompts &rarr;</span>
           </a>
-          <a class="art reveal" href="articles/qa-before-and-after-ai.html">
+          <a class="art reveal" href="articles/qa-before-and-after-ai.html" data-i18n="art.twoqa">
             <div class="meta">The QA profession &middot; 6 min read</div>
             <h3>Two kinds of QA: learned before AI, and learned with it</h3>
             <p>Different strengths, different blind spots, and what each should borrow from the other.</p>
             <span class="more">Read the article &rarr;</span>
           </a>
-          <a class="art reveal" href="articles/claude-code-qa-workflow.html">
+          <a class="art reveal" href="articles/claude-code-qa-workflow.html" data-i18n="art.claude">
             <div class="meta">AI-assisted QA &middot; 5 min read</div>
             <h3>How I test with Claude Code</h3>
             <p>Start right, write the failing test first, run everything more than once, and give AI quality a floor it can&rsquo;t drop below.</p>
             <span class="more">Read the article &rarr;</span>
           </a>
-          <div class="art soon reveal">
+          <div class="art soon reveal" data-i18n="art.soon">
             <div class="meta">Coming next</div>
             <h3>Videos and more articles</h3>
             <p>Walkthroughs of load testing with k6 and an AI agent that fixes failing tests.</p>
@@ -538,12 +555,12 @@
     <!-- ================= HOW I WORK ================= -->
     <section class="process" id="process" aria-labelledby="proc-h">
       <div class="wrap">
-        <p class="eyebrow reveal">How I work</p>
-        <h2 class="h2 reveal" id="proc-h">A clear scope<br>with a finish line.</h2>
+        <p class="eyebrow reveal" data-i18n="nav.process">How I work</p>
+        <h2 class="h2 reveal" id="proc-h" data-i18n="proc.title">A clear scope<br>with a finish line.</h2>
         <ol class="steps">
-          <li class="reveal"><b>Discover</b><p>A free 30-minute call, then I read your code, CI and tests. You get a written plan with scope and timeline before any build work.</p></li>
-          <li class="reveal"><b>Build</b><p>Tests and pipeline changes land as small, reviewed pull requests, with a weekly update on what runs and what it caught.</p></li>
-          <li class="reveal"><b>Hand over</b><p>Docs, a recorded walkthrough and pairing sessions, so your team owns the suite after I leave.</p></li>
+          <li class="reveal" data-i18n="proc.1"><b>Discover</b><p>A free 30-minute call, then I read your code, CI and tests. You get a written plan with scope and timeline before any build work.</p></li>
+          <li class="reveal" data-i18n="proc.2"><b>Build</b><p>Tests and pipeline changes land as small, reviewed pull requests, with a weekly update on what runs and what it caught.</p></li>
+          <li class="reveal" data-i18n="proc.3"><b>Hand over</b><p>Docs, a recorded walkthrough and pairing sessions, so your team owns the suite after I leave.</p></li>
         </ol>
       </div>
     </section>
@@ -551,17 +568,17 @@
     <!-- ================= ABOUT ================= -->
     <section class="about" id="about" aria-labelledby="about-h">
       <div class="wrap about-grid">
-        <div class="photo reveal"><img src="images/lead-bg2.jpg" width="1170" height="883" loading="lazy" alt="Iana Grytsenko, smiling, standing in a doorway in New York"></div>
+        <div class="photo reveal"><img src="images/lead-bg2.jpg" width="1170" height="883" loading="lazy" data-i18n-alt="about.alt" alt="Iana Grytsenko, smiling, standing in a doorway in New York"></div>
         <div>
-          <h2 class="sr-only" id="about-h">About</h2>
-          <dl class="facts reveal">
+          <h2 class="sr-only" id="about-h" data-i18n="nav.about">About</h2>
+          <dl class="facts reveal" data-i18n="about.facts">
             <div><dt>Based in</dt><dd>New York / Washington, DC</dd></div>
             <div><dt>Work style</dt><dd>Remote, hybrid or on-site</dd></div>
             <div><dt>Core stack</dt><dd>Playwright, TypeScript, Cypress, Selenium, Java</dd></div>
             <div><dt>Languages</dt><dd>English, Українська, 中文</dd></div>
           </dl>
           <div class="teams reveal">
-            <p>Teams I&rsquo;ve tested for</p>
+            <p data-i18n="about.teams">Teams I&rsquo;ve tested for</p>
             <ul>
               <li>Cooley LLP</li>
               <li>California Community Colleges Technology Center</li>
@@ -576,15 +593,15 @@
     <!-- ================= CONTACT ================= -->
     <section class="contact" id="contact" aria-labelledby="contact-h">
       <div class="wrap">
-        <p class="eyebrow reveal">Contact</p>
-        <h2 class="reveal" id="contact-h">Let&rsquo;s talk about your quality.</h2>
-        <p class="lead reveal">Open to Senior SDET, Test Architect and Staff QA roles, full-time or contract, and to consulting projects.</p>
+        <p class="eyebrow reveal" data-i18n="contact.eyebrow">Contact</p>
+        <h2 class="reveal" id="contact-h" data-i18n="contact.title">Let&rsquo;s talk about your quality.</h2>
+        <p class="lead reveal" data-i18n="contact.lead">Open to Senior SDET, Test Architect and Staff QA roles, full-time or contract, and to consulting projects.</p>
         <div class="ctas reveal">
-          <a class="pill solid" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener">Book a 30-minute call</a>
+          <a class="pill solid" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener" data-i18n="cta.call">Book a 30-minute call</a>
           <a class="pill on-dark" href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a>
         </div>
         <p class="elsewhere reveal">
-          <a href="mailto:ianagrytsenko@gmail.com?subject=CV%20request&amp;body=Hi%20Iana%2C%0A%0ACould%20you%20send%20me%20your%20current%20CV%3F%0A%0ARole%20/%20company%3A%20%0A">CV on request</a>
+          <a href="mailto:ianagrytsenko@gmail.com?subject=CV%20request&amp;body=Hi%20Iana%2C%0A%0ACould%20you%20send%20me%20your%20current%20CV%3F%0A%0ARole%20/%20company%3A%20%0A" data-i18n="contact.cv">CV on request</a>
           <a href="https://www.linkedin.com/in/ianagrytsenko" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://github.com/janagrit" target="_blank" rel="noopener">GitHub</a>
         </p>
@@ -595,21 +612,22 @@
   <footer>
     <div class="wrap">
       <span>&copy; 2026 Iana Grytsenko</span>
-      <span>New York / Washington, DC</span>
+      <span data-i18n="footer.city">New York / Washington, DC</span>
     </div>
   </footer>
 
   <!-- mobile bottom tabs -->
   <nav class="tabbar" aria-label="Main (mobile)">
     <ul>
-            <li><a href="#services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6z"/></svg>Services</a></li>
-      <li><a href="#projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Projects</a></li>
-      <li><a href="#articles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/><path d="M8 10h8M8 14h8M8 18h5"/></svg>Articles</a></li>
-      <li><a href="#about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>About</a></li>
-      <li><a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Contact</a></li>
+            <li><a href="#services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6z"/></svg><span data-i18n="nav.services">Services</span></a></li>
+      <li><a href="#projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span data-i18n="nav.projects">Projects</span></a></li>
+      <li><a href="#articles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/><path d="M8 10h8M8 14h8M8 18h5"/></svg><span data-i18n="nav.articles">Articles</span></a></li>
+      <li><a href="#about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span data-i18n="nav.about">About</span></a></li>
+      <li><a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-i18n="tab.contact">Contact</span></a></li>
     </ul>
   </nav>
 
+  <script src="js/i18n.js"></script>
   <script>
     // Fade sections in as they scroll into view (CSS skips this when reduced motion is on).
     const reveals = document.querySelectorAll('.reveal');
