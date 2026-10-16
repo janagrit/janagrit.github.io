@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="Iana Grytsenko | Quality Engineering, End to End">
   <meta name="twitter:image" content="https://janagrit.github.io/images/og.jpg">
   <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#f9f9f7">
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Iana G">
@@ -29,283 +29,157 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Iana Grytsenko", "jobTitle": "Test Automation Architect and SDET", "url": "https://janagrit.github.io/", "image": "https://janagrit.github.io/images/og.jpg", "address": {"@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US"}, "knowsAbout": ["Test automation", "Playwright", "TypeScript", "AI agent testing", "API testing", "Performance testing", "Accessibility testing", "CI/CD"], "knowsLanguage": ["English", "Ukrainian", "Chinese"], "sameAs": ["https://www.linkedin.com/in/ianagrytsenko", "https://github.com/janagrit"]}</script>
-  <script>document.documentElement.classList.add("js");</script>
   <style>
-    /* ---------- tokens ---------- */
+    /* ---------- tokens: warm paper, serif headings, quiet cards ---------- */
     :root {
-      --bg: #fafafa;
-      --white: #ffffff;
-      --ink: #19152f;          /* near-black with a violet cast */
-      --sub: #5c5870;
-      --line: #e6e4ee;
-      --night: #000000;
-      --night-2: #0d0b1a;
-      --violet: #b26ff8;       /* decorative */
-      --violet-ink: #6d3fd6;   /* text-safe violet */
-      --blue: #1e85e9;
-      --grad: linear-gradient(90deg, #9a5cf0 0%, #7a63ee 45%, #1e85e9 100%);   /* darker start keeps gradient text readable on light grey */
-      --grad-btn: linear-gradient(90deg, #7a4fe0 0%, #1668c9 100%);
-      --sans: "Public Sans", -apple-system, "Segoe UI", system-ui, sans-serif;
+      --bg: #f9f9f7;
+      --band: #edece7;          /* hero and contact bands */
+      --card: #fcfcfb;
+      --sand: #e6e3d9;          /* card thumbnail backdrop */
+      --ink: #0b0b0b;
+      --sub: #52514e;
+      --faint: #7a7873;
+      --ring: rgba(11, 11, 11, .1);
+      --ring-strong: rgba(11, 11, 11, .2);
+      --live: #2f6b3a;
+      --wip: #8a5a00;
+      --serif: "Source Serif 4", ui-serif, Georgia, "Times New Roman", serif;
+      --sans: "Inter", ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
       --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-      --max: 1200px;
-      --radius: 20px;
-      --nav-h: 76px;
+      --max: 1088px;
+      --nav-h: 56px;
+      --radius: 16px;
+      --card-shadow: 0 0 0 1px var(--ring), 0 1px 2px rgba(11, 11, 11, .08);
+      --card-shadow-hover: 0 0 0 1px var(--ring-strong), 0 10px 30px rgba(11, 11, 11, .08);
     }
 
     /* ---------- base ---------- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
     img { display: block; max-width: 100%; }
-    a { color: var(--violet-ink); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    p a:not(.pill), dd a { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
-    p.links a, p.elsewhere a { text-decoration: none; }
-    p.links a:hover, p.elsewhere a:hover { text-decoration: underline; }
-    a:focus-visible, button:focus-visible { outline: 2px solid var(--violet-ink); outline-offset: 3px; border-radius: 8px; }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 8px; }
     .skip { position: absolute; left: -9999px; }
-    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     .skip:focus { left: 16px; top: 12px; z-index: 100; background: var(--ink); color: #fff; padding: 8px 14px; border-radius: 8px; }
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
     section { scroll-margin-top: var(--nav-h); }
-    .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--violet-ink); margin-bottom: 18px; }
-    .h2 { font-size: clamp(32px, 4.4vw, 52px); font-weight: 300; letter-spacing: -.02em; line-height: 1.12; max-width: 20ch; }
-    .lead { color: var(--sub); font-size: 19px; max-width: 62ch; margin-top: 18px; }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 400; }
+    h2 { font-size: 28px; line-height: 1.4; letter-spacing: -.025em; }
+    .section-sub { margin-top: 4px; color: var(--sub); font-size: 16px; }
 
-    /* pill buttons */
-    .pill {
-      display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 999px;
-      font: 600 16px/1 var(--sans); color: var(--ink); background: transparent; border: 1.5px solid var(--violet);
-      transition: background .2s, color .2s, transform .15s;
-    }
-    .pill:hover { text-decoration: none; background: var(--violet); color: #fff; }
-    .pill.solid { background: var(--grad-btn); border-color: transparent; color: #fff; }
-    .pill.solid:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(122, 79, 224, .35); }
-    .pill.on-dark { color: #fff; }
-    .pill svg { width: 16px; height: 16px; }
+    /* buttons */
+    .btn { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 10px; font: 500 15px/1 var(--sans); text-decoration: none; white-space: nowrap; transition: background .15s, box-shadow .15s; }
+    .btn.primary { background: var(--ink); color: #fff; }
+    .btn.primary:hover { background: #2a2a28; }
+    .btn.secondary { background: rgba(255, 255, 255, .55); color: var(--ink); box-shadow: 0 0 0 1px var(--ring), 0 1px 2px rgba(11, 11, 11, .06); }
+    .btn.secondary:hover { background: #fff; }
 
     /* ---------- top nav ---------- */
-    .topnav { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, .92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
-    .topnav .wrap { height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .brand { display: flex; align-items: center; gap: 12px; color: var(--ink); font-weight: 600; font-size: 17px; letter-spacing: -.01em; }
-    .brand:hover { text-decoration: none; }
-    .brand img { width: 36px; height: 36px; border-radius: 9px; }
-    .navlinks { display: flex; gap: 36px; list-style: none; }
-    .navlinks a { color: var(--ink); font-size: 16px; font-weight: 400; }
-    .navlinks a:hover, .navlinks a[aria-current] { color: var(--violet-ink); text-decoration: none; }
-    .topnav .pill { padding: 11px 22px; font-size: 15px; }
-    .nav-end { display: flex; align-items: center; gap: 14px; flex: none; }
-    .langs { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid var(--line); border-radius: 999px; }
-    .langs button { font: 600 13px/1 var(--sans); color: var(--sub); background: transparent; border: 0; border-radius: 999px; padding: 8px 12px; cursor: pointer; }
+    .topnav { position: sticky; top: 0; z-index: 50; background: rgba(249, 249, 247, .92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--ring); }
+    .topnav .bar { height: var(--nav-h); display: flex; align-items: center; gap: 24px; padding: 0 16px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 21px; letter-spacing: -.02em; text-decoration: none; white-space: nowrap; }
+    .brand img { width: 26px; height: 26px; border-radius: 7px; }
+    .navlinks { display: flex; gap: 4px; list-style: none; }
+    .navlinks a { display: block; padding: 6px 10px; border-radius: 7px; font-size: 14px; text-decoration: none; color: var(--ink); }
+    .navlinks a:hover { background: rgba(11, 11, 11, .05); }
+    .navlinks a[aria-current] { background: rgba(11, 11, 11, .07); }
+    .nav-end { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+    .langs { display: inline-flex; gap: 2px; padding: 2px; border-radius: 9px; box-shadow: 0 0 0 1px var(--ring); background: var(--card); }
+    .langs button { font: 500 13px/1 var(--sans); color: var(--sub); background: transparent; border: 0; border-radius: 7px; padding: 7px 10px; cursor: pointer; }
     .langs button[aria-pressed="true"] { background: var(--ink); color: #fff; }
     .langs button:hover:not([aria-pressed="true"]) { color: var(--ink); }
+    .topnav .btn { height: 32px; padding: 0 12px; font-size: 14px; border-radius: 8px; }
 
-    /* ---------- hero (night sky) ---------- */
-    .hero {
-      position: relative; overflow: hidden; color: #fff; text-align: center;
-      background-color: var(--night);
-      background-image:
-        radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,.9) 50%, transparent 51%),
-        radial-gradient(1px 1px at 28% 62%, rgba(255,255,255,.7) 50%, transparent 51%),
-        radial-gradient(1.5px 1.5px at 41% 27%, rgba(255,255,255,.85) 50%, transparent 51%),
-        radial-gradient(1px 1px at 57% 74%, rgba(255,255,255,.6) 50%, transparent 51%),
-        radial-gradient(1px 1px at 69% 12%, rgba(255,255,255,.8) 50%, transparent 51%),
-        radial-gradient(1.5px 1.5px at 83% 48%, rgba(255,255,255,.75) 50%, transparent 51%),
-        radial-gradient(1px 1px at 92% 22%, rgba(255,255,255,.7) 50%, transparent 51%),
-        radial-gradient(1px 1px at 7% 81%, rgba(255,255,255,.6) 50%, transparent 51%),
-        radial-gradient(1px 1px at 35% 9%, rgba(255,255,255,.7) 50%, transparent 51%),
-        radial-gradient(1px 1px at 76% 86%, rgba(255,255,255,.5) 50%, transparent 51%);
-      background-size: 420px 420px, 380px 380px, 520px 520px, 300px 300px, 460px 460px, 560px 560px, 340px 340px, 400px 400px, 480px 480px, 360px 360px;
-    }
-    .hero::after {
-      /* the planet's horizon glow */
-      content: ""; position: absolute; left: -20%; right: -20%; bottom: -62%; height: 100%;
-      border-radius: 50%;
-      background: radial-gradient(ellipse at 50% 0%, rgba(134, 113, 243, .55) 0%, rgba(30, 133, 233, .22) 18%, rgba(0, 0, 0, 0) 42%);
-      box-shadow: 0 -1px 0 rgba(178, 111, 248, .55);
-      pointer-events: none;
-    }
-    .hero .wrap { position: relative; z-index: 1; padding-top: clamp(96px, 14vw, 168px); padding-bottom: clamp(140px, 18vw, 230px); }
-    .hero h1 { font-weight: 300; font-size: clamp(42px, 7.4vw, 92px); line-height: 1.04; letter-spacing: -.025em; }
-    .hero .sub { margin: 26px auto 0; max-width: 46ch; font-size: clamp(18px, 2vw, 22px); font-weight: 300; color: rgba(255, 255, 255, .86); }
-    .hero .who { margin-top: 22px; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .6); }
-    .hero .ctas { margin-top: 40px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    /* ---------- hero band ---------- */
+    .hero { background: linear-gradient(180deg, var(--band) 0%, var(--band) 70%, var(--bg) 100%); }
+    .hero .wrap { padding-top: clamp(56px, 9vw, 104px); padding-bottom: clamp(56px, 8vw, 88px); }
+    .hero h1 { font-size: clamp(38px, 5.4vw, 52px); line-height: 1.1; letter-spacing: -.025em; max-width: 18ch; }
+    .hero .sub { margin-top: 16px; max-width: 40em; color: var(--sub); font-size: 18px; line-height: 1.55; }
+    .hero .who { margin-top: 14px; font-size: 14px; color: var(--faint); }
+    .hero .ctas { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
 
-    /* ---------- stats ---------- */
-    .stats { background: var(--white); border-bottom: 1px solid var(--line); }
-    .stats .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; padding-top: 64px; padding-bottom: 64px; }
-    .stat b { display: block; font-size: clamp(48px, 6vw, 80px); font-weight: 300; line-height: 1; letter-spacing: -.03em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .stat span { display: block; margin-top: 12px; font-size: 16px; color: var(--sub); max-width: 22ch; }
+    /* ---------- sections ---------- */
+    .block { padding: clamp(48px, 7vw, 72px) 0; }
+    .grid { margin-top: 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
-    /* ---------- services ---------- */
-    .services { padding: clamp(80px, 10vw, 128px) 0; }
-    .svc-grid { margin-top: 56px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-    .svc { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 36px 36px 30px; position: relative; overflow: hidden; }
-    .svc::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 3px; background: var(--grad); opacity: 0; transition: opacity .25s; }
-    .svc:hover::before { opacity: 1; }
-    .svc-head { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-    .svc-icon { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; background: linear-gradient(135deg, rgba(178,111,248,.14), rgba(30,133,233,.14)); color: var(--violet-ink); flex: none; }
-    .svc-icon svg { width: 26px; height: 26px; }
-    .svc h3 { font-size: 22px; font-weight: 600; letter-spacing: -.01em; }
-    .svc p.what { color: var(--sub); font-size: 16px; margin-bottom: 18px; }
-    .svc ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
-    .svc li { position: relative; padding-left: 20px; font-size: 15.5px; }
-    .svc li::before { content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: var(--grad); }
-    .svc .proof { margin-top: 22px; padding-top: 16px; border-top: 1px dashed var(--line); font-size: 14.5px; color: var(--sub); }
-    .svc .proof b { color: var(--ink); font-weight: 600; }
+    /* cards */
+    .card { display: flex; flex-direction: column; background: var(--card); border-radius: var(--radius); box-shadow: var(--card-shadow); overflow: hidden; transition: box-shadow .2s; }
+    a.card { text-decoration: none; color: inherit; }
+    a.card:hover, .card:has(.links a:hover) { box-shadow: var(--card-shadow-hover); }
+    .card h3 { font-size: 20px; line-height: 1.25; letter-spacing: -.01em; }
+    .card p { margin-top: 8px; color: var(--sub); font-size: 15px; line-height: 1.45; }
 
-    .engage { margin-top: 24px; background: var(--ink); color: #fff; border-radius: var(--radius); padding: 36px; display: grid; grid-template-columns: 260px 1fr; gap: 32px; align-items: center; }
-    .engage h3 { font-size: 22px; font-weight: 600; }
-    .engage h3 + p { color: rgba(255,255,255,.7); font-size: 15px; margin-top: 6px; }
-    .engage ul { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-    .engage li { border-left: 2px solid var(--violet); padding-left: 14px; }
-    .engage li b { display: block; font-weight: 600; font-size: 16px; }
-    .engage li span { font-size: 14px; color: rgba(255,255,255,.7); }
+    /* project cards: thumbnail inset on a sand backdrop */
+    .media { height: 176px; background: var(--sand); padding: 28px 0 0 32px; overflow: hidden; border-bottom: 1px solid var(--ring); }
+    .media img, .media .term { width: 100%; height: 100%; border-radius: 8px 0 0 0; box-shadow: 0 0 0 1px var(--ring), 0 8px 24px rgba(11, 11, 11, .12); }
+    .media img { object-fit: cover; object-position: top left; }
+    .term { background: #171715; padding: 14px 16px; font-family: var(--mono); font-size: 12px; line-height: 1.7; color: #cfcdc6; white-space: nowrap; }
+    .term .ok { color: #7cc48a; } .term .dim { color: #8a877f; } .term .hl { color: #bdb6a3; }
+    .card .body { padding: 20px 20px 22px; display: flex; flex-direction: column; flex: 1; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .tag { font-size: 12px; font-weight: 500; padding: 3px 9px; border-radius: 999px; color: var(--sub); box-shadow: inset 0 0 0 1px var(--ring); }
+    .tag.live { color: var(--live); box-shadow: inset 0 0 0 1px rgba(47, 107, 58, .3); }
+    .tag.wip { color: var(--wip); box-shadow: inset 0 0 0 1px rgba(138, 90, 0, .3); }
+    .card p a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--ring-strong); }
+    .card p a:hover { text-decoration-color: var(--ink); }
+    .card .role { margin-top: 12px; font-size: 14px; }
+    .card .role b { color: var(--ink); font-weight: 500; }
+    .card .links { margin-top: auto; padding-top: 16px; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; font-weight: 500; }
+    .card .links a { color: var(--ink); text-decoration: none; }
+    .card .links a::after { content: " \2197"; }
+    .card .links a:hover { text-decoration: underline; text-underline-offset: 2px; }
 
-    /* ---------- projects ---------- */
-    .projects { background: var(--white); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: clamp(80px, 10vw, 128px) 0; }
-    .proj-grid { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .proj { display: flex; flex-direction: column; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .2s, box-shadow .2s; }
-    .proj:hover { transform: translateY(-4px); box-shadow: 0 22px 50px rgba(25, 21, 47, .1); }
-    .proj .media { aspect-ratio: 16 / 10; background: var(--night-2); overflow: hidden; position: relative; }
-    .proj .media img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
-    .proj .media .term { position: absolute; inset: 0; padding: 22px; font-family: var(--mono); font-size: 13px; line-height: 1.95; color: #c9c6d9; }
-    .term .ok { color: #4cd964; } .term .dim { color: #7d7894; } .term .hl { color: #b9a6ff; }
-    .proj .body { padding: 26px 26px 28px; display: flex; flex-direction: column; flex: 1; }
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-    .tag { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; background: rgba(134,113,243,.12); color: var(--violet-ink); }
-    .tag.live { background: rgba(52, 168, 83, .12); color: #1d7a3a; }
-    .tag.wip { background: rgba(232, 160, 32, .16); color: #8a5a00; }
-    .proj h3 { font-size: 21px; font-weight: 600; line-height: 1.3; letter-spacing: -.01em; }
-    .proj p { margin-top: 10px; color: var(--sub); font-size: 15.5px; }
-    .proj .role { margin-top: 14px; font-size: 14px; color: var(--sub); }
-    .proj .role b { color: var(--ink); font-weight: 600; }
-    .proj .links { margin-top: auto; padding-top: 18px; display: flex; flex-wrap: wrap; gap: 6px 20px; font-weight: 600; font-size: 15px; }
-    .proj .links a::after { content: " \2197"; }
+    /* currently building: text-only cards */
+    .subhead { margin-top: 40px; font-size: 14px; font-weight: 500; color: var(--faint); }
+    .mini { padding: 20px; }
+    .mini b { display: block; font-family: var(--serif); font-size: 18px; font-weight: 400; letter-spacing: -.01em; }
+    .grid.two { grid-template-columns: repeat(2, 1fr); margin-top: 12px; }
 
-    .building { margin-top: 32px; border: 1.5px dashed rgba(134,113,243,.5); border-radius: var(--radius); padding: 28px 32px; display: grid; grid-template-columns: 220px 1fr 1fr; gap: 28px; align-items: start; }
-    .building .k { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--violet-ink); display: flex; align-items: center; gap: 10px; }
-    .building .k::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 0 4px rgba(178,111,248,.2); }
-    .building b { display: block; font-weight: 600; margin-bottom: 4px; }
-    .building p { color: var(--sub); font-size: 15px; }
+    /* article cards: text-only, metadata line on top */
+    .art { padding: 22px 22px 20px; }
+    .art .meta { font-size: 13px; color: var(--faint); }
+    .art h3 { margin-top: 10px; }
+    .art .more { margin-top: auto; padding-top: 16px; font-size: 14px; font-weight: 500; }
+    .art.soon { background: transparent; box-shadow: inset 0 0 0 1px var(--ring); }
+    .art.soon h3, .art.soon p { color: var(--sub); }
 
-    /* ---------- articles ---------- */
-    .articles { padding: clamp(80px, 10vw, 128px) 0 0; }
-    .art-list { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .art { display: block; color: var(--ink); background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; position: relative; overflow: hidden; transition: transform .2s, box-shadow .2s; }
-    .art::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 3px; background: var(--grad); }
-    .art:hover { text-decoration: none; transform: translateY(-4px); box-shadow: 0 22px 50px rgba(25, 21, 47, .1); }
-    .art .meta { font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--violet-ink); }
-    .art h3 { margin-top: 12px; font-size: 26px; font-weight: 600; letter-spacing: -.015em; line-height: 1.25; }
-    .art p { margin-top: 10px; color: var(--sub); font-size: 16px; }
-    .art .more { display: inline-block; margin-top: 18px; font-weight: 600; color: var(--violet-ink); }
-    .art.soon { background: transparent; border-style: dashed; color: var(--sub); }
-    .art.soon::before { display: none; }
-    .art.soon:hover { transform: none; box-shadow: none; }
+    /* ---------- contact band ---------- */
+    .contact { background: var(--band); border-top: 1px solid var(--ring); }
+    .contact .wrap { padding-top: clamp(56px, 8vw, 88px); padding-bottom: clamp(56px, 8vw, 88px); }
+    .contact h2 { font-size: clamp(32px, 4.4vw, 44px); line-height: 1.15; max-width: 20ch; }
+    .contact .lead { margin-top: 14px; max-width: 40em; color: var(--sub); font-size: 17px; }
+    .contact .ctas { margin-top: 26px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .contact .elsewhere { margin-top: 22px; display: flex; gap: 20px; font-size: 15px; }
+    .contact .elsewhere a { color: var(--sub); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ring-strong); }
+    .contact .elsewhere a:hover { color: var(--ink); text-decoration-color: var(--ink); }
 
-    /* ---------- how I work ---------- */
-    .process { padding: clamp(80px, 10vw, 128px) 0; }
-    .steps { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; counter-reset: s; list-style: none; }
-    .steps li { padding: 0 32px 0 0; position: relative; }
-    .steps li::before { counter-increment: s; content: "0" counter(s); display: block; font-size: 64px; font-weight: 300; line-height: 1; letter-spacing: -.03em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 18px; }
-    .steps li::after { content: ""; position: absolute; top: 32px; left: 92px; right: 32px; height: 1px; background: var(--line); }
-    .steps li:last-child::after { display: none; }
-    .steps b { display: block; font-size: 20px; font-weight: 600; margin-bottom: 8px; }
-    .steps p { color: var(--sub); font-size: 16px; }
-
-    /* ---------- about ---------- */
-    .about { background: var(--white); border-top: 1px solid var(--line); padding: clamp(80px, 10vw, 128px) 0; }
-    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 64px; align-items: center; }
-    .photo { border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 5; background: var(--line); box-shadow: 0 26px 60px rgba(25,21,47,.14); }
-    /* zoom from the bottom so the shop sign above the door stays out of frame */
-    .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 57% 100%; transform: scale(1.35); transform-origin: 57% 100%; }
-    .about p.txt { color: var(--sub); font-size: 17.5px; margin-top: 18px; }
-    .about p.txt strong { color: var(--ink); font-weight: 600; }
-    .facts { margin-top: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 32px; }
-    .facts div { border-top: 1px solid var(--line); padding-top: 12px; }
-    .facts dt { font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--sub); }
-    .facts dd { font-size: 16px; font-weight: 500; margin-top: 4px; }
-    .teams { margin-top: 36px; }
-    .teams p { font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--sub); margin-bottom: 12px; }
-    .teams ul { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; }
-    .teams li { padding: 9px 16px; border: 1px solid var(--line); border-radius: 999px; font-size: 15px; font-weight: 500; color: var(--ink); background: var(--bg); }
-
-    /* ---------- contact (night) ---------- */
-    .contact { background: var(--night); color: #fff; position: relative; overflow: hidden; text-align: center; padding: clamp(96px, 12vw, 150px) 0; }
-    .contact::before { content: ""; position: absolute; left: 50%; top: 100%; width: 1400px; height: 900px; transform: translate(-50%, -38%); border-radius: 50%; background: radial-gradient(ellipse at 50% 0%, rgba(134,113,243,.45) 0%, rgba(30,133,233,.16) 22%, rgba(0,0,0,0) 46%); pointer-events: none; }
-    .contact .wrap { position: relative; }
-    .contact .eyebrow { color: #c9b5ff; }
-    .contact h2 { font-weight: 300; font-size: clamp(36px, 5.6vw, 68px); letter-spacing: -.025em; line-height: 1.08; }
-    .contact p.lead { color: rgba(255,255,255,.78); margin: 22px auto 0; }
-    .contact .ctas { margin-top: 40px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .contact .elsewhere { margin-top: 36px; display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; font-size: 16px; }
-    .contact .elsewhere a { color: #fff; opacity: .85; }
-    .contact .elsewhere a:hover { opacity: 1; }
-
-    footer { background: var(--night); color: rgba(255,255,255,.55); border-top: 1px solid rgba(255,255,255,.1); font-size: 14px; }
-    footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 26px; padding-bottom: 30px; }
-
-    /* ---------- reveal ---------- */
-    @media (prefers-reduced-motion: no-preference) {
-      html { scroll-behavior: smooth; }
-      .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
-      .js .reveal.visible { opacity: 1; transform: none; }
-    }
+    footer { border-top: 1px solid var(--ring); font-size: 13px; color: var(--faint); }
+    footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 20px; padding-bottom: 24px; }
 
     /* ---------- mobile bottom tabs ---------- */
     .tabbar { display: none; }
 
-    .navlinks a, .brand { white-space: nowrap; }
-    /* Russian labels are longer: make room in the top bar on small laptops and tablets */
-    @media (max-width: 1100px) {
-      .navlinks { gap: 22px; }
-      .topnav .pill { display: none; }
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr 1fr; }
     }
-    @media (max-width: 1020px) {
-      .proj-grid, .art-list { grid-template-columns: 1fr 1fr; }
-      .engage { grid-template-columns: 1fr; }
-      .building { grid-template-columns: 1fr 1fr; }
-      .building .k { grid-column: 1 / -1; }
-    }
-    @media (max-width: 860px) {
-      :root { --nav-h: 60px; }
-      .wrap { padding: 0 20px; }
-      .navlinks, .topnav .pill { display: none; }
-      .stats .wrap { grid-template-columns: 1fr 1fr; gap: 36px 20px; padding-top: 48px; padding-bottom: 48px; }
-      .svc-grid, .proj-grid, .steps, .about-grid, .building, .art-list { grid-template-columns: 1fr; }
-      .art { padding: 26px 24px; }
-      .svc { padding: 28px 24px 24px; }
-      .svc ul { grid-template-columns: 1fr; }
-      .engage { padding: 28px 24px; }
-      .engage ul { grid-template-columns: 1fr 1fr; }
-      .steps { gap: 36px; }
-      .steps li { padding: 0; }
-      .steps li::after { display: none; }
-      .about-grid { gap: 36px; }
-      .photo { aspect-ratio: 4 / 3; }
-      .photo img { transform: scale(1.6); object-position: 57% 96%; transform-origin: 57% 96%; }
-      .facts { grid-template-columns: 1fr; }
-      .h2 br { display: none; }
-      body { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+    @media (max-width: 720px) {
+      .wrap { padding: 0 16px; }
+      .topnav .bar { padding: 0 16px; }
+      .navlinks, .topnav .btn { display: none; }
+      .grid, .grid.two { grid-template-columns: 1fr; }
+      .hero .ctas .btn, .contact .ctas .btn { flex: 1 1 auto; justify-content: center; }
+      body { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
       .tabbar {
         display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
-        background: rgba(255, 255, 255, .95); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-        border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom);
+        background: rgba(249, 249, 247, .95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid var(--ring); padding-bottom: env(safe-area-inset-bottom);
       }
-      .tabbar ul { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); height: 64px; }
-      .tabbar a {
-        position: relative; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-        font-size: 11px; font-weight: 500; color: var(--sub); -webkit-tap-highlight-color: transparent;
-      }
-      .tabbar a:hover { text-decoration: none; }
-      .tabbar svg { width: 22px; height: 22px; }
-      .tabbar a[aria-current] { color: var(--violet-ink); }
-      .tabbar a[aria-current]::before { content: ""; position: absolute; top: 0; left: 28%; right: 28%; height: 3px; border-radius: 0 0 3px 3px; background: var(--grad); }
-    }
-    @media (max-width: 420px) {
-      .engage ul { grid-template-columns: 1fr; }
-      .hero .ctas .pill, .contact .ctas .pill { width: 100%; justify-content: center; }
+      .tabbar ul { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); height: 60px; }
+      .tabbar a { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 500; color: var(--faint); text-decoration: none; -webkit-tap-highlight-color: transparent; }
+      .tabbar svg { width: 21px; height: 21px; }
+      .tabbar a[aria-current] { color: var(--ink); }
     }
   </style>
 </head>
@@ -313,15 +187,13 @@
   <a class="skip" href="#main">Skip to main content</a>
 
   <header class="topnav">
-    <div class="wrap">
-      <a class="brand" href="#top"><img src="icon-192.png?v=2" width="36" height="36" alt="">Iana Grytsenko</a>
+    <div class="bar">
+      <a class="brand" href="#top"><img src="icon-192.png?v=2" width="26" height="26" alt="">Iana Grytsenko</a>
       <nav aria-label="Main">
         <ul class="navlinks">
-          <li><a href="#services" data-i18n="nav.services">Services</a></li>
           <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
           <li><a href="#articles" data-i18n="nav.articles">Articles</a></li>
-          <li><a href="#process" data-i18n="nav.process">How I work</a></li>
-          <li><a href="#about" data-i18n="nav.about">About</a></li>
+          <li><a href="#contact" data-i18n="tab.contact">Contact</a></li>
         </ul>
       </nav>
       <div class="nav-end">
@@ -329,7 +201,7 @@
           <button type="button" data-set="en" aria-pressed="true" lang="en">EN</button>
           <button type="button" data-set="ru" aria-pressed="false" lang="ru">RU</button>
         </div>
-        <a class="pill" href="#contact" data-i18n="nav.contact">Contact me</a>
+        <a class="btn primary" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener" data-i18n="nav.call">Book a call</a>
       </div>
     </div>
   </header>
@@ -339,125 +211,24 @@
     <!-- ================= HERO ================= -->
     <section class="hero" id="top" aria-labelledby="hero-h">
       <div class="wrap">
-        <h1 id="hero-h" data-i18n="hero.title">Quality engineering,<br>end to end</h1>
+        <h1 id="hero-h" data-i18n="hero.title">Quality engineering, end to end</h1>
         <p class="sub" data-i18n="hero.sub">Test automation, AI agent testing, APIs, performance and accessibility, designed and built by one engineer.</p>
         <p class="who" data-i18n="hero.who">Iana Grytsenko &middot; Test Automation Architect &middot; SDET</p>
         <div class="ctas">
-          <a class="pill solid" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener" data-i18n="cta.call">Book a 30-minute call</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= STATS ================= -->
-    <section class="stats" aria-label="Results in numbers">
-      <div class="wrap">
-        <div class="stat reveal"><b>6+</b><span data-i18n="stats.years">years in QA and test automation</span></div>
-        <div class="stat reveal"><b>5+</b><span data-i18n="stats.lines">product lines automated as the only SDET</span></div>
-        <div class="stat reveal"><b>45%</b><span data-i18n="stats.coverage">more automated coverage after a Cypress to Playwright migration</span></div>
-        <div class="stat reveal"><b>60%</b><span data-i18n="stats.flaky">fewer flaky-test false positives</span></div>
-      </div>
-    </section>
-
-    <!-- ================= SERVICES ================= -->
-    <section class="services" id="services" aria-labelledby="svc-h">
-      <div class="wrap">
-        <p class="eyebrow reveal" data-i18n="nav.services">Services</p>
-        <h2 class="h2 reveal" id="svc-h" data-i18n="svc.title">One QA engineer.<br>The whole quality stack.</h2>
-        <p class="lead reveal" data-i18n="svc.lead">From the first test to the release pipeline, and from the UI down to the queues behind it. I design the strategy and write the code myself.</p>
-
-        <div class="svc-grid">
-          <article class="svc reveal">
-            <div class="svc-head">
-              <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="5" y="7" width="14" height="11" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9.5 15h5M2 12h3M19 12h3"/></svg></span>
-              <h3 data-i18n="svc.ai.h">AI testing</h3>
-            </div>
-            <p class="what" data-i18n="svc.ai.what">Proof that your AI agent behaves before customers find out it doesn&rsquo;t.</p>
-            <ul data-i18n="svc.ai.list">
-              <li>Adversarial evaluation of AI agents</li>
-              <li>Custom eval metrics with DeepEval</li>
-              <li>Regression gates for model changes</li>
-              <li>End-to-end tests through the UI</li>
-              <li>AI-assisted test writing with Claude Code and MCP</li>
-              <li>Quality reviews of AI-generated tests</li>
-            </ul>
-            <p class="proof" data-i18n="svc.ai.proof"><b>10/10</b> attacks contained by a voice AI agent under test</p>
-          </article>
-
-          <article class="svc reveal">
-            <div class="svc-head">
-              <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 4l-4 16"/></svg></span>
-              <h3 data-i18n="svc.auto.h">Test automation</h3>
-            </div>
-            <p class="what" data-i18n="svc.auto.what">Frameworks built like production code, so your team keeps using them after I leave.</p>
-            <ul data-i18n="svc.auto.list">
-              <li>Frameworks from scratch: Playwright, Cypress, Selenium</li>
-              <li>Migration to Playwright</li>
-              <li>Flaky-suite rescue</li>
-              <li>Component, integration and E2E testing</li>
-              <li>Desktop and mobile web</li>
-              <li>CI/CD: GitHub Actions, Azure DevOps, GitLab, Jenkins</li>
-            </ul>
-            <p class="proof" data-i18n="svc.auto.proof"><b>9 weeks</b> to a full end-to-end framework on a legal-tech platform</p>
-          </article>
-
-          <article class="svc reveal">
-            <div class="svc-head">
-              <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01"/></svg></span>
-              <h3 data-i18n="svc.api.h">API, backend and performance</h3>
-            </div>
-            <p class="what" data-i18n="svc.api.what">Checks for the parts users never see but always feel.</p>
-            <ul data-i18n="svc.api.list">
-              <li>REST and GraphQL API testing</li>
-              <li>Contract testing between services</li>
-              <li>Event-driven AWS: Lambda, SQS, SNS</li>
-              <li>Resilience: retries, idempotency, dead-letter queues</li>
-              <li>Load and throughput testing</li>
-              <li>Production monitoring with CloudWatch and Allure</li>
-            </ul>
-            <p class="proof" data-i18n="svc.api.proof"><b>5+</b> product lines on AWS microservices covered by one automation engineer</p>
-          </article>
-
-          <article class="svc reveal">
-            <div class="svc-head">
-              <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-5-5M8 11l2 2 4-4"/></svg></span>
-              <h3 data-i18n="svc.audit.h">Website quality audits</h3>
-            </div>
-            <p class="what" data-i18n="svc.audit.what">A plain-English list of what is costing a business site its customers, fixes first.</p>
-            <ul data-i18n="svc.audit.list">
-              <li>Accessibility to WCAG 2.2 AA</li>
-              <li>Technical SEO checks</li>
-              <li>Broken links</li>
-              <li>Mobile layout and overflow</li>
-              <li>Visual regression</li>
-              <li>A findings report ranked by impact</li>
-            </ul>
-            <p class="proof" data-i18n="svc.audit.proof"><b>19 passed, 3 failed</b> on the first run for Uptic Hospitality, each failure turned into a fix</p>
-          </article>
-        </div>
-
-        <div class="engage reveal">
-          <div>
-            <h3 data-i18n="engage.h">Ways to work together</h3>
-            <p data-i18n="engage.p">Pick what fits the problem.</p>
-          </div>
-          <ul data-i18n="engage.list">
-            <li><b>Full-time role</b><span>Senior SDET, Test Architect, Staff QA</span></li>
-            <li><b>Contract</b><span>Join your team for a project</span></li>
-            <li><b>Fixed-scope audit</b><span>A clear finish line and a written report</span></li>
-            <li><b>Consulting</b><span>Strategy, reviews and coaching</span></li>
-          </ul>
+          <a class="btn primary" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener" data-i18n="cta.call">Book a 30-minute call</a>
+          <a class="btn secondary" href="#projects" data-i18n="hero.projects">See my projects</a>
         </div>
       </div>
     </section>
 
     <!-- ================= PROJECTS ================= -->
-    <section class="projects" id="projects" aria-labelledby="proj-h">
+    <section class="block" id="projects" aria-labelledby="proj-h">
       <div class="wrap">
-        <p class="eyebrow reveal" data-i18n="nav.projects">Projects</p>
-        <h2 class="h2 reveal" id="proj-h" data-i18n="proj.title">Recent work</h2>
+        <h2 id="proj-h" data-i18n="nav.projects">Projects</h2>
+        <p class="section-sub" data-i18n="proj.sub">What I build and test.</p>
 
-        <div class="proj-grid">
-          <article class="proj reveal">
+        <div class="grid">
+          <article class="card">
             <div class="media">
               <div class="term" aria-hidden="true">
                 <div class="dim">$ npm test &mdash; adversarial eval</div>
@@ -477,7 +248,7 @@
             </div>
           </article>
 
-          <article class="proj reveal">
+          <article class="card">
             <div class="media"><img src="images/momup.jpg" width="1120" height="700" loading="lazy" data-i18n-alt="p2.alt" alt="Kids Nearby home page: search for kids' activities in Berlin"></div>
             <div class="body">
               <div class="tags" data-i18n="p2.tags"><span class="tag live">Live</span><span class="tag">QA</span></div>
@@ -488,7 +259,7 @@
             </div>
           </article>
 
-          <article class="proj reveal">
+          <article class="card">
             <div class="media"><img src="images/uptic.jpg" width="1120" height="700" loading="lazy" data-i18n-alt="p3.alt" alt="Uptic Hospitality article page: Independent Hotels Should Think Independently"></div>
             <div class="body">
               <div class="tags" data-i18n="p3.tags"><span class="tag wip">In progress</span><span class="tag">Automation</span></div>
@@ -500,45 +271,45 @@
           </article>
         </div>
 
-        <div class="building reveal">
-          <div class="k" data-i18n="build.k">Currently building</div>
-          <div data-i18n="build.k6"><b>Load-testing demo with k6</b><p>API load tests with pass/fail thresholds, running in GitHub Actions.</p></div>
-          <div data-i18n="build.agent"><b>An AI agent that fixes failing tests</b><p>Claude Code with an MCP server that reads test failures and opens a pull request with the fix.</p></div>
+        <p class="subhead" data-i18n="build.k">Currently building</p>
+        <div class="grid two">
+          <div class="card mini" data-i18n="build.k6"><b>Load-testing demo with k6</b><p>API load tests with pass/fail thresholds, running in GitHub Actions.</p></div>
+          <div class="card mini" data-i18n="build.agent"><b>An AI agent that fixes failing tests</b><p>Claude Code with an MCP server that reads test failures and opens a pull request with the fix.</p></div>
         </div>
       </div>
     </section>
 
     <!-- ================= ARTICLES ================= -->
-    <section class="articles" id="articles" aria-labelledby="art-h">
+    <section class="block" id="articles" aria-labelledby="art-h">
       <div class="wrap">
-        <p class="eyebrow reveal" data-i18n="nav.articles">Articles</p>
-        <h2 class="h2 reveal" id="art-h" data-i18n="art.title">Notes from the work</h2>
-        <div class="art-list">
-          <a class="art reveal" href="articles/ai-agent-noise.html" data-i18n="art.noise">
+        <h2 id="art-h" data-i18n="nav.articles">Articles</h2>
+        <p class="section-sub" data-i18n="art.title">Notes from the work</p>
+        <div class="grid">
+          <a class="card art" href="articles/ai-agent-noise.html" data-i18n="art.noise">
             <div class="meta">AI tools &middot; 6 min read</div>
             <h3>Cutting through the AI agent noise: Hermes Agent, ECC and Arena compared</h3>
             <p>Three popular GitHub projects, three different jobs. Comparison tables: what each one is, where to use it, and why.</p>
             <span class="more">Read the article &rarr;</span>
           </a>
-          <a class="art reveal" href="articles/resume-improvements.html" data-i18n="art.resume" data-i18n-href="art.resume.href">
+          <a class="card art" href="articles/resume-improvements.html" data-i18n="art.resume" data-i18n-href="art.resume.href">
             <div class="meta">Tips &middot; EN / RU &middot; under 5 min</div>
             <h3>5 resume improvements: in less than 5 minutes</h3>
             <p>Copy-ready AI prompts: read your resume like a recruiter, rewrite it with results, pass ATS filters, and tailor it to each job.</p>
             <span class="more">Get the prompts &rarr;</span>
           </a>
-          <a class="art reveal" href="articles/qa-before-and-after-ai.html" data-i18n="art.twoqa">
+          <a class="card art" href="articles/qa-before-and-after-ai.html" data-i18n="art.twoqa">
             <div class="meta">The QA profession &middot; 6 min read</div>
             <h3>Two kinds of QA: learned before AI, and learned with it</h3>
             <p>Different strengths, different blind spots, and what each should borrow from the other.</p>
             <span class="more">Read the article &rarr;</span>
           </a>
-          <a class="art reveal" href="articles/claude-code-qa-workflow.html" data-i18n="art.claude">
+          <a class="card art" href="articles/claude-code-qa-workflow.html" data-i18n="art.claude">
             <div class="meta">AI-assisted QA &middot; 5 min read</div>
             <h3>How I test with Claude Code</h3>
             <p>Start right, write the failing test first, run everything more than once, and give AI quality a floor it can&rsquo;t drop below.</p>
             <span class="more">Read the article &rarr;</span>
           </a>
-          <div class="art soon reveal" data-i18n="art.soon">
+          <div class="card art soon" data-i18n="art.soon">
             <div class="meta">Coming next</div>
             <h3>Videos and more articles</h3>
             <p>Walkthroughs of load testing with k6 and an AI agent that fixes failing tests.</p>
@@ -547,55 +318,16 @@
       </div>
     </section>
 
-    <!-- ================= HOW I WORK ================= -->
-    <section class="process" id="process" aria-labelledby="proc-h">
-      <div class="wrap">
-        <p class="eyebrow reveal" data-i18n="nav.process">How I work</p>
-        <h2 class="h2 reveal" id="proc-h" data-i18n="proc.title">A clear scope<br>with a finish line.</h2>
-        <ol class="steps">
-          <li class="reveal" data-i18n="proc.1"><b>Discover</b><p>A free 30-minute call, then I read your code, CI and tests. You get a written plan with scope and timeline before any build work.</p></li>
-          <li class="reveal" data-i18n="proc.2"><b>Build</b><p>Tests and pipeline changes land as small, reviewed pull requests, with a weekly update on what runs and what it caught.</p></li>
-          <li class="reveal" data-i18n="proc.3"><b>Hand over</b><p>Docs, a recorded walkthrough and pairing sessions, so your team owns the suite after I leave.</p></li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ================= ABOUT ================= -->
-    <section class="about" id="about" aria-labelledby="about-h">
-      <div class="wrap about-grid">
-        <div class="photo reveal"><img src="images/lead-bg2.jpg" width="1170" height="883" loading="lazy" data-i18n-alt="about.alt" alt="Iana Grytsenko, smiling, standing in a doorway in New York"></div>
-        <div>
-          <h2 class="sr-only" id="about-h" data-i18n="nav.about">About</h2>
-          <dl class="facts reveal" data-i18n="about.facts">
-            <div><dt>Based in</dt><dd>New York / Washington, DC</dd></div>
-            <div><dt>Work style</dt><dd>Remote, hybrid or on-site</dd></div>
-            <div><dt>Core stack</dt><dd>Playwright, TypeScript, Cypress, Selenium, Java</dd></div>
-            <div><dt>Languages</dt><dd>English, Українська, 中文</dd></div>
-          </dl>
-          <div class="teams reveal">
-            <p data-i18n="about.teams">Teams I&rsquo;ve tested for</p>
-            <ul>
-              <li>Cooley LLP</li>
-              <li>California Community Colleges Technology Center</li>
-              <li>Amtrak</li>
-              <li>HiLabs</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ================= CONTACT ================= -->
     <section class="contact" id="contact" aria-labelledby="contact-h">
       <div class="wrap">
-        <p class="eyebrow reveal" data-i18n="contact.eyebrow">Contact</p>
-        <h2 class="reveal" id="contact-h" data-i18n="contact.title">Let&rsquo;s talk about your quality.</h2>
-        <p class="lead reveal" data-i18n="contact.lead">Open to Senior SDET, Test Architect and Staff QA roles, full-time or contract, and to consulting projects.</p>
-        <div class="ctas reveal">
-          <a class="pill solid" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener" data-i18n="cta.call">Book a 30-minute call</a>
-          <a class="pill on-dark" href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a>
+        <h2 id="contact-h" data-i18n="contact.title">Let&rsquo;s talk about your quality.</h2>
+        <p class="lead" data-i18n="contact.lead">Open to Senior SDET, Test Architect and Staff QA roles, full-time or contract, and to consulting projects.</p>
+        <div class="ctas">
+          <a class="btn primary" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener" data-i18n="cta.call">Book a 30-minute call</a>
+          <a class="btn secondary" href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a>
         </div>
-        <p class="elsewhere reveal">
+        <p class="elsewhere">
           <a href="https://www.linkedin.com/in/ianagrytsenko" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://github.com/janagrit" target="_blank" rel="noopener">GitHub</a>
         </p>
@@ -613,32 +345,17 @@
   <!-- mobile bottom tabs -->
   <nav class="tabbar" aria-label="Main (mobile)">
     <ul>
-            <li><a href="#services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6z"/></svg><span data-i18n="nav.services">Services</span></a></li>
       <li><a href="#projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span data-i18n="nav.projects">Projects</span></a></li>
       <li><a href="#articles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/><path d="M8 10h8M8 14h8M8 18h5"/></svg><span data-i18n="nav.articles">Articles</span></a></li>
-      <li><a href="#about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span data-i18n="nav.about">About</span></a></li>
       <li><a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-i18n="tab.contact">Contact</span></a></li>
     </ul>
   </nav>
 
   <script src="js/i18n.js"></script>
   <script>
-    // Fade sections in as they scroll into view (CSS skips this when reduced motion is on).
-    const reveals = document.querySelectorAll('.reveal');
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-      }, { threshold: 0.12 });
-      reveals.forEach(el => io.observe(el));
-      // Safety net: never leave content hidden if the observer doesn't fire.
-      setTimeout(() => reveals.forEach(el => el.classList.add('visible')), 3000);
-    } else {
-      reveals.forEach(el => el.classList.add('visible'));
-    }
-
     // Highlight the nav link and tab for the section currently on screen.
     const tabLinks = document.querySelectorAll('.navlinks a, .tabbar a');
-    const spySections = ['top', 'services', 'projects', 'articles', 'process', 'about', 'contact'].map(id => document.getElementById(id));
+    const spySections = ['top', 'projects', 'articles', 'contact'].map(id => document.getElementById(id));
     function updateTabs() {
       const line = window.innerHeight * 0.35;
       let current = spySections[0].id;
