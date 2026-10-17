@@ -12,9 +12,9 @@
   var CACHE_MS = 10 * 60 * 1000; // stay well under GitHub's 60 requests/hour limit for visitors
 
   var LABELS = {
-    en: { code: 'Code', live: 'Live site', updated: 'Updated', locale: 'en-US' },
-    uk: { code: 'Код', live: 'Сайт', updated: 'Оновлено', locale: 'uk-UA' },
-    ru: { code: 'Код', live: 'Сайт', updated: 'Обновлено', locale: 'ru-RU' }
+    en: { code: 'Code', live: 'Webpage', updated: 'Updated', locale: 'en-US' },
+    uk: { code: 'Код', live: 'Вебсторінка', updated: 'Оновлено', locale: 'uk-UA' },
+    ru: { code: 'Код', live: 'Веб-страница', updated: 'Обновлено', locale: 'ru-RU' }
   };
 
   var wrap = document.getElementById('gh-more');
@@ -81,7 +81,9 @@
 
     var links = el('p', 'links');
     var code = safeUrl(repo.html_url);
-    var live = safeUrl(repo.homepage);
+    // The repo's "Website" field wins; otherwise fall back to its GitHub Pages site, if it has one.
+    var pages = repo.has_pages ? 'https://' + USER + '.github.io/' + encodeURIComponent(repo.name) + '/' : null;
+    var live = safeUrl(repo.homepage) || pages;
     if (code) links.appendChild(link(code, labels.code));
     if (live) links.appendChild(link(live, labels.live));
     article.appendChild(links);
