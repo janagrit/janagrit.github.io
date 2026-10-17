@@ -134,6 +134,17 @@
     /* currently building: text-only cards */
     .subhead { margin-top: 40px; font-size: 14px; font-weight: 500; color: var(--faint); }
     .mini { padding: 20px; }
+
+    /* live GitHub repo cards (js/github-projects.js) */
+    #gh-more .grid { margin-top: 12px; }
+    .repo { padding: 20px 20px 18px; }
+    .repo .meta { font-size: 13px; color: var(--faint); }
+    .repo h3 { margin-top: 8px; }
+    .repo .tags { margin: 12px 0 0; }
+    .gh-all { margin-top: 16px; font-size: 14px; font-weight: 500; }
+    .gh-all a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ring-strong); }
+    .gh-all a::after { content: " \2197"; }
+    .gh-all a:hover { text-decoration-color: var(--ink); }
     .mini b { display: block; font-family: var(--serif); font-size: 18px; font-weight: 400; letter-spacing: -.01em; }
     .grid.two { grid-template-columns: repeat(2, 1fr); margin-top: 12px; }
 
@@ -272,6 +283,13 @@
           </article>
         </div>
 
+        <!-- filled from the GitHub API by js/github-projects.js; stays hidden if GitHub can't be reached -->
+        <div id="gh-more" hidden>
+          <p class="subhead" data-i18n="gh.title">More on GitHub</p>
+          <div class="grid" id="gh-grid"></div>
+        </div>
+        <p class="gh-all"><a href="https://github.com/janagrit?tab=repositories" target="_blank" rel="noopener" data-i18n="gh.all">All repositories on GitHub</a></p>
+
         <p class="subhead" data-i18n="build.k">Currently building</p>
         <div class="grid two">
           <div class="card mini" data-i18n="build.k6"><b>Load-testing demo with k6</b><p>API load tests with pass/fail thresholds, running in GitHub Actions.</p></div>
@@ -359,6 +377,7 @@
   </nav>
 
   <script src="js/i18n.js"></script>
+  <script src="js/github-projects.js"></script>
   <script>
     // Highlight the nav link and tab for the section currently on screen.
     const tabLinks = document.querySelectorAll('.navlinks a, .tabbar a');

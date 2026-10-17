@@ -35,6 +35,8 @@
         'p3.p': 'Тести на Playwright + TypeScript, створені з нуля, починаючи зі <a href="https://uptichospitality.com/independent-hotels-should-think-independently/" target="_blank" rel="noopener">статті &laquo;Independent hotels&raquo;</a>: SEO, доступність, посилання, мобільна версія та візуальні перевірки. Кожне падіння стає виправленням у списку пріоритетів.',
         'p3.role': '<b>Стек</b> TypeScript, Playwright, axe-core',
         'p3.links': '<a href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Код</a>',
+        'gh.title': 'Більше на GitHub',
+        'gh.all': 'Усі репозиторії на GitHub',
         'build.k': 'Зараз у роботі',
         'build.k6': '<b>Демо навантажувального тестування на k6</b><p>Навантажувальні тести API з порогами pass/fail, запускаються в GitHub Actions.</p>',
         'build.agent': '<b>AI-агент, який виправляє тести, що падають</b><p>Claude Code з MCP-сервером: читає падіння тестів і відкриває pull request з виправленням.</p>',
@@ -85,6 +87,8 @@
         'p3.p': 'Тесты на Playwright + TypeScript, построенные с нуля, начиная со <a href="https://uptichospitality.com/independent-hotels-should-think-independently/" target="_blank" rel="noopener">статьи &laquo;Independent hotels&raquo;</a>: SEO, доступность, ссылки, мобильная версия и визуальные проверки. Каждое падение становится исправлением в списке приоритетов.',
         'p3.role': '<b>Стек</b> TypeScript, Playwright, axe-core',
         'p3.links': '<a href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Код</a>',
+        'gh.title': 'Больше на GitHub',
+        'gh.all': 'Все репозитории на GitHub',
         'build.k': 'Сейчас в работе',
         'build.k6': '<b>Демо нагрузочного тестирования на k6</b><p>Нагрузочные тесты API с порогами pass/fail, запускаются в GitHub Actions.</p>',
         'build.agent': '<b>AI-агент, который чинит падающие тесты</b><p>Claude Code с MCP-сервером: читает падения тестов и открывает pull request с исправлением.</p>',
@@ -137,6 +141,8 @@
     if (descMeta) descMeta.content = dict ? dict.desc : en.desc;
     root.setAttribute('lang', lang);
     buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.set === lang)); });
+    // Content built later by other scripts (js/github-projects.js) listens for this to re-label itself.
+    document.dispatchEvent(new CustomEvent('langchange', { detail: lang }));
   }
 
   // Storage can be blocked (private mode, strict settings); the switch still works without it.
