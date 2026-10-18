@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Cutting Through the AI Agent Noise: Hermes Agent, ECC and Arena Compared | Iana Grytsenko</title>
-  <meta name="description" content="Hermes Agent, Everything Claude Code (ECC) and the Arena skill explained in plain words: what each one is, who it's for, and which one you actually need.">
+  <title>Cutting Through the AI Agent Noise: Hermes Agent, ECC, oh-my-claudecode and Arena Compared | Iana Grytsenko</title>
+  <meta name="description" content="Hermes Agent, Everything Claude Code (ECC), oh-my-claudecode and the Arena skill explained in plain words: what each one is, who it's for, and which one you actually need.">
   <link rel="canonical" href="https://janagrit.github.io/articles/ai-agent-noise.html">
-  <meta property="og:title" content="Cutting Through the AI Agent Noise: Hermes Agent, ECC and Arena Compared">
-  <meta property="og:description" content="Three popular AI projects explained in plain words: what each one is, who it's for, and which one you need.">
+  <meta property="og:title" content="Cutting Through the AI Agent Noise: Hermes Agent, ECC, oh-my-claudecode and Arena Compared">
+  <meta property="og:description" content="Four popular AI projects explained in plain words: what each one is, who it's for, and which one you need.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://janagrit.github.io/articles/ai-agent-noise.html">
   <meta property="og:image" content="https://janagrit.github.io/images/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="article:published_time" content="2026-10-16">
-  <meta property="article:modified_time" content="2026-10-17">
+  <meta property="article:modified_time" content="2026-10-18">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#ffffff">
@@ -24,18 +24,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Cutting Through the AI Agent Noise: Hermes Agent, ECC and Arena Compared","datePublished":"2026-10-16","dateModified":"2026-10-17","author":{"@type":"Person","name":"Iana Grytsenko","url":"https://janagrit.github.io/"},"image":"https://janagrit.github.io/images/og.jpg"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Cutting Through the AI Agent Noise: Hermes Agent, ECC, oh-my-claudecode and Arena Compared","datePublished":"2026-10-16","dateModified":"2026-10-18","author":{"@type":"Person","name":"Iana Grytsenko","url":"https://janagrit.github.io/"},"image":"https://janagrit.github.io/images/og.jpg"}</script>
   <link rel="stylesheet" href="article.css">
   <style>
     /* wide tables scroll sideways on phones instead of squashing */
     .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 18px; border-radius: 14px; }
-    .table-scroll table { margin-top: 0; min-width: 620px; }
+    .table-scroll table { margin-top: 0; min-width: 760px; }
     .table-scroll th[scope="row"] { font-weight: 600; white-space: nowrap; }
     .table-scroll:focus-visible { outline: 2px solid var(--violet-ink); outline-offset: 3px; }
+    .table-scroll table.why { min-width: 680px; }
+    .table-scroll table.why td:last-child { color: #3b3752; }
     .caption { margin-top: 10px; font-size: 14px; color: var(--sub); }
     /* example steps: room above each step, commands wrap instead of scrolling */
     article h3 { margin-top: 34px; font-size: 19px; }
-    pre.prompt { white-space: pre-wrap; overflow-wrap: anywhere; }
+    .prompt { white-space: pre-wrap; overflow-wrap: anywhere; }
+    table.why code { white-space: nowrap; }
     /* three "meet the tool" cards */
     .tools { display: grid; gap: 16px; margin-top: 22px; }
     .tool { background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
@@ -60,8 +63,8 @@
   <header class="hero">
     <div class="in">
       <p class="kicker">Article &middot; AI tools</p>
-      <h1>Cutting through the AI agent noise: Hermes Agent, ECC and Arena compared</h1>
-      <p class="meta">Iana Grytsenko &middot; October 16, 2026 &middot; 7 min read</p>
+      <h1>Cutting through the AI agent noise: Hermes Agent, ECC, oh-my-claudecode and Arena compared</h1>
+      <p class="meta">Iana Grytsenko &middot; Updated October 18, 2026 &middot; 10 min read</p>
     </div>
   </header>
 
@@ -69,7 +72,7 @@
     <article>
       <p class="intro">Everyone is talking about AI agents. Every week a new project goes viral on GitHub and promises to change how you work. It&rsquo;s hard to tell what&rsquo;s useful and what&rsquo;s just noise.</p>
 
-      <p>Three names keep coming up: <strong>Hermes Agent</strong>, <strong>Everything Claude Code (ECC)</strong> and the <strong>Arena skill</strong>. People compare them as if you have to pick one. You don&rsquo;t. They do completely different jobs. Here&rsquo;s what each one is, in plain words.</p>
+      <p>Four names keep coming up: <strong>Hermes Agent</strong>, <strong>Everything Claude Code (ECC)</strong>, <strong>oh-my-claudecode (OMC)</strong> and the <strong>Arena skill</strong>. People compare them as if you have to pick one. You don&rsquo;t. They do completely different jobs. Here&rsquo;s what each one is, in plain words.</p>
 
       <h2><span class="n">01</span>First, five words you&rsquo;ll keep seeing</h2>
       <dl class="terms">
@@ -85,7 +88,7 @@
         <dd>How AI usage is measured and billed. More work from the AI means more tokens, which means a bigger bill.</dd>
       </dl>
 
-      <h2><span class="n">02</span>Meet the three tools</h2>
+      <h2><span class="n">02</span>Meet the four tools</h2>
       <div class="tools">
         <div class="tool">
           <h3>Hermes Agent</h3>
@@ -100,6 +103,12 @@
           <p class="like"><strong>Think of it as:</strong> giving the assistant you already have a full training course and a professional toolkit.</p>
         </div>
         <div class="tool">
+          <h3>oh-my-claudecode (OMC)</h3>
+          <p class="one">An add-on that runs Claude Code like a team.</p>
+          <p>Instead of one AI doing everything step by step, OMC splits a big task between several specialised agents, has them plan together, and keeps going until the result is checked, not just &ldquo;looks done&rdquo;. It also sends simple steps to cheaper AI models and hard ones to stronger models. You talk to it in plain words or with commands like <code>/team</code> and <code>/execute</code>.</p>
+          <p class="like"><strong>Think of it as:</strong> a project manager who splits the work across a team and doesn&rsquo;t sign off until it&rsquo;s really finished.</p>
+        </div>
+        <div class="tool">
           <h3>Arena skill</h3>
           <p class="one">One skill that makes many AIs compete for the best answer.</p>
           <p>When Claude gives you a weak answer, you type <code>/arena</code>. It sends the same task to up to 100 helpers, and each one tries a different approach. They criticise each other&rsquo;s answers in pairs, a judge scores each match, and the losers drop out round by round until one answer is left.</p>
@@ -108,46 +117,82 @@
       </div>
 
       <h2><span class="n">03</span>Side by side</h2>
-      <div class="table-scroll" tabindex="0" role="region" aria-label="Comparison of Hermes Agent, ECC and Arena">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Comparison of Hermes Agent, ECC, oh-my-claudecode and Arena">
         <table>
           <thead>
-            <tr><th scope="col"></th><th scope="col">Hermes Agent</th><th scope="col">ECC</th><th scope="col">Arena</th></tr>
+            <tr><th scope="col"></th><th scope="col">Hermes Agent</th><th scope="col">ECC</th><th scope="col">OMC</th><th scope="col">Arena</th></tr>
           </thead>
           <tbody>
-            <tr><th scope="row">What it is</th><td>A complete AI assistant</td><td>Add-ons for a coding agent</td><td>One add-on skill</td></tr>
-            <tr><th scope="row">Who it&rsquo;s for</th><td>Anyone who wants an assistant that works on its own</td><td>Developers and QA engineers</td><td>Claude Code users with one hard problem</td></tr>
-            <tr><th scope="row">What you need first</th><td>Nothing. Just an AI model account</td><td>Claude Code, Codex, Cursor or OpenCode</td><td>Claude Code</td></tr>
-            <tr><th scope="row">Use it</th><td>Every day, in the background</td><td>Every day, while you code</td><td>Rarely, for important problems</td></tr>
-            <tr><th scope="row">Costs</th><td>Free software. You pay for AI usage, and a server if you host it</td><td>Free. Install only what you use, or it slows things down</td><td>Free, but uses a lot of tokens: about 600 AI calls for one full run</td></tr>
-            <tr><th scope="row">Be careful</th><td>It acts on its own and remembers what it learns about you</td><td>Its automatic checks run commands on your computer</td><td>The token bill. Try the small version first</td></tr>
+            <tr><th scope="row">What it is</th><td>A complete AI assistant</td><td>Add-ons for a coding agent</td><td>Add-on that runs Claude Code as a team</td><td>One add-on skill</td></tr>
+            <tr><th scope="row">Who it&rsquo;s for</th><td>Anyone who wants an assistant that works on its own</td><td>Developers and QA engineers</td><td>Developers with big, multi-step tasks</td><td>Claude Code users with one hard problem</td></tr>
+            <tr><th scope="row">What you need first</th><td>Nothing. Just an AI model account</td><td>Claude Code, Codex, Cursor or OpenCode</td><td>Claude Code</td><td>Claude Code</td></tr>
+            <tr><th scope="row">Use it</th><td>Every day, in the background</td><td>Every day, while you code</td><td>For big tasks that need a plan and several steps</td><td>Rarely, for important problems</td></tr>
+            <tr><th scope="row">Costs</th><td>Free software. You pay for AI usage, and a server if you host it</td><td>Free. Install only what you use, or it slows things down</td><td>Free. Several agents at once use more tokens, but it sends simple steps to cheaper models</td><td>Free, but uses a lot of tokens: about 600 AI calls for one full run</td></tr>
+            <tr><th scope="row">Be careful</th><td>It acts on its own and remembers what it learns about you</td><td>Its automatic checks run commands on your computer</td><td>Several agents multiply the bill. Don&rsquo;t run its loops and another tool&rsquo;s loops on the same task</td><td>The token bill. Try the small version first</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="caption">All three are free and open source (MIT license). On a phone, swipe the table sideways.</p>
+      <p class="caption">All four are free and open source (MIT license). On a phone, swipe the table sideways.</p>
 
-      <h2><span class="n">04</span>Which one do I need?</h2>
-      <p>Start from your problem, not from the hype.</p>
-      <div class="table-scroll" tabindex="0" role="region" aria-label="Which tool fits which situation">
-        <table>
+      <h2><span class="n">04</span>Which one do I need, and why?</h2>
+      <p>Start from your problem, not from the hype. Find your situation in the left column. The right column tells you why that tool fits and not the others.</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Which tool fits which situation, and why">
+        <table class="why">
           <thead>
-            <tr><th scope="col">If you want&hellip;</th><th scope="col">Pick</th></tr>
+            <tr><th scope="col">If you want&hellip;</th><th scope="col">Use</th><th scope="col">Why this one</th></tr>
           </thead>
           <tbody>
-            <tr><td>An assistant you can text from your phone, that remembers you and does tasks while you sleep</td><td><strong>Hermes Agent</strong></td></tr>
-            <tr><td>A daily report or weekly check sent to Slack automatically</td><td><strong>Hermes Agent</strong></td></tr>
-            <tr><td>Your coding AI to plan first, write tests and review its own work</td><td><strong>ECC</strong></td></tr>
-            <tr><td>The same coding rules and security checks for your whole team</td><td><strong>ECC</strong></td></tr>
-            <tr><td>A better answer to one hard question Claude keeps getting wrong</td><td><strong>Arena</strong> (start with <code>/arena --quick</code>, which uses 16 helpers instead of 100)</td></tr>
-            <tr><td>To ask AI a question now and then</td><td><strong>None of them.</strong> A normal chat with ChatGPT or Claude is enough</td></tr>
+            <tr><td>An assistant you can text from your phone, that remembers you and does tasks while you sleep</td><td><strong>Hermes Agent</strong></td><td>It&rsquo;s the only one that runs on its own, on a server, and talks through chat apps. The other three only work while you have Claude Code open.</td></tr>
+            <tr><td>A daily report or weekly check sent to Slack automatically</td><td><strong>Hermes Agent</strong></td><td>It has a built-in scheduler and sends results to chat apps. No one has to start it.</td></tr>
+            <tr><td>Your coding AI to plan first, write tests and review its own work</td><td><strong>ECC</strong></td><td>It adds the ready-made specialists for this: a planner, a test-first guide and code and security reviewers. OMC organises who works; ECC knows how the work should be done.</td></tr>
+            <tr><td>The same coding rules and security checks for your whole team</td><td><strong>ECC</strong></td><td>Its rules and automatic checks apply in every session, so standards don&rsquo;t depend on someone remembering to ask.</td></tr>
+            <tr><td>Several AI agents to split up a big task, plan it together and finish it</td><td><strong>OMC</strong> (<code>/team</code>)</td><td>It&rsquo;s built to run Claude Code as a team. ECC gives you specialists, but OMC is the one that coordinates them in parallel.</td></tr>
+            <tr><td>Claude to keep going until the task is really done and checked</td><td><strong>OMC</strong> (<code>/execute</code>)</td><td>It loops through checking and fixing until the result is verified, instead of stopping at &ldquo;looks done&rdquo;.</td></tr>
+            <tr><td>A better answer to one hard question Claude keeps getting wrong</td><td><strong>Arena</strong> (<code>/arena --quick</code>)</td><td>Many different approaches compete and criticise each other, so weak ideas drop out. Too expensive for everyday use; worth it for one question that matters. <code>--quick</code> uses 16 helpers instead of 100.</td></tr>
+            <tr><td>To ask AI a question now and then</td><td><strong>None of them</strong></td><td>A normal chat with ChatGPT or Claude is enough. Installing a framework for a question only adds cost.</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h2><span class="n">05</span>Can I use them together?</h2>
-      <p>Yes. ECC and Arena both plug into Claude Code, so you can use ECC every day and call Arena on the rare day a problem is really hard. Hermes Agent is a separate program that runs next to them, for tasks that should happen without you.</p>
-      <p>I use ECC with Claude Code for my QA work. My one tip: <strong>install only the parts you need.</strong> An AI with every add-on loaded is like a test suite where every test is marked &ldquo;critical&rdquo;. When everything is important, nothing is.</p>
+      <h2><span class="n">05</span>Install only what you need</h2>
+      <p>Every add-on you install loads its instructions into every Claude Code session, and those instructions cost tokens even when you don&rsquo;t use them. So install only the tools the table above pointed you to.</p>
+      <p>The commands below go in your normal terminal, not inside Claude Code, so you can paste a whole block at once. (Inside Claude Code, <code>/plugin</code> commands must be typed one line at a time.)</p>
 
-      <h2><span class="n">06</span>Example: a new project for example.com</h2>
+      <h3>ECC</h3>
+      <div class="prompt"><span class="dim">Terminal</span>claude plugin marketplace add affaan-m/ECC
+claude plugin install ecc@ecc</div>
+
+      <h3>oh-my-claudecode (OMC)</h3>
+      <div class="prompt"><span class="dim">Terminal</span>claude plugin marketplace add Yeachan-Heo/oh-my-claudecode
+claude plugin install oh-my-claudecode@omc</div>
+      <p>Then open Claude Code and run <code>/omc-setup</code> once.</p>
+
+      <h3>Arena</h3>
+      <div class="prompt"><span class="dim">Terminal</span>claude plugin marketplace add Jakeschincariol/arena-skill
+claude plugin install arena-skill@arena-skill</div>
+
+      <h3>Hermes Agent</h3>
+      <p>Hermes isn&rsquo;t a Claude Code add-on. It&rsquo;s its own program, with its own installer. Read the script before you run it: piping a script from the internet into your shell runs it with your permissions.</p>
+      <div class="prompt"><span class="dim">Terminal</span>curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash</div>
+
+      <h3>Can I install everything at once?</h3>
+      <p>Yes. This block installs all three Claude Code add-ons in one go:</p>
+      <div class="prompt"><span class="dim">Terminal &middot; all three add-ons</span>claude plugin marketplace add affaan-m/ECC
+claude plugin marketplace add Yeachan-Heo/oh-my-claudecode
+claude plugin marketplace add Jakeschincariol/arena-skill
+claude plugin install ecc@ecc
+claude plugin install oh-my-claudecode@omc
+claude plugin install arena-skill@arena-skill</div>
+      <p>But &ldquo;can&rdquo; isn&rsquo;t &ldquo;should&rdquo;. All three together means hundreds of extra skills and agents loaded into every session, and two tools (ECC and OMC) that can both run long loops. Install everything only if you really use everything. Before keeping a plugin, check what it costs you:</p>
+      <div class="prompt"><span class="dim">Terminal</span>claude plugin details ecc@ecc</div>
+      <p>It lists everything the plugin adds and its projected token cost. If you stop using a tool, <code>claude plugin disable</code> switches it off without uninstalling it.</p>
+
+      <h2><span class="n">06</span>Can I use them together?</h2>
+      <p>Yes. ECC, OMC and Arena all plug into Claude Code, and they fit together: ECC decides <em>how</em> the work is done well, OMC decides <em>who</em> does it and in what order, and Arena settles the rare question that really matters. Hermes Agent is a separate program that runs next to them, for tasks that should happen without you.</p>
+      <p>One rule when you combine them: only one tool runs a long loop at a time. If OMC is pushing a task to the finish, don&rsquo;t start another tool&rsquo;s loop on the same task. My full ECC + OMC setup is in <a href="claude-code-qa-workflow.html">How I test with Claude Code</a>.</p>
+      <p>I use ECC and OMC with Claude Code for my QA work, and Arena only for the rare hard question. An AI with every add-on loaded is like a test suite where every test is marked &ldquo;critical&rdquo;: when everything is important, nothing is.</p>
+
+      <h2><span class="n">07</span>Example: a new project for example.com</h2>
       <p>Here&rsquo;s how the two work together on a real kind of job. A company, example.com, asks you to set up automated tests for its website. You&rsquo;ll use ECC for the everyday work and Arena for the one hard decision.</p>
       <p class="note">example.com is a placeholder name. On a real project, use the client&rsquo;s site, and only test what they&rsquo;ve allowed you to test.</p>
 
@@ -204,7 +249,7 @@ Run every test twice and tell me if any result changes.</pre>
         </table>
       </div>
 
-      <h2><span class="n">07</span>How I filter the noise</h2>
+      <h2><span class="n">08</span>How I filter the noise</h2>
       <p>I test software for a living, so I treat a viral AI project like a new build: it&rsquo;s not trusted until it&rsquo;s tested. Before I install anything, I ask five questions:</p>
       <ol>
         <li><strong>What is it?</strong> A whole agent, an add-on for an agent, or one skill?</li>
@@ -219,6 +264,7 @@ Run every test twice and tell me if any result changes.</pre>
       <ul>
         <li><a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes Agent</a> by Nous Research, on GitHub</li>
         <li><a href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener">ECC (Everything Claude Code)</a> by Affaan Mustafa, on GitHub</li>
+        <li><a href="https://github.com/Yeachan-Heo/oh-my-claudecode" target="_blank" rel="noopener">oh-my-claudecode</a> by Yeachan Heo, on GitHub</li>
         <li><a href="https://github.com/Jakeschincariol/arena-skill" target="_blank" rel="noopener">Arena skill</a> by Jake Schincariol, on GitHub</li>
       </ul>
     </article>
