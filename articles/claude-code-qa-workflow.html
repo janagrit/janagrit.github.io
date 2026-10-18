@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>How I Test with Claude Code | Iana Grytsenko</title>
-  <meta name="description" content="My AI-assisted QA workflow: how I start a project, write tests first, catch flaky tests and keep AI quality from slipping, with Claude Code.">
+  <title>How I Test with Claude Code: Smarter, Faster, Cheaper with ECC and oh-my-claudecode | Iana Grytsenko</title>
+  <meta name="description" content="An AI tester's guide to Claude Code with ECC and oh-my-claudecode: which plugin does what, the money rules that cut token spend, and a step-by-step workflow for a new test project.">
   <link rel="canonical" href="https://janagrit.github.io/articles/claude-code-qa-workflow.html">
-  <meta property="og:title" content="How I Test with Claude Code">
-  <meta property="og:description" content="My AI-assisted QA workflow: start right, test first, catch flaky tests, and keep AI quality from slipping.">
+  <meta property="og:title" content="How I Test with Claude Code: Smarter, Faster, Cheaper">
+  <meta property="og:description" content="ECC + oh-my-claudecode for QA: which plugin does what, the money rules, and a step-by-step workflow.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://janagrit.github.io/articles/claude-code-qa-workflow.html">
   <meta property="og:image" content="https://janagrit.github.io/images/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="article:published_time" content="2026-10-13">
+  <meta property="article:modified_time" content="2026-10-18">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#ffffff">
@@ -23,8 +24,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How I Test with Claude Code","datePublished":"2026-10-13","author":{"@type":"Person","name":"Iana Grytsenko","url":"https://janagrit.github.io/"},"image":"https://janagrit.github.io/images/og.jpg"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How I Test with Claude Code: Smarter, Faster, Cheaper with ECC and oh-my-claudecode","datePublished":"2026-10-13","dateModified":"2026-10-18","author":{"@type":"Person","name":"Iana Grytsenko","url":"https://janagrit.github.io/"},"image":"https://janagrit.github.io/images/og.jpg"}</script>
   <link rel="stylesheet" href="article.css">
+  <style>
+    /* wide tables scroll sideways on phones instead of squashing */
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 18px; border-radius: 14px; }
+    .table-scroll table { margin-top: 0; min-width: 600px; }
+    .table-scroll:focus-visible { outline: 2px solid var(--violet-ink); outline-offset: 3px; }
+    article h3 { margin-top: 32px; font-size: 19px; }
+    .prompt { white-space: pre-wrap; overflow-wrap: anywhere; }
+    .cost { display: inline-block; margin-left: 6px; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; vertical-align: middle; }
+    .cost.low { background: rgba(29, 122, 58, .1); color: #1d7a3a; }
+    .cost.high { background: rgba(176, 58, 46, .1); color: #a33a2e; }
+  </style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to main content</a>
@@ -38,77 +50,144 @@
   <header class="hero">
     <div class="in">
       <p class="kicker">Article &middot; AI-assisted QA</p>
-      <h1>How I test with Claude Code</h1>
-      <p class="meta">Iana Grytsenko &middot; October 13, 2026 &middot; 5 min read</p>
+      <h1>How I test with Claude Code: smarter, faster, cheaper</h1>
+      <p class="meta">Iana Grytsenko &middot; Updated October 18, 2026 &middot; 8 min read</p>
     </div>
   </header>
 
   <main id="main">
     <article>
-      <p class="intro">I use Claude Code every day, but I don&rsquo;t let it decide what &ldquo;done&rdquo; means. The AI writes a lot of my test code. My job is the system around it: the order things happen in, the checks that catch its mistakes, and the review before anything is merged. This is that system.</p>
+      <p class="intro">Claude Code can write a whole test suite in an afternoon. It can also burn a week of budget doing it. The difference isn&rsquo;t the model. It&rsquo;s the system around it: which tool does which job, how much &ldquo;brain&rdquo; each step gets, and who decides that a test is really done.</p>
 
-      <p>Claude Code runs inside VS Code. On top of it I use a set of open-source <em>skills</em>: reusable instructions for jobs like test-driven development or running a full verification pass. A skill is installed once on my machine, and then I can call it by name in any project.</p>
+      <p>I use Claude Code with two open-source plugins: <strong>ECC</strong> (Everything Claude Code) and <strong>oh-my-claudecode (OMC)</strong>. Most people install both, switch everything on, and wonder why their sessions feel slow and their bill keeps growing. Here&rsquo;s how I use them as a tester: what each one is for, the rules that save money and time, and my step-by-step workflow.</p>
 
-      <h2><span class="n">01</span>The first ten minutes decide the next ten weeks</h2>
-      <p>Before any test gets written in a new project, I do four things:</p>
+      <h2><span class="n">01</span>Two plugins, two jobs</h2>
+      <p>The easiest way to waste money is to make both plugins do the same work. So I give each one a clear job.</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="What ECC and OMC are each for">
+        <table>
+          <thead><tr><th scope="col"></th><th scope="col">ECC</th><th scope="col">oh-my-claudecode (OMC)</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Its job</th><td><strong>How</strong> the work is done well</td><td><strong>Who</strong> does the work, and in what order</td></tr>
+            <tr><th scope="row">Think of it as</th><td>The team&rsquo;s standards and expert reviewers</td><td>The team lead who splits up work and doesn&rsquo;t stop until it&rsquo;s finished</td></tr>
+            <tr><th scope="row">I use it for</th><td>Testing skills (Playwright, test-first, verification), code and security review, coding rules</td><td>Planning big decisions, running several agents in parallel, pushing a task to a verified finish</td></tr>
+            <tr><th scope="row">Saves money by</th><td>Getting it right the first time: fewer rewrites</td><td>Sending simple tasks to cheaper models and big ones to stronger models (the project says this saves 30&ndash;50% of tokens)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note"><strong>One rule above all:</strong> only one tool is &ldquo;in charge&rdquo; of a long-running loop at a time. If OMC is pushing a task to completion, don&rsquo;t also start an ECC loop on the same task. Two managers giving orders to the same worker costs double and finishes later. OMC&rsquo;s own docs give the same advice.</p>
+
+      <h2><span class="n">02</span>Install once, then trim</h2>
+      <p>Type these inside Claude Code, <strong>one line at a time</strong>:</p>
+      <div class="prompt"><span class="dim">ECC</span>/plugin marketplace add affaan-m/ECC
+/plugin install ecc@ecc</div>
+      <div class="prompt"><span class="dim">oh-my-claudecode</span>/plugin marketplace add https://github.com/Yeachan-Heo/oh-my-claudecode
+/plugin install oh-my-claudecode
+/omc-setup</div>
+      <p>Then trim. Every installed skill, rule and hook takes a little of the AI&rsquo;s attention in every session, and attention is tokens.</p>
+      <ul>
+        <li><strong>Choose ECC&rsquo;s hook level on purpose.</strong> Run <code>/ecc:configure-ecc</code> and pick a hook mode: off, minimal, standard or strict. Strict hooks are great on a shared team repo. Working alone, I found them slowing me down: a strict pre-edit check made me re-explain the same facts before every file change. For solo work, minimal is enough.</li>
+        <li><strong>Install language rules only for what you use.</strong> A Playwright + TypeScript project doesn&rsquo;t need rules for Go, Rust and Kotlin.</li>
+        <li><strong>Write a short CLAUDE.md.</strong> Run <code>/init</code> once per project. It records how to install, run and test the project, so Claude doesn&rsquo;t pay to rediscover it every session.</li>
+      </ul>
+
+      <h2><span class="n">03</span>Seven money rules</h2>
+      <p>These are the habits that made the biggest difference to my token bill.</p>
       <ol>
-        <li><strong>Get a tour.</strong> I ask Claude to map the project: how it&rsquo;s structured, how to run it, where the risky parts are. I read the answer against the code, because a wrong mental model at this stage costs days later.</li>
-        <li><strong>Write down the rules.</strong> The <code>/init</code> command creates a <code>CLAUDE.md</code> file with the run commands and conventions. Claude reads it at the start of every session, so I don&rsquo;t repeat myself and it doesn&rsquo;t forget.</li>
-        <li><strong>Keep junk out of git.</strong> A <code>.gitignore</code> for dependencies, virtual environments, test reports and secrets goes in before the first commit. If Source Control suddenly shows thousands of changes, something wasn&rsquo;t ignored.</li>
-        <li><strong>Commit a clean starting point,</strong> so every later step can be undone.</li>
+        <li><strong>Use the cheapest brain that can do the job.</strong> Renaming selectors or fixing a typo doesn&rsquo;t need the strongest model. Switch with <code>/model</code>, and turn thinking down with <code>/effort low</code> for mechanical edits. Save high effort for test strategy and hard debugging. OMC routes this for you inside its own workflows.</li>
+        <li><strong>Start fresh between unrelated tasks.</strong> <code>/clear</code> when you switch tasks, <code>/compact</code> at a natural break inside a long one. A long session drags its whole history into every new message. <code>/context</code> shows you what&rsquo;s taking up space.</li>
+        <li><strong>Let the computer run the tests, not the AI.</strong> Ask Claude to run the suite with a short reporter and read back only the failures. Never paste a full log or a 5,000-line report into the chat.</li>
+        <li><strong>Parallel agents cost parallel money.</strong> Three agents working at once use roughly three times the tokens. That&rsquo;s worth it for three independent page objects, not for a one-file fix.</li>
+        <li><strong>Spend big only on decisions.</strong> Use the expensive moves, like multi-agent planning or deep reasoning, for &ldquo;what should we test and why&rdquo;. Never for &ldquo;add a wait here&rdquo;.</li>
+        <li><strong>Stop runaway loops early.</strong> If OMC is going in circles, type <code>stopomc</code>. A loop that isn&rsquo;t converging after a few rounds rarely converges later.</li>
+        <li><strong>Watch the meter.</strong> OMC&rsquo;s status line shows what&rsquo;s running and how much it uses, and ECC&rsquo;s <code>/ecc:cost-report</code> summarises tracked spend. You can&rsquo;t cut what you don&rsquo;t measure.</li>
       </ol>
 
-      <h2><span class="n">02</span>Tests first, even when the AI writes them</h2>
-      <p>AI is very good at writing a test that passes. That&rsquo;s exactly the problem: a test that has never failed proves nothing. So for every feature or scenario I ask for the failing test first, watch it fail for the right reason, and only then ask for the code.</p>
-      <div class="prompt"><span class="dim">Prompt</span>Use the tdd-workflow skill to add a smoke test for site search: write the failing test first and show me it failing, then make it pass.</div>
-      <p>On end-to-end work I also ask for page objects and fixtures from the start. A Playwright suite without structure is fast to write and slow to live with.</p>
+      <h2><span class="n">04</span>My workflow for a new test project</h2>
+      <p>Here&rsquo;s the full path, from &ldquo;we need tests&rdquo; to a suite I&rsquo;d trust in CI. Each step names the tool and roughly what it costs.</p>
 
-      <h2><span class="n">03</span>Green once isn&rsquo;t green</h2>
-      <p>A suite that passes once can still be flaky. Before I trust new tests, I run the whole thing several times in a row and treat any test that changes its answer as a bug.</p>
-      <div class="prompt"><span class="dim">Prompt</span>Use the verification-loop skill: install dependencies, build, run every test three times, and list anything that failed even once.</div>
-      <div class="note">This habit comes straight from real projects. On a Java and Selenium suite, fixing flaky tests at the root cut false-positive failures by 60% and made the CI results trustworthy again.</div>
+      <h3>1. Clarify what to test <span class="cost low">cheap</span></h3>
+      <p>If the request is vague (&ldquo;can you test our checkout?&rdquo;), let OMC interview you before anything is written. It asks the questions that expose hidden assumptions. Skip this step when the requirements are already clear.</p>
+      <div class="prompt"><span class="dim">OMC</span>/deep-interview "Automated tests for the checkout flow of example.com"</div>
 
-      <h2><span class="n">04</span>Testing AI needs its own rules</h2>
+      <h3>2. Set up the project <span class="cost low">cheap</span></h3>
+      <p>Before the first test: <code>/init</code> for CLAUDE.md, a <code>.gitignore</code> for dependencies, test reports and secrets, and a clean first commit so every later step can be undone.</p>
+
+      <h3>3. Plan the test strategy <span class="cost high">expensive, worth it</span></h3>
+      <p>This is the one decision worth paying for. OMC&rsquo;s <code>ralplan</code> has several agents argue about the plan until they agree. For a small project, ECC&rsquo;s single planner is enough and much cheaper.</p>
+      <div class="prompt"><span class="dim">Big project &middot; OMC</span>/ralplan "Test strategy for example.com checkout: rank the flows by business risk, say what to automate first, and what not to automate at all"</div>
+      <div class="prompt"><span class="dim">Small project &middot; ECC</span>/ecc:plan Add Playwright tests for the example.com checkout flow</div>
+
+      <h3>4. Write the tests, test-first <span class="cost low">cheap</span></h3>
+      <p>AI is very good at writing a test that passes. That&rsquo;s exactly the problem: a test that has never failed proves nothing. ECC&rsquo;s testing skills make it show the failure first.</p>
+      <div class="prompt"><span class="dim">ECC</span>Use the tdd-workflow and e2e-testing skills to add a test for the coupon code field. Write the failing test first and show me it failing, then make it pass. Use page objects and fixtures.</div>
+
+      <h3>5. Go parallel only when the work is independent <span class="cost high">costs per agent</span></h3>
+      <p>Three page objects that don&rsquo;t touch each other? That&rsquo;s a good job for a small team. One flaky test? That&rsquo;s a job for one agent.</p>
+      <div class="prompt"><span class="dim">OMC</span>/team 3:executor "Create page objects for the cart, shipping and payment pages, each with a smoke test"</div>
+
+      <h3>6. Push to green, honestly <span class="cost low">cheap if guarded</span></h3>
+      <p>OMC&rsquo;s <code>/execute</code> keeps going until the task is verified, not just &ldquo;looks done&rdquo;. As a tester, I always add one guard. The fastest way for an AI to make a test pass is to weaken the test, so I forbid it.</p>
+      <div class="prompt"><span class="dim">OMC</span>/execute "Make the checkout suite pass. Never delete, skip or loosen a test or an assertion to get green. If a test is wrong, stop and explain why."</div>
+
+      <h3>7. Prove it&rsquo;s stable <span class="cost low">cheap</span></h3>
+      <p>Green once isn&rsquo;t green. Run everything several times and treat any test that changes its answer as a bug.</p>
+      <div class="prompt"><span class="dim">ECC</span>Use the verification-loop skill: build, run every test three times, and list anything that failed even once.</div>
+      <p class="note">This habit comes from real projects. On a Java and Selenium suite, fixing flaky tests at the root cut false-positive failures by 60% and made the CI results trustworthy again.</p>
+
+      <h3>8. Review before anything merges <span class="cost low">cheap</span></h3>
+      <p>Run ECC&rsquo;s review, then read the diff myself. For each AI-written test I ask: does each assertion check something that matters, and would this test fail if the feature broke?</p>
+      <div class="prompt"><span class="dim">ECC</span>/ecc:code-review</div>
+
+      <h2><span class="n">05</span>Testing AI needs its own rules</h2>
       <p>When the thing under test is an AI agent, &ldquo;does it pass?&rdquo; becomes &ldquo;how often does it misbehave, and is that getting worse?&rdquo;. Two practices matter most:</p>
       <ul>
-        <li><strong>Attack it on purpose.</strong> I design adversarial scenarios: trying to make the agent reveal data it shouldn&rsquo;t, ignore its instructions, or invent answers. Each one gets a metric that fails on a real leak.</li>
-        <li><strong>Lock in a baseline.</strong> Today&rsquo;s scores become the floor. If a prompt or model change drops any metric below it, the build fails.</li>
+        <li><strong>Attack it on purpose.</strong> Design adversarial scenarios: make the agent try to reveal data it shouldn&rsquo;t, ignore its instructions, or invent answers. Each one gets a metric that fails on a real leak.</li>
+        <li><strong>Lock in a baseline.</strong> Today&rsquo;s scores become the floor. If a prompt or model change drops any score below it, the build fails.</li>
       </ul>
-      <p>My <a href="https://github.com/janagrit/aviaryai-eval-demo">AI agent evaluation demo</a> does both: a strict voice agent contains 10 out of 10 attacks, a deliberately weak one leaks as a control, and a regression gate runs on every pull request.</p>
-
-      <h2><span class="n">05</span>Nothing merges unreviewed, including AI code</h2>
-      <p>Before every commit I run <code>/code-review</code>, then read the diff myself. I review AI-written tests the way I review a colleague&rsquo;s: does each assertion check something that matters, and would this test fail if the feature broke?</p>
+      <p>My <a href="https://github.com/janagrit/aviaryai-eval-demo" target="_blank" rel="noopener">AI agent evaluation demo</a> does both: a strict voice agent contains the attacks, a deliberately weak one leaks as a control, and a regression gate runs in CI on every push.</p>
 
       <h2><span class="n">06</span>Which tool for which job</h2>
-      <table>
-        <thead><tr><th>When I want to&hellip;</th><th>I use</th></tr></thead>
-        <tbody>
-          <tr><td>Understand a project I just opened</td><td><code>codebase-onboarding</code></td></tr>
-          <tr><td>Add a feature or a test safely</td><td><code>tdd-workflow</code></td></tr>
-          <tr><td>Write or repair Playwright tests</td><td><code>e2e-testing</code></td></tr>
-          <tr><td>Prove everything still works</td><td><code>verification-loop</code></td></tr>
-          <tr><td>Check a live page on phone and desktop</td><td><code>browser-qa</code></td></tr>
-          <tr><td>Design evaluations for an AI feature</td><td><code>eval-harness</code></td></tr>
-          <tr><td>Stop AI quality from slipping</td><td><code>ai-regression-testing</code></td></tr>
-          <tr><td>Review before committing</td><td><code>/code-review</code></td></tr>
-        </tbody>
-      </table>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Which tool for which job">
+        <table>
+          <thead><tr><th scope="col">When I want to&hellip;</th><th scope="col">I use</th><th scope="col">Cost</th></tr></thead>
+          <tbody>
+            <tr><td>Turn a vague request into clear requirements</td><td>OMC <code>/deep-interview</code></td><td>Low</td></tr>
+            <tr><td>Decide the test strategy on a big project</td><td>OMC <code>/ralplan</code></td><td>High, worth it</td></tr>
+            <tr><td>Plan a small change</td><td>ECC <code>/ecc:plan</code></td><td>Low</td></tr>
+            <tr><td>Write or fix Playwright tests</td><td>ECC <code>e2e-testing</code> skill</td><td>Low</td></tr>
+            <tr><td>Add a test safely, failing first</td><td>ECC <code>tdd-workflow</code> skill</td><td>Low</td></tr>
+            <tr><td>Build several independent pieces at once</td><td>OMC <code>/team</code></td><td>Per agent</td></tr>
+            <tr><td>Push a task to a verified finish</td><td>OMC <code>/execute</code></td><td>Medium</td></tr>
+            <tr><td>Prove the suite is stable</td><td>ECC <code>verification-loop</code> skill</td><td>Low</td></tr>
+            <tr><td>Get a second opinion from another AI</td><td>OMC <code>/ask codex</code></td><td>Low</td></tr>
+            <tr><td>Review before committing</td><td>ECC <code>/ecc:code-review</code></td><td>Low</td></tr>
+            <tr><td>Design evaluations for an AI feature</td><td>ECC <code>eval-harness</code> skill</td><td>Low</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-      <h2><span class="n">07</span>What this looks like in practice</h2>
-      <p>The same steps, in a different order for each kind of project:</p>
+      <h2><span class="n">07</span>Mistakes that cost me money</h2>
       <ul>
-        <li><strong>A test suite for a company website</strong>, like my <a href="https://github.com/janagrit/uptic-site-audit">Uptic Hospitality audit</a>: project setup with page objects, smoke tests written test-first, accessibility and visual checks, a three-run flakiness pass, review, then CI on every push.</li>
-        <li><strong>An AI evaluation project:</strong> record the starting scores, look for missing failure modes, add each scenario test-first, then lock in the baseline.</li>
-        <li><strong>A live app I test</strong>, like <a href="https://momup-app.github.io/">Kids Nearby</a>: end-to-end tests for the main user flows, a full verification run, then a check of the live site on real screen sizes.</li>
+        <li><strong>Installing everything.</strong> Hundreds of skills I never used, loaded into every session.</li>
+        <li><strong>A team of agents for a one-line fix.</strong> Three agents, three times the bill, same result.</li>
+        <li><strong>Letting the AI &ldquo;fix&rdquo; a red test by changing the assertion.</strong> The suite went green and stopped testing anything. Now the guard in step 6 is in every prompt.</li>
+        <li><strong>One endless session.</strong> By the afternoon, every message was carrying the whole morning with it. <code>/clear</code> fixed it.</li>
+        <li><strong>Pasting full logs.</strong> Thousands of lines when the answer was in the first failure.</li>
       </ul>
 
       <h2><span class="n">08</span>The short version</h2>
-      <p>Let the AI write. Make it prove the test can fail. Run everything more than once. Give AI quality a floor it can&rsquo;t drop below. Read every diff before it merges.</p>
+      <p>ECC decides <em>how</em> the work is done, and OMC decides <em>who</em> does it. Only one runs the loop at a time. Pay for strong models only on decisions, keep sessions short, and let the computer run the tests. Make every test fail before you trust it, run everything more than once, and read every diff before it merges.</p>
+
+      <h2>Sources</h2>
+      <ul>
+        <li><a href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener">ECC (Everything Claude Code)</a> on GitHub</li>
+        <li><a href="https://github.com/Yeachan-Heo/oh-my-claudecode" target="_blank" rel="noopener">oh-my-claudecode</a> on GitHub</li>
+      </ul>
     </article>
 
     <section class="cta" aria-label="Contact">
-      <p>Want this kind of workflow on your team, or have questions about it?</p>
-      <a class="pill" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener">Book a 30-minute call</a>
+      <p>Want this kind of setup for your QA team, without the surprise bill?</p>
+      <a class="pill" href="../#contact">Let&rsquo;s talk</a>
     </section>
   </main>
 

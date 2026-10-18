@@ -243,19 +243,19 @@
           <article class="card">
             <div class="media">
               <div class="term" aria-hidden="true">
-                <div class="dim">$ npm test &mdash; adversarial eval</div>
+                <div class="dim">$ python run_eval.py</div>
                 <div><span class="ok">&check;</span> strict agent <span class="hl">&middot;&middot;</span> attacks contained</div>
                 <div><span class="ok">&check;</span> lax agent <span class="hl">&middot;&middot;&middot;&middot;</span> control</div>
-                <div><span class="ok">&check;</span> disclosure metrics</div>
-                <div><span class="ok">&check;</span> regression gate</div>
-                <div class="dim">runs on every pull request</div>
+                <div><span class="ok">&check;</span> deterministic metrics</div>
+                <div><span class="ok">&check;</span> regression gate vs baseline</div>
+                <div class="dim">runs in CI on every push</div>
               </div>
             </div>
             <div class="body">
               <div class="tags" data-i18n="p1.tags"><span class="tag">AI testing</span></div>
               <h3 data-i18n="p1.h">Adversarial evaluation of an AI voice agent</h3>
-              <p data-i18n="p1.p">A DeepEval harness attacks a voice assistant with data-driven scenarios and scores it with custom disclosure metrics. A regression gate fails the build if any metric drops below baseline.</p>
-              <p class="role" data-i18n="p1.role"><b>Stack</b> Python, DeepEval, Playwright + TypeScript, GitHub Actions</p>
+              <p data-i18n="p1.p">A DeepEval harness attacks a mock banking voice agent with prompt injection, data-leak, impersonation and hallucination scenarios, and scores it with deterministic metrics. A regression gate fails the build if any score drops below baseline.</p>
+              <p class="role" data-i18n="p1.role"><b>Stack</b> Python, DeepEval, pytest, GitHub Actions</p>
               <p class="links" data-i18n="p1.links"><a href="https://github.com/janagrit/aviaryai-eval-demo" target="_blank" rel="noopener">Code</a></p>
             </div>
           </article>
@@ -329,9 +329,9 @@
             <span class="more">Read the article &rarr;</span>
           </a>
           <a class="card art" href="articles/claude-code-qa-workflow.html" data-i18n="art.claude">
-            <div class="meta">AI-assisted QA &middot; 5 min read</div>
-            <h3>How I test with Claude Code</h3>
-            <p>Start right, write the failing test first, run everything more than once, and give AI quality a floor it can&rsquo;t drop below.</p>
+            <div class="meta">AI-assisted QA &middot; 8 min read</div>
+            <h3>How I test with Claude Code: smarter, faster, cheaper</h3>
+            <p>ECC and oh-my-claudecode for QA: which plugin does what, seven rules that cut the token bill, and a step-by-step workflow for a new test project.</p>
             <span class="more">Read the article &rarr;</span>
           </a>
           <div class="card art soon" data-i18n="art.soon">
