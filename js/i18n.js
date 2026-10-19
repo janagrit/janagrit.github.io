@@ -38,9 +38,6 @@
         'p3.links': '<a href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Код</a>',
         'gh.title': 'Більше на GitHub',
         'gh.all': 'Усі репозиторії на GitHub',
-        'build.k': 'Зараз у роботі',
-        'build.k6': '<b>Демо навантажувального тестування на k6</b><p>Навантажувальні тести API з порогами pass/fail, запускаються в GitHub Actions.</p>',
-        'build.agent': '<b>AI-агент, який виправляє тести, що падають</b><p>Claude Code з MCP-сервером: читає падіння тестів і відкриває pull request з виправленням.</p>',
 
         'art.title': 'Нотатки з практики',
         'art.dream': '<div class="meta">Кар&rsquo;єра &middot; 7 хв &middot; англійською</div><h3>Шлях до роботи мрії: визначте її, знайдіть і покажіть себе</h3><p>Складіть свій список, знайдіть компанії, які йому відповідають, і покажіть їм демо того, як виглядатиме робота з вами.</p><span class="more">Читати статтю &rarr;</span>',
@@ -91,9 +88,6 @@
         'p3.links': '<a href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Код</a>',
         'gh.title': 'Больше на GitHub',
         'gh.all': 'Все репозитории на GitHub',
-        'build.k': 'Сейчас в работе',
-        'build.k6': '<b>Демо нагрузочного тестирования на k6</b><p>Нагрузочные тесты API с порогами pass/fail, запускаются в GitHub Actions.</p>',
-        'build.agent': '<b>AI-агент, который чинит падающие тесты</b><p>Claude Code с MCP-сервером: читает падения тестов и открывает pull request с исправлением.</p>',
 
         'art.title': 'Заметки из практики',
         'art.dream': '<div class="meta">Карьера &middot; 7 мин &middot; на английском</div><h3>Путь к работе мечты: определите её, найдите и покажите себя</h3><p>Составьте свой список, найдите компании, которые ему подходят, и покажите им демо того, как будет выглядеть работа с вами.</p><span class="more">Читать статью &rarr;</span>',
