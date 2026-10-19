@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Job Scout: an AI Job-Search Agent | Iana Grytsenko</title>
-  <meta name="description" content="Job Scout finds fresh jobs, scores them against your CV like an ATS, and emails tailored CVs and cover letters written with Claude, using only facts from your CV.">
+  <title>Scout Your Dream Job! An AI Job-Search Agent | Iana Notebook</title>
+  <meta name="description" content="An AI agent that finds fresh jobs, scores them against your CV like an ATS, and emails tailored CVs and cover letters written with Claude, using only facts from your CV.">
   <link rel="canonical" href="https://janagrit.github.io/job-scout.html">
-  <meta property="og:title" content="Job Scout: an AI Job-Search Agent">
+  <meta property="og:title" content="Scout Your Dream Job! An AI Job-Search Agent">
   <meta property="og:description" content="Finds fresh jobs, scores them against your CV, and emails tailored CVs and cover letters. It never applies for you.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://janagrit.github.io/job-scout.html">
@@ -116,6 +116,11 @@
     @media (max-width: 900px) {
       .navlinks { display: none; }
     }
+    @media (max-width: 360px) {
+      .topnav .bar { gap: 10px; padding: 0 10px; }
+      .brand { font-size: 18px; gap: 8px; }
+      .topnav .btn { padding: 0 10px; font-size: 13px; }
+    }
     @media (max-width: 720px) {
       .wrap { padding: 0 16px; }
       .steps, .grid { grid-template-columns: 1fr; }
@@ -128,12 +133,12 @@
 
   <header class="topnav">
     <div class="bar">
-      <a class="brand" href="./"><img src="icon-192.png?v=2" width="26" height="26" alt="">Iana Grytsenko</a>
+      <a class="brand" href="./"><img src="icon-192.png?v=2" width="26" height="26" alt="">Iana Notebook</a>
       <nav aria-label="Main">
         <ul class="navlinks">
           <li><a href="./#projects">Projects</a></li>
           <li><a href="./#articles">Articles</a></li>
-          <li><a href="job-scout.html" aria-current="page">Job Scout</a></li>
+          <li><a href="job-scout.html" aria-current="page">Scout your dream job!</a></li>
           <li><a href="https://momup-app.github.io/" target="_blank" rel="noopener">Kids Nearby</a></li>
           <li><a href="./#contact">Contact</a></li>
         </ul>
@@ -146,8 +151,8 @@
     <section class="hero" aria-labelledby="hero-h">
       <div class="wrap">
         <p class="kicker">Project &middot; AI agent</p>
-        <h1 id="hero-h">Job Scout: an AI agent that does the job-search legwork</h1>
-        <p class="sub">Upload your CV once. Every hour, or once a day, Job Scout finds fresh jobs, scores each one against your CV the way an applicant tracking system would, and emails you a tailored CV and cover letter for the best matches.</p>
+        <h1 id="hero-h">Scout your dream job!</h1>
+        <p class="sub">An AI agent that does the job-search legwork. Upload your CV once. Every hour, or once a day, it finds fresh jobs, scores each one against your CV the way an applicant tracking system would, and emails you a tailored CV and cover letter for the best matches.</p>
         <p class="promise">It never applies or contacts anyone for you. You stay in control of every application.</p>
         <div class="stack" aria-label="Built with">
           <span class="tag">TypeScript</span><span class="tag">Playwright</span><span class="tag">Claude API</span><span class="tag">GitHub Actions</span>
@@ -173,7 +178,7 @@
       <div class="wrap">
         <h2 id="how-h">How it works</h2>
         <p class="lead">Each stage is its own small module, so one part can change or fail without breaking the rest.</p>
-        <ol class="pipe" aria-label="Job Scout pipeline">
+        <ol class="pipe" aria-label="How the agent works, stage by stage">
           <li class="stage"><b>config + CV</b><span>Your targets, job boards and CV</span></li>
           <li class="stage"><b>sources</b><span>Board APIs and Built In pages, collected with Playwright</span></li>
           <li class="stage"><b>match</b><span>Filters and an ATS-style keyword score pick the top matches</span></li>

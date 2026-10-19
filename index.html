@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Iana Grytsenko | Quality Engineering, End to End</title>
+  <title>Iana Notebook | Quality Engineering, End to End</title>
   <meta name="description" content="Iana Grytsenko, Test Automation Architect and SDET: test automation, AI agent testing, API, performance and accessibility testing.">
   <link rel="canonical" href="https://janagrit.github.io/">
-  <meta property="og:title" content="Iana Grytsenko | Quality Engineering, End to End">
+  <meta property="og:title" content="Iana Notebook | Quality Engineering, End to End">
   <meta property="og:description" content="Test automation, AI agent testing, APIs, performance and accessibility, designed and built by one engineer.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://janagrit.github.io/">
@@ -14,15 +14,15 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Iana Grytsenko, Test Automation Architect: quality engineering, end to end">
-  <meta property="og:site_name" content="Iana Grytsenko">
+  <meta property="og:site_name" content="Iana Notebook">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Iana Grytsenko | Quality Engineering, End to End">
+  <meta name="twitter:title" content="Iana Notebook | Quality Engineering, End to End">
   <meta name="twitter:image" content="https://janagrit.github.io/images/og.jpg">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#f9f9f7">
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Iana G">
+  <meta name="apple-mobile-web-app-title" content="Iana Notebook">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link rel="icon" href="favicon.ico?v=2" sizes="16x16 32x32 48x48">
   <link rel="icon" href="icon-192.png?v=2" type="image/png" sizes="192x192">
@@ -184,8 +184,14 @@
       }
       .tabbar ul { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); height: 60px; }
       .tabbar a { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 500; color: var(--faint); text-decoration: none; -webkit-tap-highlight-color: transparent; }
-      .tabbar svg { width: 21px; height: 21px; }
+      .tabbar svg { width: 21px; height: 21px; flex: none; }
+      .tabbar a span { text-align: center; line-height: 1.12; font-size: 10.5px; padding: 0 1px; }
       .tabbar a[aria-current] { color: var(--ink); }
+    }
+    @media (max-width: 360px) {
+      .topnav .bar { gap: 10px; padding: 0 10px !important; }
+      .brand { font-size: 18px; gap: 8px; }
+      .langs button { padding: 7px 8px; }
     }
     @media (max-width: 720px) {
       .wrap { padding: 0 16px; }
@@ -200,12 +206,12 @@
 
   <header class="topnav">
     <div class="bar">
-      <a class="brand" href="#top"><img src="icon-192.png?v=2" width="26" height="26" alt="">Iana Grytsenko</a>
+      <a class="brand" href="#top"><img src="icon-192.png?v=2" width="26" height="26" alt="">Iana Notebook</a>
       <nav aria-label="Main">
         <ul class="navlinks">
           <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
           <li><a href="#articles" data-i18n="nav.articles">Articles</a></li>
-          <li><a href="job-scout.html">Job Scout</a></li>
+          <li><a href="job-scout.html" data-i18n="nav.scout">Scout your dream job!</a></li>
           <li><a href="https://momup-app.github.io/" target="_blank" rel="noopener">Kids Nearby</a></li>
           <li><a href="#contact" data-i18n="tab.contact">Contact</a></li>
         </ul>
@@ -375,7 +381,7 @@
     <ul>
       <li><a href="#projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span data-i18n="nav.projects">Projects</span></a></li>
       <li><a href="#articles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/><path d="M8 10h8M8 14h8M8 18h5"/></svg><span data-i18n="nav.articles">Articles</span></a></li>
-      <li><a href="job-scout.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg><span>Job Scout</span></a></li>
+      <li><a href="job-scout.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg><span data-i18n="nav.scout">Scout your dream job!</span></a></li>
       <li><a href="https://momup-app.github.io/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Kids Nearby</span></a></li>
       <li><a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-i18n="tab.contact">Contact</span></a></li>
     </ul>
