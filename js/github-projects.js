@@ -6,7 +6,7 @@
   var USER = 'janagrit';
   var API_URL = 'https://api.github.com/users/' + USER + '/repos?per_page=100&sort=created';
   var HIDE_TOPIC = 'hide-from-site';
-  var ALWAYS_SKIP = ['janagrit.github.io', 'aviaryai-eval-demo', 'uptic-site-audit'];
+  var ALWAYS_SKIP = ['janagrit.github.io', 'aviaryai-eval-demo', 'uptic-site-audit', 'cooley-people-search-automation'];
   var MAX_TAGS = 3;
   var CACHE_KEY = 'gh-repos';
   var CACHE_MS = 10 * 60 * 1000; // stay well under GitHub's 60 requests/hour limit for visitors
