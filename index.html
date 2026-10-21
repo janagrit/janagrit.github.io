@@ -18,7 +18,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Iana Notebook | Quality Engineering, End to End">
   <meta name="twitter:image" content="https://janagrit.github.io/images/og.jpg">
-  <meta name="color-scheme" content="light">
+  <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f9f9f7">
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -31,6 +31,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Iana Grytsenko", "jobTitle": "Test Automation Architect and SDET", "url": "https://janagrit.github.io/", "image": "https://janagrit.github.io/images/og.jpg", "address": {"@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US"}, "knowsAbout": ["Test automation", "Playwright", "TypeScript", "AI agent testing", "API testing", "Performance testing", "Accessibility testing", "CI/CD"], "knowsLanguage": ["English", "Ukrainian", "Chinese"], "sameAs": ["https://www.linkedin.com/in/ianagrytsenko", "https://github.com/janagrit"]}</script>
+  <script>
+    // Theme bootstrap: runs before first paint so there is no light/dark flash.
+    // Saved choice (localStorage) wins; otherwise follow the OS setting.
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
+      var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    })();
+  </script>
   <style>
     /* ---------- tokens: warm paper, serif headings, quiet cards ---------- */
     :root {
@@ -40,7 +50,7 @@
       --sand: #e6e3d9;          /* card thumbnail backdrop */
       --ink: #0b0b0b;
       --sub: #52514e;
-      --faint: #7a7873;
+      --faint: #6b6964;         /* darkened from #7a7873 to pass WCAG AA on every section */
       --ring: rgba(11, 11, 11, .1);
       --ring-strong: rgba(11, 11, 11, .2);
       --live: #2f6b3a;
@@ -53,16 +63,69 @@
       --radius: 16px;
       --card-shadow: 0 0 0 1px var(--ring), 0 1px 2px rgba(11, 11, 11, .08);
       --card-shadow-hover: 0 0 0 1px var(--ring-strong), 0 10px 30px rgba(11, 11, 11, .08);
+      /* surfaces and controls that used to be hard-coded */
+      --on-ink: #fff;
+      --ink-hover: #2a2a28;
+      --btn2: rgba(255, 255, 255, .55);
+      --btn2-hover: #fff;
+      --hover: rgba(11, 11, 11, .05);
+      --hover-strong: rgba(11, 11, 11, .07);
+      --nav-bg: rgba(249, 249, 247, .92);
+      --tabbar-bg: rgba(249, 249, 247, .95);
+      --live-ring: rgba(47, 107, 58, .3);
+      --wip-ring: rgba(138, 90, 0, .3);
+      --photo-filter: none;
+      /* section backgrounds: one warm-paper family, each band a slightly different hue */
+      --sec-hero: #edece7;                       /* warm stone */
+      --sec-projects: #f9f9f7;                   /* paper, fading into a faint sage */
+      --sec-projects-tint: rgba(47, 107, 58, .045);
+      --sec-articles: #f6f2ea;                   /* faint sand */
+      --sec-contact: #e9e7e0;                    /* deeper stone */
+      --sec-footer: #e2dfd6;                     /* darkest light tint, closes the page */
+      color-scheme: light;
+    }
+    [data-theme="dark"] {
+      --bg: #131312;
+      --band: #1c1c1a;
+      --card: #1e1e1c;
+      --sand: #2a2924;
+      --ink: #f1f0eb;
+      --sub: #b8b6ae;
+      --faint: #9a978f;
+      --ring: rgba(255, 255, 255, .1);
+      --ring-strong: rgba(255, 255, 255, .22);
+      --live: #86c993;
+      --wip: #e3ad55;
+      --card-shadow: 0 0 0 1px var(--ring), 0 1px 2px rgba(0, 0, 0, .4);
+      --card-shadow-hover: 0 0 0 1px var(--ring-strong), 0 10px 30px rgba(0, 0, 0, .45);
+      --on-ink: #0b0b0b;
+      --ink-hover: #d9d8d2;
+      --btn2: rgba(255, 255, 255, .06);
+      --btn2-hover: rgba(255, 255, 255, .12);
+      --hover: rgba(255, 255, 255, .07);
+      --hover-strong: rgba(255, 255, 255, .11);
+      --nav-bg: rgba(19, 19, 18, .85);
+      --tabbar-bg: rgba(19, 19, 18, .92);
+      --live-ring: rgba(134, 201, 147, .35);
+      --wip-ring: rgba(227, 173, 85, .35);
+      --photo-filter: brightness(.88) saturate(.95);
+      --sec-hero: #1c1c1a;
+      --sec-projects: #131312;
+      --sec-projects-tint: rgba(134, 201, 147, .03);
+      --sec-articles: #18160f;
+      --sec-contact: #1f1e1b;
+      --sec-footer: #0b0b0a;
+      color-scheme: dark;
     }
 
     /* ---------- base ---------- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; transition: background-color .3s ease, color .3s ease; }
     img { display: block; max-width: 100%; }
     a { color: inherit; }
     a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 8px; }
     .skip { position: absolute; left: -9999px; }
-    .skip:focus { left: 16px; top: 12px; z-index: 100; background: var(--ink); color: #fff; padding: 8px 14px; border-radius: 8px; }
+    .skip:focus { left: 16px; top: 12px; z-index: 100; background: var(--ink); color: var(--on-ink); padding: 8px 14px; border-radius: 8px; }
     .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
     section { scroll-margin-top: var(--nav-h); }
     h1, h2, h3 { font-family: var(--serif); font-weight: 400; }
@@ -70,30 +133,43 @@
     .section-sub { margin-top: 4px; color: var(--sub); font-size: 16px; }
 
     /* buttons */
-    .btn { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 10px; font: 500 15px/1 var(--sans); text-decoration: none; white-space: nowrap; transition: background .15s, box-shadow .15s; }
-    .btn.primary { background: var(--ink); color: #fff; }
-    .btn.primary:hover { background: #2a2a28; }
-    .btn.secondary { background: rgba(255, 255, 255, .55); color: var(--ink); box-shadow: 0 0 0 1px var(--ring), 0 1px 2px rgba(11, 11, 11, .06); }
-    .btn.secondary:hover { background: #fff; }
+    .btn { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 10px; font: 500 15px/1 var(--sans); text-decoration: none; white-space: nowrap; transition: background .15s, box-shadow .15s, color .3s ease; }
+    .btn.primary { background: var(--ink); color: var(--on-ink); }
+    .btn.primary:hover { background: var(--ink-hover); }
+    .btn.secondary { background: var(--btn2); color: var(--ink); box-shadow: 0 0 0 1px var(--ring), 0 1px 2px rgba(11, 11, 11, .06); }
+    .btn.secondary:hover { background: var(--btn2-hover); }
 
     /* ---------- top nav ---------- */
-    .topnav { position: sticky; top: 0; z-index: 50; background: rgba(249, 249, 247, .92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--ring); }
+    .topnav { position: sticky; top: 0; z-index: 50; background: var(--nav-bg); transition: background-color .3s ease; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--ring); }
     .topnav .bar { height: var(--nav-h); display: flex; align-items: center; gap: 24px; padding: 0 16px; }
     .brand { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 21px; letter-spacing: -.02em; text-decoration: none; white-space: nowrap; }
     .brand img { width: 26px; height: 26px; border-radius: 7px; }
     .navlinks { display: flex; gap: 4px; list-style: none; }
     .navlinks a { display: block; padding: 6px 10px; border-radius: 7px; font-size: 14px; text-decoration: none; color: var(--ink); }
-    .navlinks a:hover { background: rgba(11, 11, 11, .05); }
-    .navlinks a[aria-current] { background: rgba(11, 11, 11, .07); }
+    .navlinks a:hover { background: var(--hover); }
+    .navlinks a[aria-current] { background: var(--hover-strong); }
     .nav-end { margin-left: auto; display: flex; align-items: center; gap: 10px; }
     .langs { display: inline-flex; gap: 2px; padding: 2px; border-radius: 9px; box-shadow: 0 0 0 1px var(--ring); background: var(--card); }
     .langs button { font: 500 13px/1 var(--sans); color: var(--sub); background: transparent; border: 0; border-radius: 7px; padding: 7px 10px; cursor: pointer; }
-    .langs button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+    .langs button[aria-pressed="true"] { background: var(--ink); color: var(--on-ink); }
     .langs button:hover:not([aria-pressed="true"]) { color: var(--ink); }
     .topnav .btn { height: 32px; padding: 0 12px; font-size: 14px; border-radius: 8px; }
 
+    /* light/dark toggle: a small track with both icons, the knob sits under the active one */
+    .theme-toggle { position: relative; flex: none; display: inline-flex; align-items: center; width: 58px; height: 32px; padding: 3px; border: 0; border-radius: 999px; background: var(--card); box-shadow: 0 0 0 1px var(--ring); cursor: pointer; transition: background-color .3s ease; -webkit-tap-highlight-color: transparent; }
+    .theme-toggle::before { content: ""; position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%; background: var(--hover-strong); box-shadow: 0 0 0 1px var(--ring); transition: transform .3s ease; }
+    [data-theme="dark"] .theme-toggle::before { transform: translateX(26px); }
+    .theme-toggle .tt-icon { position: relative; width: 26px; text-align: center; font-size: 14px; line-height: 26px; transition: opacity .3s ease; }
+    .theme-toggle .tt-moon, [data-theme="dark"] .theme-toggle .tt-sun { opacity: .4; }
+    [data-theme="dark"] .theme-toggle .tt-moon { opacity: 1; }
+    .theme-toggle:hover::before { background: var(--ring-strong); }
+    .theme-toggle:active::before { transform: scale(.94); }
+    [data-theme="dark"] .theme-toggle:active::before { transform: translateX(26px) scale(.94); }
+    .theme-toggle:focus { outline: 2px solid var(--ink); outline-offset: 3px; }
+    .theme-toggle:focus:not(:focus-visible) { outline: none; }
+
     /* ---------- hero band ---------- */
-    .hero { background: linear-gradient(180deg, var(--band) 0%, var(--band) 70%, var(--bg) 100%); }
+    .hero { background-color: var(--sec-hero); background-image: linear-gradient(180deg, transparent 0%, transparent 70%, var(--sec-projects) 100%); transition: background-color .3s ease; }
     .hero .wrap { padding-top: clamp(56px, 9vw, 104px); padding-bottom: clamp(56px, 8vw, 88px); }
     .hero h1 { font-size: clamp(38px, 5.4vw, 52px); line-height: 1.1; letter-spacing: -.025em; max-width: 18ch; }
     .hero .sub { margin-top: 16px; max-width: 40em; color: var(--sub); font-size: 18px; line-height: 1.55; }
@@ -101,15 +177,24 @@
     .hero .ctas { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
 
     /* ---------- sections ---------- */
-    .block { padding: clamp(48px, 7vw, 72px) 0; }
+    .block { padding: clamp(48px, 7vw, 72px) 0; transition: background-color .3s ease; }
+    #projects { background-color: var(--sec-projects); background-image: linear-gradient(180deg, transparent 0%, var(--sec-projects-tint) 100%); }
+    #articles { background-color: var(--sec-articles); border-top: 1px solid var(--ring); }
     .grid { margin-top: 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
     /* cards */
-    .card { display: flex; flex-direction: column; background: var(--card); border-radius: var(--radius); box-shadow: var(--card-shadow); overflow: hidden; transition: box-shadow .2s; }
+    .card { display: flex; flex-direction: column; background: var(--card); border-radius: var(--radius); box-shadow: var(--card-shadow); overflow: hidden; transition: box-shadow .2s, background-color .3s ease; }
     a.card { text-decoration: none; color: inherit; }
     a.card:hover, .card:has(.links a:hover) { box-shadow: var(--card-shadow-hover); }
     .card h3 { font-size: 20px; line-height: 1.25; letter-spacing: -.01em; }
     .card p { margin-top: 8px; color: var(--sub); font-size: 15px; line-height: 1.45; }
+
+    /* project cover photos (Unsplash), credit line underneath */
+    .cover { background: var(--sand); }
+    .cover img { width: 100%; height: 200px; object-fit: cover; filter: var(--photo-filter); transition: filter .3s ease; }
+    .cover figcaption { padding: 6px 12px; font-size: 11px; line-height: 1.4; color: var(--sub); background: var(--card); border-bottom: 1px solid var(--ring); }
+    .cover figcaption a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--ring-strong); }
+    .cover figcaption a:hover { color: var(--ink); text-decoration-color: var(--ink); }
 
     /* project cards: thumbnail inset on a sand backdrop */
     .media { height: 176px; background: var(--sand); padding: 28px 0 0 32px; overflow: hidden; border-bottom: 1px solid var(--ring); }
@@ -120,8 +205,8 @@
     .card .body { padding: 20px 20px 22px; display: flex; flex-direction: column; flex: 1; }
     .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
     .tag { font-size: 12px; font-weight: 500; padding: 3px 9px; border-radius: 999px; color: var(--sub); box-shadow: inset 0 0 0 1px var(--ring); }
-    .tag.live { color: var(--live); box-shadow: inset 0 0 0 1px rgba(47, 107, 58, .3); }
-    .tag.wip { color: var(--wip); box-shadow: inset 0 0 0 1px rgba(138, 90, 0, .3); }
+    .tag.live { color: var(--live); box-shadow: inset 0 0 0 1px var(--live-ring); }
+    .tag.wip { color: var(--wip); box-shadow: inset 0 0 0 1px var(--wip-ring); }
     .card p a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--ring-strong); }
     .card p a:hover { text-decoration-color: var(--ink); }
     .card .role { margin-top: 12px; font-size: 14px; }
@@ -157,7 +242,7 @@
     .art.soon h3, .art.soon p { color: var(--sub); }
 
     /* ---------- contact band ---------- */
-    .contact { background: var(--band); border-top: 1px solid var(--ring); }
+    .contact { background: var(--sec-contact); border-top: 1px solid var(--ring); transition: background-color .3s ease; }
     .contact .wrap { padding-top: clamp(56px, 8vw, 88px); padding-bottom: clamp(56px, 8vw, 88px); }
     .contact h2 { font-size: clamp(32px, 4.4vw, 44px); line-height: 1.15; max-width: 20ch; }
     .contact .lead { margin-top: 14px; max-width: 40em; color: var(--sub); font-size: 17px; }
@@ -166,7 +251,7 @@
     .contact .elsewhere a { color: var(--sub); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ring-strong); }
     .contact .elsewhere a:hover { color: var(--ink); text-decoration-color: var(--ink); }
 
-    footer { border-top: 1px solid var(--ring); font-size: 13px; color: var(--faint); }
+    footer { background: var(--sec-footer); border-top: 1px solid var(--ring); font-size: 13px; color: var(--sub); transition: background-color .3s ease, color .3s ease; }
     footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 20px; padding-bottom: 24px; }
 
     /* ---------- mobile bottom tabs ---------- */
@@ -176,10 +261,11 @@
     @media (max-width: 900px) {
       .grid { grid-template-columns: 1fr 1fr; }
       .navlinks, .topnav .btn { display: none; }
+      .topnav nav { display: none; } /* its links are hidden here; drops an empty flex item + gap so the theme toggle fits */
       body { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
       .tabbar {
         display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
-        background: rgba(249, 249, 247, .95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        background: var(--tabbar-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
         border-top: 1px solid var(--ring); padding-bottom: env(safe-area-inset-bottom);
       }
       .tabbar ul { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); height: 60px; }
@@ -192,6 +278,18 @@
       .topnav .bar { gap: 10px; padding: 0 10px !important; }
       .brand { font-size: 18px; gap: 8px; }
       .langs button { padding: 7px 8px; }
+      /* very narrow phones: collapse the toggle to a single icon showing the current theme */
+      .topnav .bar { padding: 0 8px !important; }
+      .langs button { padding: 7px 6px; }
+      .nav-end { gap: 4px; }
+      .theme-toggle { width: 28px; height: 28px; padding: 0; justify-content: center; }
+      .theme-toggle::before { display: none; }
+      .theme-toggle .tt-icon { width: auto; font-size: 14px; }
+      .theme-toggle .tt-moon, [data-theme="dark"] .theme-toggle .tt-sun { display: none; }
+      [data-theme="dark"] .theme-toggle .tt-moon { display: inline; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before { transition-duration: .01ms !important; }
     }
     @media (max-width: 720px) {
       .wrap { padding: 0 16px; }
@@ -217,6 +315,10 @@
         </ul>
       </nav>
       <div class="nav-end">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+          <span class="tt-icon tt-sun" aria-hidden="true">&#9728;&#65039;</span>
+          <span class="tt-icon tt-moon" aria-hidden="true">&#127769;</span>
+        </button>
         <div class="langs" role="group" aria-label="Language">
           <button type="button" data-set="en" aria-pressed="true" lang="en">EN</button>
           <button type="button" data-set="uk" aria-pressed="false" lang="uk" aria-label="Українська">UA</button>
@@ -251,6 +353,10 @@
 
         <div class="grid">
           <article class="card">
+            <figure class="cover">
+              <img src="https://images.unsplash.com/photo-1762328862557-e0a36587cd3c?auto=format&amp;fit=crop&amp;q=70&amp;w=800&amp;h=400" srcset="https://images.unsplash.com/photo-1762328862557-e0a36587cd3c?auto=format&amp;fit=crop&amp;q=70&amp;w=600&amp;h=300 600w, https://images.unsplash.com/photo-1762328862557-e0a36587cd3c?auto=format&amp;fit=crop&amp;q=70&amp;w=800&amp;h=400 800w, https://images.unsplash.com/photo-1762328862557-e0a36587cd3c?auto=format&amp;fit=crop&amp;q=70&amp;w=1200&amp;h=600 1200w" sizes="(max-width: 720px) 100vw, (max-width: 900px) 50vw, 350px" width="800" height="400" loading="lazy" decoding="async" alt="Smartphone screen showing an AI assistant chat interface">
+              <figcaption>Photo by <a href="https://unsplash.com/@zulfugarkarimov?utm_source=janagrit_portfolio&amp;utm_medium=referral" target="_blank" rel="noopener">Zulfugar Karimov</a> on <a href="https://unsplash.com/?utm_source=janagrit_portfolio&amp;utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption>
+            </figure>
             <div class="media">
               <div class="term" aria-hidden="true">
                 <div class="dim">$ python run_eval.py</div>
@@ -271,6 +377,10 @@
           </article>
 
           <article class="card">
+            <figure class="cover">
+              <img src="https://images.unsplash.com/photo-1680624797240-7e5ac2259d39?auto=format&amp;fit=crop&amp;q=70&amp;w=800&amp;h=400" srcset="https://images.unsplash.com/photo-1680624797240-7e5ac2259d39?auto=format&amp;fit=crop&amp;q=70&amp;w=600&amp;h=300 600w, https://images.unsplash.com/photo-1680624797240-7e5ac2259d39?auto=format&amp;fit=crop&amp;q=70&amp;w=800&amp;h=400 800w, https://images.unsplash.com/photo-1680624797240-7e5ac2259d39?auto=format&amp;fit=crop&amp;q=70&amp;w=1200&amp;h=600 1200w" sizes="(max-width: 720px) 100vw, (max-width: 900px) 50vw, 350px" width="800" height="400" loading="lazy" decoding="async" alt="City playground with climbing frames and swings in a residential courtyard">
+              <figcaption>Photo by <a href="https://unsplash.com/@cchiba000?utm_source=janagrit_portfolio&amp;utm_medium=referral" target="_blank" rel="noopener">C Chiba</a> on <a href="https://unsplash.com/?utm_source=janagrit_portfolio&amp;utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption>
+            </figure>
             <div class="media"><img src="images/momup.jpg" width="1120" height="700" loading="lazy" data-i18n-alt="p2.alt" alt="Kids Nearby home page: search for kids' activities in Berlin"></div>
             <div class="body">
               <div class="tags" data-i18n="p2.tags"><span class="tag live">Live</span><span class="tag">QA</span></div>
@@ -282,6 +392,10 @@
           </article>
 
           <article class="card">
+            <figure class="cover">
+              <img src="https://images.unsplash.com/photo-1621293954908-907159247fc8?auto=format&amp;fit=crop&amp;q=70&amp;w=800&amp;h=400" srcset="https://images.unsplash.com/photo-1621293954908-907159247fc8?auto=format&amp;fit=crop&amp;q=70&amp;w=600&amp;h=300 600w, https://images.unsplash.com/photo-1621293954908-907159247fc8?auto=format&amp;fit=crop&amp;q=70&amp;w=800&amp;h=400 800w, https://images.unsplash.com/photo-1621293954908-907159247fc8?auto=format&amp;fit=crop&amp;q=70&amp;w=1200&amp;h=600 1200w" sizes="(max-width: 720px) 100vw, (max-width: 900px) 50vw, 350px" width="800" height="400" loading="lazy" decoding="async" alt="Modern hotel lobby with lounge seating and wood-slat walls">
+              <figcaption>Photo by <a href="https://unsplash.com/@framesforyourheart?utm_source=janagrit_portfolio&amp;utm_medium=referral" target="_blank" rel="noopener">Frames For Your Heart</a> on <a href="https://unsplash.com/?utm_source=janagrit_portfolio&amp;utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption>
+            </figure>
             <div class="media"><img src="images/uptic.jpg" width="1120" height="700" loading="lazy" data-i18n-alt="p3.alt" alt="Uptic Hospitality article page: Independent Hotels Should Think Independently"></div>
             <div class="body">
               <div class="tags" data-i18n="p3.tags"><span class="tag wip">In progress</span><span class="tag">Automation</span></div>
@@ -381,6 +495,28 @@
   <script src="js/i18n.js"></script>
   <script src="js/github-projects.js?v=2"></script>
   <script>
+    // Light/dark toggle: flips data-theme on <html>, saves the choice, keeps the label and browser chrome in sync.
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      const themeMeta = document.querySelector('meta[name="theme-color"]');
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      function setTheme(theme, save) {
+        root.setAttribute('data-theme', theme);
+        btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+        if (themeMeta) themeMeta.setAttribute('content', theme === 'dark' ? '#131312' : '#f9f9f7');
+        if (save) { try { localStorage.setItem('theme', theme); } catch (e) {} }
+      }
+      setTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light', false);
+      btn.addEventListener('click', () => setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true));
+      // Follow OS changes only until the visitor makes an explicit choice.
+      media.addEventListener('change', (e) => {
+        let saved = null;
+        try { saved = localStorage.getItem('theme'); } catch (err) {}
+        if (!saved) setTheme(e.matches ? 'dark' : 'light', false);
+      });
+    })();
+
     // Highlight the nav link and tab for the section currently on screen.
     const tabLinks = document.querySelectorAll('.navlinks a, .tabbar a');
     const spySections = ['top', 'projects', 'articles', 'contact'].map(id => document.getElementById(id));
