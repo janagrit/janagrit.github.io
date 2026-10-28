@@ -22,7 +22,7 @@ class AlertError(Exception):
     """A failure whose message is safe to show in the public Annotations box."""
 
 
-def api(path, **params):
+def api(path, allow_missing=False, **params):
     url = f"{SITE}/api/v0/{path}?{urllib.parse.urlencode(params)}"
     req = urllib.request.Request(url, headers={
         "Authorization": f"Bearer {os.environ['GOATCOUNTER_TOKEN']}",
@@ -32,8 +32,10 @@ def api(path, **params):
         with urllib.request.urlopen(req, timeout=30) as resp:
             return json.load(resp)
     except urllib.error.HTTPError as e:
+        if e.code == 404 and allow_missing:
+            return {}
         hint = {401: "token is wrong or revoked", 403: "token lacks the 'Read statistics' permission"}
-        raise AlertError(f"GoatCounter API returned HTTP {e.code} ({hint.get(e.code, e.reason)})") from e
+        raise AlertError(f"GoatCounter API {path} returned HTTP {e.code} ({hint.get(e.code, e.reason)})") from e
 
 
 def main():
@@ -54,7 +56,8 @@ def main():
     lines = [f"Visits {start:%Y-%m-%d %H:%M}–{end:%H:%M} UTC", ""]
     for page in pages:
         lines.append(f"{page['path']}: {page['count']} visitor(s)")
-        refs = api(f"stats/hits/{page['path_id']}", limit=20, **window).get("refs") or []
+        # Referrers are extra detail; GoatCounter can 404 here when a page has none.
+        refs = api(f"stats/hits/{page['path_id']}", allow_missing=True, limit=20, **window).get("refs") or []
         for ref in refs:
             name = ref.get("name") or "(direct / unknown)"
             kind = REF_KIND.get(ref.get("ref_scheme") or "", "")
