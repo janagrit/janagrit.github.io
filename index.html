@@ -241,6 +241,14 @@
     .art.soon { background: transparent; box-shadow: inset 0 0 0 1px var(--ring); }
     .art.soon h3, .art.soon p { color: var(--sub); }
 
+    /* statistics: one number per card, filled from GoatCounter's public counter */
+    #stats { background-color: var(--sec-projects); border-top: 1px solid var(--ring); }
+    .grid.four { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 900px) { .grid.four { grid-template-columns: 1fr 1fr; } }
+    .stat { padding: 22px; }
+    .stat .num { font-family: var(--serif); font-size: 36px; line-height: 1.1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+    .stat .label { margin-top: 6px; font-size: 14px; color: var(--sub); }
+
     /* ---------- contact band ---------- */
     .contact { background: var(--sec-contact); border-top: 1px solid var(--ring); transition: background-color .3s ease; }
     .contact .wrap { padding-top: clamp(56px, 8vw, 88px); padding-bottom: clamp(56px, 8vw, 88px); }
@@ -310,7 +318,8 @@
           <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
           <li><a href="#articles" data-i18n="nav.articles">Articles</a></li>
           <li><a href="https://job-scout-agent.janagrit.workers.dev/#upload" target="_blank" rel="noopener" data-i18n="nav.scout">Scout your dream job!</a></li>
-          <!-- <li><a href="https://momup-app.github.io/" target="_blank" rel="noopener">Kids Nearby</a></li> -->
+          <li><a href="#stats" data-i18n="nav.stats">Statistics</a></li>
+          <!--<li><a href="https://momup-app.github.io/" target="_blank" rel="noopener">Kids Nearby</a></li> -->
           <li><a href="#contact" data-i18n="tab.contact">Contact</a></li>
         </ul>
       </nav>
@@ -445,6 +454,20 @@
       </div>
     </section>
 
+    <!-- ================= STATISTICS ================= -->
+    <section class="block" id="stats" aria-labelledby="stats-h">
+      <div class="wrap">
+        <h2 id="stats-h" data-i18n="nav.stats">Statistics</h2>
+        <p class="section-sub" data-i18n="stats.sub">Visits to this site since tracking began. Counted by GoatCounter, without cookies.</p>
+        <div class="grid four">
+          <div class="card stat"><div class="num" data-count="TOTAL">&ndash;</div><div class="label" data-i18n="stats.total">Total visits</div></div>
+          <div class="card stat"><div class="num" data-count="/">&ndash;</div><div class="label" data-i18n="stats.home">Home page</div></div>
+          <div class="card stat"><div class="num" data-count="/for-hr.html">&ndash;</div><div class="label" data-i18n="stats.hr">For HR page</div></div>
+          <div class="card stat"><div class="num" data-count="/articles/dream-job-journey.html /articles/ai-agent-noise.html /articles/resume-improvements.html /articles/qa-before-and-after-ai.html /articles/claude-code-qa-workflow.html">&ndash;</div><div class="label" data-i18n="stats.articles">Article reads</div></div>
+        </div>
+      </div>
+    </section>
+
     <!-- ================= CONTACT ================= -->
     <section class="contact" id="contact" aria-labelledby="contact-h">
       <div class="wrap">
@@ -506,7 +529,7 @@
 
     // Highlight the nav link and tab for the section currently on screen.
     const tabLinks = document.querySelectorAll('.navlinks a, .tabbar a');
-    const spySections = ['top', 'projects', 'articles', 'contact'].map(id => document.getElementById(id));
+    const spySections = ['top', 'projects', 'articles', 'stats', 'contact'].map(id => document.getElementById(id));
     function updateTabs() {
       const line = window.innerHeight * 0.35;
       let current = spySections[0].id;
@@ -523,6 +546,23 @@
     }, { passive: true });
     window.addEventListener('resize', updateTabs);
     updateTabs();
+
+    // Statistics: each card lists one or more paths (space-separated) and shows their summed all-time count.
+    // Needs "Allow adding visitor counts on your website" in GoatCounter settings; a path with no visits returns 404 (= 0).
+    (function () {
+      const counter = 'https://janagrit.goatcounter.com/counter/';
+      const fmt = new Intl.NumberFormat('en-US');
+      function count(path) {
+        return fetch(counter + encodeURIComponent(path) + '.json')
+          .then(r => r.status === 404 ? { count: '0' } : r.ok ? r.json() : Promise.reject(r.status))
+          .then(d => Number(String(d.count).replace(/\D/g, '')));
+      }
+      document.querySelectorAll('[data-count]').forEach(el => {
+        Promise.all(el.dataset.count.split(' ').map(count))
+          .then(nums => { el.textContent = fmt.format(nums.reduce((a, b) => a + b, 0)); })
+          .catch(() => { /* keep the dash if the counter is unavailable */ });
+      });
+    })();
   </script>
   <script data-goatcounter="https://janagrit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
