@@ -243,17 +243,21 @@
 
     /* statistics: one number per card, filled from GoatCounter's public counter */
     #stats { background-color: var(--sec-projects); border-top: 1px solid var(--ring); }
-    .grid.four { grid-template-columns: repeat(4, 1fr); }
-    @media (max-width: 900px) { .grid.four { grid-template-columns: 1fr 1fr; } }
-    .stat { padding: 22px; }
-    .stat .num { font-family: var(--serif); font-size: 36px; line-height: 1.1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+    button.btn { border: 0; cursor: pointer; }
+    .stats-modal { width: min(560px, calc(100vw - 32px)); margin: auto; padding: 28px; border: 0; border-radius: var(--radius); background: var(--bg); color: var(--ink); box-shadow: var(--card-shadow-hover); }
+    .stats-modal::backdrop { background: rgba(0, 0, 0, .45); }
+    .stats-close { position: absolute; top: 12px; right: 14px; width: 32px; height: 32px; border: 0; border-radius: 8px; background: transparent; color: var(--sub); font-size: 24px; line-height: 1; cursor: pointer; }
+    .stats-close:hover { background: var(--hover); color: var(--ink); }
+    .stat-grid { margin-top: 16px; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .stat { padding: 18px; }
+    .stat .num { font-family: var(--serif); font-size: 32px; line-height: 1.1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
     .stat .label { margin-top: 6px; font-size: 14px; color: var(--sub); }
-    .stats-lock { margin-top: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .stats-lock { margin-top: 16px; }
     .stats-lock[hidden] { display: none; }
     .stats-lock label { font-size: 14px; color: var(--sub); }
-    .stats-lock input { height: 40px; width: 140px; padding: 0 12px; border: 0; border-radius: 10px; background: var(--card); color: var(--ink); box-shadow: var(--card-shadow); font: 16px var(--sans); }
-    .stats-lock button { border: 0; cursor: pointer; }
-    .stats-err { font-size: 14px; color: var(--wip); }
+    .stats-lock .row { margin-top: 8px; display: flex; gap: 10px; }
+    .stats-lock input { flex: 1; min-width: 0; height: 40px; padding: 0 12px; border: 0; border-radius: 10px; background: var(--card); color: var(--ink); box-shadow: var(--card-shadow); font: 16px var(--sans); }
+    .stats-err { margin-top: 10px; min-height: 1.4em; font-size: 14px; color: var(--wip); }
 
     /* ---------- contact band ---------- */
     .contact { background: var(--sec-contact); border-top: 1px solid var(--ring); transition: background-color .3s ease; }
@@ -459,29 +463,6 @@
       </div>
     </section>
 
-    <!-- ================= STATISTICS ================= -->
-    <!-- Private: not linked anywhere. Open /#stats and enter the passcode. -->
-    <section class="block" id="stats" aria-labelledby="stats-h" hidden>
-      <div class="wrap">
-        <h2 id="stats-h" data-i18n="nav.stats">Statistics</h2>
-        <form class="stats-lock" id="stats-lock">
-          <label for="stats-code">Passcode</label>
-          <input id="stats-code" type="password" inputmode="numeric" autocomplete="off" required>
-          <button class="btn primary" type="submit">Open</button>
-          <span class="stats-err" id="stats-err" role="alert"></span>
-        </form>
-        <div id="stats-data" hidden>
-        <p class="section-sub" data-i18n="stats.sub">Visits to this site since tracking began. Counted by GoatCounter, without cookies.</p>
-        <div class="grid four">
-          <div class="card stat"><div class="num" data-count="TOTAL">&ndash;</div><div class="label" data-i18n="stats.total">Total visits</div></div>
-          <div class="card stat"><div class="num" data-count="/">&ndash;</div><div class="label" data-i18n="stats.home">Home page</div></div>
-          <div class="card stat"><div class="num" data-count="/for-hr.html">&ndash;</div><div class="label" data-i18n="stats.hr">For HR page</div></div>
-          <div class="card stat"><div class="num" data-count="/articles/dream-job-journey.html /articles/ai-agent-noise.html /articles/resume-improvements.html /articles/qa-before-and-after-ai.html /articles/claude-code-qa-workflow.html">&ndash;</div><div class="label" data-i18n="stats.articles">Article reads</div></div>
-        </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ================= CONTACT ================= -->
     <section class="contact" id="contact" aria-labelledby="contact-h">
       <div class="wrap">
@@ -489,6 +470,7 @@
          <div class="ctas">
           <a class="btn primary" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener" data-i18n="cta.call">Book a 30-minute call</a>
           <a class="btn secondary" href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a>
+          <button class="btn secondary" type="button" id="stats-open" data-i18n="nav.stats">Statistics</button>
         </div>
         <p class="elsewhere">
           <a href="https://www.linkedin.com/in/ianagrytsenko" target="_blank" rel="noopener">LinkedIn</a>
@@ -496,6 +478,29 @@
         </p>
       </div>
     </section>
+
+    <!-- ================= STATISTICS (modal, opened from Contact; asks for the passcode every time) ================= -->
+    <dialog class="stats-modal" id="stats" aria-labelledby="stats-h">
+      <button class="stats-close" type="button" id="stats-close" aria-label="Close">&times;</button>
+      <h2 id="stats-h" data-i18n="nav.stats">Statistics</h2>
+      <form class="stats-lock" id="stats-lock">
+        <label for="stats-code" data-i18n="stats.code">Enter the code</label>
+        <div class="row">
+          <input id="stats-code" type="password" inputmode="numeric" autocomplete="off" required>
+          <button class="btn primary" type="submit" data-i18n="stats.open">Open</button>
+        </div>
+        <p class="stats-err" id="stats-err" role="alert"></p>
+      </form>
+      <div id="stats-data" hidden>
+        <p class="section-sub" data-i18n="stats.sub">Visits to this site since tracking began. Counted by GoatCounter, without cookies.</p>
+        <div class="grid stat-grid">
+          <div class="card stat"><div class="num" data-count="TOTAL">&ndash;</div><div class="label" data-i18n="stats.total">Total visits</div></div>
+          <div class="card stat"><div class="num" data-count="/">&ndash;</div><div class="label" data-i18n="stats.home">Home page</div></div>
+          <div class="card stat"><div class="num" data-count="/for-hr.html">&ndash;</div><div class="label" data-i18n="stats.hr">For HR page</div></div>
+          <div class="card stat"><div class="num" data-count="/articles/dream-job-journey.html /articles/ai-agent-noise.html /articles/resume-improvements.html /articles/qa-before-and-after-ai.html /articles/claude-code-qa-workflow.html">&ndash;</div><div class="label" data-i18n="stats.articles">Article reads</div></div>
+        </div>
+      </div>
+    </dialog>
 
 </main>
   <footer>
@@ -561,14 +566,15 @@
     window.addEventListener('resize', updateTabs);
     updateTabs();
 
-    // Private statistics: the section only appears at /#stats and opens with a passcode.
+    // Private statistics: the Statistics button in Contact opens a modal that asks for the passcode every time.
     // Only the passcode's SHA-256 is stored here. This hides the numbers from casual visitors; it is not real
     // security (static site, and the counts are public at janagrit.goatcounter.com/counter/TOTAL.json).
     (function () {
       const CODE_HASH = '07334386287751ba02a4588c1a0875dbd074a61bd9e6ab7c48d244eacd0c99e0';
-      const UNLOCK_KEY = 'stats-unlocked';
-      const section = document.getElementById('stats');
+      const WRONG = { en: 'Sorry, ask Iana for the code.', uk: 'Вибачте, попросіть код у Яни.', ru: 'Извините, попросите код у Яны.' };
+      const modal = document.getElementById('stats');
       const lock = document.getElementById('stats-lock');
+      const input = document.getElementById('stats-code');
       const data = document.getElementById('stats-data');
       const err = document.getElementById('stats-err');
       let loaded = false;
@@ -590,33 +596,31 @@
         });
       }
 
-      function isUnlocked() {
-        try { return localStorage.getItem(UNLOCK_KEY) === CODE_HASH; } catch (e) { return false; }
-      }
-      function unlock() {
-        lock.hidden = true;
-        data.hidden = false;
-        loadCounts();
-      }
-      function route() {
-        section.hidden = location.hash !== '#stats';
-        if (section.hidden) return;
-        if (isUnlocked()) unlock();
-        section.scrollIntoView();
-      }
+      document.getElementById('stats-open').addEventListener('click', () => {
+        lock.hidden = false;
+        data.hidden = true;
+        input.value = '';
+        err.textContent = '';
+        modal.showModal();
+        input.focus();
+      });
+      document.getElementById('stats-close').addEventListener('click', () => modal.close());
+      // A click on the dimmed backdrop lands on the dialog element itself.
+      modal.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
 
       lock.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const input = document.getElementById('stats-code');
         const bytes = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(input.value.trim()));
         const hash = Array.from(new Uint8Array(bytes), b => b.toString(16).padStart(2, '0')).join('');
-        if (hash !== CODE_HASH) { err.textContent = 'Wrong passcode'; input.select(); return; }
-        try { localStorage.setItem(UNLOCK_KEY, CODE_HASH); } catch (e2) { /* unlocked for this visit only */ }
-        err.textContent = '';
-        unlock();
+        if (hash !== CODE_HASH) {
+          err.textContent = WRONG[document.documentElement.lang] || WRONG.en;
+          input.select();
+          return;
+        }
+        lock.hidden = true;
+        data.hidden = false;
+        loadCounts();
       });
-      window.addEventListener('hashchange', route);
-      route();
     })();
   </script>
   <script data-goatcounter="https://janagrit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
