@@ -248,6 +248,12 @@
     .stat { padding: 22px; }
     .stat .num { font-family: var(--serif); font-size: 36px; line-height: 1.1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
     .stat .label { margin-top: 6px; font-size: 14px; color: var(--sub); }
+    .stats-lock { margin-top: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .stats-lock[hidden] { display: none; }
+    .stats-lock label { font-size: 14px; color: var(--sub); }
+    .stats-lock input { height: 40px; width: 140px; padding: 0 12px; border: 0; border-radius: 10px; background: var(--card); color: var(--ink); box-shadow: var(--card-shadow); font: 16px var(--sans); }
+    .stats-lock button { border: 0; cursor: pointer; }
+    .stats-err { font-size: 14px; color: var(--wip); }
 
     /* ---------- contact band ---------- */
     .contact { background: var(--sec-contact); border-top: 1px solid var(--ring); transition: background-color .3s ease; }
@@ -318,7 +324,6 @@
           <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
           <li><a href="#articles" data-i18n="nav.articles">Articles</a></li>
           <li><a href="https://job-scout-agent.janagrit.workers.dev/#upload" target="_blank" rel="noopener" data-i18n="nav.scout">Scout your dream job!</a></li>
-          <li><a href="#stats" data-i18n="nav.stats">Statistics</a></li>
           <!--<li><a href="https://momup-app.github.io/" target="_blank" rel="noopener">Kids Nearby</a></li> -->
           <li><a href="#contact" data-i18n="tab.contact">Contact</a></li>
         </ul>
@@ -455,15 +460,24 @@
     </section>
 
     <!-- ================= STATISTICS ================= -->
-    <section class="block" id="stats" aria-labelledby="stats-h">
+    <!-- Private: not linked anywhere. Open /#stats and enter the passcode. -->
+    <section class="block" id="stats" aria-labelledby="stats-h" hidden>
       <div class="wrap">
         <h2 id="stats-h" data-i18n="nav.stats">Statistics</h2>
+        <form class="stats-lock" id="stats-lock">
+          <label for="stats-code">Passcode</label>
+          <input id="stats-code" type="password" inputmode="numeric" autocomplete="off" required>
+          <button class="btn primary" type="submit">Open</button>
+          <span class="stats-err" id="stats-err" role="alert"></span>
+        </form>
+        <div id="stats-data" hidden>
         <p class="section-sub" data-i18n="stats.sub">Visits to this site since tracking began. Counted by GoatCounter, without cookies.</p>
         <div class="grid four">
           <div class="card stat"><div class="num" data-count="TOTAL">&ndash;</div><div class="label" data-i18n="stats.total">Total visits</div></div>
           <div class="card stat"><div class="num" data-count="/">&ndash;</div><div class="label" data-i18n="stats.home">Home page</div></div>
           <div class="card stat"><div class="num" data-count="/for-hr.html">&ndash;</div><div class="label" data-i18n="stats.hr">For HR page</div></div>
           <div class="card stat"><div class="num" data-count="/articles/dream-job-journey.html /articles/ai-agent-noise.html /articles/resume-improvements.html /articles/qa-before-and-after-ai.html /articles/claude-code-qa-workflow.html">&ndash;</div><div class="label" data-i18n="stats.articles">Article reads</div></div>
+        </div>
         </div>
       </div>
     </section>
@@ -529,7 +543,7 @@
 
     // Highlight the nav link and tab for the section currently on screen.
     const tabLinks = document.querySelectorAll('.navlinks a, .tabbar a');
-    const spySections = ['top', 'projects', 'articles', 'stats', 'contact'].map(id => document.getElementById(id));
+    const spySections = ['top', 'projects', 'articles', 'contact'].map(id => document.getElementById(id));
     function updateTabs() {
       const line = window.innerHeight * 0.35;
       let current = spySections[0].id;
@@ -547,21 +561,62 @@
     window.addEventListener('resize', updateTabs);
     updateTabs();
 
-    // Statistics: each card lists one or more paths (space-separated) and shows their summed all-time count.
-    // Needs "Allow adding visitor counts on your website" in GoatCounter settings; a path with no visits returns 404 (= 0).
+    // Private statistics: the section only appears at /#stats and opens with a passcode.
+    // Only the passcode's SHA-256 is stored here. This hides the numbers from casual visitors; it is not real
+    // security (static site, and the counts are public at janagrit.goatcounter.com/counter/TOTAL.json).
     (function () {
-      const counter = 'https://janagrit.goatcounter.com/counter/';
-      const fmt = new Intl.NumberFormat('en-US');
-      function count(path) {
-        return fetch(counter + encodeURIComponent(path) + '.json')
+      const CODE_HASH = '07334386287751ba02a4588c1a0875dbd074a61bd9e6ab7c48d244eacd0c99e0';
+      const UNLOCK_KEY = 'stats-unlocked';
+      const section = document.getElementById('stats');
+      const lock = document.getElementById('stats-lock');
+      const data = document.getElementById('stats-data');
+      const err = document.getElementById('stats-err');
+      let loaded = false;
+
+      // Each card lists one or more paths (space-separated) and shows their summed all-time count.
+      // Needs "Allow adding visitor counts on your website" in GoatCounter settings; a path with no visits returns 404 (= 0).
+      function loadCounts() {
+        if (loaded) return;
+        loaded = true;
+        const counter = 'https://janagrit.goatcounter.com/counter/';
+        const fmt = new Intl.NumberFormat('en-US');
+        const count = path => fetch(counter + encodeURIComponent(path) + '.json')
           .then(r => r.status === 404 ? { count: '0' } : r.ok ? r.json() : Promise.reject(r.status))
           .then(d => Number(String(d.count).replace(/\D/g, '')));
+        document.querySelectorAll('[data-count]').forEach(el => {
+          Promise.all(el.dataset.count.split(' ').map(count))
+            .then(nums => { el.textContent = fmt.format(nums.reduce((a, b) => a + b, 0)); })
+            .catch(() => { /* keep the dash if the counter is unavailable */ });
+        });
       }
-      document.querySelectorAll('[data-count]').forEach(el => {
-        Promise.all(el.dataset.count.split(' ').map(count))
-          .then(nums => { el.textContent = fmt.format(nums.reduce((a, b) => a + b, 0)); })
-          .catch(() => { /* keep the dash if the counter is unavailable */ });
+
+      function isUnlocked() {
+        try { return localStorage.getItem(UNLOCK_KEY) === CODE_HASH; } catch (e) { return false; }
+      }
+      function unlock() {
+        lock.hidden = true;
+        data.hidden = false;
+        loadCounts();
+      }
+      function route() {
+        section.hidden = location.hash !== '#stats';
+        if (section.hidden) return;
+        if (isUnlocked()) unlock();
+        section.scrollIntoView();
+      }
+
+      lock.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const input = document.getElementById('stats-code');
+        const bytes = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(input.value.trim()));
+        const hash = Array.from(new Uint8Array(bytes), b => b.toString(16).padStart(2, '0')).join('');
+        if (hash !== CODE_HASH) { err.textContent = 'Wrong passcode'; input.select(); return; }
+        try { localStorage.setItem(UNLOCK_KEY, CODE_HASH); } catch (e2) { /* unlocked for this visit only */ }
+        err.textContent = '';
+        unlock();
       });
+      window.addEventListener('hashchange', route);
+      route();
     })();
   </script>
   <script data-goatcounter="https://janagrit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
