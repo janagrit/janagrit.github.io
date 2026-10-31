@@ -145,7 +145,7 @@
     .brand { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 21px; letter-spacing: -.02em; text-decoration: none; white-space: nowrap; }
     .brand img { width: 26px; height: 26px; border-radius: 7px; }
     .navlinks { display: flex; gap: 4px; list-style: none; }
-    .navlinks a { display: block; padding: 6px 10px; border-radius: 7px; font-size: 14px; text-decoration: none; color: var(--ink); }
+    .navlinks a { white-space: nowrap; display: block; padding: 6px 10px; border-radius: 7px; font-size: 14px; text-decoration: none; color: var(--ink); }
     .navlinks a:hover { background: var(--hover); }
     .navlinks a[aria-current] { background: var(--hover-strong); }
     .nav-end { margin-left: auto; display: flex; align-items: center; gap: 10px; }
@@ -276,8 +276,8 @@
     /* ---------- mobile bottom tabs ---------- */
     .tabbar { display: none; }
 
-    /* five nav tabs don't fit the top bar below 900px, so the bottom tab bar takes over there */
-    @media (max-width: 900px) {
+    /* the top bar needs ~1115px in Ukrainian (its longest labels), so below 1140px the bottom tab bar takes over */
+    @media (max-width: 1140px) {
       .grid { grid-template-columns: 1fr 1fr; }
       .navlinks, .topnav .btn { display: none; }
       .topnav nav { display: none; } /* its links are hidden here; drops an empty flex item + gap so the theme toggle fits */
@@ -327,6 +327,7 @@
       <nav aria-label="Main">
         <ul class="navlinks">
           <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+          <li><a href="#certificates" data-i18n="nav.certs">Certificates</a></li>
           <li><a href="#articles" data-i18n="nav.articles">Articles</a></li>
           <li><a href="https://job-scout-agent.com/#upload" target="_blank" rel="noopener" data-i18n="nav.scout">Scout your dream job!</a></li>
           <!--<li><a href="https://momup-app.github.io/" target="_blank" rel="noopener">Kids Nearby</a></li> -->
@@ -560,7 +561,7 @@
 
     // Highlight the nav link and tab for the section currently on screen.
     const tabLinks = document.querySelectorAll('.navlinks a, .tabbar a');
-    const spySections = ['top', 'projects', 'articles', 'contact'].map(id => document.getElementById(id));
+    const spySections = ['top', 'projects', 'certificates', 'articles', 'contact'].map(id => document.getElementById(id));
     function updateTabs() {
       const line = window.innerHeight * 0.35;
       let current = spySections[0].id;
