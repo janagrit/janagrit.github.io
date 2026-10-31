@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Building a Smarter AI Development Stack: ECC + OmniRoute | Iana Notebook</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.ico?v=2" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="article.css">
+  <style>
+    /* code gate */
+    .gate { max-width: 420px; margin: 0 auto; padding: 56px 24px 72px; }
+    .gate[hidden] { display: none; }
+    .gate label { font-weight: 600; }
+    .gate p { margin-top: 6px; color: var(--sub); font-size: 16px; }
+    .gate .row { margin-top: 14px; display: flex; gap: 10px; }
+    .gate input { flex: 1; min-width: 0; height: 46px; padding: 0 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--white); color: var(--ink); font: 18px var(--sans); }
+    .gate input:focus-visible { outline: 2px solid var(--violet-ink); outline-offset: 2px; }
+    .gate button { height: 46px; padding: 0 22px; border: 0; border-radius: 999px; background: var(--grad-btn); color: #fff; font: 600 16px var(--sans); cursor: pointer; }
+    #body:focus { outline: none; }
+    .gate .err { min-height: 1.5em; margin-top: 10px; color: #b4321f; }
+    /* stack diagram: two tinted layers, three model boxes, then the dev environment */
+    .stack { margin-top: 24px; padding: 18px; background: var(--white); border: 1px solid var(--line); border-radius: 18px; }
+    .layer { padding: 16px 18px; border-radius: 12px; }
+    .layer b, .env b { display: block; font-size: 18px; color: var(--ink); }
+    .layer span, .env span { display: block; margin-top: 4px; font-size: 15px; color: var(--sub); }
+    .layer.ecc { background: #ebf5ef; }
+    .layer.omni { background: #ebeffa; }
+    .arrow { text-align: center; font-size: 18px; line-height: 1; padding: 8px 0; color: var(--sub); }
+    .models { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .models div { padding: 14px 8px; border: 1px solid var(--line); border-radius: 12px; text-align: center; font-size: 17px; color: var(--ink); }
+    .env { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); text-align: center; }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <nav class="topnav" aria-label="Main">
+    <div class="in">
+      <a class="brand" href="../"><img src="../icon-192.png?v=2" width="34" height="34" alt="">Iana Notebook</a>
+      <a class="back" href="../#articles">&larr; All articles</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="in">
+      <p class="kicker">Article &middot; AI tools</p>
+      <h1>Building a smarter AI development stack: ECC + OmniRoute</h1>
+      <p class="meta">Iana Grytsenko &middot; October 31, 2026 &middot; 4 min read</p>
+    </div>
+  </header>
+
+  <main id="main">
+    <form class="gate" id="gate">
+      <label for="code">Enter the code</label>
+      <p>This article is private. Ask Iana for the code.</p>
+      <div class="row">
+        <input id="code" type="password" inputmode="numeric" autocomplete="off" required autofocus>
+        <button type="submit">Open</button>
+      </div>
+      <p class="err" id="err" role="alert"></p>
+    </form>
+    <article id="body" tabindex="-1" hidden></article>
+
+    <section class="cta" aria-label="Contact">
+      <p>Want help setting up an AI-assisted testing workflow for your team?</p>
+      <a class="pill" href="../#contact">Let&rsquo;s talk</a>
+    </section>
+  </main>
+
+  <footer>&copy; 2026 Iana Grytsenko &middot; <a href="../">janagrit.github.io</a></footer>
+  <script>
+    // The article text is stored encrypted (AES-GCM, key derived from the code with PBKDF2), so it isn't
+    // readable in the page source. A 4-digit code keeps out casual visitors, not a determined one.
+    (function () {
+      const ENC = {"salt":"7yjTlYMq2YkJpkOaAu9aiw==","iv":"RUzHh0ikPGI1LG0s","data":"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"};
+      const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+      const gate = document.getElementById('gate');
+      const input = document.getElementById('code');
+      const err = document.getElementById('err');
+      const body = document.getElementById('body');
+      gate.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        try {
+          const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(input.value.trim()), 'PBKDF2', false, ['deriveKey']);
+          const key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt: b64(ENC.salt), iterations: 250000, hash: 'SHA-256' }, base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+          const html = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(ENC.iv) }, key, b64(ENC.data));
+          body.innerHTML = new TextDecoder().decode(html);
+          gate.hidden = true;
+          body.hidden = false;
+          body.focus();
+        } catch (_) {
+          err.textContent = 'Sorry, that code doesn’t work. Ask Iana for the code.';
+          input.select();
+        }
+      });
+    })();
+  </script>
+  <script data-goatcounter="https://janagrit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
