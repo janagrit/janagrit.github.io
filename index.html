@@ -240,6 +240,7 @@
     .art .more { margin-top: auto; padding-top: 16px; font-size: 14px; font-weight: 500; }
     .art.soon { background: transparent; box-shadow: inset 0 0 0 1px var(--ring); }
     .art.soon h3, .art.soon p { color: var(--sub); }
+    #certificates { background-color: var(--sec-projects); border-top: 1px solid var(--ring); }
 
     /* statistics: one number per card, filled from GoatCounter's public counter */
     #stats { background-color: var(--sec-projects); border-top: 1px solid var(--ring); }
@@ -424,6 +425,16 @@
       </div>
     </section>
 
+    <!-- ================= CERTIFICATES ================= -->
+    <!-- cards come from the list in js/certificates.js: add a certificate there, not here -->
+    <section class="block" id="certificates" aria-labelledby="cert-h">
+      <div class="wrap">
+        <h2 id="cert-h" data-i18n="nav.certs">Certificates</h2>
+        <p class="section-sub" data-i18n="cert.sub">Courses and credentials, each with a link to verify it.</p>
+        <div class="grid" id="cert-grid"></div>
+      </div>
+    </section>
+
     <!-- ================= ARTICLES ================= -->
     <section class="block" id="articles" aria-labelledby="art-h">
       <div class="wrap">
@@ -523,6 +534,7 @@
 
   <script src="js/i18n.js"></script>
   <script src="js/github-projects.js?v=2"></script>
+  <script src="js/certificates.js"></script>
   <script>
     // Light/dark toggle: flips data-theme on <html>, saves the choice, keeps the label and browser chrome in sync.
     (function () {
