@@ -186,6 +186,17 @@
     .card { display: flex; flex-direction: column; background: var(--card); border-radius: var(--radius); box-shadow: var(--card-shadow); overflow: hidden; transition: box-shadow .2s, background-color .3s ease; }
     a.card { text-decoration: none; color: inherit; }
     a.card:hover, .card:has(.links a:hover) { box-shadow: var(--card-shadow-hover); }
+    /* project cards: the whole card opens its first link; other links inside stay clickable on top of it */
+    #projects .card { position: relative; transition: box-shadow .2s, transform .2s, background-color .3s ease; }
+    #projects .card .links a:first-child::before { content: ""; position: absolute; inset: 0; border-radius: var(--radius); }
+    #projects .card p:not(.links) a, #projects .card .links a + a { position: relative; z-index: 1; }
+    #projects .card:hover { box-shadow: var(--card-shadow-hover); transform: translateY(-3px); }
+    #projects .card:active { transform: translateY(0) scale(.985); transition-duration: .08s; }
+    #projects .card:has(.links a:first-child:focus-visible) { box-shadow: 0 0 0 2px var(--ink); }
+    #projects .card .media img { transition: transform .4s ease; }
+    #projects .card:hover .media img { transform: scale(1.03); }
+    #projects > .wrap > .grid { grid-template-columns: repeat(2, 1fr); }
+    @media (prefers-reduced-motion: reduce) { #projects .card:hover, #projects .card:active, #projects .card:hover .media img { transform: none; } }
     .card h3 { font-size: 20px; line-height: 1.25; letter-spacing: -.01em; }
     .card p { margin-top: 8px; color: var(--sub); font-size: 15px; line-height: 1.45; }
 
@@ -371,6 +382,17 @@
         <p class="section-sub" data-i18n="proj.sub">What I build and test.</p>
 
         <div class="grid">
+          <article class="card">
+            <div class="media"><img src="images/job-scout.jpg" width="640" height="400" loading="lazy" data-i18n-alt="p4.alt" alt="Job Scout home page: Find the jobs your CV fits"></div>
+            <div class="body">
+              <div class="tags" data-i18n="p4.tags"><span class="tag live">Live</span><span class="tag">AI agent</span></div>
+              <h3>Job Scout</h3>
+              <p data-i18n="p4.p">Checks companies&rsquo; own job boards (Greenhouse, Ashby, Lever, Workable, SmartRecruiters) and shows which open roles fit your CV. The quick search runs in the browser, so the CV is not uploaded anywhere.</p>
+              <p class="role" data-i18n="p4.role"><b>Stack</b> Claude API, GitHub Actions</p>
+              <p class="links" data-i18n="p4.links"><a href="https://job-scout-agent.com/" target="_blank" rel="noopener">Open Job Scout</a></p>
+            </div>
+          </article>
+
           <article class="card">
             <div class="media">
               <div class="term" aria-hidden="true">

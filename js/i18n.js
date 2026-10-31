@@ -37,6 +37,11 @@
         'p3.p': 'Тести на Playwright + TypeScript, створені з нуля, починаючи зі <a href="https://uptichospitality.com/independent-hotels-should-think-independently/" target="_blank" rel="noopener">статті &laquo;Independent hotels&raquo;</a>: SEO, доступність, посилання, мобільна версія та візуальні перевірки. Кожне падіння стає виправленням у списку пріоритетів.',
         'p3.role': '<b>Стек</b> TypeScript, Playwright, axe-core',
         'p3.links': '<a href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Код</a>',
+        'p4.alt': 'Головна сторінка Job Scout: Find the jobs your CV fits',
+        'p4.tags': '<span class="tag live">Працює</span><span class="tag">AI-агент</span>',
+        'p4.p': 'Перевіряє власні дошки вакансій компаній (Greenhouse, Ashby, Lever, Workable, SmartRecruiters) і показує, які відкриті ролі підходять під ваше резюме. Швидкий пошук працює в браузері, тож резюме нікуди не завантажується.',
+        'p4.role': '<b>Стек</b> Claude API, GitHub Actions',
+        'p4.links': '<a href="https://job-scout-agent.com/" target="_blank" rel="noopener">Відкрити Job Scout</a>',
         'gh.title': 'Більше на GitHub',
         'gh.all': 'Усі репозиторії на GitHub',
 
@@ -97,6 +102,11 @@
         'p3.p': 'Тесты на Playwright + TypeScript, построенные с нуля, начиная со <a href="https://uptichospitality.com/independent-hotels-should-think-independently/" target="_blank" rel="noopener">статьи &laquo;Independent hotels&raquo;</a>: SEO, доступность, ссылки, мобильная версия и визуальные проверки. Каждое падение становится исправлением в списке приоритетов.',
         'p3.role': '<b>Стек</b> TypeScript, Playwright, axe-core',
         'p3.links': '<a href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Код</a>',
+        'p4.alt': 'Главная страница Job Scout: Find the jobs your CV fits',
+        'p4.tags': '<span class="tag live">Работает</span><span class="tag">AI-агент</span>',
+        'p4.p': 'Проверяет собственные доски вакансий компаний (Greenhouse, Ashby, Lever, Workable, SmartRecruiters) и показывает, какие открытые роли подходят под ваше резюме. Быстрый поиск работает в браузере, поэтому резюме никуда не загружается.',
+        'p4.role': '<b>Стек</b> Claude API, GitHub Actions',
+        'p4.links': '<a href="https://job-scout-agent.com/" target="_blank" rel="noopener">Открыть Job Scout</a>',
         'gh.title': 'Больше на GitHub',
         'gh.all': 'Все репозитории на GitHub',
 
