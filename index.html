@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="Iana Notebook | Quality Engineering, End to End">
   <meta name="twitter:image" content="https://janagrit.github.io/images/og.jpg">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#eeeff4">
+  <meta name="theme-color" content="#f9f9f7">
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Iana Notebook">
@@ -29,7 +29,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Iana Grytsenko", "jobTitle": "Test Automation Architect and SDET", "url": "https://janagrit.github.io/", "image": "https://janagrit.github.io/images/og.jpg", "address": {"@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US"}, "knowsAbout": ["Test automation", "Playwright", "TypeScript", "AI agent testing", "API testing", "Performance testing", "Accessibility testing", "CI/CD"], "knowsLanguage": ["English", "Ukrainian", "Chinese"], "sameAs": ["https://www.linkedin.com/in/ianagrytsenko", "https://github.com/janagrit"]}</script>
   <script>
     // Theme bootstrap: runs before first paint so there is no light/dark flash.
@@ -39,297 +39,281 @@
       try { saved = localStorage.getItem('theme'); } catch (e) {}
       var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
       document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-      // Entrance animations hide content only when the script that reveals it can run.
-      if ('IntersectionObserver' in window) document.documentElement.classList.add('js');
     })();
   </script>
   <style>
-    /* ---------- tokens: navy and pink, one grotesk (Onest, has Cyrillic for UA/RU) ---------- */
+    /* ---------- tokens: warm paper, serif headings, quiet cards ---------- */
     :root {
-      --bg: #eeeff4;            /* cool bone */
-      --surface: #e2e4ed;       /* one tone step for bands and chips */
-      --ink: #1a2039;           /* navy */
-      --muted: #4a5070;
-      --accent: #f9a3c0;        /* pink: the contact field and the action in dark mode */
-      --accent-2: #f493b4;      /* alternate band inside the pink field */
-      --accent-ink: #1a2039;
-      --btn: #1a2039;
-      --btn-ink: #eeeff4;
-      --btn-hover: #2b3358;
-      --inv: #1a2039;           /* the inverted section (articles) */
-      --inv-ink: #f9a3c0;
-      --inv-muted: #d6a6b9;
-      --deep: #10152a;          /* footer and the terminal */
-      --deep-ink: #f9a3c0;
-      --deep-muted: #c99aae;
-      --live: #1f6b3a;
-      --wip: #8a4b00;
+      --bg: #f9f9f7;
+      --band: #edece7;          /* hero and contact bands */
+      --card: #fcfcfb;
+      --sand: #e6e3d9;          /* card thumbnail backdrop */
+      --ink: #0b0b0b;
+      --sub: #52514e;
+      --faint: #6b6964;         /* darkened from #7a7873 to pass WCAG AA on every section */
+      --ring: rgba(11, 11, 11, .1);
+      --ring-strong: rgba(11, 11, 11, .2);
+      --live: #2f6b3a;
+      --wip: #8a5a00;
+      --serif: "Source Serif 4", ui-serif, Georgia, "Times New Roman", serif;
+      --sans: "Inter", ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      --max: 1088px;
+      --nav-h: 56px;
+      --radius: 16px;
+      --card-shadow: 0 0 0 1px var(--ring), 0 1px 2px rgba(11, 11, 11, .08);
+      --card-shadow-hover: 0 0 0 1px var(--ring-strong), 0 10px 30px rgba(11, 11, 11, .08);
+      /* surfaces and controls that used to be hard-coded */
+      --on-ink: #fff;
+      --ink-hover: #2a2a28;
+      --btn2: rgba(255, 255, 255, .55);
+      --btn2-hover: #fff;
+      --hover: rgba(11, 11, 11, .05);
+      --hover-strong: rgba(11, 11, 11, .07);
+      --nav-bg: rgba(249, 249, 247, .92);
+      --tabbar-bg: rgba(249, 249, 247, .95);
+      --live-ring: rgba(47, 107, 58, .3);
+      --wip-ring: rgba(138, 90, 0, .3);
       --photo-filter: none;
-      --font: "Onest", ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
-      --mono: ui-monospace, SFMono-Regular, Menlo, monospace; /* taste-skill-ignore: only the eval run output in <pre><code> */
-      /* five sizes */
-      --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
-      --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
-      --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
-      --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
-      --step-display: clamp(2.125rem, calc((100vw - 2 * var(--m)) / 10.4), 8.5rem);
-      --m: clamp(20px, 2.4vw, 36px);  /* the one pair of outer margins */
-      --gap-section: clamp(96px, 12vw, 200px);
-      --nav-h: 60px;
-      --ease-out: cubic-bezier(.16, 1, .3, 1);
+      /* section backgrounds: one warm-paper family, each band a slightly different hue */
+      --sec-hero: #edece7;                       /* warm stone */
+      --sec-projects: #f9f9f7;                   /* paper, fading into a faint sage */
+      --sec-projects-tint: rgba(47, 107, 58, .045);
+      --sec-articles: #f6f2ea;                   /* faint sand */
+      --sec-contact: #e9e7e0;                    /* deeper stone */
+      --sec-footer: #e2dfd6;                     /* darkest light tint, closes the page */
       color-scheme: light;
     }
     [data-theme="dark"] {
-      --bg: #1a2039;
-      --surface: #222a4a;
-      --ink: #f9a3c0;
-      --muted: #caa0b2;
-      --btn: #f9a3c0;
-      --btn-ink: #1a2039;
-      --btn-hover: #fbb8cf;
-      --inv: #222a4a;
-      --inv-ink: #f9a3c0;
-      --inv-muted: #caa0b2;
-      --deep: #10152a;
-      --live: #8fd3a2;
-      --wip: #f2b56b;
-      --photo-filter: brightness(.9);
+      --bg: #131312;
+      --band: #1c1c1a;
+      --card: #1e1e1c;
+      --sand: #2a2924;
+      --ink: #f1f0eb;
+      --sub: #b8b6ae;
+      --faint: #9a978f;
+      --ring: rgba(255, 255, 255, .1);
+      --ring-strong: rgba(255, 255, 255, .22);
+      --live: #86c993;
+      --wip: #e3ad55;
+      --card-shadow: 0 0 0 1px var(--ring), 0 1px 2px rgba(0, 0, 0, .4);
+      --card-shadow-hover: 0 0 0 1px var(--ring-strong), 0 10px 30px rgba(0, 0, 0, .45);
+      --on-ink: #0b0b0b;
+      --ink-hover: #d9d8d2;
+      --btn2: rgba(255, 255, 255, .06);
+      --btn2-hover: rgba(255, 255, 255, .12);
+      --hover: rgba(255, 255, 255, .07);
+      --hover-strong: rgba(255, 255, 255, .11);
+      --nav-bg: rgba(19, 19, 18, .85);
+      --tabbar-bg: rgba(19, 19, 18, .92);
+      --live-ring: rgba(134, 201, 147, .35);
+      --wip-ring: rgba(227, 173, 85, .35);
+      --photo-filter: brightness(.88) saturate(.95);
+      --sec-hero: #1c1c1a;
+      --sec-projects: #131312;
+      --sec-projects-tint: rgba(134, 201, 147, .03);
+      --sec-articles: #18160f;
+      --sec-contact: #1f1e1b;
+      --sec-footer: #0b0b0a;
       color-scheme: dark;
     }
 
     /* ---------- base ---------- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-padding-top: var(--nav-h); }
-    body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: var(--step-body); line-height: 1.5; letter-spacing: -.01em; -webkit-font-smoothing: antialiased; transition: background-color .3s ease, color .3s ease; }
-    img { display: block; max-width: 100%; height: auto; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; transition: background-color .3s ease, color .3s ease; }
+    img { display: block; max-width: 100%; }
     a { color: inherit; }
-    ul { list-style: none; }
-    a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
-    ::selection { background: var(--accent); color: var(--accent-ink); }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 8px; }
     .skip { position: absolute; left: -9999px; }
-    .skip:focus { left: var(--m); top: 12px; z-index: 100; background: var(--btn); color: var(--btn-ink); padding: 10px 16px; }
-    h1, h2, h3 { font-weight: 800; letter-spacing: -.04em; line-height: .95; text-wrap: balance; }
-    h2 { font-size: var(--step-head); }
-    h3 { font-size: var(--step-lead); line-height: 1.15; letter-spacing: -.025em; font-weight: 700; }
-    .lede { font-size: var(--step-lead); line-height: 1.3; letter-spacing: -.02em; max-width: 34ch; }
+    .skip:focus { left: 16px; top: 12px; z-index: 100; background: var(--ink); color: var(--on-ink); padding: 8px 14px; border-radius: 8px; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    section { scroll-margin-top: var(--nav-h); }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 400; }
+    h2 { font-size: 28px; line-height: 1.4; letter-spacing: -.025em; }
+    .section-sub { margin-top: 4px; color: var(--sub); font-size: 16px; }
 
-    /* buttons: square corners, one fill */
-    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px; font: 600 var(--step-body)/1 var(--font); letter-spacing: -.01em; text-decoration: none; white-space: nowrap; border: 0; cursor: pointer; transition: background-color .15s ease, color .3s ease, transform .15s var(--ease-out); }
-    .btn.primary { background: var(--btn); color: var(--btn-ink); }
-    .btn.primary:hover { background: var(--btn-hover); }
-    .btn:active { transform: scale(.97); }
-    .textlink { font-weight: 600; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; transition: text-underline-offset .2s var(--ease-out); }
-    .textlink:hover { text-underline-offset: 8px; }
+    /* buttons */
+    .btn { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 10px; font: 500 15px/1 var(--sans); text-decoration: none; white-space: nowrap; transition: background .15s, box-shadow .15s, color .3s ease; }
+    .btn.primary { background: var(--ink); color: var(--on-ink); }
+    .btn.primary:hover { background: var(--ink-hover); }
+    .btn.secondary { background: var(--btn2); color: var(--ink); box-shadow: 0 0 0 1px var(--ring), 0 1px 2px rgba(11, 11, 11, .06); }
+    .btn.secondary:hover { background: var(--btn2-hover); }
 
-    /* ---------- top bar: wordmark, links, language, theme, one action ---------- */
-    .topnav { position: sticky; top: 0; z-index: 50; background: var(--bg); transition: background-color .3s ease; }
-    .topnav .bar { height: var(--nav-h); display: flex; align-items: center; gap: 28px; padding-inline: var(--m); }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: var(--step-body); letter-spacing: -.03em; text-decoration: none; white-space: nowrap; }
-    .brand img { width: 28px; height: 28px; }
-    .navlinks { display: flex; gap: 22px; }
-    .navlinks a { position: relative; display: block; padding: 8px 0; font-size: var(--step-small); font-weight: 600; text-decoration: none; }
-    .navlinks a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 2px; height: 2px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .25s var(--ease-out); }
-    .navlinks a:hover::after, .navlinks a[aria-current]::after { transform: scaleX(1); }
-    .nav-end { margin-left: auto; display: flex; align-items: center; gap: 16px; }
-    .langs { display: inline-flex; gap: 2px; }
-    .langs button { font: 600 var(--step-small)/1 var(--font); color: var(--muted); background: transparent; border: 0; padding: 10px 7px; cursor: pointer; transition: color .15s ease; }
-    .langs button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
-    .langs button:hover { color: var(--ink); }
-    .topnav .btn { min-height: 40px; padding: 0 16px; font-size: var(--step-small); }
+    /* ---------- top nav ---------- */
+    .topnav { position: sticky; top: 0; z-index: 50; background: var(--nav-bg); transition: background-color .3s ease; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--ring); }
+    .topnav .bar { height: var(--nav-h); display: flex; align-items: center; gap: 24px; padding: 0 16px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 21px; letter-spacing: -.02em; text-decoration: none; white-space: nowrap; }
+    .brand img { width: 26px; height: 26px; border-radius: 7px; }
+    .navlinks { display: flex; gap: 4px; list-style: none; }
+    .navlinks a { display: block; padding: 6px 10px; border-radius: 7px; font-size: 14px; text-decoration: none; color: var(--ink); }
+    .navlinks a:hover { background: var(--hover); }
+    .navlinks a[aria-current] { background: var(--hover-strong); }
+    .nav-end { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+    .langs { display: inline-flex; gap: 2px; padding: 2px; border-radius: 9px; box-shadow: 0 0 0 1px var(--ring); background: var(--card); }
+    .langs button { font: 500 13px/1 var(--sans); color: var(--sub); background: transparent; border: 0; border-radius: 7px; padding: 7px 10px; cursor: pointer; }
+    .langs button[aria-pressed="true"] { background: var(--ink); color: var(--on-ink); }
+    .langs button:hover:not([aria-pressed="true"]) { color: var(--ink); }
+    .topnav .btn { height: 32px; padding: 0 12px; font-size: 14px; border-radius: 8px; }
 
-    /* light/dark switch: a flat track, the knob slides to the active side */
-    .theme-toggle { position: relative; flex: none; width: 48px; height: 26px; border: 0; border-radius: 999px; background: var(--surface); cursor: pointer; transition: background-color .3s ease; -webkit-tap-highlight-color: transparent; }
-    .theme-toggle::before { content: ""; position: absolute; top: 4px; left: 4px; width: 18px; height: 18px; border-radius: 50%; background: var(--ink); transition: transform .3s var(--ease-out), background-color .3s ease; }
-    [data-theme="dark"] .theme-toggle::before { transform: translateX(22px); }
-    .theme-toggle:active::before { width: 22px; }
+    /* light/dark toggle: a small track with both icons, the knob sits under the active one */
+    .theme-toggle { position: relative; flex: none; display: inline-flex; align-items: center; width: 58px; height: 32px; padding: 3px; border: 0; border-radius: 999px; background: var(--card); box-shadow: 0 0 0 1px var(--ring); cursor: pointer; transition: background-color .3s ease; -webkit-tap-highlight-color: transparent; }
+    .theme-toggle::before { content: ""; position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%; background: var(--hover-strong); box-shadow: 0 0 0 1px var(--ring); transition: transform .3s ease; }
+    [data-theme="dark"] .theme-toggle::before { transform: translateX(26px); }
+    .theme-toggle .tt-icon { position: relative; width: 26px; text-align: center; font-size: 14px; line-height: 26px; transition: opacity .3s ease; }
+    .theme-toggle .tt-moon, [data-theme="dark"] .theme-toggle .tt-sun { opacity: .4; }
+    [data-theme="dark"] .theme-toggle .tt-moon { opacity: 1; }
+    .theme-toggle:hover::before { background: var(--ring-strong); }
+    .theme-toggle:active::before { transform: scale(.94); }
+    [data-theme="dark"] .theme-toggle:active::before { transform: translateX(26px) scale(.94); }
+    .theme-toggle:focus { outline: 2px solid var(--ink); outline-offset: 3px; }
+    .theme-toggle:focus:not(:focus-visible) { outline: none; }
 
-    /* ---------- hero: the statement, and three checks run live on this page ---------- */
-    .hero { display: grid; gap: clamp(96px, 16vh, 180px); padding: clamp(32px, 8vh, 96px) var(--m) 0; }
-    .hero-head { position: relative; align-self: start; }
-    .hero h1 { font-size: var(--step-display); line-height: .9; letter-spacing: -.05em; }
-    .hero h1 .ln { display: block; overflow: hidden; padding-bottom: .09em; margin-bottom: -.09em; }
-    .hero h1 .ln > span { display: block; }
-    .checks { position: absolute; right: 0; bottom: 1.1em; display: flex; gap: 14px; }
-    .chip { width: 216px; min-height: 84px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; padding: 14px 16px; border: 0; border-radius: 6px; background: var(--surface); color: var(--ink); font: 600 var(--step-small)/1.2 var(--font); text-align: left; cursor: pointer; transition: transform .25s var(--ease-out), background-color .3s ease, color .3s ease; }
-    .chip:nth-child(1) { transform: rotate(-3deg); }
-    .chip:nth-child(2) { transform: rotate(2deg) translateY(-14px); }
-    .chip:nth-child(3) { transform: rotate(-2deg); }
-    .chip:hover { transform: rotate(0) translateY(-4px); }
-    .chip .v { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; font-size: var(--step-lead); font-weight: 800; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
-    .chip .v small { font-size: var(--step-small); font-weight: 600; color: var(--live); letter-spacing: 0; }
-    .chip.running .v { opacity: .45; }
-    .checks-note { position: absolute; right: 0; top: calc(100% + 14px); font-size: var(--step-small); color: var(--muted); }
-    .hero-foot { display: flex; align-items: end; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
-    .hero .sub { font-size: var(--step-lead); line-height: 1.3; letter-spacing: -.02em; max-width: 36ch; }
-    .hero .who { margin-top: 14px; font-size: var(--step-body); color: var(--muted); }
-    .hero .ctas { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+    /* ---------- hero band ---------- */
+    .hero { background-color: var(--sec-hero); background-image: linear-gradient(180deg, transparent 0%, transparent 70%, var(--sec-projects) 100%); transition: background-color .3s ease; }
+    .hero .wrap { padding-top: clamp(56px, 9vw, 104px); padding-bottom: clamp(56px, 8vw, 88px); }
+    .hero h1 { font-size: clamp(38px, 5.4vw, 52px); line-height: 1.1; letter-spacing: -.025em; max-width: 18ch; }
+    .hero .sub { margin-top: 16px; max-width: 40em; color: var(--sub); font-size: 18px; line-height: 1.55; }
+    .hero .who { margin-top: 14px; font-size: 14px; color: var(--faint); }
+    .hero .ctas { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
 
-    /* ---------- projects: one oversized visual per project, a small cluster of text beside it ---------- */
-    .block { padding-top: var(--gap-section); }
-    .sec-head { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; align-items: end; padding-inline: var(--m); }
-    .sec-head h2 { grid-column: 1 / 8; }
-    .sec-head .lede { grid-column: 9 / 13; color: var(--muted); }
-    .projects { margin-top: clamp(56px, 7vw, 112px); display: grid; gap: clamp(88px, 10vw, 160px); }
-    .proj { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; align-items: center; padding-right: var(--m); }
-    .proj:nth-child(even) { padding-right: 0; padding-left: var(--m); }
-    .proj .visual { grid-column: 1 / 8; background: var(--surface); overflow: hidden; aspect-ratio: 16 / 10; transition: background-color .3s ease; }
-    .proj:nth-child(even) .visual { grid-column: 6 / 13; grid-row: 1; }
-    .proj:nth-child(even) .txt { grid-column: 1 / 5; grid-row: 1; }
-    .proj .visual img { width: 100%; height: 100%; object-fit: cover; object-position: top left; filter: var(--photo-filter); transition: transform .8s var(--ease-out); }
-    .proj:hover .visual img { transform: scale(1.03); }
-    .proj .txt { grid-column: 9 / 13; }
-    .tags { display: flex; flex-wrap: wrap; gap: 0 4px; margin-bottom: 14px; font-size: var(--step-small); font-weight: 600; color: var(--muted); }
-    .tag + .tag::before { content: "\00b7"; margin-right: 4px; color: var(--muted); }
-    .tag.live { color: var(--live); }
-    .tag.wip { color: var(--wip); }
-    .proj p { margin-top: 14px; }
-    .proj p a { text-decoration: underline; text-underline-offset: 3px; }
-    .proj .role { color: var(--muted); }
-    .proj .role b { color: var(--ink); font-weight: 600; }
-    .links { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 22px; }
-    .links a { font-weight: 600; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; transition: text-underline-offset .2s var(--ease-out); }
-    .links a::after { content: " \2197"; }
-    .links a:hover { text-underline-offset: 8px; }
+    /* ---------- sections ---------- */
+    .block { padding: clamp(48px, 7vw, 72px) 0; transition: background-color .3s ease; }
+    #projects { background-color: var(--sec-projects); background-image: linear-gradient(180deg, transparent 0%, var(--sec-projects-tint) 100%); }
+    #articles { background-color: var(--sec-articles); border-top: 1px solid var(--ring); }
+    .grid { margin-top: 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
-    /* the eval harness has no screenshot: its run output, as a terminal */
-    .term { display: flex; align-items: center; height: 100%; padding: clamp(20px, 3vw, 48px); background: var(--deep); color: #e9dfe6; }
-    .term code { font-family: var(--mono); font-size: clamp(0.8125rem, 0.6rem + 0.55vw, 1.0625rem); line-height: 1.75; white-space: pre; }
-    .term .ok { color: #8fd3a2; } .term .dim { color: #9a93ad; } .term .hl { color: #f9a3c0; }
+    /* cards */
+    .card { display: flex; flex-direction: column; background: var(--card); border-radius: var(--radius); box-shadow: var(--card-shadow); overflow: hidden; transition: box-shadow .2s, background-color .3s ease; }
+    a.card { text-decoration: none; color: inherit; }
+    a.card:hover, .card:has(.links a:hover) { box-shadow: var(--card-shadow-hover); }
+    .card h3 { font-size: 20px; line-height: 1.25; letter-spacing: -.01em; }
+    .card p { margin-top: 8px; color: var(--sub); font-size: 15px; line-height: 1.45; }
 
-    /* more on GitHub: the Mark I panel beside a plain list filled by js/github-projects.js */
-    .gh { margin-top: var(--gap-section); display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; padding-inline: var(--m); }
-    .gh figure { grid-column: 1 / 6; }
-    .gh figure img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 30% 50%; filter: var(--photo-filter); }
-    .gh .gh-list { grid-column: 7 / 13; align-self: center; }
-    .gh-all { margin-top: 28px; }
+    /* project cover photos (Unsplash), credit line underneath */
+    .cover { background: var(--sand); }
+    .cover img { width: 100%; height: 200px; object-fit: cover; filter: var(--photo-filter); transition: filter .3s ease; }
+    .cover figcaption { padding: 6px 12px; font-size: 11px; line-height: 1.4; color: var(--sub); background: var(--card); border-bottom: 1px solid var(--ring); }
+    .cover figcaption a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--ring-strong); }
+    .cover figcaption a:hover { color: var(--ink); text-decoration-color: var(--ink); }
+
+    /* project cards: thumbnail inset on a sand backdrop */
+    .media { height: 176px; background: var(--sand); padding: 28px 0 0 32px; overflow: hidden; border-bottom: 1px solid var(--ring); }
+    .media img, .media .term { width: 100%; height: 100%; border-radius: 8px 0 0 0; box-shadow: 0 0 0 1px var(--ring), 0 8px 24px rgba(11, 11, 11, .12); }
+    .media img { object-fit: cover; object-position: top left; }
+    .term { background: #171715; padding: 14px 16px; font-family: var(--mono); font-size: 12px; line-height: 1.7; color: #cfcdc6; white-space: nowrap; }
+    .term .ok { color: #7cc48a; } .term .dim { color: #8a877f; } .term .hl { color: #bdb6a3; }
+    .card .body { padding: 20px 20px 22px; display: flex; flex-direction: column; flex: 1; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .tag { font-size: 12px; font-weight: 500; padding: 3px 9px; border-radius: 999px; color: var(--sub); box-shadow: inset 0 0 0 1px var(--ring); }
+    .tag.live { color: var(--live); box-shadow: inset 0 0 0 1px var(--live-ring); }
+    .tag.wip { color: var(--wip); box-shadow: inset 0 0 0 1px var(--wip-ring); }
+    .card p a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--ring-strong); }
+    .card p a:hover { text-decoration-color: var(--ink); }
+    .card .role { margin-top: 12px; font-size: 14px; }
+    .card .role b { color: var(--ink); font-weight: 500; }
+    .card .links { margin-top: auto; padding-top: 16px; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; font-weight: 500; }
+    .card .links a { color: var(--ink); text-decoration: none; }
+    .card .links a::after { content: " \2197"; }
+    .card .links a:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+    /* currently building: text-only cards */
+    .subhead { margin-top: 40px; font-size: 14px; font-weight: 500; color: var(--faint); }
+    .mini { padding: 20px; }
+
+    /* live GitHub repo cards (js/github-projects.js) */
+    #gh-more .grid { margin-top: 12px; }
+    .repo { padding: 20px 20px 18px; }
+    .repo .meta { font-size: 13px; color: var(--faint); }
+    .repo h3 { margin-top: 8px; }
+    .repo .tags { margin: 12px 0 0; }
+    .gh-all { margin-top: 16px; font-size: 14px; font-weight: 500; }
+    .gh-all a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ring-strong); }
     .gh-all a::after { content: " \2197"; }
-    #gh-grid { margin-top: 28px; display: grid; gap: 28px; }
-    .repo .meta { font-size: var(--step-small); color: var(--muted); }
-    .repo h3 { margin-top: 6px; }
-    .repo p { margin-top: 6px; }
-    .repo .tags { margin: 8px 0 0; }
-    .repo .links { margin-top: 10px; }
-    figcaption { margin-top: 12px; font-size: var(--step-small); color: var(--muted); }
-    figcaption a { text-decoration: underline; text-underline-offset: 2px; }
+    .gh-all a:hover { text-decoration-color: var(--ink); }
+    .mini b { display: block; font-family: var(--serif); font-size: 18px; font-weight: 400; letter-spacing: -.01em; }
+    .grid.two { grid-template-columns: repeat(2, 1fr); margin-top: 12px; }
 
-    /* ---------- the 1947 logbook: one full-width picture between projects and articles ---------- */
-    .band { margin-top: var(--gap-section); }
-    .band .pic { overflow: hidden; height: clamp(360px, 78svh, 860px); }
-    .band img { width: 100%; height: 118%; object-fit: cover; object-position: 50% 62%; filter: var(--photo-filter); will-change: transform; }
-    .band figcaption { padding-inline: var(--m); }
+    /* article cards: text-only, metadata line on top */
+    .art { padding: 22px 22px 20px; }
+    .art .meta { font-size: 13px; color: var(--faint); }
+    .art h3 { margin-top: 10px; }
+    .art .more { margin-top: auto; padding-top: 16px; font-size: 14px; font-weight: 500; }
+    .art.soon { background: transparent; box-shadow: inset 0 0 0 1px var(--ring); }
+    .art.soon h3, .art.soon p { color: var(--sub); }
 
-    /* ---------- articles: one inverted field, one row per article ---------- */
-    #articles { margin-top: var(--gap-section); padding: clamp(80px, 9vw, 152px) 0; background: var(--inv); color: var(--inv-ink); transition: background-color .3s ease; }
-    #articles .lede { color: var(--inv-muted); }
-    .art-list { margin-top: clamp(48px, 5vw, 80px); padding-inline: var(--m); }
-    .art { display: grid; grid-template-columns: 5fr 4fr 2fr; grid-template-areas: "t p m" "t p more"; column-gap: 32px; row-gap: 6px; padding: 28px 0; text-decoration: none; color: inherit; }
-    .art .t { grid-area: t; font-size: var(--step-lead); font-weight: 700; line-height: 1.15; letter-spacing: -.025em; text-wrap: balance; transition: transform .3s var(--ease-out); }
-    .art p { grid-area: p; color: var(--inv-muted); }
-    .art .meta { grid-area: m; text-align: right; font-size: var(--step-small); color: var(--inv-muted); }
-    .art .more { grid-area: more; text-align: right; align-self: end; font-weight: 600; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
-    a.art:hover .t { transform: translateX(10px); }
-    a.art:hover .more { text-underline-offset: 8px; }
-    .art.soon .t, .art.soon p { color: var(--inv-muted); }
-
-    /* ---------- contact: a pink field, every way to reach me as one large row ---------- */
-    .contact { background: var(--accent); color: var(--accent-ink); padding-top: clamp(80px, 9vw, 152px); }
-    .contact h2 { padding-inline: var(--m); max-width: 20ch; }
-    .rows { margin-top: clamp(48px, 5vw, 88px); }
-    .rows > * { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; width: 100%; min-height: clamp(84px, 10vw, 150px); padding: 0 var(--m) clamp(14px, 1.6vw, 26px); background: var(--accent); color: var(--accent-ink); font: 700 clamp(1.625rem, 5.2vw, 4.75rem)/1 var(--font); letter-spacing: -.045em; text-decoration: none; text-align: left; border: 0; cursor: pointer; transition: background-color .2s ease; }
-    .rows > *:nth-child(odd) { background: var(--accent-2); }
-    .rows > *::after { content: "\2192"; font-weight: 400; transition: transform .3s var(--ease-out); }
-    .rows > *:hover::after { transform: translateX(-12px); }
-    .rows > *:hover { background: #fbb8cf; }
-    .rows > *:focus-visible { outline-offset: -6px; }
-
-    /* ---------- statistics dialog (opened from Contact; asks for the passcode every time) ---------- */
-    .stats-modal { width: min(580px, calc(100vw - 32px)); margin: auto; padding: 32px; border: 0; background: var(--bg); color: var(--ink); box-shadow: 0 24px 80px rgba(8, 10, 24, .45); } /* taste-skill-ignore: a dialog really floats */
-    .stats-modal::backdrop { background: rgba(8, 10, 24, .6); }
-    .stats-modal h2 { font-size: var(--step-head); }
-    .stats-close { position: absolute; top: 14px; right: 16px; width: 40px; height: 40px; border: 0; background: transparent; color: var(--ink); font-size: 28px; line-height: 1; cursor: pointer; }
-    .stats-close:hover { background: var(--surface); }
-    .stats-modal .section-sub { margin-top: 12px; color: var(--muted); }
-    .stat-grid { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .stat { padding: 18px; background: var(--surface); }
-    .stat .num { font-size: var(--step-head); font-weight: 800; line-height: 1; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
-    .stat .label { margin-top: 8px; font-size: var(--step-small); color: var(--muted); }
-    .stats-lock { margin-top: 20px; }
+    /* statistics: one number per card, filled from GoatCounter's public counter */
+    #stats { background-color: var(--sec-projects); border-top: 1px solid var(--ring); }
+    button.btn { border: 0; cursor: pointer; }
+    .stats-modal { width: min(560px, calc(100vw - 32px)); margin: auto; padding: 28px; border: 0; border-radius: var(--radius); background: var(--bg); color: var(--ink); box-shadow: var(--card-shadow-hover); }
+    .stats-modal::backdrop { background: rgba(0, 0, 0, .45); }
+    .stats-close { position: absolute; top: 12px; right: 14px; width: 32px; height: 32px; border: 0; border-radius: 8px; background: transparent; color: var(--sub); font-size: 24px; line-height: 1; cursor: pointer; }
+    .stats-close:hover { background: var(--hover); color: var(--ink); }
+    .stat-grid { margin-top: 16px; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .stat { padding: 18px; }
+    .stat .num { font-family: var(--serif); font-size: 32px; line-height: 1.1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+    .stat .label { margin-top: 6px; font-size: 14px; color: var(--sub); }
+    .stats-lock { margin-top: 16px; }
     .stats-lock[hidden] { display: none; }
-    .stats-lock label { font-size: var(--step-small); color: var(--muted); }
+    .stats-lock label { font-size: 14px; color: var(--sub); }
     .stats-lock .row { margin-top: 8px; display: flex; gap: 10px; }
-    .stats-lock input { flex: 1; min-width: 0; height: 48px; padding: 0 14px; border: 2px solid var(--muted); background: var(--bg); color: var(--ink); font: 1rem var(--font); }
-    .stats-err { margin-top: 10px; min-height: 1.4em; font-size: var(--step-small); color: var(--wip); }
+    .stats-lock input { flex: 1; min-width: 0; height: 40px; padding: 0 12px; border: 0; border-radius: 10px; background: var(--card); color: var(--ink); box-shadow: var(--card-shadow); font: 16px var(--sans); }
+    .stats-err { margin-top: 10px; min-height: 1.4em; font-size: 14px; color: var(--wip); }
 
-    /* ---------- footer: inverted, the name returns at full width ---------- */
-    footer { background: var(--deep); color: var(--deep-ink); padding: clamp(56px, 6vw, 96px) var(--m) 24px; }
-    .foot-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
-    .foot-cols li + li { margin-top: 6px; }
-    .foot-cols li { color: var(--deep-muted); }
-    .foot-cols li:first-child { color: var(--deep-ink); }
-    .foot-cols a { text-decoration: none; }
-    .foot-cols a:hover { text-decoration: underline; text-underline-offset: 4px; }
-    .foot-cols .credits li { font-size: var(--step-small); }
-    .foot-cols .credits a { text-decoration: underline; text-underline-offset: 3px; }
-    .wordmark { display: block; width: 100%; height: auto; margin-top: clamp(96px, 14vw, 220px); fill: var(--deep-ink); }
-    .legal { margin-top: 18px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: var(--step-small); color: var(--deep-muted); }
+    /* ---------- contact band ---------- */
+    .contact { background: var(--sec-contact); border-top: 1px solid var(--ring); transition: background-color .3s ease; }
+    .contact .wrap { padding-top: clamp(56px, 8vw, 88px); padding-bottom: clamp(56px, 8vw, 88px); }
+    .contact h2 { font-size: clamp(32px, 4.4vw, 44px); line-height: 1.15; max-width: 20ch; }
+    .contact .lead { margin-top: 14px; max-width: 40em; color: var(--sub); font-size: 17px; }
+    .contact .ctas { margin-top: 26px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .contact .elsewhere { margin-top: 22px; display: flex; gap: 20px; font-size: 15px; }
+    .contact .elsewhere a { color: var(--sub); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ring-strong); }
+    .contact .elsewhere a:hover { color: var(--ink); text-decoration-color: var(--ink); }
 
-    /* ---------- motion: masked headline on load, staggered entrances on scroll ---------- */
-    @keyframes line-up { from { transform: translateY(105%); } to { transform: none; } }
-    @keyframes fade-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
-    .hero h1 .ln > span { animation: line-up .9s var(--ease-out) both; }
-    .hero h1 .ln + .ln > span { animation-delay: .11s; }
-    .hero .checks, .hero .checks-note, .hero-foot { animation: fade-up .7s var(--ease-out) .55s both; }
-    .js .rise { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); transition-delay: var(--d, 0ms); }
-    .js .rise.in { opacity: 1; transform: none; }
+    footer { background: var(--sec-footer); border-top: 1px solid var(--ring); font-size: 13px; color: var(--sub); transition: background-color .3s ease, color .3s ease; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 20px; padding-bottom: 24px; }
 
     /* ---------- mobile bottom tabs ---------- */
     .tabbar { display: none; }
 
-    @media (max-width: 1100px) {
-      .checks { position: static; margin-top: 28px; }
-      .checks-note { position: static; margin-top: 12px; }
-      .chip:nth-child(2) { transform: rotate(2deg); }
-    }
-    /* five nav links don't fit the top bar below 900px, so the bottom tab bar takes over there */
+    /* five nav tabs don't fit the top bar below 900px, so the bottom tab bar takes over there */
     @media (max-width: 900px) {
-      .navlinks, .topnav nav, .topnav .btn { display: none; }
-      body { padding-bottom: calc(66px + env(safe-area-inset-bottom)); }
-      .tabbar { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: var(--surface); padding-bottom: env(safe-area-inset-bottom); transition: background-color .3s ease; }
-      .tabbar ul { display: grid; grid-template-columns: repeat(5, 1fr); height: 66px; padding-inline: 6px; }
-      .tabbar a { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: var(--muted); text-decoration: none; -webkit-tap-highlight-color: transparent; }
+      .grid { grid-template-columns: 1fr 1fr; }
+      .navlinks, .topnav .btn { display: none; }
+      .topnav nav { display: none; } /* its links are hidden here; drops an empty flex item + gap so the theme toggle fits */
+      body { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
+      .tabbar {
+        display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+        background: var(--tabbar-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid var(--ring); padding-bottom: env(safe-area-inset-bottom);
+      }
+      .tabbar ul { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); height: 60px; }
+      .tabbar a { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 500; color: var(--faint); text-decoration: none; -webkit-tap-highlight-color: transparent; }
       .tabbar svg { width: 21px; height: 21px; flex: none; }
-      .tabbar a span { text-align: center; font-size: 13px; line-height: 1.05; font-weight: 600; letter-spacing: -.02em; }
+      .tabbar a span { text-align: center; line-height: 1.12; font-size: 10.5px; padding: 0 1px; }
       .tabbar a[aria-current] { color: var(--ink); }
-      .sec-head h2, .sec-head .lede { grid-column: 1 / -1; }
-      .proj, .proj:nth-child(even) { padding-inline: 0; row-gap: 28px; }
-      .proj .visual, .proj:nth-child(even) .visual { grid-column: 1 / -1; grid-row: 1; }
-      .proj .txt, .proj:nth-child(even) .txt { grid-column: 1 / -1; grid-row: 2; padding-inline: var(--m); }
-      .gh figure, .gh .gh-list { grid-column: 1 / -1; }
-      .gh figure { order: 2; }
-      .gh figure img { aspect-ratio: 16 / 10; }
-      .art { grid-template-columns: 1fr; grid-template-areas: "m" "t" "p" "more"; row-gap: 8px; }
-      .art .meta, .art .more { text-align: left; }
-      .foot-cols { grid-template-columns: 1fr 1fr; }
     }
-    @media (max-width: 600px) {
-      .hero { gap: 56px; }
-      .checks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-      .chip { width: auto; min-height: 76px; padding: 10px; }
-      .chip, .chip:nth-child(n) { transform: none; }
-      .chip .v { font-size: var(--step-body); flex-wrap: wrap; }
-      .hero .ctas { width: 100%; }
-      .hero .ctas .btn { flex: 1 1 auto; }
-      .term code { font-size: 0.8125rem; }
-    }
-    @media (max-width: 380px) {
-      .topnav .bar { gap: 10px; }
-      .nav-end { gap: 8px; }
-      .langs button { padding: 10px 5px; }
+    @media (max-width: 360px) {
+      .topnav .bar { gap: 10px; padding: 0 10px !important; }
+      .brand { font-size: 18px; gap: 8px; }
+      .langs button { padding: 7px 8px; }
+      /* very narrow phones: collapse the toggle to a single icon showing the current theme */
+      .topnav .bar { padding: 0 8px !important; }
+      .langs button { padding: 7px 6px; }
+      .nav-end { gap: 4px; }
+      .theme-toggle { width: 28px; height: 28px; padding: 0; justify-content: center; }
+      .theme-toggle::before { display: none; }
+      .theme-toggle .tt-icon { width: auto; font-size: 14px; }
+      .theme-toggle .tt-moon, [data-theme="dark"] .theme-toggle .tt-sun { display: none; }
+      [data-theme="dark"] .theme-toggle .tt-moon { display: inline; }
     }
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
-      .js .rise { opacity: 1; transform: none; }
-      .band img { transform: none !important; }
+      *, *::before { transition-duration: .01ms !important; }
+    }
+    @media (max-width: 720px) {
+      .wrap { padding: 0 16px; }
+      .topnav .bar { padding: 0 16px; }
+      .grid, .grid.two { grid-template-columns: 1fr; }
+      .hero .ctas .btn, .contact .ctas .btn { flex: 1 1 auto; justify-content: center; }
     }
   </style>
 </head>
@@ -338,7 +322,7 @@
 
   <header class="topnav">
     <div class="bar">
-      <a class="brand" href="#top"><img src="icon-192.png?v=2" width="28" height="28" alt="">Iana Notebook</a>
+      <a class="brand" href="#top"><img src="icon-192.png?v=2" width="26" height="26" alt="">Iana Notebook</a>
       <nav aria-label="Main">
         <ul class="navlinks">
           <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
@@ -349,12 +333,15 @@
         </ul>
       </nav>
       <div class="nav-end">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+          <span class="tt-icon tt-sun" aria-hidden="true">&#9728;&#65039;</span>
+          <span class="tt-icon tt-moon" aria-hidden="true">&#127769;</span>
+        </button>
         <div class="langs" role="group" aria-label="Language">
           <button type="button" data-set="en" aria-pressed="true" lang="en">EN</button>
           <button type="button" data-set="uk" aria-pressed="false" lang="uk" aria-label="Українська">UA</button>
           <button type="button" data-set="ru" aria-pressed="false" lang="ru">RU</button>
         </div>
-        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode"></button>
         <a class="btn primary" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener" data-i18n="nav.call">Book a call</a>
       </div>
     </div>
@@ -364,150 +351,131 @@
 
     <!-- ================= HERO ================= -->
     <section class="hero" id="top" aria-labelledby="hero-h">
-      <div class="hero-head">
-        <h1 id="hero-h" data-i18n="hero.title"><span class="ln"><span>Quality engineering,</span></span> <span class="ln"><span>end to end</span></span></h1>
-        <!-- three checks this page runs on itself in the browser; filled and re-run by the script at the end -->
-        <div class="checks" data-ui>
-          <button class="chip" type="button" data-check="contrast"><span class="k">Text contrast</span><span class="v">&ndash;</span></button>
-          <button class="chip" type="button" data-check="alt"><span class="k">Images with alt text</span><span class="v">&ndash;</span></button>
-          <button class="chip" type="button" data-check="links"><span class="k">In-page links</span><span class="v">&ndash;</span></button>
-        </div>
-        <p class="checks-note" aria-live="polite">Checked live on this page. Tap a check to run it again.</p>
-      </div>
-      <div class="hero-foot">
-        <div>
-          <p class="sub" data-i18n="hero.sub">Test automation, AI agent testing, APIs, performance and accessibility, designed and built by one engineer.</p>
-          <p class="who" data-i18n="hero.who">Iana Grytsenko &middot; Test Automation Architect &middot; SDET</p>
-        </div>
+      <div class="wrap">
+        <h1 id="hero-h" data-i18n="hero.title">Quality engineering, end to end</h1>
+        <p class="sub" data-i18n="hero.sub">Test automation, AI agent testing, APIs, performance and accessibility, designed and built by one engineer.</p>
+        <p class="who" data-i18n="hero.who">Iana Grytsenko &middot; Test Automation Architect &middot; SDET</p>
         <div class="ctas">
-          <a class="textlink" href="#projects" data-i18n="hero.projects">See my projects</a>
           <a class="btn primary" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener" data-i18n="cta.call">Book a 30-minute call</a>
+          <a class="btn secondary" href="#projects" data-i18n="hero.projects">See my projects</a>
         </div>
       </div>
     </section>
 
     <!-- ================= PROJECTS ================= -->
     <section class="block" id="projects" aria-labelledby="proj-h">
-      <div class="sec-head">
+      <div class="wrap">
         <h2 id="proj-h" data-i18n="nav.projects">Projects</h2>
-        <p class="lede" data-i18n="proj.sub">What I build and test.</p>
+        <p class="section-sub" data-i18n="proj.sub">What I build and test.</p>
+
+        <div class="grid">
+          <article class="card">
+            <div class="media">
+              <div class="term" aria-hidden="true">
+                <div class="dim">$ python run_eval.py</div>
+                <div><span class="ok">&check;</span> strict agent <span class="hl">&middot;&middot;</span> attacks contained</div>
+                <div><span class="ok">&check;</span> lax agent <span class="hl">&middot;&middot;&middot;&middot;</span> control</div>
+                <div><span class="ok">&check;</span> deterministic metrics</div>
+                <div><span class="ok">&check;</span> regression gate vs baseline</div>
+                <div class="dim">runs in CI on every push</div>
+              </div>
+            </div>
+            <div class="body">
+              <div class="tags" data-i18n="p1.tags"><span class="tag">AI testing</span></div>
+              <h3 data-i18n="p1.h">Adversarial evaluation of an AI voice agent</h3>
+              <p data-i18n="p1.p">A DeepEval harness attacks a mock banking voice agent with prompt injection, data-leak, impersonation and hallucination scenarios, and scores it with deterministic metrics. A regression gate fails the build if any score drops below baseline.</p>
+              <p class="role" data-i18n="p1.role"><b>Stack</b> Python, DeepEval, pytest, GitHub Actions</p>
+              <p class="links" data-i18n="p1.links"><a href="https://github.com/janagrit/aviaryai-eval-demo" target="_blank" rel="noopener">Code</a></p>
+            </div>
+          </article>
+
+          <article class="card">
+           
+            <div class="media"><img src="images/momup.jpg" width="640" height="400" loading="lazy" data-i18n-alt="p2.alt" alt="Kids Nearby home page: search for kids' activities in Berlin"></div>
+            <div class="body">
+              <div class="tags" data-i18n="p2.tags"><span class="tag live">Live</span><span class="tag">QA</span></div>
+              <h3>Kids Nearby &middot; MomUp Berlin</h3>
+              <p data-i18n="p2.p">An app for parents in Berlin: kids&rsquo; activities on a map, play events, clothes sales with a daily email and a members-only chat, in German, English and Russian.</p>
+              <p class="role" data-i18n="p2.role"><b>My role</b> Developer and tester, building the app for <a href="https://www.instagram.com/momup_app/" target="_blank" rel="noopener">@momup_app</a></p>
+              <p class="links" data-i18n="p2.links"><a href="https://momup-app.github.io/" target="_blank" rel="noopener">Open the app</a></p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="media"><img src="images/uptic.jpg" width="640" height="400" loading="lazy" data-i18n-alt="p3.alt" alt="Uptic Hospitality article page: Independent Hotels Should Think Independently"></div>
+            <div class="body">
+              <div class="tags" data-i18n="p3.tags"><span class="tag wip">In progress</span><span class="tag">Automation</span></div>
+              <h3 data-i18n="p3.h">Uptic Hospitality: test automation from scratch</h3>
+              <p data-i18n="p3.p">A Playwright + TypeScript suite built from zero, starting with the <a href="https://uptichospitality.com/independent-hotels-should-think-independently/" target="_blank" rel="noopener">&ldquo;Independent hotels&rdquo; article</a>: SEO, accessibility, links, mobile and visual checks. Every failure becomes a ranked fix.</p>
+              <p class="role" data-i18n="p3.role"><b>Stack</b> TypeScript, Playwright, axe-core</p>
+              <p class="links" data-i18n="p3.links"><a href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Code</a></p>
+            </div>
+          </article>
+        </div>
+
+        <!-- filled from the GitHub API by js/github-projects.js; stays hidden if GitHub can't be reached -->
+        <div id="gh-more" hidden>
+          <p class="subhead" data-i18n="gh.title">More on GitHub</p>
+          <div class="grid" id="gh-grid"></div>
+        </div>
+        <p class="gh-all"><a href="https://github.com/janagrit?tab=repositories" target="_blank" rel="noopener" data-i18n="gh.all">All repositories on GitHub</a></p>
+
+
       </div>
+    </section>
 
-      <div class="projects">
-        <article class="proj">
-          <figure class="visual">
-            <pre class="term" data-ui aria-label="Output of the evaluation run"><code><span class="dim">$ python run_eval.py</span>
-<span class="dim">scenarios</span>  prompt injection &middot; data leak
-           impersonation &middot; hallucination
-
-<span class="ok">strict agent</span> <span class="hl">..........</span> attacks contained
-<span class="ok">lax agent</span> <span class="hl">.............</span> control
-<span class="ok">metrics</span> <span class="hl">...............</span> deterministic
-<span class="ok">regression gate</span> <span class="hl">.......</span> vs baseline
-<span class="dim">runs in CI on every push</span></code></pre>
-          </figure>
-          <div class="txt">
-            <div class="tags" data-i18n="p1.tags"><span class="tag">AI testing</span></div>
-            <h3 data-i18n="p1.h">Adversarial evaluation of an AI voice agent</h3>
-            <p data-i18n="p1.p">A DeepEval harness attacks a mock banking voice agent with prompt injection, data-leak, impersonation and hallucination scenarios, and scores it with deterministic metrics. A regression gate fails the build if any score drops below baseline.</p>
-            <p class="role" data-i18n="p1.role"><b>Stack</b> Python, DeepEval, pytest, GitHub Actions</p>
-            <p class="links" data-i18n="p1.links"><a href="https://github.com/janagrit/aviaryai-eval-demo" target="_blank" rel="noopener">Code</a></p>
+    <!-- ================= ARTICLES ================= -->
+    <section class="block" id="articles" aria-labelledby="art-h">
+      <div class="wrap">
+        <h2 id="art-h" data-i18n="nav.articles">Articles</h2>
+        <p class="section-sub" data-i18n="art.title">Notes from the work</p>
+        <div class="grid">
+          <a class="card art" href="articles/dream-job-journey.html" data-i18n="art.dream">
+            <div class="meta">Career &middot; 7 min read</div>
+            <h3>The journey to your dream job: define it, find it, show them</h3>
+            <p>Write your own list, find the companies that match it, and show them a demo of how working with you will look.</p>
+            <span class="more">Read the article &rarr;</span>
+          </a>
+          <a class="card art" href="articles/ai-agent-noise.html" data-i18n="art.noise">
+            <div class="meta">AI tools &middot; 10 min read</div>
+            <h3>Cutting through the AI agent noise: Hermes Agent, ECC, oh-my-claudecode and Arena compared</h3>
+            <p>Four popular GitHub projects, four different jobs. Comparison tables: what each one is, where to use it, and why.</p>
+            <span class="more">Read the article &rarr;</span>
+          </a>
+          <a class="card art" href="articles/resume-improvements.html" data-i18n="art.resume" data-i18n-href="art.resume.href">
+            <div class="meta">Tips &middot; EN / RU &middot; under 5 min</div>
+            <h3>5 resume improvements: in less than 5 minutes</h3>
+            <p>Copy-ready AI prompts: read your resume like a recruiter, rewrite it with results, pass ATS filters, and tailor it to each job.</p>
+            <span class="more">Get the prompts &rarr;</span>
+          </a>
+          <a class="card art" href="articles/qa-before-and-after-ai.html" data-i18n="art.twoqa">
+            <div class="meta">The QA profession &middot; 6 min read</div>
+            <h3>Two kinds of QA: learned before AI, and learned with it</h3>
+            <p>Different strengths, different blind spots, and what each should borrow from the other.</p>
+            <span class="more">Read the article &rarr;</span>
+          </a>
+          <div class="card art soon" data-i18n="art.soon">
+            <div class="meta">Coming next</div>
+            <h3>Videos and more articles</h3>
+            <p>Walkthroughs of load testing with k6 and an AI agent that fixes failing tests.</p>
           </div>
-        </article>
-
-        <article class="proj">
-          <figure class="visual"><img src="images/momup.jpg" width="640" height="400" loading="lazy" data-i18n-alt="p2.alt" alt="Kids Nearby home page: search for kids' activities in Berlin"></figure>
-          <div class="txt">
-            <div class="tags" data-i18n="p2.tags"><span class="tag live">Live</span><span class="tag">QA</span></div>
-            <h3>Kids Nearby &middot; MomUp Berlin</h3>
-            <p data-i18n="p2.p">An app for parents in Berlin: kids&rsquo; activities on a map, play events, clothes sales with a daily email and a members-only chat, in German, English and Russian.</p>
-            <p class="role" data-i18n="p2.role"><b>My role</b> Developer and tester, building the app for <a href="https://www.instagram.com/momup_app/" target="_blank" rel="noopener">@momup_app</a></p>
-            <p class="links" data-i18n="p2.links"><a href="https://momup-app.github.io/" target="_blank" rel="noopener">Open the app</a></p>
-          </div>
-        </article>
-
-        <article class="proj">
-          <figure class="visual"><img src="images/uptic.jpg" width="640" height="400" loading="lazy" data-i18n-alt="p3.alt" alt="Uptic Hospitality article page: Independent Hotels Should Think Independently"></figure>
-          <div class="txt">
-            <div class="tags" data-i18n="p3.tags"><span class="tag wip">In progress</span><span class="tag">Automation</span></div>
-            <h3 data-i18n="p3.h">Uptic Hospitality: test automation from scratch</h3>
-            <p data-i18n="p3.p">A Playwright + TypeScript suite built from zero, starting with the <a href="https://uptichospitality.com/independent-hotels-should-think-independently/" target="_blank" rel="noopener">&ldquo;Independent hotels&rdquo; article</a>: SEO, accessibility, links, mobile and visual checks. Every failure becomes a ranked fix.</p>
-            <p class="role" data-i18n="p3.role"><b>Stack</b> TypeScript, Playwright, axe-core</p>
-            <p class="links" data-i18n="p3.links"><a href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Code</a></p>
-          </div>
-        </article>
-      </div>
-
-      <div class="gh">
-        <figure>
-          <img src="images/mark-i.jpg" width="1400" height="933" loading="lazy" data-i18n-alt="gh.alt" alt="Sequence indicator lamps and step buttons on the Harvard Mark I computer">
-          <figcaption data-i18n="gh.cap">Harvard Mark I, sequence indicators and step buttons. Photo: Rocky Acosta, <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></figcaption>
-        </figure>
-        <div class="gh-list">
-          <h2 data-i18n="gh.title">More on GitHub</h2>
-          <!-- filled from the GitHub API by js/github-projects.js; stays hidden if GitHub can't be reached -->
-          <div id="gh-more" hidden>
-            <div id="gh-grid"></div>
-          </div>
-          <p class="gh-all"><a class="textlink" href="https://github.com/janagrit?tab=repositories" target="_blank" rel="noopener" data-i18n="gh.all">All repositories on GitHub</a></p>
         </div>
       </div>
     </section>
 
-    <!-- ================= 1947 LOGBOOK ================= -->
-    <figure class="band">
-      <div class="pic"><img src="images/bug-1947.jpg" width="1400" height="1108" loading="lazy" data-i18n-alt="band.alt" alt="A page of the Harvard Mark II logbook with a moth taped to it and the note: First actual case of bug being found"></div>
-      <figcaption data-i18n="band.cap">9 September 1947, 15:45: a moth found in relay #70 of the Harvard Mark II, taped into the test log. Naval Surface Warfare Center, Dahlgren, public domain.</figcaption>
-    </figure>
-
-    <!-- ================= ARTICLES ================= -->
-    <section id="articles" aria-labelledby="art-h">
-      <div class="sec-head">
-        <h2 id="art-h" data-i18n="nav.articles">Articles</h2>
-        <p class="lede" data-i18n="art.title">Notes from the work</p>
-      </div>
-      <ul class="art-list">
-        <li><a class="art" href="articles/dream-job-journey.html" data-i18n="art.dream">
-          <div class="meta">Career &middot; 7 min read</div>
-          <span class="t">The journey to your dream job: define it, find it, show them</span>
-          <p>Write your own list, find the companies that match it, and show them a demo of how working with you will look.</p>
-          <span class="more">Read the article &rarr;</span>
-        </a></li>
-        <li><a class="art" href="articles/ai-agent-noise.html" data-i18n="art.noise">
-          <div class="meta">AI tools &middot; 10 min read</div>
-          <span class="t">Cutting through the AI agent noise: Hermes Agent, ECC, oh-my-claudecode and Arena compared</span>
-          <p>Four popular GitHub projects, four different jobs. Comparison tables: what each one is, where to use it, and why.</p>
-          <span class="more">Read the article &rarr;</span>
-        </a></li>
-        <li><a class="art" href="articles/resume-improvements.html" data-i18n="art.resume" data-i18n-href="art.resume.href">
-          <div class="meta">Tips &middot; EN / RU &middot; under 5 min</div>
-          <span class="t">5 resume improvements: in less than 5 minutes</span>
-          <p>Copy-ready AI prompts: read your resume like a recruiter, rewrite it with results, pass ATS filters, and tailor it to each job.</p>
-          <span class="more">Get the prompts &rarr;</span>
-        </a></li>
-        <li><a class="art" href="articles/qa-before-and-after-ai.html" data-i18n="art.twoqa">
-          <div class="meta">The QA profession &middot; 6 min read</div>
-          <span class="t">Two kinds of QA: learned before AI, and learned with it</span>
-          <p>Different strengths, different blind spots, and what each should borrow from the other.</p>
-          <span class="more">Read the article &rarr;</span>
-        </a></li>
-        <li><div class="art soon" data-i18n="art.soon">
-          <div class="meta">Coming next</div>
-          <span class="t">Videos and more articles</span>
-          <p>Walkthroughs of load testing with k6 and an AI agent that fixes failing tests.</p>
-        </div></li>
-      </ul>
-    </section>
-
     <!-- ================= CONTACT ================= -->
     <section class="contact" id="contact" aria-labelledby="contact-h">
-      <h2 id="contact-h" data-i18n="contact.title">Let&rsquo;s connect.</h2>
-      <div class="rows">
-        <a href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener" data-i18n="cta.call">Book a 30-minute call</a>
-        <a href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a>
-        <a href="https://www.linkedin.com/in/ianagrytsenko" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/janagrit" target="_blank" rel="noopener">GitHub</a>
-        <button type="button" id="stats-open" data-i18n="nav.stats">Statistics</button>
+      <div class="wrap">
+        <p id="contact-h" data-i18n="contact.title">Let&rsquo;s connect.</p>
+         <div class="ctas">
+          <a class="btn primary" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener" data-i18n="cta.call">Book a 30-minute call</a>
+          <a class="btn secondary" href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a>
+          <button class="btn secondary" type="button" id="stats-open" data-i18n="nav.stats">Statistics</button>
+        </div>
+        <p class="elsewhere">
+          <a href="https://www.linkedin.com/in/ianagrytsenko" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/janagrit" target="_blank" rel="noopener">GitHub</a>
+        </p>
       </div>
     </section>
 
@@ -525,40 +493,21 @@
       </form>
       <div id="stats-data" hidden>
         <p class="section-sub" data-i18n="stats.sub">Visits to this site since tracking began. Counted by GoatCounter, without cookies.</p>
-        <div class="stat-grid">
-          <div class="stat"><div class="num" data-count="TOTAL">&ndash;</div><div class="label" data-i18n="stats.total">Total visits</div></div>
-          <div class="stat"><div class="num" data-count="/">&ndash;</div><div class="label" data-i18n="stats.home">Home page</div></div>
-          <div class="stat"><div class="num" data-count="/for-hr.html">&ndash;</div><div class="label" data-i18n="stats.hr">For HR page</div></div>
-          <div class="stat"><div class="num" data-count="/articles/dream-job-journey.html /articles/ai-agent-noise.html /articles/resume-improvements.html /articles/qa-before-and-after-ai.html /articles/claude-code-qa-workflow.html">&ndash;</div><div class="label" data-i18n="stats.articles">Article reads</div></div>
+        <div class="grid stat-grid">
+          <div class="card stat"><div class="num" data-count="TOTAL">&ndash;</div><div class="label" data-i18n="stats.total">Total visits</div></div>
+          <div class="card stat"><div class="num" data-count="/">&ndash;</div><div class="label" data-i18n="stats.home">Home page</div></div>
+          <div class="card stat"><div class="num" data-count="/for-hr.html">&ndash;</div><div class="label" data-i18n="stats.hr">For HR page</div></div>
+          <div class="card stat"><div class="num" data-count="/articles/dream-job-journey.html /articles/ai-agent-noise.html /articles/resume-improvements.html /articles/qa-before-and-after-ai.html /articles/claude-code-qa-workflow.html">&ndash;</div><div class="label" data-i18n="stats.articles">Article reads</div></div>
         </div>
       </div>
     </dialog>
 
 </main>
   <footer>
-    <div class="foot-cols">
-      <ul>
-        <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
-        <li><a href="#articles" data-i18n="nav.articles">Articles</a></li>
-        <li><a href="https://job-scout-agent.com/#upload" target="_blank" rel="noopener" data-i18n="nav.scout">Scout your dream job!</a></li>
-      </ul>
-      <ul>
-        <li><a href="https://www.linkedin.com/in/ianagrytsenko" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="https://github.com/janagrit" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://momup-app.github.io/" target="_blank" rel="noopener">Kids Nearby</a></li>
-      </ul>
-      <ul>
-        <li><a href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a></li>
-        <li data-i18n="footer.city">New York / Washington, DC</li>
-      </ul>
-      <ul class="credits">
-        <li data-i18n="footer.credits">Pictures</li>
-        <li><a href="https://commons.wikimedia.org/wiki/File:First_Computer_Bug,_1947.jpg" target="_blank" rel="noopener">First Computer Bug, 1947</a>, Naval Surface Warfare Center, public domain</li>
-        <li><a href="https://commons.wikimedia.org/wiki/File:IBM_Automatic_Sequence_Controlled_Calculator_Sequence_Indicators.jpg" target="_blank" rel="noopener">Harvard Mark I sequence indicators</a>, Rocky Acosta, CC BY 3.0</li>
-      </ul>
+    <div class="wrap">
+      <span>&copy; 2026 Iana Grytsenko</span>
+      <span data-i18n="footer.city">New York / Washington, DC</span>
     </div>
-    <svg class="wordmark" viewBox="0 0 1000 128" role="img" aria-label="Iana Grytsenko"><text x="0" y="104" textLength="1000" lengthAdjust="spacingAndGlyphs" font-family="Onest, sans-serif" font-weight="800" font-size="134" letter-spacing="-6">Iana Grytsenko</text></svg>
-    <div class="legal"><span>&copy; 2026 Iana Grytsenko</span><span>janagrit.github.io</span></div>
   </footer>
 
   <!-- mobile bottom tabs -->
@@ -584,7 +533,7 @@
       function setTheme(theme, save) {
         root.setAttribute('data-theme', theme);
         btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-        if (themeMeta) themeMeta.setAttribute('content', theme === 'dark' ? '#1a2039' : '#eeeff4');
+        if (themeMeta) themeMeta.setAttribute('content', theme === 'dark' ? '#131312' : '#f9f9f7');
         if (save) { try { localStorage.setItem('theme', theme); } catch (e) {} }
       }
       setTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light', false);
@@ -616,103 +565,6 @@
     }, { passive: true });
     window.addEventListener('resize', updateTabs);
     updateTabs();
-
-    // Hero checks: the page tests itself in the browser (text contrast, alt text, in-page links).
-    // Each chip re-runs its check on click; contrast re-runs when the theme changes.
-    (function () {
-      const LABELS = {
-        en: { contrast: 'Text contrast', alt: 'Images with alt text', links: 'In-page links', pass: 'pass', fail: 'fail', note: 'Checked live on this page. Tap a check to run it again.' },
-        uk: { contrast: 'Контраст тексту', alt: 'Зображення з alt', links: 'Внутрішні посилання', pass: 'ок', fail: 'збій', note: 'Перевірено наживо на цій сторінці. Натисніть, щоб запустити ще раз.' },
-        ru: { contrast: 'Контраст текста', alt: 'Изображения с alt', links: 'Внутренние ссылки', pass: 'ок', fail: 'сбой', note: 'Проверено вживую на этой странице. Нажмите, чтобы запустить снова.' }
-      };
-      const chips = document.querySelectorAll('.chip[data-check]');
-      const note = document.querySelector('.checks-note');
-      if (!chips.length) return;
-      const labels = () => LABELS[document.documentElement.lang] || LABELS.en;
-
-      // WCAG relative luminance of an "rgb(r, g, b)" string.
-      function luminance(rgb) {
-        const [r, g, b] = rgb.match(/\d+(\.\d+)?/g).slice(0, 3).map(Number).map(v => {
-          v /= 255;
-          return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
-        });
-        return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-      }
-      const CHECKS = {
-        contrast() {
-          const cs = getComputedStyle(document.body);
-          const [a, b] = [luminance(cs.color), luminance(cs.backgroundColor)].sort((x, y) => y - x);
-          const ratio = (a + 0.05) / (b + 0.05);
-          return { value: ratio.toFixed(1) + ' : 1', ok: ratio >= 4.5 };
-        },
-        alt() {
-          const imgs = Array.from(document.images);
-          const ok = imgs.filter(i => i.hasAttribute('alt')).length;
-          return { value: ok + ' / ' + imgs.length, ok: ok === imgs.length };
-        },
-        links() {
-          const local = Array.from(document.querySelectorAll('a[href^="#"]'));
-          const ok = local.filter(a => document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1)))).length;
-          return { value: ok + ' / ' + local.length, ok: ok === local.length };
-        }
-      };
-      function run(chip) {
-        const v = chip.querySelector('.v');
-        chip.classList.add('running');
-        // Measure after the theme transition (.3s) has settled.
-        setTimeout(() => {
-          const r = CHECKS[chip.dataset.check]();
-          const verdict = document.createElement('small');
-          verdict.textContent = r.ok ? labels().pass : labels().fail;
-          v.replaceChildren(r.value, verdict);
-          chip.classList.remove('running');
-        }, 350);
-      }
-      function relabel() {
-        const t = labels();
-        chips.forEach(c => { c.querySelector('.k').textContent = t[c.dataset.check]; run(c); });
-        if (note) note.textContent = t.note;
-      }
-      chips.forEach(c => c.addEventListener('click', () => run(c)));
-      document.getElementById('theme-toggle').addEventListener('click', () => run(document.querySelector('.chip[data-check="contrast"]')));
-      document.addEventListener('langchange', relabel);
-      relabel();
-    })();
-
-    // Entrances: the parts of each section rise in, staggered, once, as the section comes into view.
-    (function () {
-      if (!document.documentElement.classList.contains('js')) return;
-      const groups = document.querySelectorAll('.sec-head, .proj, .gh, .band, .art-list li, .contact h2, .rows, .foot-cols');
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (!e.isIntersecting) return;
-          e.target.querySelectorAll('.rise').forEach(el => el.classList.add('in'));
-          if (e.target.classList.contains('rise')) e.target.classList.add('in');
-          io.unobserve(e.target);
-        });
-      }, { rootMargin: '0px 0px -10% 0px' });
-      groups.forEach(g => {
-        const parts = g.matches('.art-list li, .contact h2') ? [g] : Array.from(g.children);
-        parts.forEach((p, i) => { p.classList.add('rise'); p.style.setProperty('--d', (i * 80) + 'ms'); });
-        io.observe(g);
-      });
-    })();
-
-    // The logbook picture drifts slower than the page as it passes (transform only).
-    (function () {
-      const pic = document.querySelector('.band .pic');
-      const img = pic && pic.querySelector('img');
-      if (!img || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      let queued = false;
-      function drift() {
-        queued = false;
-        const r = pic.getBoundingClientRect();
-        const p = Math.min(1, Math.max(0, (window.innerHeight - r.top) / (window.innerHeight + r.height)));
-        img.style.transform = 'translateY(' + (-p * 15).toFixed(2) + '%)';
-      }
-      window.addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(drift); } }, { passive: true });
-      drift();
-    })();
 
     // Private statistics: the Statistics button in Contact opens a modal that asks for the passcode every time.
     // Only the passcode's SHA-256 is stored here. This hides the numbers from casual visitors; it is not real
@@ -759,7 +611,7 @@
       lock.addEventListener('submit', async (e) => {
         e.preventDefault();
         const bytes = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(input.value.trim()));
-        const hash = Array.from(new Uint8Array(bytes), b => b.toString(16).padStart(2, '0')).join(''); // taste-skill-ignore: hex bytes of a hash
+        const hash = Array.from(new Uint8Array(bytes), b => b.toString(16).padStart(2, '0')).join('');
         if (hash !== CODE_HASH) {
           err.textContent = WRONG[document.documentElement.lang] || WRONG.en;
           input.select();
