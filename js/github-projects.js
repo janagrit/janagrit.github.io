@@ -8,6 +8,8 @@
   var HIDE_TOPIC = 'hide-from-site';
   var ALWAYS_SKIP = ['janagrit.github.io', 'aviaryai-eval-demo', 'uptic-site-audit', 'cooley-people-search-automation'];
   var MAX_TAGS = 3;
+  // Live sites for repos whose GitHub "Website" field is empty (that field wins when it is set).
+  var LIVE_URLS = { 'calendar-app': 'https://janagrit-calendar.netlify.app/' };
   var CACHE_KEY = 'gh-repos';
   var CACHE_MS = 10 * 60 * 1000; // stay well under GitHub's 60 requests/hour limit for visitors
 
@@ -83,7 +85,7 @@
     var code = safeUrl(repo.html_url);
     // The repo's "Website" field wins; otherwise fall back to its GitHub Pages site, if it has one.
     var pages = repo.has_pages ? 'https://' + USER + '.github.io/' + encodeURIComponent(repo.name) + '/' : null;
-    var live = safeUrl(repo.homepage) || pages;
+    var live = safeUrl(repo.homepage) || LIVE_URLS[repo.name] || pages;
     if (code) links.appendChild(link(code, labels.code));
     if (live) links.appendChild(link(live, labels.live));
     article.appendChild(links);

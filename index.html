@@ -195,7 +195,7 @@
     #projects .card:has(.links a:first-child:focus-visible) { box-shadow: 0 0 0 2px var(--ink); }
     #projects .card .media img { transition: transform .4s ease; }
     #projects .card:hover .media img { transform: scale(1.03); }
-    #projects > .wrap > .grid { grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 721px) { #projects > .wrap > .grid { grid-template-columns: repeat(2, 1fr); } }
     @media (prefers-reduced-motion: reduce) { #projects .card:hover, #projects .card:active, #projects .card:hover .media img { transform: none; } }
     .card h3 { font-size: 20px; line-height: 1.25; letter-spacing: -.01em; }
     .card p { margin-top: 8px; color: var(--sub); font-size: 15px; line-height: 1.45; }
@@ -556,7 +556,7 @@
   </nav>
 
   <script src="js/i18n.js"></script>
-  <script src="js/github-projects.js?v=2"></script>
+  <script src="js/github-projects.js?v=3"></script>
   <script src="js/certificates.js"></script>
   <script>
     // Light/dark toggle: flips data-theme on <html>, saves the choice, keeps the label and browser chrome in sync.
