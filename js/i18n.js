@@ -1,4 +1,4 @@
-// Language switch for index.html: English, Ukrainian, Russian.
+// Language switch for index.html: English, Ukrainian, Russian, Spanish.
 // English lives in the HTML (search engines and no-JS visitors get it). Other languages live here,
 // keyed by each element's data-i18n attribute. Keep every language in sync when the page copy changes.
 (function () {
@@ -134,9 +134,75 @@
         'contact.lead': 'Рассматриваю роли Senior SDET, Test Architect и Staff QA, в штат или по контракту, а также консалтинговые проекты.',
         'footer.city': 'Нью-Йорк / Вашингтон'
       }
+    },
+
+    es: {
+      title: 'Iana Notebook | Ingeniería de calidad de principio a fin',
+      desc: 'Iana Grytsenko, Test Automation Architect y SDET: automatización de pruebas, pruebas de agentes de IA, APIs, rendimiento y accesibilidad.',
+      text: {
+        'nav.projects': 'Proyectos',
+        'nav.articles': 'Artículos',
+        'nav.scout': '¡El trabajo de tus sueños!',
+        'nav.stats': 'Estadísticas',
+        'nav.call': 'Agendar una llamada',
+        'hero.projects': 'Ver proyectos',
+        'proj.sub': 'Lo que construyo y pruebo.',
+        'tab.contact': 'Contacto',
+
+        'hero.title': 'Ingeniería de calidad de principio a fin',
+        'hero.sub': 'Automatización de pruebas, pruebas de agentes de IA, APIs, rendimiento y accesibilidad. Todo diseñado y desarrollado por la misma persona.',
+        'hero.who': 'Iana Grytsenko &middot; Test Automation Architect &middot; SDET',
+        'cta.call': 'Agendar una llamada de 30 minutos',
+
+        'p1.tags': '<span class="tag">Pruebas de IA</span>',
+        'p1.h': 'Evaluación adversarial de un agente de voz con IA',
+        'p1.p': 'Un harness en DeepEval ataca a un agente de voz bancario de prueba con escenarios de prompt injection, fuga de datos, suplantación de identidad y alucinaciones, y lo puntúa con métricas deterministas. Una verificación de regresión detiene el build si alguna puntuación baja de la línea base.',
+        'p1.role': '<b>Stack</b> Python, DeepEval, pytest, GitHub Actions',
+        'p1.links': '<a href="https://github.com/janagrit/aviaryai-eval-demo" target="_blank" rel="noopener">Código</a>',
+        'p2.alt': 'Página principal de Kids Nearby: búsqueda de actividades infantiles en Berlín',
+        'p2.tags': '<span class="tag live">En vivo</span><span class="tag">QA</span>',
+        'p2.p': 'Una app para familias en Berlín: actividades infantiles en un mapa, encuentros para jugar, ventas de ropa infantil con un correo diario y un chat solo para miembros. En alemán, inglés y ruso.',
+        'p2.role': '<b>Mi rol</b> Desarrollo y pruebas, construyendo la app para <a href="https://www.instagram.com/momup_app/" target="_blank" rel="noopener">@momup_app</a>',
+        'p2.links': '<a href="https://momup-app.github.io/" target="_blank" rel="noopener">Abrir la app</a>',
+        'p3.alt': 'Página del artículo de Uptic Hospitality: Independent Hotels Should Think Independently',
+        'p3.tags': '<span class="tag wip">En curso</span><span class="tag">Automatización</span>',
+        'p3.h': 'Uptic Hospitality: automatización de pruebas desde cero',
+        'p3.p': 'Una suite de Playwright + TypeScript creada desde cero, empezando por el <a href="https://uptichospitality.com/independent-hotels-should-think-independently/" target="_blank" rel="noopener">artículo &laquo;Independent hotels&raquo;</a>: SEO, accesibilidad, enlaces, versión móvil y verificaciones visuales. Cada fallo se convierte en una corrección priorizada.',
+        'p3.role': '<b>Stack</b> TypeScript, Playwright, axe-core',
+        'p3.links': '<a href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Código</a>',
+        'p4.alt': 'Página principal de Job Scout: Find the jobs your CV fits',
+        'p4.tags': '<span class="tag live">En vivo</span><span class="tag">Agente de IA</span>',
+        'p4.p': 'Revisa los portales de empleo propios de las empresas (Greenhouse, Ashby, Lever, Workable, SmartRecruiters) y muestra qué vacantes abiertas encajan con tu CV. La búsqueda rápida funciona en el navegador, así que el CV no se sube a ningún sitio.',
+        'p4.role': '<b>Stack</b> Claude API, GitHub Actions',
+        'p4.links': '<a href="https://job-scout-agent.com/" target="_blank" rel="noopener">Abrir Job Scout</a>',
+        'gh.title': 'Más en GitHub',
+        'gh.all': 'Todos los repositorios en GitHub',
+
+        'nav.certs': 'Certificados',
+        'cert.sub': 'Cursos y certificados, cada uno con un enlace para verificarlo.',
+        'art.title': 'Notas desde la práctica',
+        'art.omni': '<div class="meta">Herramientas de IA &middot; Privado, requiere código &middot; 4 min &middot; en inglés</div><h3>Un stack de desarrollo con IA más inteligente: ECC + OmniRoute</h3><p>Separa la inteligencia de ingeniería de la infraestructura de IA: ECC define cómo trabaja la IA y OmniRoute, qué modelo atiende cada petición.</p><span class="more">Abrir con código &rarr;</span>',
+        'art.dream': '<div class="meta">Carrera &middot; 7 min &middot; en inglés</div><h3>El camino al trabajo de tus sueños: defínelo, encuéntralo y demuéstralo</h3><p>Escribe tu propia lista, encuentra las empresas que encajan con ella y muéstrales una demo de cómo sería trabajar contigo.</p><span class="more">Leer el artículo &rarr;</span>',
+        'art.noise': '<div class="meta">Herramientas de IA &middot; 10 min &middot; en inglés</div><h3>Entre tanto ruido sobre agentes de IA: Hermes Agent, ECC, oh-my-claudecode y Arena comparados</h3><p>Cuatro proyectos populares de GitHub, cuatro tareas distintas. Tablas comparativas: qué es cada uno, dónde usarlo y por qué.</p><span class="more">Leer el artículo &rarr;</span>',
+        'art.resume': '<div class="meta">Consejos &middot; EN / RU &middot; menos de 5 min</div><h3>5 mejoras para tu CV en menos de 5 minutos</h3><p>Prompts de IA listos para copiar: lee tu CV como un reclutador, reescríbelo con resultados, supera los filtros ATS y adáptalo a cada oferta.</p><span class="more">Ver los prompts &rarr;</span>',
+        'art.twoqa': '<div class="meta">La profesión de QA &middot; 6 min &middot; en inglés</div><h3>Dos tipos de QA: quienes aprendieron antes de la IA y quienes aprendieron con ella</h3><p>Distintas fortalezas, distintos puntos ciegos y lo que cada grupo debería tomar del otro.</p><span class="more">Leer el artículo &rarr;</span>',
+        'art.soon': '<div class="meta">Próximamente</div><h3>Vídeos y más artículos</h3><p>Recorridos por pruebas de carga con k6 y un agente de IA que arregla tests que fallan.</p>',
+
+        'stats.sub': 'Visitas al sitio desde que empezó el conteo. Las cuenta GoatCounter, sin cookies.',
+        'stats.code': 'Introduce el código',
+        'stats.open': 'Abrir',
+        'stats.total': 'Visitas totales',
+        'stats.home': 'Página principal',
+        'stats.hr': 'Página para RR. HH.',
+        'stats.articles': 'Lecturas de artículos',
+
+        'contact.title': 'Hablemos de la calidad de tu producto.',
+        'contact.lead': 'Busco roles de Senior SDET, Test Architect y Staff QA, en plantilla o por contrato, además de proyectos de consultoría.',
+        'footer.city': 'Nueva York / Washington, DC'
+      }
     }
   };
-  var SUPPORTED = ['en', 'uk', 'ru'];
+  var SUPPORTED = ['en', 'uk', 'ru', 'es'];
   var STORAGE_KEY = 'lang';
 
   var root = document.documentElement;

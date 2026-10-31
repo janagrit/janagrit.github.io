@@ -9,7 +9,8 @@
   var LABELS = {
     en: { verify: 'Verify credential', locale: 'en-US' },
     uk: { verify: 'Перевірити сертифікат', locale: 'uk-UA' },
-    ru: { verify: 'Проверить сертификат', locale: 'ru-RU' }
+    ru: { verify: 'Проверить сертификат', locale: 'ru-RU' },
+    es: { verify: 'Verificar certificado', locale: 'es-ES' }
   };
 
   var grid = document.getElementById('cert-grid');

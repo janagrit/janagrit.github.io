@@ -24,7 +24,8 @@
   var LABELS = {
     en: { code: 'Code', live: 'Webpage', updated: 'Updated', locale: 'en-US' },
     uk: { code: 'Код', live: 'Вебсторінка', updated: 'Оновлено', locale: 'uk-UA' },
-    ru: { code: 'Код', live: 'Веб-страница', updated: 'Обновлено', locale: 'ru-RU' }
+    ru: { code: 'Код', live: 'Веб-страница', updated: 'Обновлено', locale: 'ru-RU' },
+    es: { code: 'Código', live: 'Página web', updated: 'Actualizado', locale: 'es-ES' }
   };
 
   var wrap = document.getElementById('gh-more');
