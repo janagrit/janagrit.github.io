@@ -234,6 +234,7 @@
     /* live GitHub repo cards (js/github-projects.js) */
     #gh-more .grid { margin-top: 12px; }
     .repo { padding: 20px 20px 18px; }
+    .repo .media { margin: -20px -20px 16px; }  /* a repo card with a picture (EXTRAS in js/github-projects.js): full-bleed like the project cards */
     .repo .meta { font-size: 13px; color: var(--faint); }
     .repo h3 { margin-top: 8px; }
     .repo .tags { margin: 12px 0 0; }
@@ -394,26 +395,6 @@
           </article>
 
           <article class="card">
-            <div class="media">
-              <div class="term" aria-hidden="true">
-                <div class="dim">$ python run_eval.py</div>
-                <div><span class="ok">&check;</span> strict agent <span class="hl">&middot;&middot;</span> attacks contained</div>
-                <div><span class="ok">&check;</span> lax agent <span class="hl">&middot;&middot;&middot;&middot;</span> control</div>
-                <div><span class="ok">&check;</span> deterministic metrics</div>
-                <div><span class="ok">&check;</span> regression gate vs baseline</div>
-                <div class="dim">runs in CI on every push</div>
-              </div>
-            </div>
-            <div class="body">
-              <div class="tags" data-i18n="p1.tags"><span class="tag">AI testing</span></div>
-              <h3 data-i18n="p1.h">Adversarial evaluation of an AI voice agent</h3>
-              <p data-i18n="p1.p">A DeepEval harness attacks a mock banking voice agent with prompt injection, data-leak, impersonation and hallucination scenarios, and scores it with deterministic metrics. A regression gate fails the build if any score drops below baseline.</p>
-              <p class="role" data-i18n="p1.role"><b>Stack</b> Python, DeepEval, pytest, GitHub Actions</p>
-              <p class="links" data-i18n="p1.links"><a href="https://github.com/janagrit/aviaryai-eval-demo" target="_blank" rel="noopener">Code</a></p>
-            </div>
-          </article>
-
-          <article class="card">
            
             <div class="media"><img src="images/momup.jpg" width="640" height="400" loading="lazy" data-i18n-alt="p2.alt" alt="Kids Nearby home page: search for kids' activities in Berlin"></div>
             <div class="body">
@@ -433,6 +414,26 @@
               <p data-i18n="p3.p">A Playwright + TypeScript suite built from zero, starting with the <a href="https://uptichospitality.com/independent-hotels-should-think-independently/" target="_blank" rel="noopener">&ldquo;Independent hotels&rdquo; article</a>: SEO, accessibility, links, mobile and visual checks. Every failure becomes a ranked fix.</p>
               <p class="role" data-i18n="p3.role"><b>Stack</b> TypeScript, Playwright, axe-core</p>
               <p class="links" data-i18n="p3.links"><a href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Code</a></p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="media">
+              <div class="term" aria-hidden="true">
+                <div class="dim">$ python run_eval.py</div>
+                <div><span class="ok">&check;</span> strict agent <span class="hl">&middot;&middot;</span> attacks contained</div>
+                <div><span class="ok">&check;</span> lax agent <span class="hl">&middot;&middot;&middot;&middot;</span> control</div>
+                <div><span class="ok">&check;</span> deterministic metrics</div>
+                <div><span class="ok">&check;</span> regression gate vs baseline</div>
+                <div class="dim">runs in CI on every push</div>
+              </div>
+            </div>
+            <div class="body">
+              <div class="tags" data-i18n="p1.tags"><span class="tag">AI testing</span></div>
+              <h3 data-i18n="p1.h">Adversarial evaluation of an AI voice agent</h3>
+              <p data-i18n="p1.p">A DeepEval harness attacks a mock banking voice agent with prompt injection, data-leak, impersonation and hallucination scenarios, and scores it with deterministic metrics. A regression gate fails the build if any score drops below baseline.</p>
+              <p class="role" data-i18n="p1.role"><b>Stack</b> Python, DeepEval, pytest, GitHub Actions</p>
+              <p class="links" data-i18n="p1.links"><a href="https://github.com/janagrit/aviaryai-eval-demo" target="_blank" rel="noopener">Code</a></p>
             </div>
           </article>
         </div>
@@ -556,7 +557,7 @@
   </nav>
 
   <script src="js/i18n.js"></script>
-  <script src="js/github-projects.js?v=3"></script>
+  <script src="js/github-projects.js?v=4"></script>
   <script src="js/certificates.js"></script>
   <script>
     // Light/dark toggle: flips data-theme on <html>, saves the choice, keeps the label and browser chrome in sync.

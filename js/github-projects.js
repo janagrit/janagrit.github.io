@@ -8,8 +8,16 @@
   var HIDE_TOPIC = 'hide-from-site';
   var ALWAYS_SKIP = ['janagrit.github.io', 'aviaryai-eval-demo', 'uptic-site-audit', 'cooley-people-search-automation'];
   var MAX_TAGS = 3;
-  // Live sites for repos whose GitHub "Website" field is empty (that field wins when it is set).
-  var LIVE_URLS = { 'calendar-app': 'https://janagrit-calendar.netlify.app/' };
+  // Extra details for repos in the list: a picture, a live site (the card then opens it on click)
+  // and a description when the repo has none on GitHub.
+  var EXTRAS = {
+    'calendar-app': {
+      live: 'https://janagrit-calendar.netlify.app/',
+      image: 'images/calendar.jpg',
+      alt: 'Daybook calendar: month view with a weather forecast on every day',
+      description: 'A month calendar with the New York City weather forecast on each day, from Open-Meteo. Add, edit and delete events.'
+    }
+  };
   var CACHE_KEY = 'gh-repos';
   var CACHE_MS = 10 * 60 * 1000; // stay well under GitHub's 60 requests/hour limit for visitors
 
@@ -67,12 +75,25 @@
 
   function card(repo, labels) {
     var article = el('article', 'card repo');
+    var extra = EXTRAS[repo.name] || {};
+    if (extra.image) {
+      var media = el('div', 'media');
+      var img = el('img');
+      img.src = extra.image;
+      img.alt = extra.alt || '';
+      img.width = 640;
+      img.height = 400;
+      img.loading = 'lazy';
+      media.appendChild(img);
+      article.appendChild(media);
+    }
     var updated = new Date(repo.pushed_at || repo.updated_at)
       .toLocaleDateString(labels.locale, { year: 'numeric', month: 'short', day: 'numeric' });
     var meta = [repo.language, labels.updated + ' ' + updated].filter(Boolean).join(' · ');
     article.appendChild(el('div', 'meta', meta));
     article.appendChild(el('h3', null, prettyName(repo.name)));
-    if (repo.description) article.appendChild(el('p', null, repo.description));
+    var description = repo.description || extra.description;
+    if (description) article.appendChild(el('p', null, description));
 
     var topics = (repo.topics || []).filter(function (t) { return t !== HIDE_TOPIC; }).slice(0, MAX_TAGS);
     if (topics.length) {
@@ -85,9 +106,11 @@
     var code = safeUrl(repo.html_url);
     // The repo's "Website" field wins; otherwise fall back to its GitHub Pages site, if it has one.
     var pages = repo.has_pages ? 'https://' + USER + '.github.io/' + encodeURIComponent(repo.name) + '/' : null;
-    var live = safeUrl(repo.homepage) || LIVE_URLS[repo.name] || pages;
+    var live = extra.live || safeUrl(repo.homepage) || pages;
+    // The first link is the one the whole card opens: the live site for repos with an extra live link.
+    if (extra.live) links.appendChild(link(live, labels.live));
     if (code) links.appendChild(link(code, labels.code));
-    if (live) links.appendChild(link(live, labels.live));
+    if (live && !extra.live) links.appendChild(link(live, labels.live));
     article.appendChild(links);
     return article;
   }
