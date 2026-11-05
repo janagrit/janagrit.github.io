@@ -6,21 +6,19 @@
 (function () {
   var GH = '<a href="https://github.com/janagrit" target="_blank" rel="noopener">GitHub</a>';
   var LI = '<a href="https://www.linkedin.com/in/ianagrytsenko" target="_blank" rel="noopener">LinkedIn</a>';
-  var MAIL = '<a href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a>';
 
   var LANGS = {
     uk: {
       title: 'Яна Гриценко · Senior SDET | Iana Notebook',
       desc: 'Яна Гриценко, Senior SDET у Нью-Йорку: надійне програмне забезпечення, інфраструктура автоматизації тестування та застосунки на основі AI.',
       text: {
-        'intro.p': 'Створюю надійне програмне забезпечення, інфраструктуру автоматизації тестування та застосунки на основі AI.',
+        'label.today': 'Сьогодні',
+        'intro.p': 'Створюю надійне програмне забезпечення, інфраструктуру автоматизації тестування та застосунки на основі AI, на практиці працюю з Claude і Google Gemini.',
         'intro.loc': 'Нью-Йорк, США. ' + GH + ', ' + LI + ', <a href="mailto:ianagrytsenko@gmail.com">Email</a>.',
         'label.projects': 'Проєкти',
         'label.more': 'Більше на GitHub',
         'label.writing': 'Статті',
         'label.certs': 'Сертифікати',
-        'label.about': 'Про мене',
-        'label.contact': 'Контакти',
         'w.omni.t': 'Розумніший стек для AI-розробки: ECC + OmniRoute',
         'w.omni.d': 'Приватна, потрібен код. Англійською.',
         'w.dream.t': 'Шлях до роботи мрії',
@@ -32,9 +30,7 @@
         'w.twoqa.t': 'Два типи QA',
         'w.twoqa.d': 'Навчалися до AI і разом з ним. Англійською.',
         'w.resume.t': '5 покращень резюме',
-        'w.resume.d': 'Готові AI-промпти, менш ніж за 5 хвилин. Англійською та російською.',
-        'about.p': 'Проєктую фреймворки автоматизації тестування і пишу їх як розробник: end-to-end тести на Playwright і TypeScript, перевірки API та доступності, харнеси для оцінки AI-агентів. Мій шлях в автоматизації почався з Java і Selenium, коли кожен локатор і кожне очікування писалися вручну. Сьогодні значну частину тестового коду пише AI, а моя задача — щоб тести падали, коли функція ламається. Повна історія роботи — на ' + LI + '.',
-        'contact.p': 'Пишіть на ' + MAIL + ' або знайдіть мене на ' + GH + ' і ' + LI + '.'
+        'w.resume.d': 'Готові AI-промпти, менш ніж за 5 хвилин. Англійською та російською.'
       }
     },
 
@@ -42,14 +38,13 @@
       title: 'Яна Гриценко · Senior SDET | Iana Notebook',
       desc: 'Яна Гриценко, Senior SDET в Нью-Йорке: надёжное программное обеспечение, инфраструктура автоматизации тестирования и приложения на основе AI.',
       text: {
-        'intro.p': 'Создаю надёжное программное обеспечение, инфраструктуру автоматизации тестирования и приложения на основе AI.',
+        'label.today': 'Сегодня',
+        'intro.p': 'Создаю надёжное программное обеспечение, инфраструктуру автоматизации тестирования и приложения на основе AI, на практике работаю с Claude и Google Gemini.',
         'intro.loc': 'Нью-Йорк, США. ' + GH + ', ' + LI + ', <a href="mailto:ianagrytsenko@gmail.com">Email</a>.',
         'label.projects': 'Проекты',
         'label.more': 'Больше на GitHub',
         'label.writing': 'Статьи',
         'label.certs': 'Сертификаты',
-        'label.about': 'Обо мне',
-        'label.contact': 'Контакты',
         'w.omni.t': 'Более умный стек для AI-разработки: ECC + OmniRoute',
         'w.omni.d': 'Приватная, нужен код. На английском.',
         'w.dream.t': 'Путь к работе мечты',
@@ -62,9 +57,7 @@
         'w.twoqa.d': 'Учились до AI и вместе с ним. На английском.',
         'w.resume.t': '5 улучшений резюме',
         'w.resume.d': 'Готовые AI-промпты, меньше чем за 5 минут.',
-        'w.resume.href': 'articles/resume-improvements.html?lang=ru',
-        'about.p': 'Проектирую фреймворки автоматизации тестирования и пишу их как разработчик: end-to-end тесты на Playwright и TypeScript, проверки API и доступности, харнессы для оценки AI-агентов. Мой путь в автоматизации начался с Java и Selenium, когда каждый локатор и каждое ожидание писались вручную. Сегодня большую часть тестового кода пишет AI, а моя задача — чтобы тесты падали, когда функция ломается. Полная история работы — в ' + LI + '.',
-        'contact.p': 'Пишите на ' + MAIL + ' или найдите меня в ' + GH + ' и ' + LI + '.'
+        'w.resume.href': 'articles/resume-improvements.html?lang=ru'
       }
     },
 
@@ -72,14 +65,13 @@
       title: 'Iana Grytsenko · Senior SDET | Iana Notebook',
       desc: 'Iana Grytsenko, Senior SDET en Nueva York: software fiable, infraestructura de automatización de pruebas y aplicaciones con IA.',
       text: {
-        'intro.p': 'Construyo software fiable, infraestructura de automatización de pruebas y aplicaciones con IA.',
+        'label.today': 'Hoy',
+        'intro.p': 'Construyo software fiable, infraestructura de automatización de pruebas y aplicaciones con IA, trabajando a diario con Claude y Google Gemini.',
         'intro.loc': 'Desde Nueva York, EE. UU. ' + GH + ', ' + LI + ', <a href="mailto:ianagrytsenko@gmail.com">Email</a>.',
         'label.projects': 'Proyectos',
         'label.more': 'Más en GitHub',
         'label.writing': 'Artículos',
         'label.certs': 'Certificados',
-        'label.about': 'Sobre mí',
-        'label.contact': 'Contacto',
         'w.omni.t': 'Un stack de desarrollo con IA más inteligente: ECC + OmniRoute',
         'w.omni.d': 'Privado, requiere código. En inglés.',
         'w.dream.t': 'El camino al trabajo de tus sueños',
@@ -91,9 +83,7 @@
         'w.twoqa.t': 'Dos tipos de QA',
         'w.twoqa.d': 'Antes de la IA y con ella. En inglés.',
         'w.resume.t': '5 mejoras para tu CV',
-        'w.resume.d': 'Prompts de IA listos para copiar, en menos de 5 minutos. En inglés y ruso.',
-        'about.p': 'Diseño frameworks de automatización de pruebas y los programo como cualquier otro software: suites end-to-end con Playwright y TypeScript, pruebas de API y accesibilidad, y harnesses para evaluar agentes de IA. Mi camino en la automatización empezó con Java y Selenium, escribiendo a mano cada localizador y cada espera. Hoy la IA escribe gran parte de mi código de pruebas, y mi trabajo es que las pruebas fallen cuando la funcionalidad se rompe. Mi trayectoria completa está en ' + LI + '.',
-        'contact.p': 'Escríbeme a ' + MAIL + ' o encuéntrame en ' + GH + ' y ' + LI + '.'
+        'w.resume.d': 'Prompts de IA listos para copiar, en menos de 5 minutos. En inglés y ruso.'
       }
     }
   };

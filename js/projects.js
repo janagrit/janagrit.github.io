@@ -11,13 +11,36 @@
     'https://api.github.com/repos/momup-app/momup-app.github.io'
   ];
   var HIDE_TOPIC = 'hide-from-site';
-  // Never listed: this site, and Job Scout's code (the project links to the live site only).
-  var SKIP = ['janagrit/janagrit.github.io', 'janagrit/jobscout_rag_overlay'];
+  // Never listed in "More on GitHub": this site.
+  var SKIP = ['janagrit/janagrit.github.io'];
   var CACHE_KEY = 'gh-projects-v1';
   var CACHE_MS = 10 * 60 * 1000; // stay well under GitHub's 60 requests/hour limit for visitors
 
   // repo: where the "Code" link comes from (omit for no code link). live: where the title points.
+  // The first three are the highlighted ones; keep them on top.
   var FEATURED = [
+    {
+      repo: 'janagrit/voice-agent-eval-harness',
+      name: 'AI Agent Security Testing',
+      stack: 'Python, DeepEval, pytest',
+      desc: {
+        en: 'Adversarial evals for an AI voice agent.',
+        uk: 'Змагальні оцінки голосового AI-агента.',
+        ru: 'Состязательные оценки голосового AI-агента.',
+        es: 'Evaluaciones adversariales de un agente de voz con IA.'
+      }
+    },
+    {
+      repo: 'janagrit/jobscout_rag_overlay',
+      name: 'Job Scout RAG Overlay',
+      stack: 'Python, React, Cloudflare Workers',
+      desc: {
+        en: 'An AI job-search assistant: discovery, matching, skill gaps, tailored resumes.',
+        uk: 'AI-асистент для пошуку роботи: пошук, підбір, прогалини в навичках, адаптовані резюме.',
+        ru: 'AI-ассистент для поиска работы: поиск, подбор, пробелы в навыках, адаптированные резюме.',
+        es: 'Un asistente de búsqueda de empleo con IA: búsqueda, coincidencias, brechas de habilidades y CV adaptados.'
+      }
+    },
     {
       name: 'Job Scout Agent',
       live: 'https://job-scout-agent.com/',
@@ -50,17 +73,6 @@
         uk: 'Тести з нуля для Uptic Hospitality.',
         ru: 'Тесты с нуля для Uptic Hospitality.',
         es: 'Una suite creada desde cero para Uptic Hospitality.'
-      }
-    },
-    {
-      repo: 'janagrit/voice-agent-eval-harness',
-      name: 'AI Agent Security Testing',
-      stack: 'Python, DeepEval, pytest',
-      desc: {
-        en: 'Adversarial evals for an AI voice agent.',
-        uk: 'Змагальні оцінки голосового AI-агента.',
-        ru: 'Состязательные оценки голосового AI-агента.',
-        es: 'Evaluaciones adversariales de un agente de voz con IA.'
       }
     }
   ];
