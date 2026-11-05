@@ -1,1 +1,5 @@
 .DS_Store
+# LinkedIn export: only the certifications file is published
+data/linkedin/*
+!data/linkedin/Certifications.csv
+!data/linkedin/README.md

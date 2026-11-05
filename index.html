@@ -3,25 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Iana's Notebook | Quality Engineering, End to End</title>
-  <meta name="description" content="Iana Grytsenko, Test Automation Architect and SDET: test automation, AI agent testing, API, performance and accessibility testing.">
+  <title>Iana Grytsenko · Senior SDET | Iana Notebook</title>
+  <meta name="description" content="Iana Grytsenko, Senior SDET in New York: reliable software, test automation infrastructure and AI-powered applications.">
   <link rel="canonical" href="https://janagrit.github.io/">
-  <meta property="og:title" content="Iana Notebook | Quality Engineering, End to End">
-  <meta property="og:description" content="Test automation, AI agent testing, APIs, performance and accessibility, designed and built by one engineer.">
+  <meta property="og:title" content="Iana Grytsenko · Senior SDET">
+  <meta property="og:description" content="I build reliable software, test automation infrastructure and AI-powered applications.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://janagrit.github.io/">
   <meta property="og:image" content="https://janagrit.github.io/images/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Iana Grytsenko, Test Automation Architect: quality engineering, end to end">
+  <meta property="og:image:alt" content="Iana Grytsenko, Senior SDET">
   <meta property="og:site_name" content="Iana Notebook">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Iana Notebook | Quality Engineering, End to End">
+  <meta name="twitter:title" content="Iana Grytsenko · Senior SDET">
   <meta name="twitter:image" content="https://janagrit.github.io/images/og.jpg">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#f9f9f7">
+  <meta name="theme-color" content="#fdfdfc" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="manifest.webmanifest">
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Iana Notebook">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link rel="icon" href="favicon.ico?v=2" sizes="16x16 32x32 48x48">
@@ -29,643 +30,81 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Iana Grytsenko", "jobTitle": "Test Automation Architect and SDET", "url": "https://janagrit.github.io/", "image": "https://janagrit.github.io/images/og.jpg", "address": {"@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US"}, "knowsAbout": ["Test automation", "Playwright", "TypeScript", "AI agent testing", "API testing", "Performance testing", "Accessibility testing", "CI/CD"], "knowsLanguage": ["English", "Ukrainian", "Chinese"], "sameAs": ["https://www.linkedin.com/in/ianagrytsenko", "https://github.com/janagrit"]}</script>
-  <script>
-    // Theme bootstrap: runs before first paint so there is no light/dark flash.
-    // Saved choice (localStorage) wins; otherwise follow the OS setting.
-    (function () {
-      var saved = null;
-      try { saved = localStorage.getItem('theme'); } catch (e) {}
-      var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-    })();
-  </script>
-  <style>
-    /* ---------- tokens: warm paper, serif headings, quiet cards ---------- */
-    :root {
-      --bg: #f9f9f7;
-      --band: #edece7;          /* hero and contact bands */
-      --card: #fcfcfb;
-      --sand: #e6e3d9;          /* card thumbnail backdrop */
-      --ink: #0b0b0b;
-      --sub: #52514e;
-      --faint: #6b6964;         /* darkened from #7a7873 to pass WCAG AA on every section */
-      --ring: rgba(11, 11, 11, .1);
-      --ring-strong: rgba(11, 11, 11, .2);
-      --live: #2f6b3a;
-      --wip: #8a5a00;
-      --serif: "Source Serif 4", ui-serif, Georgia, "Times New Roman", serif;
-      --sans: "Inter", ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
-      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-      --max: 1088px;
-      --nav-h: 56px;
-      --radius: 16px;
-      --card-shadow: 0 0 0 1px var(--ring), 0 1px 2px rgba(11, 11, 11, .08);
-      --card-shadow-hover: 0 0 0 1px var(--ring-strong), 0 10px 30px rgba(11, 11, 11, .08);
-      /* surfaces and controls that used to be hard-coded */
-      --on-ink: #fff;
-      --ink-hover: #2a2a28;
-      --btn2: rgba(255, 255, 255, .55);
-      --btn2-hover: #fff;
-      --hover: rgba(11, 11, 11, .05);
-      --hover-strong: rgba(11, 11, 11, .07);
-      --nav-bg: rgba(249, 249, 247, .92);
-      --tabbar-bg: rgba(249, 249, 247, .95);
-      --live-ring: rgba(47, 107, 58, .3);
-      --wip-ring: rgba(138, 90, 0, .3);
-      --photo-filter: none;
-      /* section backgrounds: one warm-paper family, each band a slightly different hue */
-      --sec-hero: #edece7;                       /* warm stone */
-      --sec-projects: #f9f9f7;                   /* paper, fading into a faint sage */
-      --sec-projects-tint: rgba(47, 107, 58, .045);
-      --sec-articles: #f6f2ea;                   /* faint sand */
-      --sec-contact: #e9e7e0;                    /* deeper stone */
-      --sec-footer: #e2dfd6;                     /* darkest light tint, closes the page */
-      color-scheme: light;
-    }
-    [data-theme="dark"] {
-      --bg: #131312;
-      --band: #1c1c1a;
-      --card: #1e1e1c;
-      --sand: #2a2924;
-      --ink: #f1f0eb;
-      --sub: #b8b6ae;
-      --faint: #9a978f;
-      --ring: rgba(255, 255, 255, .1);
-      --ring-strong: rgba(255, 255, 255, .22);
-      --live: #86c993;
-      --wip: #e3ad55;
-      --card-shadow: 0 0 0 1px var(--ring), 0 1px 2px rgba(0, 0, 0, .4);
-      --card-shadow-hover: 0 0 0 1px var(--ring-strong), 0 10px 30px rgba(0, 0, 0, .45);
-      --on-ink: #0b0b0b;
-      --ink-hover: #d9d8d2;
-      --btn2: rgba(255, 255, 255, .06);
-      --btn2-hover: rgba(255, 255, 255, .12);
-      --hover: rgba(255, 255, 255, .07);
-      --hover-strong: rgba(255, 255, 255, .11);
-      --nav-bg: rgba(19, 19, 18, .85);
-      --tabbar-bg: rgba(19, 19, 18, .92);
-      --live-ring: rgba(134, 201, 147, .35);
-      --wip-ring: rgba(227, 173, 85, .35);
-      --photo-filter: brightness(.88) saturate(.95);
-      --sec-hero: #1c1c1a;
-      --sec-projects: #131312;
-      --sec-projects-tint: rgba(134, 201, 147, .03);
-      --sec-articles: #18160f;
-      --sec-contact: #1f1e1b;
-      --sec-footer: #0b0b0a;
-      color-scheme: dark;
-    }
-
-    /* ---------- base ---------- */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; transition: background-color .3s ease, color .3s ease; }
-    img { display: block; max-width: 100%; }
-    a { color: inherit; }
-    a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 8px; }
-    .skip { position: absolute; left: -9999px; }
-    .skip:focus { left: 16px; top: 12px; z-index: 100; background: var(--ink); color: var(--on-ink); padding: 8px 14px; border-radius: 8px; }
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
-    section { scroll-margin-top: var(--nav-h); }
-    h1, h2, h3 { font-family: var(--serif); font-weight: 400; }
-    h2 { font-size: 28px; line-height: 1.4; letter-spacing: -.025em; }
-    .section-sub { margin-top: 4px; color: var(--sub); font-size: 16px; }
-
-    /* buttons */
-    .btn { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 10px; font: 500 15px/1 var(--sans); text-decoration: none; white-space: nowrap; transition: background .15s, box-shadow .15s, color .3s ease; }
-    .btn.primary { background: var(--ink); color: var(--on-ink); }
-    .btn.primary:hover { background: var(--ink-hover); }
-    .btn.secondary { background: var(--btn2); color: var(--ink); box-shadow: 0 0 0 1px var(--ring), 0 1px 2px rgba(11, 11, 11, .06); }
-    .btn.secondary:hover { background: var(--btn2-hover); }
-
-    /* ---------- top nav ---------- */
-    .topnav { position: sticky; top: 0; z-index: 50; background: var(--nav-bg); transition: background-color .3s ease; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--ring); }
-    .topnav .bar { height: var(--nav-h); display: flex; align-items: center; gap: 24px; padding: 0 16px; }
-    .brand { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 21px; letter-spacing: -.02em; text-decoration: none; white-space: nowrap; }
-    .brand img { width: 26px; height: 26px; border-radius: 7px; }
-    .navlinks { display: flex; gap: 4px; list-style: none; }
-    .navlinks a { white-space: nowrap; display: block; padding: 6px 10px; border-radius: 7px; font-size: 14px; text-decoration: none; color: var(--ink); }
-    .navlinks a:hover { background: var(--hover); }
-    .navlinks a[aria-current] { background: var(--hover-strong); }
-    .nav-end { margin-left: auto; display: flex; align-items: center; gap: 10px; }
-    .langs { display: inline-flex; gap: 2px; padding: 2px; border-radius: 9px; box-shadow: 0 0 0 1px var(--ring); background: var(--card); }
-    .langs button { font: 500 13px/1 var(--sans); color: var(--sub); background: transparent; border: 0; border-radius: 7px; padding: 7px 10px; cursor: pointer; }
-    .langs button[aria-pressed="true"] { background: var(--ink); color: var(--on-ink); }
-    .langs button:hover:not([aria-pressed="true"]) { color: var(--ink); }
-    .topnav .btn { height: 32px; padding: 0 12px; font-size: 14px; border-radius: 8px; }
-
-    /* light/dark toggle: a small track with both icons, the knob sits under the active one */
-    .theme-toggle { position: relative; flex: none; display: inline-flex; align-items: center; width: 58px; height: 32px; padding: 3px; border: 0; border-radius: 999px; background: var(--card); box-shadow: 0 0 0 1px var(--ring); cursor: pointer; transition: background-color .3s ease; -webkit-tap-highlight-color: transparent; }
-    .theme-toggle::before { content: ""; position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%; background: var(--hover-strong); box-shadow: 0 0 0 1px var(--ring); transition: transform .3s ease; }
-    [data-theme="dark"] .theme-toggle::before { transform: translateX(26px); }
-    .theme-toggle .tt-icon { position: relative; width: 26px; text-align: center; font-size: 14px; line-height: 26px; transition: opacity .3s ease; }
-    .theme-toggle .tt-moon, [data-theme="dark"] .theme-toggle .tt-sun { opacity: .4; }
-    [data-theme="dark"] .theme-toggle .tt-moon { opacity: 1; }
-    .theme-toggle:hover::before { background: var(--ring-strong); }
-    .theme-toggle:active::before { transform: scale(.94); }
-    [data-theme="dark"] .theme-toggle:active::before { transform: translateX(26px) scale(.94); }
-    .theme-toggle:focus { outline: 2px solid var(--ink); outline-offset: 3px; }
-    .theme-toggle:focus:not(:focus-visible) { outline: none; }
-
-    /* ---------- hero band ---------- */
-    .hero { background-color: var(--sec-hero); background-image: linear-gradient(180deg, transparent 0%, transparent 70%, var(--sec-projects) 100%); transition: background-color .3s ease; }
-    .hero .wrap { padding-top: clamp(56px, 9vw, 104px); padding-bottom: clamp(56px, 8vw, 88px); }
-    .hero h1 { font-size: clamp(38px, 5.4vw, 52px); line-height: 1.1; letter-spacing: -.025em; max-width: 18ch; }
-    .hero .sub { margin-top: 16px; max-width: 40em; color: var(--sub); font-size: 18px; line-height: 1.55; }
-    .hero .who { margin-top: 14px; font-size: 14px; color: var(--faint); }
-    .hero .ctas { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
-
-    /* ---------- sections ---------- */
-    .block { padding: clamp(48px, 7vw, 72px) 0; transition: background-color .3s ease; }
-    #projects { background-color: var(--sec-projects); background-image: linear-gradient(180deg, transparent 0%, var(--sec-projects-tint) 100%); }
-    #articles { background-color: var(--sec-articles); border-top: 1px solid var(--ring); }
-    .grid { margin-top: 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-
-    /* cards */
-    .card { display: flex; flex-direction: column; background: var(--card); border-radius: var(--radius); box-shadow: var(--card-shadow); overflow: hidden; transition: box-shadow .2s, background-color .3s ease; }
-    a.card { text-decoration: none; color: inherit; }
-    a.card:hover, .card:has(.links a:hover) { box-shadow: var(--card-shadow-hover); }
-    /* project cards: the whole card opens its first link; other links inside stay clickable on top of it */
-    #projects .card { position: relative; transition: box-shadow .2s, transform .2s, background-color .3s ease; }
-    #projects .card .links a:first-child::before { content: ""; position: absolute; inset: 0; border-radius: var(--radius); }
-    #projects .card p:not(.links) a, #projects .card .links a + a { position: relative; z-index: 1; }
-    #projects .card:hover { box-shadow: var(--card-shadow-hover); transform: translateY(-3px); }
-    #projects .card:active { transform: translateY(0) scale(.985); transition-duration: .08s; }
-    #projects .card:has(.links a:first-child:focus-visible) { box-shadow: 0 0 0 2px var(--ink); }
-    #projects .card .media img { transition: transform .4s ease; }
-    #projects .card:hover .media img { transform: scale(1.03); }
-    @media (min-width: 721px) { #projects > .wrap > .grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (prefers-reduced-motion: reduce) { #projects .card:hover, #projects .card:active, #projects .card:hover .media img { transform: none; } }
-    .card h3 { font-size: 20px; line-height: 1.25; letter-spacing: -.01em; }
-    .card p { margin-top: 8px; color: var(--sub); font-size: 15px; line-height: 1.45; }
-
-    /* project cover photos (Unsplash), credit line underneath */
-    .cover { background: var(--sand); }
-    .cover img { width: 100%; height: 200px; object-fit: cover; filter: var(--photo-filter); transition: filter .3s ease; }
-    .cover figcaption { padding: 6px 12px; font-size: 11px; line-height: 1.4; color: var(--sub); background: var(--card); border-bottom: 1px solid var(--ring); }
-    .cover figcaption a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--ring-strong); }
-    .cover figcaption a:hover { color: var(--ink); text-decoration-color: var(--ink); }
-
-    /* project cards: thumbnail inset on a sand backdrop */
-    .media { height: 176px; background: var(--sand); padding: 28px 0 0 32px; overflow: hidden; border-bottom: 1px solid var(--ring); }
-    .media img, .media .term { width: 100%; height: 100%; border-radius: 8px 0 0 0; box-shadow: 0 0 0 1px var(--ring), 0 8px 24px rgba(11, 11, 11, .12); }
-    .media img { object-fit: cover; object-position: top left; }
-    .term { background: #171715; padding: 14px 16px; font-family: var(--mono); font-size: 12px; line-height: 1.7; color: #cfcdc6; white-space: nowrap; }
-    .term .ok { color: #7cc48a; } .term .dim { color: #8a877f; } .term .hl { color: #bdb6a3; }
-    .card .body { padding: 20px 20px 22px; display: flex; flex-direction: column; flex: 1; }
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-    .tag { font-size: 12px; font-weight: 500; padding: 3px 9px; border-radius: 999px; color: var(--sub); box-shadow: inset 0 0 0 1px var(--ring); }
-    .tag.live { color: var(--live); box-shadow: inset 0 0 0 1px var(--live-ring); }
-    .tag.wip { color: var(--wip); box-shadow: inset 0 0 0 1px var(--wip-ring); }
-    .card p a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--ring-strong); }
-    .card p a:hover { text-decoration-color: var(--ink); }
-    .card .role { margin-top: 12px; font-size: 14px; }
-    .card .role b { color: var(--ink); font-weight: 500; }
-    .card .links { margin-top: auto; padding-top: 16px; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; font-weight: 500; }
-    .card .links a { color: var(--ink); text-decoration: none; }
-    .card .links a::after { content: " \2197"; }
-    .card .links a:hover { text-decoration: underline; text-underline-offset: 2px; }
-
-    /* currently building: text-only cards */
-    .subhead { margin-top: 40px; font-size: 14px; font-weight: 500; color: var(--faint); }
-    .mini { padding: 20px; }
-
-    /* live GitHub repo cards (js/github-projects.js) */
-    #gh-more .grid { margin-top: 12px; }
-    .repo { padding: 20px 20px 18px; }
-    .repo .media { margin: -20px -20px 16px; }  /* a repo card with a picture (EXTRAS in js/github-projects.js): full-bleed like the project cards */
-    .repo .meta { font-size: 13px; color: var(--faint); }
-    .repo h3 { margin-top: 8px; }
-    .repo .tags { margin: 12px 0 0; }
-    .gh-all { margin-top: 16px; font-size: 14px; font-weight: 500; }
-    .gh-all a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ring-strong); }
-    .gh-all a::after { content: " \2197"; }
-    .gh-all a:hover { text-decoration-color: var(--ink); }
-    .mini b { display: block; font-family: var(--serif); font-size: 18px; font-weight: 400; letter-spacing: -.01em; }
-    .grid.two { grid-template-columns: repeat(2, 1fr); margin-top: 12px; }
-
-    /* article cards: text-only, metadata line on top */
-    .art { padding: 22px 22px 20px; }
-    .art .meta { font-size: 13px; color: var(--faint); }
-    .art h3 { margin-top: 10px; }
-    .art .more { margin-top: auto; padding-top: 16px; font-size: 14px; font-weight: 500; }
-    .art.soon { background: transparent; box-shadow: inset 0 0 0 1px var(--ring); }
-    .art.soon h3, .art.soon p { color: var(--sub); }
-    #certificates { background-color: var(--sec-projects); border-top: 1px solid var(--ring); }
-
-    /* statistics: one number per card, filled from GoatCounter's public counter */
-    #stats { background-color: var(--sec-projects); border-top: 1px solid var(--ring); }
-    button.btn { border: 0; cursor: pointer; }
-    .stats-modal { width: min(560px, calc(100vw - 32px)); margin: auto; padding: 28px; border: 0; border-radius: var(--radius); background: var(--bg); color: var(--ink); box-shadow: var(--card-shadow-hover); }
-    .stats-modal::backdrop { background: rgba(0, 0, 0, .45); }
-    .stats-close { position: absolute; top: 12px; right: 14px; width: 32px; height: 32px; border: 0; border-radius: 8px; background: transparent; color: var(--sub); font-size: 24px; line-height: 1; cursor: pointer; }
-    .stats-close:hover { background: var(--hover); color: var(--ink); }
-    .stat-grid { margin-top: 16px; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .stat { padding: 18px; }
-    .stat .num { font-family: var(--serif); font-size: 32px; line-height: 1.1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
-    .stat .label { margin-top: 6px; font-size: 14px; color: var(--sub); }
-    .stats-lock { margin-top: 16px; }
-    .stats-lock[hidden] { display: none; }
-    .stats-lock label { font-size: 14px; color: var(--sub); }
-    .stats-lock .row { margin-top: 8px; display: flex; gap: 10px; }
-    .stats-lock input { flex: 1; min-width: 0; height: 40px; padding: 0 12px; border: 0; border-radius: 10px; background: var(--card); color: var(--ink); box-shadow: var(--card-shadow); font: 16px var(--sans); }
-    .stats-err { margin-top: 10px; min-height: 1.4em; font-size: 14px; color: var(--wip); }
-
-    /* ---------- contact band ---------- */
-    .contact { background: var(--sec-contact); border-top: 1px solid var(--ring); transition: background-color .3s ease; }
-    .contact .wrap { padding-top: clamp(56px, 8vw, 88px); padding-bottom: clamp(56px, 8vw, 88px); }
-    .contact h2 { font-size: clamp(32px, 4.4vw, 44px); line-height: 1.15; max-width: 20ch; }
-    .contact .lead { margin-top: 14px; max-width: 40em; color: var(--sub); font-size: 17px; }
-    .contact .ctas { margin-top: 26px; display: flex; gap: 12px; flex-wrap: wrap; }
-    .contact .elsewhere { margin-top: 22px; display: flex; gap: 20px; font-size: 15px; }
-    .contact .elsewhere a { color: var(--sub); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ring-strong); }
-    .contact .elsewhere a:hover { color: var(--ink); text-decoration-color: var(--ink); }
-
-    footer { background: var(--sec-footer); border-top: 1px solid var(--ring); font-size: 13px; color: var(--sub); transition: background-color .3s ease, color .3s ease; }
-    footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 20px; padding-bottom: 24px; }
-
-    /* ---------- mobile bottom tabs ---------- */
-    .tabbar { display: none; }
-
-    /* the top bar needs ~1115px in Ukrainian (its longest labels), so below 1140px the bottom tab bar takes over */
-    @media (max-width: 1140px) {
-      .grid { grid-template-columns: 1fr 1fr; }
-      .navlinks, .topnav .btn { display: none; }
-      .topnav nav { display: none; } /* its links are hidden here; drops an empty flex item + gap so the theme toggle fits */
-      body { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
-      .tabbar {
-        display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
-        background: var(--tabbar-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-        border-top: 1px solid var(--ring); padding-bottom: env(safe-area-inset-bottom);
-      }
-      .tabbar ul { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); height: 60px; }
-      .tabbar a { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 500; color: var(--faint); text-decoration: none; -webkit-tap-highlight-color: transparent; }
-      .tabbar svg { width: 21px; height: 21px; flex: none; }
-      .tabbar a span { text-align: center; line-height: 1.12; font-size: 10.5px; padding: 0 1px; }
-      .tabbar a[aria-current] { color: var(--ink); }
-    }
-    @media (max-width: 360px) {
-      .topnav .bar { gap: 10px; padding: 0 10px !important; }
-      .brand { font-size: 18px; gap: 8px; }
-      .langs button { padding: 7px 8px; }
-      /* very narrow phones: collapse the toggle to a single icon showing the current theme */
-      .topnav .bar { padding: 0 8px !important; }
-      .langs button { padding: 7px 6px; }
-      .nav-end { gap: 4px; }
-      .theme-toggle { width: 28px; height: 28px; padding: 0; justify-content: center; }
-      .theme-toggle::before { display: none; }
-      .theme-toggle .tt-icon { width: auto; font-size: 14px; }
-      .theme-toggle .tt-moon, [data-theme="dark"] .theme-toggle .tt-sun { display: none; }
-      [data-theme="dark"] .theme-toggle .tt-moon { display: inline; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before { transition-duration: .01ms !important; }
-    }
-    @media (max-width: 720px) {
-      .wrap { padding: 0 16px; }
-      .topnav .bar { padding: 0 16px; }
-      .grid, .grid.two { grid-template-columns: 1fr; }
-      .hero .ctas .btn, .contact .ctas .btn { flex: 1 1 auto; justify-content: center; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;550;600&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css?v=1">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Iana Grytsenko", "jobTitle": "Senior SDET", "url": "https://janagrit.github.io/", "image": "https://janagrit.github.io/images/og.jpg", "email": "mailto:ianagrytsenko@gmail.com", "address": {"@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US"}, "knowsAbout": ["Test automation", "Playwright", "TypeScript", "AI agent testing", "API testing", "Accessibility testing", "CI/CD"], "knowsLanguage": ["English", "Ukrainian", "Chinese"], "sameAs": ["https://www.linkedin.com/in/ianagrytsenko", "https://github.com/janagrit"]}</script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to main content</a>
 
-  <header class="topnav">
-    <div class="bar">
-      <a class="brand" href="#top"><img src="icon-192.png?v=2" width="26" height="26" alt="">Iana Notebook</a>
-      <nav aria-label="Main">
-        <ul class="navlinks">
-          <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
-          <li><a href="#certificates" data-i18n="nav.certs">Certificates</a></li>
-          <li><a href="#articles" data-i18n="nav.articles">Articles</a></li>
-          <li><a href="https://job-scout-agent.com/#upload" target="_blank" rel="noopener" data-i18n="nav.scout">Scout your dream job!</a></li>
-          <!--<li><a href="https://momup-app.github.io/" target="_blank" rel="noopener">Kids Nearby</a></li> -->
-          <li><a href="#contact" data-i18n="tab.contact">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="nav-end">
-        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
-          <span class="tt-icon tt-sun" aria-hidden="true">&#9728;&#65039;</span>
-          <span class="tt-icon tt-moon" aria-hidden="true">&#127769;</span>
-        </button>
-        <div class="langs" role="group" aria-label="Language">
-          <button type="button" data-set="en" aria-pressed="true" lang="en">EN</button>
-          <button type="button" data-set="uk" aria-pressed="false" lang="uk" aria-label="Українська">UA</button>
-          <button type="button" data-set="ru" aria-pressed="false" lang="ru">RU</button>
-          <button type="button" data-set="es" aria-pressed="false" lang="es" aria-label="Español">ES</button>
-        </div>
-        <a class="btn primary" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener" data-i18n="nav.call">Book a call</a>
-      </div>
-    </div>
+  <header class="site-head">
+    <a class="name" href="./">Iana Grytsenko</a>
+    <span class="role">Senior SDET · Software Engineer in Test</span>
   </header>
 
   <main id="main">
+    <section class="intro" aria-label="Introduction">
+      <p data-i18n="intro.p">I build reliable software, test automation infrastructure and AI-powered applications.</p>
+      <p data-i18n="intro.loc">Based in New York, USA. <a href="https://github.com/janagrit" target="_blank" rel="noopener">GitHub</a>, <a href="https://www.linkedin.com/in/ianagrytsenko" target="_blank" rel="noopener">LinkedIn</a>, <a href="mailto:ianagrytsenko@gmail.com">Email</a>.</p>
+    </section>
 
-    <!-- ================= HERO ================= -->
-    <section class="hero" id="top" aria-labelledby="hero-h">
-      <div class="wrap">
-        <h1 id="hero-h" data-i18n="hero.title">Quality engineering, end to end</h1>
-        <p class="sub" data-i18n="hero.sub">Test automation, AI agent testing, APIs, performance and accessibility, designed and built by one engineer.</p>
-        <p class="who" data-i18n="hero.who">Iana Grytsenko &middot; Test Automation Architect &middot; SDET</p>
-        <div class="ctas">
-          <a class="btn primary" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener" data-i18n="cta.call">Book a 30-minute call</a>
-          <a class="btn secondary" href="#projects" data-i18n="hero.projects">See my projects</a>
-        </div>
+    <!-- Rows are rebuilt from the GitHub API by js/projects.js. These four stay if GitHub can't be reached. -->
+    <section class="section" id="projects" aria-labelledby="proj-h">
+      <h2 class="label" id="proj-h" data-i18n="label.projects">Projects</h2>
+      <ul class="list" id="projects-list">
+        <li class="row"><a class="title" href="https://job-scout-agent.com/" target="_blank" rel="noopener">Job Scout Agent</a><span class="desc">Finds open roles that fit your CV. Claude API, GitHub Actions</span></li>
+        <li class="row"><a class="title" href="https://momup-app.github.io/" target="_blank" rel="noopener">Kids Nearby</a><span class="desc">Kids&rsquo; activities in Berlin, on a map. Developer and tester</span></li>
+        <li class="row"><a class="title" href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Playwright Automation Framework</a><span class="desc">A test suite built from scratch for Uptic Hospitality. TypeScript, Playwright, axe-core</span></li>
+        <li class="row"><a class="title" href="https://github.com/janagrit/voice-agent-eval-harness" target="_blank" rel="noopener">AI Agent Security Testing</a><span class="desc">Adversarial evals for an AI voice agent. Python, DeepEval, pytest</span></li>
+      </ul>
+      <div id="projects-more" hidden>
+        <p class="sublabel" data-i18n="label.more">More on GitHub</p>
+        <ul class="list" id="projects-more-list"></ul>
       </div>
     </section>
 
-    <!-- ================= PROJECTS ================= -->
-    <section class="block" id="projects" aria-labelledby="proj-h">
-      <div class="wrap">
-        <h2 id="proj-h" data-i18n="nav.projects">Projects</h2>
-        <p class="section-sub" data-i18n="proj.sub">What I build and test.</p>
-
-        <div class="grid">
-          <article class="card">
-            <div class="media"><img src="images/job-scout.jpg" width="640" height="400" loading="lazy" data-i18n-alt="p4.alt" alt="Job Scout home page: Find the jobs your CV fits"></div>
-            <div class="body">
-              <div class="tags" data-i18n="p4.tags"><span class="tag live">Live</span><span class="tag">AI agent</span></div>
-              <h3>Job Scout</h3>
-              <p data-i18n="p4.p">Checks companies&rsquo; own job boards (Greenhouse, Ashby, Lever, Workable, SmartRecruiters) and shows which open roles fit your CV. The quick search runs in the browser, so the CV is not uploaded anywhere.</p>
-              <p class="role" data-i18n="p4.role"><b>Stack</b> Claude API, GitHub Actions</p>
-              <p class="links" data-i18n="p4.links"><a href="https://job-scout-agent.com/" target="_blank" rel="noopener">Open Job Scout</a></p>
-            </div>
-          </article>
-
-          <article class="card">
-           
-            <div class="media"><img src="images/momup.jpg" width="640" height="400" loading="lazy" data-i18n-alt="p2.alt" alt="Kids Nearby home page: search for kids' activities in Berlin"></div>
-            <div class="body">
-              <div class="tags" data-i18n="p2.tags"><span class="tag live">Live</span><span class="tag">QA</span></div>
-              <h3>Kids Nearby &middot; MomUp Berlin</h3>
-              <p data-i18n="p2.p">An app for parents in Berlin: kids&rsquo; activities on a map, play events, clothes sales with a daily email and a members-only chat, in German, English and Russian.</p>
-              <p class="role" data-i18n="p2.role"><b>My role</b> Developer and tester, building the app for <a href="https://www.instagram.com/momup_app/" target="_blank" rel="noopener">@momup_app</a></p>
-              <p class="links" data-i18n="p2.links"><a href="https://momup-app.github.io/" target="_blank" rel="noopener">Open the app</a></p>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="media"><img src="images/uptic.jpg" width="640" height="400" loading="lazy" data-i18n-alt="p3.alt" alt="Uptic Hospitality article page: Independent Hotels Should Think Independently"></div>
-            <div class="body">
-              <div class="tags" data-i18n="p3.tags"><span class="tag wip">In progress</span><span class="tag">Automation</span></div>
-              <h3 data-i18n="p3.h">Uptic Hospitality: test automation from scratch</h3>
-              <p data-i18n="p3.p">A Playwright + TypeScript suite built from zero, starting with the <a href="https://uptichospitality.com/independent-hotels-should-think-independently/" target="_blank" rel="noopener">&ldquo;Independent hotels&rdquo; article</a>: SEO, accessibility, links, mobile and visual checks. Every failure becomes a ranked fix.</p>
-              <p class="role" data-i18n="p3.role"><b>Stack</b> TypeScript, Playwright, axe-core</p>
-              <p class="links" data-i18n="p3.links"><a href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Code</a></p>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="media">
-              <div class="term" aria-hidden="true">
-                <div class="dim">$ python run_eval.py</div>
-                <div><span class="ok">&check;</span> strict agent <span class="hl">&middot;&middot;</span> attacks contained</div>
-                <div><span class="ok">&check;</span> lax agent <span class="hl">&middot;&middot;&middot;&middot;</span> control</div>
-                <div><span class="ok">&check;</span> deterministic metrics</div>
-                <div><span class="ok">&check;</span> regression gate vs baseline</div>
-                <div class="dim">runs in CI on every push</div>
-              </div>
-            </div>
-            <div class="body">
-              <div class="tags" data-i18n="p1.tags"><span class="tag">AI testing</span></div>
-              <h3 data-i18n="p1.h">Adversarial evaluation of an AI voice agent</h3>
-              <p data-i18n="p1.p">A DeepEval harness attacks a mock banking voice agent with prompt injection, data-leak, impersonation and hallucination scenarios, and scores it with deterministic metrics. A regression gate fails the build if any score drops below baseline.</p>
-              <p class="role" data-i18n="p1.role"><b>Stack</b> Python, DeepEval, pytest, GitHub Actions</p>
-              <p class="links" data-i18n="p1.links"><a href="https://github.com/janagrit/aviaryai-eval-demo" target="_blank" rel="noopener">Code</a></p>
-            </div>
-          </article>
-        </div>
-
-        <!-- filled from the GitHub API by js/github-projects.js; stays hidden if GitHub can't be reached -->
-        <div id="gh-more" hidden>
-          <p class="subhead" data-i18n="gh.title">More on GitHub</p>
-          <div class="grid" id="gh-grid"></div>
-        </div>
-        <p class="gh-all"><a href="https://github.com/janagrit?tab=repositories" target="_blank" rel="noopener" data-i18n="gh.all">All repositories on GitHub</a></p>
-
-
-      </div>
+    <section class="section" id="writing" aria-labelledby="writing-h">
+      <h2 class="label" id="writing-h" data-i18n="label.writing">Writing</h2>
+      <ul class="list">
+        <li class="row"><a class="title" href="articles/ecc-omniroute.html" data-i18n="w.omni.t">Building a smarter AI development stack: ECC + OmniRoute</a><span class="desc" data-i18n="w.omni.d">Private, code required.</span></li>
+        <li class="row"><a class="title" href="articles/dream-job-journey.html" data-i18n="w.dream.t">The journey to your dream job</a><span class="desc" data-i18n="w.dream.d">Define it, find it, show them.</span></li>
+        <li class="row"><a class="title" href="articles/ai-agent-noise.html" data-i18n="w.noise.t">Cutting through the AI agent noise</a><span class="desc" data-i18n="w.noise.d">Hermes Agent, ECC, oh-my-claudecode and Arena compared.</span></li>
+        <li class="row"><a class="title" href="articles/claude-code-qa-workflow.html" data-i18n="w.claude.t">How I test with Claude Code</a><span class="desc" data-i18n="w.claude.d">Faster, cheaper testing with ECC and oh-my-claudecode.</span></li>
+        <li class="row"><a class="title" href="articles/qa-before-and-after-ai.html" data-i18n="w.twoqa.t">Two kinds of QA</a><span class="desc" data-i18n="w.twoqa.d">Learned before AI, and learned with it.</span></li>
+        <li class="row"><a class="title" href="articles/resume-improvements.html" data-i18n="w.resume.t" data-i18n-href="w.resume.href">5 resume improvements</a><span class="desc" data-i18n="w.resume.d">Copy-ready AI prompts, in less than 5 minutes.</span></li>
+      </ul>
     </section>
 
-    <!-- ================= CERTIFICATES ================= -->
-    <!-- cards come from the list in js/certificates.js: add a certificate there, not here -->
-    <section class="block" id="certificates" aria-labelledby="cert-h">
-      <div class="wrap">
-        <h2 id="cert-h" data-i18n="nav.certs">Certificates</h2>
-        <p class="section-sub" data-i18n="cert.sub">Courses and credentials, each with a link to verify it.</p>
-        <div class="grid" id="cert-grid"></div>
-      </div>
+    <!-- Rows come from data/certificates.json, built from the LinkedIn export (see scripts/linkedin-certs.mjs). -->
+    <section class="section" id="certificates" aria-labelledby="cert-h" hidden>
+      <h2 class="label" id="cert-h" data-i18n="label.certs">Certificates</h2>
+      <ul class="list" id="cert-list"></ul>
     </section>
 
-    <!-- ================= ARTICLES ================= -->
-    <section class="block" id="articles" aria-labelledby="art-h">
-      <div class="wrap">
-        <h2 id="art-h" data-i18n="nav.articles">Articles</h2>
-        <p class="section-sub" data-i18n="art.title">Notes from the work</p>
-        <div class="grid">
-          <a class="card art" href="articles/ecc-omniroute.html" data-i18n="art.omni">
-            <div class="meta">AI tools &middot; Private, code required &middot; 4 min read</div>
-            <h3>Building a smarter AI development stack: ECC + OmniRoute</h3>
-            <p>Separate engineering intelligence from AI infrastructure: ECC decides how the AI works, OmniRoute decides which model handles it.</p>
-            <span class="more">Open with code &rarr;</span>
-          </a>
-          <a class="card art" href="articles/dream-job-journey.html" data-i18n="art.dream">
-            <div class="meta">Career &middot; 7 min read</div>
-            <h3>The journey to your dream job: define it, find it, show them</h3>
-            <p>Write your own list, find the companies that match it, and show them a demo of how working with you will look.</p>
-            <span class="more">Read the article &rarr;</span>
-          </a>
-          <a class="card art" href="articles/ai-agent-noise.html" data-i18n="art.noise">
-            <div class="meta">AI tools &middot; 10 min read</div>
-            <h3>Cutting through the AI agent noise: Hermes Agent, ECC, oh-my-claudecode and Arena compared</h3>
-            <p>Four popular GitHub projects, four different jobs. Comparison tables: what each one is, where to use it, and why.</p>
-            <span class="more">Read the article &rarr;</span>
-          </a>
-          <a class="card art" href="articles/resume-improvements.html" data-i18n="art.resume" data-i18n-href="art.resume.href">
-            <div class="meta">Tips &middot; EN / RU &middot; under 5 min</div>
-            <h3>5 resume improvements: in less than 5 minutes</h3>
-            <p>Copy-ready AI prompts: read your resume like a recruiter, rewrite it with results, pass ATS filters, and tailor it to each job.</p>
-            <span class="more">Get the prompts &rarr;</span>
-          </a>
-          <a class="card art" href="articles/qa-before-and-after-ai.html" data-i18n="art.twoqa">
-            <div class="meta">The QA profession &middot; 6 min read</div>
-            <h3>Two kinds of QA: learned before AI, and learned with it</h3>
-            <p>Different strengths, different blind spots, and what each should borrow from the other.</p>
-            <span class="more">Read the article &rarr;</span>
-          </a>
-          <div class="card art soon" data-i18n="art.soon">
-            <div class="meta">Coming next</div>
-            <h3>Videos and more articles</h3>
-            <p>Walkthroughs of load testing with k6 and an AI agent that fixes failing tests.</p>
-          </div>
-        </div>
-      </div>
+    <section class="section prose-muted" id="about" aria-labelledby="about-h">
+      <h2 class="label" id="about-h" style="color: var(--fg)" data-i18n="label.about">About</h2>
+      <p data-i18n="about.p">I design test automation frameworks and build them like a developer: end-to-end suites in Playwright and TypeScript, API and accessibility checks, and evaluation harnesses for AI agents. I learned automation with Java and Selenium, writing every locator and wait by hand. Today AI writes much of my test code, and I make sure the tests would fail if the feature broke. My full work history is on <a href="https://www.linkedin.com/in/ianagrytsenko" target="_blank" rel="noopener">LinkedIn</a>.</p>
     </section>
 
-    <!-- ================= CONTACT ================= -->
-    <section class="contact" id="contact" aria-labelledby="contact-h">
-      <div class="wrap">
-        <p id="contact-h" data-i18n="contact.title">Let&rsquo;s connect.</p>
-         <div class="ctas">
-          <a class="btn primary" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener" data-i18n="cta.call">Book a 30-minute call</a>
-          <a class="btn secondary" href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a>
-          <button class="btn secondary" type="button" id="stats-open" data-i18n="nav.stats">Statistics</button>
-        </div>
-        <p class="elsewhere">
-          <a href="https://www.linkedin.com/in/ianagrytsenko" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://github.com/janagrit" target="_blank" rel="noopener">GitHub</a>
-        </p>
-      </div>
+    <section class="section prose-muted" id="contact" aria-labelledby="contact-h">
+      <h2 class="label" id="contact-h" style="color: var(--fg)" data-i18n="label.contact">Contact</h2>
+      <p data-i18n="contact.p">Write to <a href="mailto:ianagrytsenko@gmail.com">ianagrytsenko@gmail.com</a>, or find me on <a href="https://github.com/janagrit" target="_blank" rel="noopener">GitHub</a> and <a href="https://www.linkedin.com/in/ianagrytsenko" target="_blank" rel="noopener">LinkedIn</a>.</p>
     </section>
+  </main>
 
-    <!-- ================= STATISTICS (modal, opened from Contact; asks for the passcode every time) ================= -->
-    <dialog class="stats-modal" id="stats" aria-labelledby="stats-h">
-      <button class="stats-close" type="button" id="stats-close" aria-label="Close">&times;</button>
-      <h2 id="stats-h" data-i18n="nav.stats">Statistics</h2>
-      <form class="stats-lock" id="stats-lock">
-        <label for="stats-code" data-i18n="stats.code">Enter the code</label>
-        <div class="row">
-          <input id="stats-code" type="password" inputmode="numeric" autocomplete="off" required>
-          <button class="btn primary" type="submit" data-i18n="stats.open">Open</button>
-        </div>
-        <p class="stats-err" id="stats-err" role="alert"></p>
-      </form>
-      <div id="stats-data" hidden>
-        <p class="section-sub" data-i18n="stats.sub">Visits to this site since tracking began. Counted by GoatCounter, without cookies.</p>
-        <div class="grid stat-grid">
-          <div class="card stat"><div class="num" data-count="TOTAL">&ndash;</div><div class="label" data-i18n="stats.total">Total visits</div></div>
-          <div class="card stat"><div class="num" data-count="/">&ndash;</div><div class="label" data-i18n="stats.home">Home page</div></div>
-          <div class="card stat"><div class="num" data-count="/for-hr.html">&ndash;</div><div class="label" data-i18n="stats.hr">For HR page</div></div>
-          <div class="card stat"><div class="num" data-count="/articles/dream-job-journey.html /articles/ai-agent-noise.html /articles/resume-improvements.html /articles/qa-before-and-after-ai.html /articles/claude-code-qa-workflow.html /articles/ecc-omniroute.html">&ndash;</div><div class="label" data-i18n="stats.articles">Article reads</div></div>
-        </div>
-      </div>
-    </dialog>
-
-</main>
-  <footer>
-    <div class="wrap">
-      <span>&copy; 2026 Iana Grytsenko</span>
-      <span data-i18n="footer.city">New York / Washington, DC</span>
+  <footer class="site-foot">
+    <span>&copy; 2026 Iana Grytsenko</span>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" data-set="en" aria-pressed="true" lang="en">EN</button>
+      <button type="button" data-set="uk" aria-pressed="false" lang="uk" aria-label="Українська">UA</button>
+      <button type="button" data-set="ru" aria-pressed="false" lang="ru" aria-label="Русский">RU</button>
+      <button type="button" data-set="es" aria-pressed="false" lang="es" aria-label="Español">ES</button>
     </div>
   </footer>
 
-  <!-- mobile bottom tabs -->
-  <nav class="tabbar" aria-label="Main (mobile)">
-    <ul>
-      <li><a href="#projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span data-i18n="nav.projects">Projects</span></a></li>
-      <li><a href="#articles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/><path d="M8 10h8M8 14h8M8 18h5"/></svg><span data-i18n="nav.articles">Articles</span></a></li>
-      <li><a href="https://job-scout-agent.com/#upload" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg><span data-i18n="nav.scout">Scout your dream job!</span></a></li>
-      <li><a href="https://momup-app.github.io/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Kids Nearby</span></a></li>
-      <li><a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-i18n="tab.contact">Contact</span></a></li>
-    </ul>
-  </nav>
-
-  <script src="js/i18n.js"></script>
-  <script src="js/github-projects.js?v=4"></script>
-  <script src="js/certificates.js"></script>
-  <script>
-    // Light/dark toggle: flips data-theme on <html>, saves the choice, keeps the label and browser chrome in sync.
-    (function () {
-      const root = document.documentElement;
-      const btn = document.getElementById('theme-toggle');
-      const themeMeta = document.querySelector('meta[name="theme-color"]');
-      const media = window.matchMedia('(prefers-color-scheme: dark)');
-      function setTheme(theme, save) {
-        root.setAttribute('data-theme', theme);
-        btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-        if (themeMeta) themeMeta.setAttribute('content', theme === 'dark' ? '#131312' : '#f9f9f7');
-        if (save) { try { localStorage.setItem('theme', theme); } catch (e) {} }
-      }
-      setTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light', false);
-      btn.addEventListener('click', () => setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true));
-      // Follow OS changes only until the visitor makes an explicit choice.
-      media.addEventListener('change', (e) => {
-        let saved = null;
-        try { saved = localStorage.getItem('theme'); } catch (err) {}
-        if (!saved) setTheme(e.matches ? 'dark' : 'light', false);
-      });
-    })();
-
-    // Highlight the nav link and tab for the section currently on screen.
-    const tabLinks = document.querySelectorAll('.navlinks a, .tabbar a');
-    const spySections = ['top', 'projects', 'certificates', 'articles', 'contact'].map(id => document.getElementById(id));
-    function updateTabs() {
-      const line = window.innerHeight * 0.35;
-      let current = spySections[0].id;
-      spySections.forEach(s => { if (s.getBoundingClientRect().top <= line) current = s.id; });
-      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = 'contact';
-      tabLinks.forEach(a => {
-        if (a.getAttribute('href') === '#' + current) a.setAttribute('aria-current', 'location');
-        else a.removeAttribute('aria-current');
-      });
-    }
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(() => { updateTabs(); ticking = false; }); }
-    }, { passive: true });
-    window.addEventListener('resize', updateTabs);
-    updateTabs();
-
-    // Private statistics: the Statistics button in Contact opens a modal that asks for the passcode every time.
-    // Only the passcode's SHA-256 is stored here. This hides the numbers from casual visitors; it is not real
-    // security (static site, and the counts are public at janagrit.goatcounter.com/counter/TOTAL.json).
-    (function () {
-      const CODE_HASH = '07334386287751ba02a4588c1a0875dbd074a61bd9e6ab7c48d244eacd0c99e0';
-      const WRONG = { en: 'Sorry, ask Iana for the code.', uk: 'Вибачте, попросіть код у Яни.', ru: 'Извините, попросите код у Яны.', es: 'Lo siento, pide el código a Iana.' };
-      const modal = document.getElementById('stats');
-      const lock = document.getElementById('stats-lock');
-      const input = document.getElementById('stats-code');
-      const data = document.getElementById('stats-data');
-      const err = document.getElementById('stats-err');
-      let loaded = false;
-
-      // Each card lists one or more paths (space-separated) and shows their summed all-time count.
-      // Needs "Allow adding visitor counts on your website" in GoatCounter settings; a path with no visits returns 404 (= 0).
-      function loadCounts() {
-        if (loaded) return;
-        loaded = true;
-        const counter = 'https://janagrit.goatcounter.com/counter/';
-        const fmt = new Intl.NumberFormat('en-US');
-        const count = path => fetch(counter + encodeURIComponent(path) + '.json')
-          .then(r => r.status === 404 ? { count: '0' } : r.ok ? r.json() : Promise.reject(r.status))
-          .then(d => Number(String(d.count).replace(/\D/g, '')));
-        document.querySelectorAll('[data-count]').forEach(el => {
-          Promise.all(el.dataset.count.split(' ').map(count))
-            .then(nums => { el.textContent = fmt.format(nums.reduce((a, b) => a + b, 0)); })
-            .catch(() => { /* keep the dash if the counter is unavailable */ });
-        });
-      }
-
-      document.getElementById('stats-open').addEventListener('click', () => {
-        lock.hidden = false;
-        data.hidden = true;
-        input.value = '';
-        err.textContent = '';
-        modal.showModal();
-        input.focus();
-      });
-      document.getElementById('stats-close').addEventListener('click', () => modal.close());
-      // A click on the dimmed backdrop lands on the dialog element itself.
-      modal.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
-
-      lock.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const bytes = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(input.value.trim()));
-        const hash = Array.from(new Uint8Array(bytes), b => b.toString(16).padStart(2, '0')).join('');
-        if (hash !== CODE_HASH) {
-          err.textContent = WRONG[document.documentElement.lang] || WRONG.en;
-          input.select();
-          return;
-        }
-        lock.hidden = true;
-        data.hidden = false;
-        loadCounts();
-      });
-    })();
-  </script>
+  <script src="js/i18n.js?v=2"></script>
+  <script src="js/projects.js?v=1"></script>
+  <script src="js/certificates.js?v=2"></script>
   <script data-goatcounter="https://janagrit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
