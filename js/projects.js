@@ -50,8 +50,9 @@
     },
     {
       name: 'Job Scout Agent',
-      image: 'images/job-scout.jpg',
-      alt: 'Job Scout home page',
+      image: 'images/job-scout-agent.jpg',
+      video: 'images/job-scout-agent.mp4',
+      alt: 'A friendly robot sitting next to a laptop',
       live: 'https://job-scout-agent.com/',
       stack: 'Claude API, GitHub Actions',
       desc: {
@@ -101,6 +102,8 @@
   var moreList = document.getElementById('projects-more-list');
   if (!list || !moreWrap || !moreList) return;
   var repos = null;
+  // Visitors who ask their device for less motion get still pictures instead of video.
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function lang() {
     return LABELS[document.documentElement.lang] ? document.documentElement.lang : 'en';
@@ -145,12 +148,26 @@
     var li = el('li', image ? 'row has-thumb' : 'row');
     var text = li;
     if (image) {
-      var img = el('img', 'thumb');
-      img.src = image.src;
-      img.alt = image.alt || '';
+      var img;
+      if (image.video && !reduceMotion) {
+        // A short silent loop; the still picture shows until it plays.
+        img = el('video', 'thumb');
+        img.src = image.video;
+        img.poster = image.src;
+        img.muted = true;
+        img.loop = true;
+        img.autoplay = true;
+        img.playsInline = true;
+        img.preload = 'metadata';
+        img.setAttribute('aria-label', image.alt || '');
+      } else {
+        img = el('img', 'thumb');
+        img.src = image.src;
+        img.alt = image.alt || '';
+        img.loading = 'lazy';
+      }
       img.width = 96;
       img.height = 60;
-      img.loading = 'lazy';
       li.appendChild(img);
       text = el('div', 'text');
       li.appendChild(text);
@@ -184,7 +201,7 @@
       if (!main) return; // repo gone or hidden, and no live site: drop the row
       var text = local(f.desc, l) + ' ' + local(f.stack, l);
       featuredRows.push(row(f.name, main, text, f.live && code ? { href: code, text: labels.code } : null,
-        f.image ? { src: f.image, alt: f.alt } : null));
+        f.image ? { src: f.image, video: f.video, alt: f.alt } : null));
     });
     list.replaceChildren.apply(list, featuredRows);
 
