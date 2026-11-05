@@ -67,6 +67,7 @@
       name: 'Playwright Automation Framework',
       image: 'images/uptic.jpg',
       alt: 'Uptic Hospitality article page under test',
+      live: 'https://uptichospitality.com/',
       stack: 'TypeScript, Playwright, axe-core',
       desc: {
         en: 'A test suite built from scratch for Uptic Hospitality.',
