@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;550;600&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/site.css?v=2">
+  <link rel="stylesheet" href="css/site.css?v=3">
   <script src="js/theme.js?v=1"></script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Iana Grytsenko", "jobTitle": "Senior SDET", "url": "https://janagrit.github.io/", "image": "https://janagrit.github.io/images/og.jpg", "email": "mailto:ianagrytsenko@gmail.com", "address": {"@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US"}, "knowsAbout": ["Test automation", "Playwright", "TypeScript", "AI agent testing", "API testing", "Accessibility testing", "CI/CD"], "knowsLanguage": ["English", "Ukrainian", "Chinese"], "sameAs": ["https://www.linkedin.com/in/ianagrytsenko", "https://github.com/janagrit"]}</script>
 </head>
@@ -57,16 +57,21 @@
     <section class="section" id="projects" aria-labelledby="proj-h">
       <h2 class="label" id="proj-h" data-i18n="label.projects">Projects</h2>
       <ul class="list" id="projects-list">
-        <li class="row"><a class="title" href="https://github.com/janagrit/voice-agent-eval-harness" target="_blank" rel="noopener">AI Agent Security Testing</a><span class="desc">Adversarial evals for an AI voice agent. Python, DeepEval, pytest</span></li>
-        <li class="row"><a class="title" href="https://github.com/janagrit/jobscout_rag_overlay" target="_blank" rel="noopener">Job Scout RAG Overlay</a><span class="desc">An AI job-search assistant: discovery, matching, skill gaps, tailored resumes. Python, React, Cloudflare Workers</span></li>
-        <li class="row"><a class="title" href="https://job-scout-agent.com/" target="_blank" rel="noopener">Job Scout Agent</a><span class="desc">Finds open roles that fit your CV. Claude API, GitHub Actions</span></li>
-        <li class="row"><a class="title" href="https://momup-app.github.io/" target="_blank" rel="noopener">Kids Nearby</a><span class="desc">Kids&rsquo; activities in Berlin, on a map. Developer and tester</span></li>
-        <li class="row"><a class="title" href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Playwright Automation Framework</a><span class="desc">A test suite built from scratch for Uptic Hospitality. TypeScript, Playwright, axe-core</span></li>
+        <li class="row has-thumb"><img class="thumb" src="images/agent-eval.jpg" width="96" height="60" alt="Terminal output of the eval run"><div class="text"><a class="title" href="https://github.com/janagrit/voice-agent-eval-harness" target="_blank" rel="noopener">AI Agent Security Testing</a><span class="desc">Adversarial evals for an AI voice agent. Python, DeepEval, pytest</span></div></li>
+        <li class="row has-thumb"><img class="thumb" src="images/job-scout-rag.jpg" width="96" height="60" alt="Feature list of the Job Scout RAG overlay"><div class="text"><a class="title" href="https://github.com/janagrit/jobscout_rag_overlay" target="_blank" rel="noopener">Job Scout RAG Overlay</a><span class="desc">An AI job-search assistant: discovery, matching, skill gaps, tailored resumes. Python, React, Cloudflare Workers</span></div></li>
+        <li class="row has-thumb"><img class="thumb" src="images/job-scout.jpg" width="96" height="60" alt="Job Scout home page"><div class="text"><a class="title" href="https://job-scout-agent.com/" target="_blank" rel="noopener">Job Scout Agent</a><span class="desc">Finds open roles that fit your CV. Claude API, GitHub Actions</span></div></li>
+        <li class="row has-thumb"><img class="thumb" src="images/uptic.jpg" width="96" height="60" alt="Uptic Hospitality article page under test"><div class="text"><a class="title" href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Playwright Automation Framework</a><span class="desc">A test suite built from scratch for Uptic Hospitality. TypeScript, Playwright, axe-core</span></div></li>
       </ul>
       <div id="projects-more" hidden>
         <p class="sublabel" data-i18n="label.more">More on GitHub</p>
         <ul class="list" id="projects-more-list"></ul>
       </div>
+    </section>
+
+    <!-- Rows come from data/certificates.json, built from the LinkedIn export (see scripts/linkedin-certs.mjs). -->
+    <section class="section" id="certificates" aria-labelledby="cert-h" hidden>
+      <h2 class="label" id="cert-h" data-i18n="label.certs">Certificates</h2>
+      <ul class="list" id="cert-list"></ul>
     </section>
 
     <section class="section" id="writing" aria-labelledby="writing-h">
@@ -79,12 +84,6 @@
         <li class="row"><a class="title" href="articles/qa-before-and-after-ai.html" data-i18n="w.twoqa.t">Two kinds of QA</a><span class="desc" data-i18n="w.twoqa.d">Learned before AI, and learned with it.</span></li>
         <li class="row"><a class="title" href="articles/resume-improvements.html" data-i18n="w.resume.t" data-i18n-href="w.resume.href">5 resume improvements</a><span class="desc" data-i18n="w.resume.d">Copy-ready AI prompts, in less than 5 minutes.</span></li>
       </ul>
-    </section>
-
-    <!-- Rows come from data/certificates.json, built from the LinkedIn export (see scripts/linkedin-certs.mjs). -->
-    <section class="section" id="certificates" aria-labelledby="cert-h" hidden>
-      <h2 class="label" id="cert-h" data-i18n="label.certs">Certificates</h2>
-      <ul class="list" id="cert-list"></ul>
     </section>
 
   </main>
@@ -100,7 +99,7 @@
   </footer>
 
   <script src="js/i18n.js?v=2"></script>
-  <script src="js/projects.js?v=1"></script>
+  <script src="js/projects.js?v=2"></script>
   <script src="js/certificates.js?v=2"></script>
   <script data-goatcounter="https://janagrit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>

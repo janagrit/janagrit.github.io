@@ -13,15 +13,20 @@
   var HIDE_TOPIC = 'hide-from-site';
   // Never listed in "More on GitHub": this site.
   var SKIP = ['janagrit/janagrit.github.io'];
+  // Repos from other accounts that still belong in "More on GitHub".
+  var ALSO_MORE = ['momup-app/momup-app.github.io'];
   var CACHE_KEY = 'gh-projects-v1';
   var CACHE_MS = 10 * 60 * 1000; // stay well under GitHub's 60 requests/hour limit for visitors
 
   // repo: where the "Code" link comes from (omit for no code link). live: where the title points.
   // The first three are the highlighted ones; keep them on top.
+  // Main portfolio projects, shown first with a small picture. The first three are the highlighted ones.
   var FEATURED = [
     {
       repo: 'janagrit/voice-agent-eval-harness',
       name: 'AI Agent Security Testing',
+      image: 'images/agent-eval.jpg',
+      alt: 'Terminal output of the eval run',
       stack: 'Python, DeepEval, pytest',
       desc: {
         en: 'Adversarial evals for an AI voice agent.',
@@ -33,6 +38,8 @@
     {
       repo: 'janagrit/jobscout_rag_overlay',
       name: 'Job Scout RAG Overlay',
+      image: 'images/job-scout-rag.jpg',
+      alt: 'Feature list of the Job Scout RAG overlay',
       stack: 'Python, React, Cloudflare Workers',
       desc: {
         en: 'An AI job-search assistant: discovery, matching, skill gaps, tailored resumes.',
@@ -43,6 +50,8 @@
     },
     {
       name: 'Job Scout Agent',
+      image: 'images/job-scout.jpg',
+      alt: 'Job Scout home page',
       live: 'https://job-scout-agent.com/',
       stack: 'Claude API, GitHub Actions',
       desc: {
@@ -53,20 +62,10 @@
       }
     },
     {
-      repo: 'momup-app/momup-app.github.io',
-      name: 'Kids Nearby',
-      live: 'https://momup-app.github.io/',
-      stack: { en: 'Developer and tester', uk: 'Розробка і тестування', ru: 'Разработка и тестирование', es: 'Desarrollo y pruebas' },
-      desc: {
-        en: 'Kids’ activities in Berlin, on a map.',
-        uk: 'Дитячі заняття в Берліні на мапі.',
-        ru: 'Детские занятия в Берлине на карте.',
-        es: 'Actividades infantiles en Berlín, en un mapa.'
-      }
-    },
-    {
       repo: 'janagrit/uptic-site-audit',
       name: 'Playwright Automation Framework',
+      image: 'images/uptic.jpg',
+      alt: 'Uptic Hospitality article page under test',
       stack: 'TypeScript, Playwright, axe-core',
       desc: {
         en: 'A test suite built from scratch for Uptic Hospitality.',
@@ -79,6 +78,11 @@
 
   // Extra details for repos in "More on GitHub": a live site and a description when GitHub has none.
   var EXTRAS = {
+    'momup-app/momup-app.github.io': {
+      name: 'Kids Nearby',
+      live: 'https://momup-app.github.io/',
+      description: 'Kids’ activities in Berlin, on a map. Developer and tester'
+    },
     'janagrit/calendar-app': {
       live: 'https://janagrit-calendar.netlify.app/',
       description: 'A month calendar with the weather forecast on each day.'
@@ -137,15 +141,27 @@
   }
 
   // One row: the title opens `main`; the muted line holds the description and an optional second link.
-  function row(title, main, description, second) {
-    var li = el('li', 'row');
-    li.appendChild(link(main, title, 'title'));
+  function row(title, main, description, second, image) {
+    var li = el('li', image ? 'row has-thumb' : 'row');
+    var text = li;
+    if (image) {
+      var img = el('img', 'thumb');
+      img.src = image.src;
+      img.alt = image.alt || '';
+      img.width = 96;
+      img.height = 60;
+      img.loading = 'lazy';
+      li.appendChild(img);
+      text = el('div', 'text');
+      li.appendChild(text);
+    }
+    text.appendChild(link(main, title, 'title'));
     var desc = el('span', 'desc', description);
     if (second) {
       desc.appendChild(document.createTextNode(description ? ' · ' : ''));
       desc.appendChild(link(second.href, second.text));
     }
-    li.appendChild(desc);
+    text.appendChild(desc);
     return li;
   }
 
@@ -167,14 +183,15 @@
       var main = f.live || code;
       if (!main) return; // repo gone or hidden, and no live site: drop the row
       var text = local(f.desc, l) + ' ' + local(f.stack, l);
-      featuredRows.push(row(f.name, main, text, f.live && code ? { href: code, text: labels.code } : null));
+      featuredRows.push(row(f.name, main, text, f.live && code ? { href: code, text: labels.code } : null,
+        f.image ? { src: f.image, alt: f.alt } : null));
     });
     list.replaceChildren.apply(list, featuredRows);
 
     var featured = FEATURED.map(function (f) { return f.repo; });
     var more = repos
       .filter(function (r) {
-        return r.owner && r.owner.login === USER && isVisible(r) &&
+        return r.owner && (r.owner.login === USER || ALSO_MORE.indexOf(r.full_name) !== -1) && isVisible(r) &&
           SKIP.indexOf(r.full_name) === -1 && featured.indexOf(r.full_name) === -1;
       })
       .sort(function (a, b) { return new Date(b.pushed_at) - new Date(a.pushed_at); })
@@ -183,8 +200,8 @@
         var code = safeUrl(r.html_url);
         var pages = r.has_pages ? 'https://' + USER + '.github.io/' + encodeURIComponent(r.name) + '/' : null;
         var live = extra.live || safeUrl(r.homepage) || pages;
-        var description = [r.description || extra.description, r.language].filter(Boolean).join(' · ');
-        return row(prettyName(r.name), code, description, live ? { href: live, text: labels.live } : null);
+        var description = [extra.description || r.description, r.language].filter(Boolean).join(' · ');
+        return row(extra.name || prettyName(r.name), code, description, live ? { href: live, text: labels.live } : null);
       });
     moreList.replaceChildren.apply(moreList, more);
     moreWrap.hidden = more.length === 0;

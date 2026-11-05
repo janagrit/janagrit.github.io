@@ -133,6 +133,22 @@ section.intro a { color: var(--fg); }
 .row .desc { color: var(--muted); }
 .row .desc a { position: relative; z-index: 1; color: var(--muted); }
 .row .desc a:hover { color: var(--fg); }
+/* main projects: small picture on the left */
+.row.has-thumb { flex-direction: row; align-items: flex-start; gap: 16px; }
+.row.has-thumb .thumb { margin-top: 3px; }
+.row .text { display: flex; flex-direction: column; min-width: 0; }
+.thumb {
+  flex: none;
+  width: 96px;
+  height: 60px;
+  object-fit: cover;
+  object-position: top left;
+  border-radius: 6px;
+  outline: 1px solid var(--line);
+  outline-offset: -1px;
+  background: var(--code-bg);
+}
+@media (max-width: 480px) { .thumb { width: 72px; height: 45px; } .row.has-thumb { gap: 12px; } }
 .sublabel { margin: 40px 0 12px; color: var(--muted); }
 .list-more { margin-top: 28px; color: var(--muted); }
 
