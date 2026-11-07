@@ -109,6 +109,9 @@ em { font-family: var(--serif); font-style: italic; }
 @media (min-width: 640px) { .section { margin-top: 128px; } }
 .label { display: block; margin-bottom: 20px; font-size: 1rem; font-weight: 500; line-height: 1.5; }
 @media (min-width: 640px) { .label { margin-bottom: 16px; } }
+/* homepage section labels: the label, then a hairline running to the column's right edge */
+main .label { display: flex; align-items: center; gap: 16px; }
+main .label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 section.intro p + p { margin-top: 16px; }
 section.intro { color: var(--muted); }
 section.intro .label { color: var(--fg); }
