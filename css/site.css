@@ -177,6 +177,32 @@ html body .langs button {
 html body .langs button:hover { color: var(--fg); }
 html body .langs button[aria-pressed="true"] { color: var(--fg); background: none; text-decoration: underline; text-decoration-color: var(--underline); text-underline-position: from-font; }
 
+/* footer "Statistics" link: a button that looks like the other footer text */
+.foot-link { padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: pointer; text-decoration: underline; text-decoration-color: var(--underline); text-underline-position: from-font; }
+.foot-link:hover { color: var(--fg); text-decoration-color: currentColor; }
+
+/* ---------- statistics dialog ---------- */
+.stats-modal {
+  width: min(480px, calc(100vw - 32px));
+  margin: auto;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--fg);
+}
+.stats-modal::backdrop { background: rgba(0, 0, 0, .4); }
+.stats-close { position: absolute; top: 12px; right: 12px; width: 28px; height: 28px; padding: 0; border: 0; border-radius: 6px; background: none; color: var(--muted); font-size: 20px; line-height: 1; cursor: pointer; }
+.stats-close:hover { background: var(--hover); color: var(--fg); }
+.stats-lock label { color: var(--muted); }
+.stats-lock[hidden] { display: none; }
+.stats-row { display: flex; gap: 8px; margin-top: 8px; }
+.stats-row input { flex: 1; min-width: 0; height: 36px; padding: 0 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--fg); font: 16px var(--sans); }
+.stats-row button { height: 36px; padding: 0 14px; border: 0; border-radius: 6px; background: var(--fg); color: var(--bg); font: 500 15px var(--sans); cursor: pointer; }
+.stats-err { margin-top: 8px; min-height: 1.5em; color: var(--muted); font-size: 14px; }
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 16px; margin-top: 20px; }
+.stat .num { font-size: 24px; font-weight: 550; line-height: 1.2; font-variant-numeric: tabular-nums; }
+
 /* ---------- articles ---------- */
 .art-head { margin-bottom: 40px; }
 .art-head h1 { font-size: 1rem; font-weight: 550; line-height: 1.5; }

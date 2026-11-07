@@ -30,7 +30,15 @@
         'w.twoqa.t': 'Два типи QA',
         'w.twoqa.d': 'Навчалися до AI і разом з ним. Англійською.',
         'w.resume.t': '5 покращень резюме',
-        'w.resume.d': 'Готові AI-промпти, менш ніж за 5 хвилин. Англійською та російською.'
+        'w.resume.d': 'Готові AI-промпти, менш ніж за 5 хвилин. Англійською та російською.',
+        'nav.stats': 'Статистика',
+        'stats.sub': 'Відвідування сайту з початку підрахунку. Рахує GoatCounter, без cookies.',
+        'stats.code': 'Введіть код',
+        'stats.open': 'Відкрити',
+        'stats.total': 'Усього відвідувань',
+        'stats.home': 'Головна сторінка',
+        'stats.hr': 'Сторінка для HR',
+        'stats.articles': 'Прочитання статей'
       }
     },
 
@@ -57,7 +65,15 @@
         'w.twoqa.d': 'Учились до AI и вместе с ним. На английском.',
         'w.resume.t': '5 улучшений резюме',
         'w.resume.d': 'Готовые AI-промпты, меньше чем за 5 минут.',
-        'w.resume.href': 'articles/resume-improvements.html?lang=ru'
+        'w.resume.href': 'articles/resume-improvements.html?lang=ru',
+        'nav.stats': 'Статистика',
+        'stats.sub': 'Посещения сайта с начала подсчёта. Считает GoatCounter, без cookies.',
+        'stats.code': 'Введите код',
+        'stats.open': 'Открыть',
+        'stats.total': 'Всего посещений',
+        'stats.home': 'Главная страница',
+        'stats.hr': 'Страница для HR',
+        'stats.articles': 'Прочтения статей'
       }
     },
 
@@ -83,7 +99,15 @@
         'w.twoqa.t': 'Dos tipos de QA',
         'w.twoqa.d': 'Antes de la IA y con ella. En inglés.',
         'w.resume.t': '5 mejoras para tu CV',
-        'w.resume.d': 'Prompts de IA listos para copiar, en menos de 5 minutos. En inglés y ruso.'
+        'w.resume.d': 'Prompts de IA listos para copiar, en menos de 5 minutos. En inglés y ruso.',
+        'nav.stats': 'Estadísticas',
+        'stats.sub': 'Visitas al sitio desde que empezó el conteo. Las cuenta GoatCounter, sin cookies.',
+        'stats.code': 'Introduce el código',
+        'stats.open': 'Abrir',
+        'stats.total': 'Visitas totales',
+        'stats.home': 'Página principal',
+        'stats.hr': 'Página para RR. HH.',
+        'stats.articles': 'Lecturas de artículos'
       }
     }
   };

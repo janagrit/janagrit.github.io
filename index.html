@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;550;600&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/site.css?v=3">
+  <link rel="stylesheet" href="css/site.css?v=4">
   <script src="js/theme.js?v=1"></script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Iana Grytsenko", "jobTitle": "Senior SDET", "url": "https://janagrit.github.io/", "image": "https://janagrit.github.io/images/og.jpg", "email": "mailto:ianagrytsenko@gmail.com", "address": {"@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US"}, "knowsAbout": ["Test automation", "Playwright", "TypeScript", "AI agent testing", "API testing", "Accessibility testing", "CI/CD"], "knowsLanguage": ["English", "Ukrainian", "Chinese"], "sameAs": ["https://www.linkedin.com/in/ianagrytsenko", "https://github.com/janagrit"]}</script>
 </head>
@@ -88,8 +88,31 @@
 
   </main>
 
+  <!-- Statistics: opened from the footer; asks for the passcode every time (js/stats.js). -->
+  <dialog class="stats-modal" id="stats" aria-labelledby="stats-h">
+    <button class="stats-close" type="button" id="stats-close" aria-label="Close">&times;</button>
+    <h2 class="label" id="stats-h" data-i18n="nav.stats">Statistics</h2>
+    <form class="stats-lock" id="stats-lock">
+      <label for="stats-code" data-i18n="stats.code">Enter the code</label>
+      <div class="stats-row">
+        <input id="stats-code" type="password" inputmode="numeric" autocomplete="off" required>
+        <button type="submit" data-i18n="stats.open">Open</button>
+      </div>
+      <p class="stats-err" id="stats-err" role="alert"></p>
+    </form>
+    <div id="stats-data" hidden>
+      <p class="muted" data-i18n="stats.sub">Visits to this site since tracking began. Counted by GoatCounter, without cookies.</p>
+      <div class="stat-grid">
+        <div class="stat"><div class="num" data-count="TOTAL">&ndash;</div><div class="muted" data-i18n="stats.total">Total visits</div></div>
+        <div class="stat"><div class="num" data-count="/">&ndash;</div><div class="muted" data-i18n="stats.home">Home page</div></div>
+        <div class="stat"><div class="num" data-count="/for-hr.html">&ndash;</div><div class="muted" data-i18n="stats.hr">For HR page</div></div>
+        <div class="stat"><div class="num" data-count="/articles/dream-job-journey.html /articles/ai-agent-noise.html /articles/resume-improvements.html /articles/qa-before-and-after-ai.html /articles/claude-code-qa-workflow.html /articles/ecc-omniroute.html">&ndash;</div><div class="muted" data-i18n="stats.articles">Article reads</div></div>
+      </div>
+    </div>
+  </dialog>
+
   <footer class="site-foot">
-    <span>&copy; 2026 Iana Grytsenko</span>
+    <span>&copy; 2026 Iana Grytsenko &middot; <button type="button" class="foot-link" id="stats-open" data-i18n="nav.stats">Statistics</button></span>
     <div class="langs" role="group" aria-label="Language">
       <button type="button" data-set="en" aria-pressed="true" lang="en">EN</button>
       <button type="button" data-set="uk" aria-pressed="false" lang="uk" aria-label="Українська">UA</button>
@@ -98,9 +121,10 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js?v=2"></script>
+  <script src="js/i18n.js?v=3"></script>
   <script src="js/projects.js?v=5"></script>
   <script src="js/certificates.js?v=2"></script>
+  <script src="js/stats.js?v=1"></script>
   <script data-goatcounter="https://janagrit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
