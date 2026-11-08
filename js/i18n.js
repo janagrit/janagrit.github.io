@@ -6,6 +6,7 @@
 (function () {
   var GH = '<a href="https://github.com/janagrit" target="_blank" rel="noopener">GitHub</a>';
   var LI = '<a href="https://www.linkedin.com/in/ianagrytsenko" target="_blank" rel="noopener">LinkedIn</a>';
+  function call(label) { return '<a href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener">' + label + '</a>.'; }
 
   var LANGS = {
     uk: {
@@ -14,7 +15,7 @@
       text: {
         'label.today': 'Сьогодні',
         'intro.p': 'Створюю надійне програмне забезпечення, інфраструктуру автоматизації тестування та застосунки на основі AI, на практиці працюю з Claude і Google Gemini.',
-        'intro.loc': 'Нью-Йорк, США. ' + GH + ', ' + LI + ', <a href="mailto:ianagrytsenko@gmail.com">Email</a>.',
+        'intro.loc': 'Нью-Йорк, США. ' + GH + ', ' + LI + ', <a href="mailto:ianagrytsenko@gmail.com">Email</a>. ' + call('Запланувати 30-хвилинний дзвінок'),
         'label.projects': 'Проєкти',
         'label.more': 'Більше на GitHub',
         'label.writing': 'Статті',
@@ -48,7 +49,7 @@
       text: {
         'label.today': 'Сегодня',
         'intro.p': 'Создаю надёжное программное обеспечение, инфраструктуру автоматизации тестирования и приложения на основе AI, на практике работаю с Claude и Google Gemini.',
-        'intro.loc': 'Нью-Йорк, США. ' + GH + ', ' + LI + ', <a href="mailto:ianagrytsenko@gmail.com">Email</a>.',
+        'intro.loc': 'Нью-Йорк, США. ' + GH + ', ' + LI + ', <a href="mailto:ianagrytsenko@gmail.com">Email</a>. ' + call('Созвониться на 30 минут'),
         'label.projects': 'Проекты',
         'label.more': 'Больше на GitHub',
         'label.writing': 'Статьи',
@@ -83,7 +84,7 @@
       text: {
         'label.today': 'Hoy',
         'intro.p': 'Construyo software fiable, infraestructura de automatización de pruebas y aplicaciones con IA, trabajando a diario con Claude y Google Gemini.',
-        'intro.loc': 'Desde Nueva York, EE. UU. ' + GH + ', ' + LI + ', <a href="mailto:ianagrytsenko@gmail.com">Email</a>.',
+        'intro.loc': 'Desde Nueva York, EE. UU. ' + GH + ', ' + LI + ', <a href="mailto:ianagrytsenko@gmail.com">Email</a>. ' + call('Agendar una llamada de 30 minutos'),
         'label.projects': 'Proyectos',
         'label.more': 'Más en GitHub',
         'label.writing': 'Artículos',
