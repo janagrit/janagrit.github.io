@@ -102,6 +102,13 @@ em { font-family: var(--serif); font-style: italic; }
 .theme-toggle svg { width: 16px; height: 16px; }
 .site-head .name { text-decoration: none; }
 .site-head .role { color: var(--muted); }
+.sign-off-avatar {
+  display: block;
+  width: 145px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto 24px;
+}
 
 
 /* ---------- homepage sections ---------- */
