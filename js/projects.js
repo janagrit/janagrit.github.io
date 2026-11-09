@@ -35,6 +35,60 @@
       }
     },
     {
+      name: 'Job Scout Agent',
+      image: 'images/job-scout-agent.jpg',
+      video: 'images/job-scout-agent.mp4',
+      alt: 'A friendly robot sitting next to a laptop',
+      live: 'https://job-scout-agent.com/',
+      stack: 'Claude API, GitHub Actions',
+      desc: {
+        en: 'Finds open roles that fit your CV.',
+        uk: 'Знаходить відкриті ролі під ваше резюме.',
+        ru: 'Находит открытые роли под ваше резюме.',
+        es: 'Encuentra vacantes que encajan con tu CV.'
+      }
+    },
+    {
+      repo: 'janagrit/jobscout_rag_overlay',
+      name: 'Job Scout RAG Overlay',
+      image: 'images/job-scout-rag.jpg',
+      alt: 'Feature list of the Job Scout RAG overlay',
+      stack: 'Python, React, Cloudflare Workers',
+      desc: {
+        en: 'An AI job-search assistant: discovery, matching, skill gaps, tailored resumes.',
+        uk: 'AI-асистент для пошуку роботи: пошук, підбір, прогалини в навичках, адаптовані резюме.',
+        ru: 'AI-ассистент для поиска работы: поиск, подбор, пробелы в навыках, адаптированные резюме.',
+        es: 'Un asistente de búsqueda de empleo con IA: búsqueda, coincidencias, brechas de habilidades y CV adaptados.'
+      }
+    },
+    {
+      repo: 'janagrit/Moisha',
+      name: 'Moisha',
+      image: 'images/moisha.jpg',
+      alt: 'Moisha logo: a bearded man writing next to a laptop',
+      stack: 'React, TypeScript, Google Gemini',
+      desc: {
+        en: 'An AI pricing advisor for short-term rental hosts: compares nearby rates, flags empty dates, suggests nightly prices.',
+        uk: 'AI-радник із цін для власників короткострокової оренди: порівнює ціни поблизу, виявляє порожні дати, пропонує ціну за ніч.',
+        ru: 'AI-советник по ценам для хозяев краткосрочной аренды: сравнивает цены поблизу, находит пустые даты, предлагает цену за ночь.',
+        es: 'Un asesor de precios con IA para anfitriones de alquiler vacacional: compara tarifas cercanas, detecta fechas libres y sugiere el precio por noche.'
+      }
+    },
+    {
+      repo: 'janagrit/uptic-site-audit',
+      name: 'Full Audit for Uptic Hospitality',
+      image: 'images/uptic.jpg',
+      alt: 'Uptic Hospitality article page under test',
+      live: 'https://uptichospitality.com/',
+      stack: 'TypeScript, Playwright, axe-core',
+      desc: {
+        en: 'A test suite built from scratch for Uptic Hospitality.',
+        uk: 'Тести з нуля для Uptic Hospitality.',
+        ru: 'Тесты с нуля для Uptic Hospitality.',
+        es: 'Una suite creada desde cero para Uptic Hospitality.'
+      }
+    },
+    {
       repo: 'janagrit/nex-ai-release-quality-orchestrator',
       name: 'Nex Release Quality Orchestrator',
       image: 'images/nex-release-orchestrator.jpg',
@@ -57,47 +111,6 @@
         uk: 'Незалежна QA-оцінка та лабораторія автоматизації для ігрового пристрою з керуванням рухами. Не пов’язано з Nex.',
         ru: 'Независимая QA-оценка и лаборатория автоматизации для игрового устройства с управлением движениями. Не связано с Nex.',
         es: 'Evaluación independiente de QA y laboratorio de automatización para un dispositivo de juego controlado por movimiento. Sin relación con Nex.'
-      }
-    },
-    {
-      repo: 'janagrit/jobscout_rag_overlay',
-      name: 'Job Scout RAG Overlay',
-      image: 'images/job-scout-rag.jpg',
-      alt: 'Feature list of the Job Scout RAG overlay',
-      stack: 'Python, React, Cloudflare Workers',
-      desc: {
-        en: 'An AI job-search assistant: discovery, matching, skill gaps, tailored resumes.',
-        uk: 'AI-асистент для пошуку роботи: пошук, підбір, прогалини в навичках, адаптовані резюме.',
-        ru: 'AI-ассистент для поиска работы: поиск, подбор, пробелы в навыках, адаптированные резюме.',
-        es: 'Un asistente de búsqueda de empleo con IA: búsqueda, coincidencias, brechas de habilidades y CV adaptados.'
-      }
-    },
-    {
-      name: 'Job Scout Agent',
-      image: 'images/job-scout-agent.jpg',
-      video: 'images/job-scout-agent.mp4',
-      alt: 'A friendly robot sitting next to a laptop',
-      live: 'https://job-scout-agent.com/',
-      stack: 'Claude API, GitHub Actions',
-      desc: {
-        en: 'Finds open roles that fit your CV.',
-        uk: 'Знаходить відкриті ролі під ваше резюме.',
-        ru: 'Находит открытые роли под ваше резюме.',
-        es: 'Encuentra vacantes que encajan con tu CV.'
-      }
-    },
-    {
-      repo: 'janagrit/uptic-site-audit',
-      name: 'Playwright Automation Framework',
-      image: 'images/uptic.jpg',
-      alt: 'Uptic Hospitality article page under test',
-      live: 'https://uptichospitality.com/',
-      stack: 'TypeScript, Playwright, axe-core',
-      desc: {
-        en: 'A test suite built from scratch for Uptic Hospitality.',
-        uk: 'Тести з нуля для Uptic Hospitality.',
-        ru: 'Тесты с нуля для Uptic Hospitality.',
-        es: 'Una suite creada desde cero para Uptic Hospitality.'
       }
     }
   ];
