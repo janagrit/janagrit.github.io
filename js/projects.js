@@ -24,7 +24,7 @@
   var FEATURED = [
     {
       repo: 'janagrit/voice-agent-eval-harness',
-      name: 'AI Agent Security Testing',
+      name: 'Adversarial Evaluation Harness for a Banking Voice Agent',
       image: 'images/agent-eval.jpg',
       alt: 'Terminal output of the eval run',
       stack: 'Python, DeepEval, pytest',

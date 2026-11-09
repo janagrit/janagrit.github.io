@@ -10,8 +10,8 @@
 
   var LANGS = {
     uk: {
-      title: 'Яна Гриценко · Senior SDET | Iana Notebook',
-      desc: 'Яна Гриценко, Senior SDET у Нью-Йорку: надійне програмне забезпечення, інфраструктура автоматизації тестування та застосунки на основі AI.',
+      title: 'Яна Гриценко · Senior SDET · AI Quality Engineering | Iana Notebook',
+      desc: 'Яна Гриценко, Senior SDET (AI Quality Engineering) у Нью-Йорку: надійне програмне забезпечення, інфраструктура автоматизації тестування та застосунки на основі AI.',
       text: {
         'label.today': 'Сьогодні',
         'intro.p': 'Створюю надійне програмне забезпечення, інфраструктуру автоматизації тестування та застосунки на основі AI, на практиці працюю з Claude і Google Gemini.',
@@ -35,8 +35,8 @@
     },
 
     ru: {
-      title: 'Яна Гриценко · Senior SDET | Iana Notebook',
-      desc: 'Яна Гриценко, Senior SDET в Нью-Йорке: надёжное программное обеспечение, инфраструктура автоматизации тестирования и приложения на основе AI.',
+      title: 'Яна Гриценко · Senior SDET · AI Quality Engineering | Iana Notebook',
+      desc: 'Яна Гриценко, Senior SDET (AI Quality Engineering) в Нью-Йорке: надёжное программное обеспечение, инфраструктура автоматизации тестирования и приложения на основе AI.',
       text: {
         'label.today': 'Сегодня',
         'intro.p': 'Создаю надёжное программное обеспечение, инфраструктуру автоматизации тестирования и приложения на основе AI, на практике работаю с Claude и Google Gemini.',
@@ -60,8 +60,8 @@
     },
 
     es: {
-      title: 'Iana Grytsenko · Senior SDET | Iana Notebook',
-      desc: 'Iana Grytsenko, Senior SDET en Nueva York: software fiable, infraestructura de automatización de pruebas y aplicaciones con IA.',
+      title: 'Iana Grytsenko · Senior SDET · AI Quality Engineering | Iana Notebook',
+      desc: 'Iana Grytsenko, Senior SDET (AI Quality Engineering) en Nueva York: software fiable, infraestructura de automatización de pruebas y aplicaciones con IA.',
       text: {
         'label.today': 'Hoy',
         'intro.p': 'Construyo software fiable, infraestructura de automatización de pruebas y aplicaciones con IA, trabajando a diario con Claude y Google Gemini.',
