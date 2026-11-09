@@ -205,6 +205,10 @@ html body .langs button[aria-pressed="true"] { color: var(--fg); background: non
 .stats-err { margin-top: 8px; min-height: 1.5em; color: var(--muted); font-size: 14px; }
 .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 16px; margin-top: 20px; }
 .stat .num { font-size: 24px; font-weight: 550; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.stat-list-h { margin-top: 24px; }
+.stat-list { margin: 8px 0 0; padding: 0; list-style: none; }
+.stat-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 6px 0; border-top: 1px solid var(--line); }
+.stat-n { font-variant-numeric: tabular-nums; }
 
 /* ---------- articles ---------- */
 .art-head { margin-bottom: 40px; }

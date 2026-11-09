@@ -39,7 +39,8 @@
         'stats.total': 'Усього відвідувань',
         'stats.home': 'Головна сторінка',
         'stats.hr': 'Сторінка для HR',
-        'stats.articles': 'Прочитання статей'
+        'stats.articles': 'Прочитання статей',
+        'stats.byArticle': 'За статтями'
       }
     },
 
@@ -74,7 +75,8 @@
         'stats.total': 'Всего посещений',
         'stats.home': 'Главная страница',
         'stats.hr': 'Страница для HR',
-        'stats.articles': 'Прочтения статей'
+        'stats.articles': 'Прочтения статей',
+        'stats.byArticle': 'По статьям'
       }
     },
 
@@ -108,7 +110,8 @@
         'stats.total': 'Visitas totales',
         'stats.home': 'Página principal',
         'stats.hr': 'Página para RR. HH.',
-        'stats.articles': 'Lecturas de artículos'
+        'stats.articles': 'Lecturas de artículos',
+        'stats.byArticle': 'Por artículo'
       }
     }
   };
