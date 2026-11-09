@@ -19,8 +19,7 @@
   var CACHE_MS = 10 * 60 * 1000; // stay well under GitHub's 60 requests/hour limit for visitors
 
   // repo: where the "Code" link comes from (omit for no code link). live: where the title points.
-  // The first three are the highlighted ones; keep them on top.
-  // Main portfolio projects, shown first with a small picture. The first three are the highlighted ones.
+  // Main portfolio projects, shown first with a small picture, in this order.
   var FEATURED = [
     {
       repo: 'janagrit/voice-agent-eval-harness',
@@ -33,6 +32,31 @@
         uk: 'Змагальні оцінки голосового AI-агента.',
         ru: 'Состязательные оценки голосового AI-агента.',
         es: 'Evaluaciones adversariales de un agente de voz con IA.'
+      }
+    },
+    {
+      repo: 'janagrit/nex-ai-release-quality-orchestrator',
+      name: 'Nex Release Quality Orchestrator',
+      image: 'images/nex-release-orchestrator.jpg',
+      alt: 'Terminal tile listing the release quality checks',
+      stack: 'TypeScript, Playwright',
+      desc: {
+        en: 'Independent QA project: a seeded simulator and release gates that catch gameplay regressions from updates. Synthetic data, not affiliated with Nex.',
+        uk: 'Незалежний QA-проєкт: симулятор із фіксованим seed і релізні гейти, що виявляють регресії геймплею після оновлень. Синтетичні дані, не пов’язано з Nex.',
+        ru: 'Независимый QA-проект: симулятор с фиксированным seed и релизные гейты, которые ловят регрессии геймплея после обновлений. Синтетические данные, не связано с Nex.',
+        es: 'Proyecto independiente de QA: un simulador con semilla fija y puertas de lanzamiento que detectan regresiones de juego tras las actualizaciones. Datos sintéticos, sin relación con Nex.'
+      }
+    },
+    {
+      repo: 'janagrit/nex-playground-quality-lab',
+      name: 'Nex Playground Quality Lab',
+      image: 'images/nex-quality-lab.jpg',
+      alt: 'Terminal tile describing the quality lab',
+      desc: {
+        en: 'Independent QA assessment and automation lab for a motion-controlled gaming device. Not affiliated with Nex.',
+        uk: 'Незалежна QA-оцінка та лабораторія автоматизації для ігрового пристрою з керуванням рухами. Не пов’язано з Nex.',
+        ru: 'Независимая QA-оценка и лаборатория автоматизации для игрового устройства с управлением движениями. Не связано с Nex.',
+        es: 'Evaluación independiente de QA y laboratorio de automatización para un dispositivo de juego controlado por movimiento. Sin relación con Nex.'
       }
     },
     {
