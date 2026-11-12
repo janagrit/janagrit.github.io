@@ -3,12 +3,11 @@
 // export (see data/linkedin/README.md). Names stay in English; the month follows the language switch.
 (function () {
   var LOCALES = { en: 'en-US', uk: 'uk-UA', ru: 'ru-RU', es: 'es-ES' };
-  var GROUP_ORDER = { Google: 0, Anthropic: 1, Others: 2 };
 
   var section = document.getElementById('certificates');
   var list = document.getElementById('cert-list');
   if (!section || !list) return;
-  var certs = null;
+  var certs = [];
 
   function el(tag, className, text) {
     var node = document.createElement(tag);
@@ -26,68 +25,28 @@
     }
   }
 
-  function issuerLabel(issuer) {
-    var value = (issuer || '').trim();
-    return value || 'Others';
-  }
-
-  // "2026-10" -> "Oct 2026" (or the visitor's language); "2026" stays as is
-  function month(value, locale) {
-    if (!value) return '';
-    var parts = value.split('-');
-    if (parts.length < 2) return parts[0];
-    return new Date(+parts[0], +parts[1] - 1, 1).toLocaleDateString(locale, { year: 'numeric', month: 'short' });
-  }
-
-  function renderCertRow(c, locale) {
-    var li = el('li', 'row');
-    var url = safeUrl(c.url);
-    var title;
-    if (url) {
-      title = el('a', 'title', c.name);
-      title.href = url;
-      title.target = '_blank';
-      title.rel = 'noopener';
-    } else {
-      title = el('span', 'title', c.name);
-    }
-    li.appendChild(title);
-    li.appendChild(el('span', 'desc', [month(c.date, locale)].filter(Boolean).join(' · ')));
-    return li;
-  }
-
   function render() {
     var locale = LOCALES[document.documentElement.lang] || LOCALES.en;
-    var groups = {};
+    var titleLink = safeUrl('https://drive.google.com/') || 'https://drive.google.com/';
+    var card = el('div', 'cert-card');
+    var title = el('a', 'cert-title', 'Google Professional Certificate');
+    title.href = titleLink;
+    title.target = '_blank';
+    title.rel = 'noopener';
 
-    certs.forEach(function (c) {
-      var issuer = issuerLabel(c.issuer);
-      if (!groups[issuer]) groups[issuer] = [];
-      groups[issuer].push(c);
-    });
+    var meta = el('div', 'cert-meta');
+    var summary = document.createTextNode('Completed full specialization track · ');
+    var folder = el('a', '', 'View individual course certificates (Google Drive folder)');
+    folder.href = 'https://drive.google.com/';
+    folder.target = '_blank';
+    folder.rel = 'noopener';
 
-    list.replaceChildren();
-
-    Object.keys(groups).sort(function (a, b) {
-      var aRank = GROUP_ORDER[a] !== undefined ? GROUP_ORDER[a] : 99;
-      var bRank = GROUP_ORDER[b] !== undefined ? GROUP_ORDER[b] : 99;
-      if (aRank !== bRank) return aRank - bRank;
-      return a.localeCompare(b);
-    }).forEach(function (issuer) {
-      var group = el('div', 'cert-group');
-      var heading = el('h3', 'sublabel', issuer);
-      var items = el('ul', 'list');
-
-      groups[issuer].forEach(function (c) {
-        items.appendChild(renderCertRow(c, locale));
-      });
-
-      group.appendChild(heading);
-      group.appendChild(items);
-      list.appendChild(group);
-    });
-
-    section.hidden = certs.length === 0;
+    meta.appendChild(summary);
+    meta.appendChild(folder);
+    card.appendChild(title);
+    card.appendChild(meta);
+    list.replaceChildren(card);
+    section.hidden = false;
   }
 
   fetch('data/certificates.json', { cache: 'no-cache' })
@@ -102,10 +61,10 @@
     })
     .catch(function (err) {
       console.warn('Could not load certificates:', err.message);
+      render();
     });
 
-  // Re-label the month when the visitor switches language (event sent by js/i18n.js).
   document.addEventListener('langchange', function () {
-    if (certs) render();
+    render();
   });
 })();

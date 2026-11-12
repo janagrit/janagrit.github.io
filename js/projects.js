@@ -1,6 +1,6 @@
 // Projects section for index.html, built from the GitHub API on every visit (cached 10 minutes).
-// - FEATURED: hand-picked projects shown first, in this order, with a name and one-liner per language.
-//   Their code link comes from the API, so a renamed repo keeps working.
+// - FEATURED: hand-picked projects shown first, in this order, with media and a one-liner per language.
+// - SELECTED: additional projects shown directly below the featured rows.
 // - Everything else: every own public repo that isn't a fork, archived, in SKIP, or tagged
 //   "hide-from-site" is listed under "More on GitHub", newest push first. New repos appear on their own.
 // The static rows in index.html stay in place if GitHub can't be reached.
@@ -11,21 +11,29 @@
     'https://api.github.com/repos/momup-app/momup-app.github.io'
   ];
   var HIDE_TOPIC = 'hide-from-site';
-  // Never listed in "More on GitHub": this site.
-  var SKIP = ['janagrit/janagrit.github.io'];
+  // Never listed in "More on GitHub".
+  var SKIP = [
+    'janagrit/janagrit.github.io',
+    'janagrit/cedar-test-platform',
+    'janagrit/houserx-site-audit',
+    'janagrit/dili-qa-skeleton',
+    'janagrit/calendar-app',
+    'janagrit/campaign'
+  ];
   // Repos from other accounts that still belong in "More on GitHub".
   var ALSO_MORE = ['momup-app/momup-app.github.io'];
   var CACHE_KEY = 'gh-projects-v1';
   var CACHE_MS = 10 * 60 * 1000; // stay well under GitHub's 60 requests/hour limit for visitors
 
   // repo: where the "Code" link comes from (omit for no code link). live: where the title points.
-  // Main portfolio projects, shown first with a small picture or short video, in this order.
+  // videoSrc opens in the demo dialog; image is the project-specific thumbnail.
   var FEATURED = [
     {
       name: 'Job Scout Agent',
-      image: 'images/job-scout-agent.jpg',
-      video: 'images/job-scout-agent.mp4',
-      alt: 'A friendly robot sitting next to a laptop',
+      image: 'images/job-scout.jpg',
+      alt: 'Job Scout application interface',
+      videoSrc: 'images/job-scout-agent.mp4',
+      videoCaption: 'Automated daily CV-to-role matching workflow using Claude API and GitHub Actions.',
       live: 'https://job-scout-agent.com/',
       stack: 'Claude API, GitHub Actions',
       desc: {
@@ -39,8 +47,9 @@
       repo: 'janagrit/Moisha',
       name: 'Moisha',
       image: 'images/moisha.jpg',
-      video: 'images/moisha.mp4',
-      alt: 'Moisha logo: a bearded man writing next to a laptop',
+      videoSrc: 'images/moisha.mp4',
+      videoCaption: 'Comparing nearby short-term rental rates, spotting empty dates, and suggesting nightly pricing.',
+      alt: 'Moisha short-term rental pricing advisor illustration',
       live: 'https://github.com/janagrit/Moisha',
       stack: 'React, TypeScript, Google Gemini',
       desc: {
@@ -53,9 +62,10 @@
     {
       repo: 'momup-app/momup-app.github.io',
       name: 'Kids Nearby',
-      image: 'images/kids-nearby.jpg',
-      video: 'images/kids-nearby.mp4',
-      alt: 'Kids Nearby map and activity cards',
+      image: 'images/momup.jpg',
+      videoSrc: 'images/kids-nearby.mp4',
+      videoCaption: 'Browsing local family-friendly events and activities across Berlin neighborhoods on an interactive map.',
+      alt: 'Kids Nearby activities website in Berlin',
       live: 'https://momup-app.github.io/',
       stack: 'React, Mapbox, child activities',
       desc: {
@@ -64,6 +74,24 @@
         ru: 'Находит события и семейные активности рядом в Берлине.',
         es: 'Encuentra eventos y actividades para familias cerca de ti en Berlín.'
       }
+    }
+  ];
+
+  var SELECTED = [
+    {
+      repo: 'janagrit/jobscout_rag_overlay',
+      name: 'Job Scout RAG Overlay',
+      description: 'AI job-search assistant: discovery, matching, skill gaps, tailored resumes.'
+    },
+    {
+      repo: 'janagrit/uptic-site-audit',
+      name: 'Full Audit for Uptic Hospitality',
+      description: 'A test suite built from scratch for Uptic Hospitality.'
+    },
+    {
+      repo: 'janagrit/voice-agent-eval-harness',
+      name: 'Voice Agent Eval Harness',
+      description: 'Adversarial testing for an AI voice agent.'
     }
   ];
 
@@ -88,12 +116,11 @@
   };
 
   var list = document.getElementById('projects-list');
+  var selectedList = document.getElementById('projects-selected-list');
   var moreWrap = document.getElementById('projects-more');
   var moreList = document.getElementById('projects-more-list');
-  if (!list || !moreWrap || !moreList) return;
+  if (!list || !selectedList || !moreWrap || !moreList) return;
   var repos = null;
-  // Visitors who ask their device for less motion get still pictures instead of video.
-  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function lang() {
     return LABELS[document.documentElement.lang] ? document.documentElement.lang : 'en';
@@ -133,42 +160,45 @@
     return a;
   }
 
-  // One row: the title opens `main`; the muted line holds the description and an optional second link.
-  function row(title, main, description, second, image) {
-    var li = el('li', image ? 'row has-thumb' : 'row');
-    var text = li;
-    if (image) {
-      var img;
-      if (image.video && !reduceMotion) {
-        // A short silent loop; the still picture shows until it plays.
-        img = el('video', 'thumb');
-        img.src = image.video;
-        img.poster = image.src;
-        img.muted = true;
-        img.loop = true;
-        img.autoplay = true;
-        img.playsInline = true;
-        img.preload = 'metadata';
-        img.setAttribute('aria-label', image.alt || '');
-      } else {
-        img = el('img', 'thumb');
-        img.src = image.src;
-        img.alt = image.alt || '';
-        img.loading = 'lazy';
-      }
+  function row(title, main, description, second, media, compact) {
+    var li = el('li', compact ? 'row compact-project-row' : 'row project-row');
+    var titleLink = link(main, title, 'title');
+
+    if (media) {
+      li.classList.add('has-thumb');
+      var img = el('img', 'thumb');
+      img.src = media.src;
+      img.alt = media.alt || '';
       img.width = 96;
       img.height = 60;
+      img.loading = 'lazy';
       li.appendChild(img);
-      text = el('div', 'text');
+
+      var text = el('div', 'text');
+      var head = el('div', 'project-head');
+      head.appendChild(titleLink);
+      head.appendChild(el('span', 'project-separator', '·'));
+      var demo = el('button', 'project-demo', 'Video demo');
+      demo.type = 'button';
+      demo.setAttribute('data-video-src', media.videoSrc);
+      demo.setAttribute('data-video-caption', media.videoCaption);
+      demo.setAttribute('data-video-stack', media.videoStack || '');
+      demo.setAttribute('data-video-href', main);
+      demo.setAttribute('data-video-title', title);
+      head.appendChild(demo);
+      text.appendChild(head);
+      text.appendChild(el('span', 'desc', description));
       li.appendChild(text);
+      return li;
     }
-    text.appendChild(link(main, title, 'title'));
+
+    li.appendChild(titleLink);
     var desc = el('span', 'desc', description);
     if (second) {
       desc.appendChild(document.createTextNode(description ? ' · ' : ''));
       desc.appendChild(link(second.href, second.text));
     }
-    text.appendChild(desc);
+    li.appendChild(desc);
     return li;
   }
 
@@ -189,13 +219,17 @@
       var code = repo && isVisible(repo) ? safeUrl(repo.html_url) : null;
       var main = f.live || code;
       if (!main) return; // repo gone or hidden, and no live site: drop the row
-      var text = local(f.desc, l) + ' ' + local(f.stack, l);
+      var text = [local(f.desc, l), local(f.stack, l)].filter(Boolean).join(' ');
       featuredRows.push(row(f.name, main, text, f.live && code ? { href: code, text: labels.code } : null,
-        f.image ? { src: f.image, video: f.video, alt: f.alt } : null));
+        { src: f.image, alt: f.alt, videoSrc: f.videoSrc, videoCaption: f.videoCaption, videoStack: local(f.stack, l) }));
     });
     list.replaceChildren.apply(list, featuredRows);
 
-    var featured = FEATURED.map(function (f) { return f.repo; });
+    selectedList.replaceChildren.apply(selectedList, SELECTED.map(function (project) {
+      return row(project.name, 'https://github.com/' + project.repo, project.description, null, null, true);
+    }));
+
+    var featured = FEATURED.map(function (f) { return f.repo; }).concat(SELECTED.map(function (project) { return project.repo; }));
     var more = repos
       .filter(function (r) {
         return r.owner && (r.owner.login === USER || ALSO_MORE.indexOf(r.full_name) !== -1) && isVisible(r) &&
@@ -208,7 +242,7 @@
         var pages = r.has_pages ? 'https://' + USER + '.github.io/' + encodeURIComponent(r.name) + '/' : null;
         var live = extra.live || safeUrl(r.homepage) || pages;
         var description = [extra.description || r.description, r.language].filter(Boolean).join(' · ');
-        return row(extra.name || prettyName(r.name), code, description, live ? { href: live, text: labels.live } : null);
+        return row(extra.name || prettyName(r.name), code, description, live ? { href: live, text: labels.live } : null, null, true);
       });
     moreList.replaceChildren.apply(moreList, more);
     moreWrap.hidden = more.length === 0;

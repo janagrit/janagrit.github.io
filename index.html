@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;550;600&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/site.css?v=7">
+  <link rel="stylesheet" href="css/site.css?v=8">
   <script src="js/theme.js?v=1"></script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Iana Grytsenko", "jobTitle": "Senior SDET, AI Quality Engineering", "url": "https://janagrit.github.io/", "image": "https://janagrit.github.io/images/og.jpg", "email": "mailto:ianagrytsenko@gmail.com", "address": {"@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US"}, "knowsAbout": ["Test automation", "Playwright", "TypeScript", "AI agent testing", "API testing", "Accessibility testing", "CI/CD"], "knowsLanguage": ["English", "Ukrainian", "Chinese"], "sameAs": ["https://www.linkedin.com/in/ianagrytsenko", "https://github.com/janagrit"]}</script>
 </head>
@@ -53,14 +53,22 @@
       <p data-i18n="intro.loc">Based in New York, USA. <a href="https://github.com/janagrit" target="_blank" rel="noopener">GitHub</a>, <a href="https://www.linkedin.com/in/ianagrytsenko" target="_blank" rel="noopener">LinkedIn</a>, <a href="mailto:ianagrytsenko@gmail.com">Email</a>. <a href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener">Book a 30-minute call</a>.</p>
     </section>
 
-    <!-- Rows are rebuilt from the GitHub API by js/projects.js. These three stay if GitHub can't be reached. -->
+    <!-- Rows are rebuilt from the GitHub API by js/projects.js. These stay if GitHub can't be reached. -->
     <section class="section" id="projects" aria-labelledby="proj-h">
       <h2 class="label" id="proj-h" data-i18n="label.projects">Projects</h2>
       <ul class="list" id="projects-list">
-        <li class="row has-thumb"><img class="thumb" src="images/job-scout-agent.jpg" width="96" height="60" alt="A friendly robot sitting next to a laptop"><div class="text"><a class="title" href="https://job-scout-agent.com/" target="_blank" rel="noopener">Job Scout Agent</a><span class="desc">Finds open roles that fit your CV. Claude API, GitHub Actions</span></div></li>
-        <li class="row has-thumb"><img class="thumb" src="images/moisha.jpg" width="96" height="60" alt="Moisha logo: a bearded man writing next to a laptop"><div class="text"><a class="title" href="https://github.com/janagrit/Moisha" target="_blank" rel="noopener">Moisha</a><span class="desc">An AI pricing advisor for short-term rental hosts: compares nearby rates, flags empty dates, suggests nightly prices. React, TypeScript, Google Gemini</span></div></li>
-        <li class="row has-thumb"><img class="thumb" src="images/moisha.jpg" width="96" height="60" alt="Kids Nearby map and activity cards"><div class="text"><a class="title" href="https://momup-app.github.io/" target="_blank" rel="noopener">Kids Nearby</a><span class="desc">Find events and family-friendly activities nearby in Berlin. React, Mapbox, child activities</span></div></li>
+        <li class="row project-row has-thumb"><img class="thumb" src="images/job-scout.jpg" width="96" height="60" alt="Job Scout application interface"><div class="text"><div class="project-head"><a class="title" href="https://job-scout-agent.com/" target="_blank" rel="noopener">Job Scout Agent</a><span class="project-separator">·</span><button class="project-demo" type="button" data-video-title="Job Scout Agent" data-video-src="images/job-scout-agent.mp4" data-video-caption="Automated daily CV-to-role matching workflow using Claude API and GitHub Actions." data-video-stack="Claude API · GitHub Actions" data-video-href="https://job-scout-agent.com/">Video demo</button></div><span class="desc">Finds open roles that fit your CV. Claude API, GitHub Actions</span></div></li>
+        <li class="row project-row has-thumb"><img class="thumb" src="images/moisha.jpg" width="96" height="60" alt="Moisha short-term rental pricing advisor illustration"><div class="text"><div class="project-head"><a class="title" href="https://github.com/janagrit/Moisha" target="_blank" rel="noopener">Moisha</a><span class="project-separator">·</span><button class="project-demo" type="button" data-video-title="Moisha" data-video-src="images/moisha.mp4" data-video-caption="Comparing nearby short-term rental rates, spotting empty dates, and suggesting nightly pricing." data-video-stack="React · TypeScript · Google Gemini" data-video-href="https://github.com/janagrit/Moisha">Video demo</button></div><span class="desc">An AI pricing advisor for short-term rental hosts: compares nearby rates, flags empty dates, suggests nightly prices. React, TypeScript, Google Gemini</span></div></li>
+        <li class="row project-row has-thumb"><img class="thumb" src="images/momup.jpg" width="96" height="60" alt="Kids Nearby activities website in Berlin"><div class="text"><div class="project-head"><a class="title" href="https://momup-app.github.io/" target="_blank" rel="noopener">Kids Nearby</a><span class="project-separator">·</span><button class="project-demo" type="button" data-video-title="Kids Nearby" data-video-src="images/kids-nearby.mp4" data-video-caption="Browsing local family-friendly events and activities across Berlin neighborhoods on an interactive map." data-video-stack="React · Mapbox · Child Activities" data-video-href="https://momup-app.github.io/">Video demo</button></div><span class="desc">Find events and family-friendly activities nearby in Berlin. React, Mapbox, child activities</span></div></li>
       </ul>
+      <div id="projects-selected">
+        <p class="sublabel">More projects</p>
+        <ul class="list" id="projects-selected-list">
+          <li class="row compact-project-row"><a class="title" href="https://github.com/janagrit/jobscout_rag_overlay" target="_blank" rel="noopener">Job Scout RAG Overlay</a><span class="desc">AI job-search assistant: discovery, matching, skill gaps, tailored resumes.</span></li>
+          <li class="row compact-project-row"><a class="title" href="https://github.com/janagrit/uptic-site-audit" target="_blank" rel="noopener">Full Audit for Uptic Hospitality</a><span class="desc">A test suite built from scratch for Uptic Hospitality.</span></li>
+          <li class="row compact-project-row"><a class="title" href="https://github.com/janagrit/voice-agent-eval-harness" target="_blank" rel="noopener">Voice Agent Eval Harness</a><span class="desc">Adversarial testing for an AI voice agent.</span></li>
+        </ul>
+      </div>
       <div id="projects-more" hidden>
         <p class="sublabel" data-i18n="label.more">More on GitHub</p>
         <ul class="list" id="projects-more-list"></ul>
@@ -68,15 +76,21 @@
     </section>
 
     <!-- Rows come from data/certificates.json, built from the LinkedIn export (see scripts/linkedin-certs.mjs). -->
-    <section class="section" id="certificates" aria-labelledby="cert-h" hidden>
+    <section class="section" id="certificates" aria-labelledby="cert-h">
       <h2 class="label" id="cert-h" data-i18n="label.certs">Certificates</h2>
-      <div class="cert-groups" id="cert-list"></div>
+      <div class="cert-card" id="cert-list">
+        <a class="cert-title" href="https://drive.google.com/" target="_blank" rel="noopener">Google Professional Certificate</a>
+        <div class="cert-meta">
+          <span>Completed full specialization track ·</span>
+          <a href="https://drive.google.com/" target="_blank" rel="noopener">View individual course certificates (Google Drive folder)</a>
+        </div>
+      </div>
     </section>
 
     <section class="section" id="writing" aria-labelledby="writing-h">
       <h2 class="label" id="writing-h" data-i18n="label.writing">Writing</h2>
       <ul class="list">
-        <li class="row"><a class="title" href="articles/sdet-to-ai-quality-engineering.html" data-i18n="w.aiqe.t">From Senior SDET to AI Quality Engineering: building a regression framework for AI agents</a><span class="desc" data-i18n="w.aiqe.d">Custom metrics, adversarial scenarios and a CI regression gate for a mock banking voice agent.</span></li>
+        <li class="row project-row"><div class="project-head"><a class="title" href="articles/sdet-to-ai-quality-engineering.html" data-i18n="w.aiqe.t">From Senior SDET to AI Quality Engineering: building a regression framework for AI agents</a></div><span class="desc" data-i18n="w.aiqe.d">Custom metrics, adversarial scenarios and a CI regression gate for a mock banking voice agent.</span></li>
       </ul>
     </section>
 
@@ -90,6 +104,27 @@
     </div>
 
   </main>
+
+  <dialog class="video-modal" id="video-modal" aria-labelledby="video-title">
+    <div class="video-dialog">
+      <div class="video-head">
+        <div>
+          <p class="video-kicker">Project walkthrough</p>
+          <h3 id="video-title">Project Demo</h3>
+        </div>
+        <button type="button" class="video-close" id="video-close">Close</button>
+      </div>
+      <div class="video-player">
+        <video id="video-media" controls playsinline preload="metadata" hidden></video>
+        <p id="video-unavailable" hidden>Video file unavailable. Add the MP4 at the project’s configured path.</p>
+        <p id="video-caption"></p>
+      </div>
+      <div class="video-foot">
+        <span id="video-stack">Tech stack</span>
+        <a id="video-link" href="#" target="_blank" rel="noopener">Open project ↗</a>
+      </div>
+    </div>
+  </dialog>
 
   <!-- Statistics: opened from the footer; asks for the passcode every time (js/stats.js). -->
   <dialog class="stats-modal" id="stats" aria-labelledby="stats-h">
@@ -129,9 +164,64 @@
   </footer>
 
   <script src="js/i18n.js?v=7"></script>
-  <script src="js/projects.js?v=7"></script>
+  <script src="js/projects.js?v=8"></script>
   <script src="js/certificates.js?v=2"></script>
   <script src="js/stats.js?v=1"></script>
+  <script>
+    (function () {
+      var modal = document.getElementById('video-modal');
+      var title = document.getElementById('video-title');
+      var caption = document.getElementById('video-caption');
+      var stack = document.getElementById('video-stack');
+      var link = document.getElementById('video-link');
+      var video = document.getElementById('video-media');
+      var unavailable = document.getElementById('video-unavailable');
+      var close = document.getElementById('video-close');
+
+      document.addEventListener('click', function (event) {
+        var trigger = event.target.closest('[data-video-src]');
+        if (!trigger) return;
+        event.preventDefault();
+        if (!modal) return;
+        title.textContent = (trigger.getAttribute('data-video-title') || 'Project') + ' — Video Demo';
+        caption.textContent = trigger.getAttribute('data-video-caption') || '';
+        stack.textContent = trigger.getAttribute('data-video-stack') || '';
+        link.href = trigger.getAttribute('data-video-href') || '#';
+        unavailable.hidden = true;
+        unavailable.textContent = 'Video unavailable: ' + trigger.getAttribute('data-video-src');
+        video.hidden = false;
+        video.src = trigger.getAttribute('data-video-src');
+        video.load();
+        modal.showModal();
+      });
+
+      if (close) {
+        close.addEventListener('click', function () {
+          if (modal) modal.close();
+        });
+      }
+
+      if (modal) {
+        modal.addEventListener('click', function (event) {
+          if (event.target === modal) modal.close();
+        });
+        modal.addEventListener('close', function () {
+          video.pause();
+          video.removeAttribute('src');
+          video.load();
+          video.hidden = true;
+          unavailable.hidden = true;
+        });
+      }
+
+      if (video) {
+        video.addEventListener('error', function () {
+          video.hidden = true;
+          unavailable.hidden = false;
+        });
+      }
+    })();
+  </script>
   <script data-goatcounter="https://janagrit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
