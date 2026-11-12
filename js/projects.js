@@ -19,21 +19,8 @@
   var CACHE_MS = 10 * 60 * 1000; // stay well under GitHub's 60 requests/hour limit for visitors
 
   // repo: where the "Code" link comes from (omit for no code link). live: where the title points.
-  // Main portfolio projects, shown first with a small picture, in this order.
+  // Main portfolio projects, shown first with a small picture or short video, in this order.
   var FEATURED = [
-    {
-      repo: 'janagrit/voice-agent-eval-harness',
-      name: 'Adversarial Evaluation Harness for a Banking Voice Agent',
-      image: 'images/agent-eval.jpg',
-      alt: 'Terminal output of the eval run',
-      stack: 'Python, DeepEval, pytest',
-      desc: {
-        en: 'Adversarial evals for an AI voice agent.',
-        uk: 'Змагальні оцінки голосового AI-агента.',
-        ru: 'Состязательные оценки голосового AI-агента.',
-        es: 'Evaluaciones adversariales de un agente de voz con IA.'
-      }
-    },
     {
       name: 'Job Scout Agent',
       image: 'images/job-scout-agent.jpg',
@@ -49,23 +36,12 @@
       }
     },
     {
-      repo: 'janagrit/jobscout_rag_overlay',
-      name: 'Job Scout RAG Overlay',
-      image: 'images/job-scout-rag.jpg',
-      alt: 'Feature list of the Job Scout RAG overlay',
-      stack: 'Python, React, Cloudflare Workers',
-      desc: {
-        en: 'An AI job-search assistant: discovery, matching, skill gaps, tailored resumes.',
-        uk: 'AI-асистент для пошуку роботи: пошук, підбір, прогалини в навичках, адаптовані резюме.',
-        ru: 'AI-ассистент для поиска работы: поиск, подбор, пробелы в навыках, адаптированные резюме.',
-        es: 'Un asistente de búsqueda de empleo con IA: búsqueda, coincidencias, brechas de habilidades y CV adaptados.'
-      }
-    },
-    {
       repo: 'janagrit/Moisha',
       name: 'Moisha',
       image: 'images/moisha.jpg',
+      video: 'images/moisha.mp4',
       alt: 'Moisha logo: a bearded man writing next to a laptop',
+      live: 'https://github.com/janagrit/Moisha',
       stack: 'React, TypeScript, Google Gemini',
       desc: {
         en: 'An AI pricing advisor for short-term rental hosts: compares nearby rates, flags empty dates, suggests nightly prices.',
@@ -75,42 +51,18 @@
       }
     },
     {
-      repo: 'janagrit/uptic-site-audit',
-      name: 'Full Audit for Uptic Hospitality',
-      image: 'images/uptic.jpg',
-      alt: 'Uptic Hospitality article page under test',
-      live: 'https://uptichospitality.com/',
-      stack: 'TypeScript, Playwright, axe-core',
+      repo: 'momup-app/momup-app.github.io',
+      name: 'Kids Nearby',
+      image: 'images/kids-nearby.jpg',
+      video: 'images/kids-nearby.mp4',
+      alt: 'Kids Nearby map and activity cards',
+      live: 'https://momup-app.github.io/',
+      stack: 'React, Mapbox, child activities',
       desc: {
-        en: 'A test suite built from scratch for Uptic Hospitality.',
-        uk: 'Тести з нуля для Uptic Hospitality.',
-        ru: 'Тесты с нуля для Uptic Hospitality.',
-        es: 'Una suite creada desde cero para Uptic Hospitality.'
-      }
-    },
-    {
-      repo: 'janagrit/nex-ai-release-quality-orchestrator',
-      name: 'Nex Release Quality Orchestrator',
-      image: 'images/nex-release-orchestrator.jpg',
-      alt: 'Terminal tile listing the release quality checks',
-      stack: 'TypeScript, Playwright',
-      desc: {
-        en: 'Independent QA project: a seeded simulator and release gates that catch gameplay regressions from updates. Synthetic data, not affiliated with Nex.',
-        uk: 'Незалежний QA-проєкт: симулятор із фіксованим seed і релізні гейти, що виявляють регресії геймплею після оновлень. Синтетичні дані, не пов’язано з Nex.',
-        ru: 'Независимый QA-проект: симулятор с фиксированным seed и релизные гейты, которые ловят регрессии геймплея после обновлений. Синтетические данные, не связано с Nex.',
-        es: 'Proyecto independiente de QA: un simulador con semilla fija y puertas de lanzamiento que detectan regresiones de juego tras las actualizaciones. Datos sintéticos, sin relación con Nex.'
-      }
-    },
-    {
-      repo: 'janagrit/nex-playground-quality-lab',
-      name: 'Nex Playground Quality Lab',
-      image: 'images/nex-quality-lab.jpg',
-      alt: 'Terminal tile describing the quality lab',
-      desc: {
-        en: 'Independent QA assessment and automation lab for a motion-controlled gaming device. Not affiliated with Nex.',
-        uk: 'Незалежна QA-оцінка та лабораторія автоматизації для ігрового пристрою з керуванням рухами. Не пов’язано з Nex.',
-        ru: 'Независимая QA-оценка и лаборатория автоматизации для игрового устройства с управлением движениями. Не связано с Nex.',
-        es: 'Evaluación independiente de QA y laboratorio de automatización para un dispositivo de juego controlado por movimiento. Sin relación con Nex.'
+        en: 'Find events and family-friendly activities nearby in Berlin.',
+        uk: 'Знаходить події та сімейні активності поблизу в Берліні.',
+        ru: 'Находит события и семейные активности рядом в Берлине.',
+        es: 'Encuentra eventos y actividades para familias cerca de ti en Berlín.'
       }
     }
   ];
