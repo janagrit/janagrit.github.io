@@ -10,7 +10,7 @@
 
   var LANGS = {
     uk: {
-      title: 'Яна Гриценко · Senior SDET · AI Quality Engineering | Iana Notebook',
+      title: 'Senior SDET · AI Quality Engineering | Яна Гриценко',
       desc: 'Яна Гриценко, Senior SDET (AI Quality Engineering) у Нью-Йорку: надійне програмне забезпечення, інфраструктура автоматизації тестування та застосунки на основі AI.',
       text: {
         'label.today': 'Сьогодні',
@@ -36,7 +36,7 @@
     },
 
     ru: {
-      title: 'Яна Гриценко · Senior SDET · AI Quality Engineering | Iana Notebook',
+      title: 'Senior SDET · AI Quality Engineering | Яна Гриценко',
       desc: 'Яна Гриценко, Senior SDET (AI Quality Engineering) в Нью-Йорке: надёжное программное обеспечение, инфраструктура автоматизации тестирования и приложения на основе AI.',
       text: {
         'label.today': 'Сегодня',
@@ -62,7 +62,7 @@
     },
 
     es: {
-      title: 'Iana Grytsenko · Senior SDET · AI Quality Engineering | Iana Notebook',
+      title: 'Senior SDET · AI Quality Engineering | Iana Grytsenko',
       desc: 'Iana Grytsenko, Senior SDET (AI Quality Engineering) en Nueva York: software fiable, infraestructura de automatización de pruebas y aplicaciones con IA.',
       text: {
         'label.today': 'Hoy',

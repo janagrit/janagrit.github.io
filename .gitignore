@@ -3,3 +3,5 @@
 data/linkedin/*
 !data/linkedin/Certifications.csv
 !data/linkedin/README.md
+# Graphify generated files
+graphify-out/
