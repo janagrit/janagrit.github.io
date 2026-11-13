@@ -1,12 +1,12 @@
 {
   "name": "Iana Notebook · Iana Grytsenko",
   "short_name": "Iana's Notebook",
-  "description": "Iana Grytsenko, Senior SDET (AI Quality Engineering): test automation infrastructure and AI-powered applications.",
+  "description": "Iana Grytsenko: I build it. Then I try to break it. AI agents, web apps and the tests that prove they hold up.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#fdfdfc",
-  "theme_color": "#fdfdfc",
+  "background_color": "#f8f2e9",
+  "theme_color": "#f8f2e9",
   "icons": [
     {
       "src": "icon-192.png",
