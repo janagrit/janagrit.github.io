@@ -98,6 +98,7 @@
   @media (hover: hover) { .media:hover img { transform: scale(1.025); } }
   .play { position: absolute; left: 16px; bottom: 16px; display: inline-flex; gap: 8px; align-items: center; background: var(--bg); color: var(--ink); font: 600 13px/1 var(--sans); padding: 9px 12px; border-radius: 999px; box-shadow: 0 4px 16px rgb(0 0 0 / .12); }
   .play i { font-style: normal; font-size: 11px; }
+  .chain { position: absolute; right: 16px; bottom: 16px; font: 500 12px/1 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: .02em; color: #f1e9dc; background: rgb(20 18 16 / .72); padding: 7px 10px; border-radius: 999px; }
   .p-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
   .p-title { font-size: 26px; letter-spacing: -0.025em; font-weight: 800; line-height: 1.1; }
   .p-kind { font-size: 13px; color: var(--muted); }
@@ -190,7 +191,7 @@
 
   <section class="wrap" id="work" aria-labelledby="work-h">
     <h2 class="sec-h" id="work-h">Work</h2>
-    <p class="sec-sub">Four things I designed and built. Each one has two sides: what it does, and how I made sure it does it.</p>
+    <p class="sec-sub">Things I built or helped build. Each one has two sides: what it does, and how I made sure it does it.</p>
 
     <article class="project" aria-labelledby="p1">
       <button class="media" type="button" data-open="jobscout" aria-label="Watch the Job Scout Agent demo"><img src="images/job-scout.jpg" width="640" height="400" alt="Job Scout application interface"><span class="play"><i>▶</i> Watch demo</span></button>
@@ -276,6 +277,30 @@
         <div class="links"><a href="https://momup-app.github.io/" target="_blank" rel="noopener">Open the app ↗</a><a href="https://github.com/momup-app/momup-app.github.io" target="_blank" rel="noopener">Code ↗</a></div>
       </div>
     </article>
+
+    <article class="project" aria-labelledby="p5">
+      <button class="media" type="button" data-open="nearauth" aria-label="Watch the NEARAuth demo"><img src="images/nearauth.jpg" width="1280" height="732" alt="NEARAuth dashboard: identity vault, exposure tracker and audit ledger" loading="lazy"><span class="chain" aria-hidden="true">NEAR · testnet</span><span class="play"><i>▶</i> Watch demo</span></button>
+      <div>
+        <div class="p-head"><h3 class="p-title" id="p5">NEARAuth</h3><span class="p-kind">Blockchain &amp; privacy · prototype</span></div>
+        <p class="p-line">A privacy-focused identity management project built around a Chrome browser extension, protected email aliases, exposure detection, and cryptographically verifiable audit records.</p>
+        <dl class="facts"><dt>Problem</dt><dd>Signing up everywhere with one real email makes it impossible to see who shared it.</dd><dt>My role</dt><dd>QA testing, on a team project from the NEAR Private AI Hackathon NYC, November 2026.</dd><dt>Status</dt><dd>Interactive prototype with a working browser extension. The Rust smart contract was implemented and tested but has not been deployed. Blockchain audit anchoring and on-chain transaction execution are not enabled.</dd></dl>
+        <div class="switch" role="group" aria-label="Show"><button type="button" data-side="build" aria-pressed="true">The build</button><button type="button" data-side="break" aria-pressed="false">How I tried to break it</button></div>
+        <div class="side" data-side="build"><ul>
+          <li>A Chrome extension spots signup forms and fills in a unique email alias and password. It never submits the form itself.</li>
+          <li>An exposure tracker flags mail that reaches an alias from a sender it wasn't given to.</li>
+          <li>Every event is hashed and grouped into a Merkle tree, so any later change to the log can be detected.</li>
+        </ul></div>
+        <div class="side" data-side="break" hidden><ul>
+          <li>Tested browser-based authentication and protected signup workflows.</li>
+          <li>Validated identity generation and account management flows.</li>
+          <li>Tested simulated data-exposure detection scenarios.</li>
+          <li>Evaluated audit-log integrity and tamper-detection mechanisms.</li>
+          <li>Examined NEAR Testnet connectivity and Merkle-root verification workflows.</li>
+        </ul></div>
+        <p class="stack">NEAR Protocol · Rust · JavaScript · Chrome Extension (Manifest V3) · Cryptographic Hashing · Merkle Trees · NEAR Testnet</p>
+        <div class="links"><a href="https://pauloes-btechs.github.io/NEARAuth/#overview" target="_blank" rel="noopener">Open the demo ↗</a><a href="https://github.com/pauloes-btechs/NEARAuth" target="_blank" rel="noopener">Code ↗</a></div>
+      </div>
+    </article>
     <p class="sec-sub" style="margin:24px 0 0">More experiments live on <a href="https://github.com/janagrit" target="_blank" rel="noopener">GitHub</a>.</p>
   </section>
 
@@ -324,7 +349,8 @@
     jobscout: { title: 'Job Scout Agent', cap: 'Daily CV-to-role matching with the Claude API and GitHub Actions.', video: 'images/job-scout-agent.mp4', poster: 'images/job-scout.jpg' },
     harness: { title: 'Voice Agent Eval Harness', cap: 'Strict and lax agents run the same 11 attacks; the CI gate fails on any regression.', img: 'images/agent-eval.jpg' },
     moisha: { title: 'Moisha', cap: 'Asking Moisha for a price: the answer arrives as a card in the chat.', video: 'images/moisha-small.mp4', poster: 'images/moisha-chat.jpg' },
-    kids: { title: 'Kids Nearby', cap: 'Searching by a Berlin postcode and filtering by age and distance.', video: 'images/mom-small.mp4', poster: 'images/momup.jpg' }
+    kids: { title: 'Kids Nearby', cap: 'Searching by a Berlin postcode and filtering by age and distance.', video: 'images/mom-small.mp4', poster: 'images/momup.jpg' },
+    nearauth: { title: 'NEARAuth', cap: "The team's explainer video for the hackathon.", video: 'images/nearauth-demo.mp4', poster: 'images/nearauth.jpg' }
   };
 
   // Build / Break switch on each project.
