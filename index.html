@@ -106,9 +106,18 @@
   /* work */
   .sec-h { font-size: clamp(26px, 3vw, 38px); letter-spacing: -0.03em; line-height: 1.05; font-weight: 800; margin-bottom: 12px; }
   .sec-sub { color: var(--muted); max-width: 36em; margin-bottom: 56px; }
-  .project { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; padding-block: 44px; border-top: 1px solid var(--line); }
-  .project:nth-of-type(even) .media { order: 2; }
-  .project.linked { border-top-style: dashed; }
+  /* Project grid: image, title, type. Clicking a card opens its details in the #project dialog. */
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px 28px; }
+  .project { position: relative; min-width: 0; }
+  .project .media { cursor: pointer; }
+  @media (hover: hover) { .project:hover .media img { transform: scale(1.025); } .project:hover .c-title button { text-decoration-color: currentColor; } }
+  .c-title { font-size: 19px; letter-spacing: -0.015em; font-weight: 700; line-height: 1.3; margin-top: 16px; }
+  .c-title button { font: inherit; letter-spacing: inherit; color: inherit; background: none; border: 0; padding: 0; text-align: left; cursor: pointer; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; text-decoration-color: var(--line); transition: text-decoration-color .16s ease-out; }
+  .c-title button::after { content: ""; position: absolute; inset: 0; border-radius: 12px; }
+  .c-title button:focus-visible { outline: none; }
+  .c-title button:focus-visible::after { outline: 2px solid var(--ink); outline-offset: 6px; }
+  .project > .p-kind { margin-top: 6px; }
+  .project .chain { right: 10px; bottom: 10px; font-size: 11px; padding: 6px 9px; }
   .link-note { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
   div.media { cursor: default; }
   @media (hover: hover) { div.media:hover img { transform: none; } }
@@ -138,7 +147,7 @@
   .side li::before { content: "→"; position: absolute; left: 0; color: var(--muted); }
   .side[data-side="break"] li::before { content: "✕"; color: var(--break); font-size: 13px; top: 2px; }
   .stack { margin-top: 18px; font-size: 13px; color: var(--muted); }
-  .links { display: flex; gap: 4px 20px; margin-top: 10px; font-size: 14px; font-weight: 600; flex-wrap: wrap; }
+  .links { display: flex; align-items: center; gap: 8px 20px; margin-top: 14px; font-size: 14px; font-weight: 600; flex-wrap: wrap; }
   .links a, .foot a { display: inline-block; padding-block: 4px; }
 
   /* focus strip */
@@ -197,17 +206,26 @@
   .d-body > div { min-width: 0; flex: 1 1 280px; }
   .d-body h3 { font-size: 18px; letter-spacing: -0.015em; }
   .d-body p { color: var(--muted); margin-top: 4px; }
+  #project { width: min(760px, calc(100vw - 32px)); }
+  .pd { padding: 28px 32px 32px; }
+  .pd-head { display: flex; justify-content: space-between; align-items: start; gap: 16px; }
+  .pd-head h2 { font-size: 26px; letter-spacing: -0.025em; font-weight: 800; line-height: 1.1; }
+  .pd-head .p-kind { margin-top: 6px; }
+  .pd-body .p-line { margin-top: 20px; }
+  .pd-body .link-note { margin: 16px 0 0; }
+  @media (max-width: 560px) { .pd { padding: 22px 20px 24px; } .pd-head h2 { font-size: 22px; } .facts { grid-template-columns: 1fr; gap: 2px; } .facts dd { margin-bottom: 8px; } }
 
   @media (max-width: 860px) {
     .nav ul { display: none; }
-    .hero, .project, .approach .wrap, .writing { grid-template-columns: 1fr; gap: 28px; }
+    .hero, .approach .wrap, .writing { grid-template-columns: 1fr; gap: 28px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 20px; }
     .hero { padding-block: 24px 80px; }
-    .project:nth-of-type(even) .media { order: 0; }
     .approach .wrap { padding-block: 80px; }
     .writing { padding-block: 80px 0; }
     .contact { padding-block: 96px 32px; }
     .p-title { font-size: 23px; }
   }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
   @media (max-width: 420px) { .nav .btn { padding: 9px 13px; } .nav-end { gap: 6px; } }
   @media (max-width: 340px) { .nav .btn { display: none; } }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, dialog[open] { transition: none !important; animation: none !important; } }
@@ -242,10 +260,12 @@
     <h2 class="sec-h" id="work-h">Work</h2>
     <p class="sec-sub">Things I built or helped build. Each one has two sides: what it does, and how I made sure it does it.</p>
 
+      <div class="grid">
       <article class="project" aria-labelledby="p7">
-        <div class="media"><img src="images/nyc-subway-eval.jpg" width="1280" height="800" alt="Chart: correct answers out of 10 for Claude Haiku 5.5 and GPT-6 Luna over 20 runs at low, medium and high reasoning effort" loading="lazy"><span class="chain" style="top:16px;bottom:auto" aria-hidden="true">3rd place · $1,250</span></div>
-        <div>
-          <div class="p-head"><h3 class="p-title" id="p7">NYC Subway Weekend Task Factory</h3><span class="p-kind">Team project · hackathon 3rd place</span></div>
+        <div class="media" aria-hidden="true"><img src="images/nyc-subway-eval.jpg" width="1280" height="800" alt="Chart: correct answers out of 10 for Claude Haiku 5.5 and GPT-6 Luna over 20 runs at low, medium and high reasoning effort" loading="lazy"><span class="chain" style="top:10px;bottom:auto" aria-hidden="true">3rd place · $1,250</span></div>
+        <h3 class="c-title"><button type="button" id="p7" data-detail aria-haspopup="dialog">NYC Subway Weekend Task Factory</button></h3>
+        <p class="p-kind">Team project · hackathon 3rd place</p>
+        <div class="p-detail" hidden>
           <p class="p-line">A pipeline that draws MTA-style subway maps with a weekend service change, asks a commuter question about each one, and works out the right answer in code, to test whether multimodal AI models can read a map and re-plan a trip.</p>
           <dl class="facts"><dt>Problem</dt><dd>A model that answers from memory of the real subway sends a rider to a closed platform when the weekend map says otherwise.</dd><dt>My role</dt><dd>Evaluation module and its tests, pilot failure analysis, the clean-copy submission check and the slides, on a team project.</dd><dt>Result</dt><dd>3rd place and a $1,250 prize at the Innodata Hackathon 2026 (Track 2, Visual Task Factory), St. John's University, Manhattan, 14 November 2026.</dd></dl>
           <div class="switch" role="group" aria-label="Show"><button type="button" data-side="build" aria-pressed="true">The build</button><button type="button" data-side="break" aria-pressed="false">How I tried to break it</button></div>
@@ -263,11 +283,11 @@
           <div class="links"><a href="https://github.com/dchen024/innodata-hackathon-team-2" target="_blank" rel="noopener">Code ↗</a></div>
         </div>
       </article>
-
       <article class="project" aria-labelledby="p1">
-        <button class="media" type="button" data-open="jobscout" aria-label="Watch the Job Scout Agent demo"><img src="images/job-scout.jpg" width="640" height="400" alt="Job Scout application interface"><span class="play"><i>▶</i> Watch demo</span></button>
-        <div>
-          <div class="p-head"><h3 class="p-title" id="p1">Job Scout Agent</h3><span class="p-kind">AI product · live</span></div>
+        <div class="media" aria-hidden="true"><img src="images/job-scout.jpg" width="640" height="400" alt="Job Scout application interface"></div>
+        <h3 class="c-title"><button type="button" id="p1" data-detail aria-haspopup="dialog">Job Scout Agent</button></h3>
+        <p class="p-kind">AI product · live</p>
+        <div class="p-detail" hidden>
           <p class="p-line">Finds roles that fit a CV, explains each match with quotes from the CV, and tracks the applications.</p>
           <dl class="facts"><dt>Problem</dt><dd>Job hunting means reading hundreds of postings to find the few that fit.</dd><dt>My role</dt><dd>Product, architecture, build and tests.</dd></dl>
           <div class="switch" role="group" aria-label="Show"><button type="button" data-side="build" aria-pressed="true">The build</button><button type="button" data-side="break" aria-pressed="false">How I tried to break it</button></div>
@@ -283,15 +303,15 @@
             <li>End-to-end tests run the whole pipeline against mocked job boards and a mocked Claude API.</li>
           </ul></div>
           <p class="stack">Claude API · TypeScript · React · Cloudflare Workers + D1 · Playwright · GitHub Actions</p>
-          <div class="links"><a href="https://job-scout-agent.com/" target="_blank" rel="noopener">Open the app ↗</a></div>
+          <div class="links"><button class="btn" type="button" data-open="jobscout">▶ Watch demo</button><a href="https://job-scout-agent.com/" target="_blank" rel="noopener">Open the app ↗</a></div>
         </div>
       </article>
-
-      <article class="project linked" aria-labelledby="p6">
-        <div class="media"><img src="images/job-scout-rag-overlay.jpg" width="1280" height="800" alt="Terminal tile: the RAG service's two endpoints and its test result, 78 passed with 98.5% coverage" loading="lazy"></div>
-        <div>
+      <article class="project" aria-labelledby="p6">
+        <div class="media" aria-hidden="true"><img src="images/job-scout-rag-overlay.jpg" width="1280" height="800" alt="Terminal tile: the RAG service's two endpoints and its test result, 78 passed with 98.5% coverage" loading="lazy"></div>
+        <h3 class="c-title"><button type="button" id="p6" data-detail aria-haspopup="dialog">Job Scout — RAG &amp; Semantic Retrieval Overlay</button></h3>
+        <p class="p-kind">AI engineering · experimental</p>
+        <div class="p-detail" hidden>
           <p class="link-note">↳ Companion to Job Scout Agent: a separate service, not yet connected to the live app</p>
-          <div class="p-head"><h3 class="p-title" id="p6">Job Scout — RAG &amp; Semantic Retrieval Overlay</h3><span class="p-kind">AI engineering · experimental</span></div>
           <p class="p-line">A Python service that finds the CV passages most relevant to a job and asks an LLM to explain the match, backing every strength and gap with a quote from the CV.</p>
           <dl class="facts"><dt>Why</dt><dd>To build and test retrieval and evidence-based explanations against a real app, before wiring them into Job Scout.</dd><dt>My role</dt><dd>Design, build and tests.</dd><dt>Status</dt><dd>MVP, not connected to Job Scout yet; the integration is planned. Before production it still needs a vector store with database-enforced tenant isolation, rate limiting, and deleting vectors when a CV is replaced.</dd></dl>
           <div class="switch" role="group" aria-label="Show"><button type="button" data-side="build" aria-pressed="true">The build</button><button type="button" data-side="break" aria-pressed="false">How I tried to break it</button></div>
@@ -310,11 +330,11 @@
           <div class="links"><a href="https://github.com/janagrit/jobscout_rag_overlay" target="_blank" rel="noopener">Code ↗</a></div>
         </div>
       </article>
-
       <article class="project" aria-labelledby="p2">
-        <div class="media"><img src="images/agent-eval.jpg" width="640" height="400" alt="Terminal running the evaluation harness" loading="lazy"></div>
-        <div>
-          <div class="p-head"><h3 class="p-title" id="p2">AI Agent Evaluation &amp; Adversarial Testing Framework</h3><span class="p-kind">AI quality · open source</span></div>
+        <div class="media" aria-hidden="true"><img src="images/agent-eval.jpg" width="640" height="400" alt="Terminal running the evaluation harness" loading="lazy"></div>
+        <h3 class="c-title"><button type="button" id="p2" data-detail aria-haspopup="dialog">AI Agent Evaluation &amp; Adversarial Testing Framework</button></h3>
+        <p class="p-kind">AI quality · open source</p>
+        <div class="p-detail" hidden>
           <p class="p-line">A regression suite that attacks a banking voice agent on purpose, and fails the build when it gives in.</p>
           <dl class="facts"><dt>Problem</dt><dd>A balance inquiry passing tells you nothing about a caller who says "ignore your instructions."</dd><dt>My role</dt><dd>Test architecture, metrics, CI gate.</dd><dt>Limits</dt><dd>The checks are keyword and pattern rules, so they can miss a paraphrased leak. Both agents are mocks, each scenario is a single turn, and voice-specific risks such as speech-to-text errors are planned, not tested yet.</dd></dl>
           <div class="switch" role="group" aria-label="Show"><button type="button" data-side="build" aria-pressed="true">The build</button><button type="button" data-side="break" aria-pressed="false">How I tried to break it</button></div>
@@ -332,11 +352,11 @@
           <div class="links"><a href="https://github.com/janagrit/voice-agent-eval-harness" target="_blank" rel="noopener">Code ↗</a><a href="#writing">Read the write-up</a></div>
         </div>
       </article>
-
       <article class="project" aria-labelledby="p5">
-        <button class="media" type="button" data-open="nearauth" aria-label="Watch the NEARAuth demo"><img src="images/nearauth.jpg" width="1280" height="732" alt="NEARAuth dashboard: identity vault, exposure tracker and audit ledger" loading="lazy"><span class="chain" aria-hidden="true">NEAR · testnet</span><span class="play"><i>▶</i> Watch demo</span></button>
-        <div>
-          <div class="p-head"><h3 class="p-title" id="p5">NEARAuth</h3><span class="p-kind">QA contribution · blockchain &amp; privacy</span></div>
+        <div class="media" aria-hidden="true"><img src="images/nearauth.jpg" width="1280" height="732" alt="NEARAuth dashboard: identity vault, exposure tracker and audit ledger" loading="lazy"><span class="chain" aria-hidden="true">NEAR · testnet</span></div>
+        <h3 class="c-title"><button type="button" id="p5" data-detail aria-haspopup="dialog">NEARAuth</button></h3>
+        <p class="p-kind">QA contribution · blockchain &amp; privacy</p>
+        <div class="p-detail" hidden>
           <p class="p-line">A privacy-focused identity management project built around a Chrome browser extension, protected email aliases, exposure detection, and cryptographically verifiable audit records.</p>
           <dl class="facts"><dt>Problem</dt><dd>Signing up everywhere with one real email makes it impossible to see who shared it.</dd><dt>My role</dt><dd>QA testing, on a team project from the NEAR Private AI Hackathon NYC, November 2026.</dd><dt>Status</dt><dd>Interactive prototype with a working browser extension. The Rust smart contract was implemented and tested but has not been deployed. Blockchain audit anchoring and on-chain transaction execution are not enabled.</dd></dl>
           <div class="switch" role="group" aria-label="Show"><button type="button" data-side="build" aria-pressed="true">The build</button><button type="button" data-side="break" aria-pressed="false">How I tried to break it</button></div>
@@ -353,14 +373,14 @@
             <li>Examined NEAR Testnet connectivity and Merkle-root verification workflows.</li>
           </ul></div>
           <p class="stack">NEAR Protocol · Rust · JavaScript · Chrome Extension (Manifest V3) · Cryptographic Hashing · Merkle Trees · NEAR Testnet</p>
-          <div class="links"><a href="https://pauloes-btechs.github.io/NEARAuth/#overview" target="_blank" rel="noopener">Open the demo ↗</a><a href="https://github.com/pauloes-btechs/NEARAuth" target="_blank" rel="noopener">Code ↗</a></div>
+          <div class="links"><button class="btn" type="button" data-open="nearauth">▶ Watch demo</button><a href="https://pauloes-btechs.github.io/NEARAuth/#overview" target="_blank" rel="noopener">Open the demo ↗</a><a href="https://github.com/pauloes-btechs/NEARAuth" target="_blank" rel="noopener">Code ↗</a></div>
         </div>
       </article>
-
       <article class="project" aria-labelledby="p3">
-        <button class="media contain" type="button" data-open="moisha" aria-label="Watch the Moisha demo"><img src="images/moisha-chat.jpg" width="416" height="900" alt="Moisha chat showing a nightly price card" loading="lazy"><span class="play"><i>▶</i> Watch demo</span></button>
-        <div>
-          <div class="p-head"><h3 class="p-title" id="p3">Moisha</h3><span class="p-kind">Web app · private</span></div>
+        <div class="media contain" aria-hidden="true"><img src="images/moisha-chat.jpg" width="416" height="900" alt="Moisha chat showing a nightly price card" loading="lazy"></div>
+        <h3 class="c-title"><button type="button" id="p3" data-detail aria-haspopup="dialog">Moisha</button></h3>
+        <p class="p-kind">Web app · private</p>
+        <div class="p-detail" hidden>
           <p class="p-line">A pocket pricing advisor for Airbnb hosts. You talk to him; he compares nearby prices, spots empty dates and suggests a nightly rate.</p>
           <dl class="facts"><dt>Problem</dt><dd>Hosts set prices by guessing, and empty nights cost money nobody sees.</dd><dt>My role</dt><dd>Product, design and build.</dd></dl>
           <div class="switch" role="group" aria-label="Show"><button type="button" data-side="build" aria-pressed="true">The build</button><button type="button" data-side="break" aria-pressed="false">How I tried to break it</button></div>
@@ -374,13 +394,14 @@
             <li>Checked on very small phone screens, offline, and after locking and unlocking.</li>
           </ul></div>
           <p class="stack">React · TypeScript · Vite · Tailwind CSS</p>
+          <div class="links"><button class="btn" type="button" data-open="moisha">▶ Watch demo</button></div>
         </div>
       </article>
-
       <article class="project" aria-labelledby="p4">
-        <button class="media" type="button" data-open="kids" aria-label="Watch the Kids Nearby demo"><img src="images/momup.jpg" width="640" height="400" alt="Kids Nearby: activities in Berlin on a map" loading="lazy"><span class="play"><i>▶</i> Watch demo</span></button>
-        <div>
-          <div class="p-head"><h3 class="p-title" id="p4">Kids Nearby</h3><span class="p-kind">Full-stack · live</span></div>
+        <div class="media" aria-hidden="true"><img src="images/momup.jpg" width="640" height="400" alt="Kids Nearby: activities in Berlin on a map" loading="lazy"></div>
+        <h3 class="c-title"><button type="button" id="p4" data-detail aria-haspopup="dialog">Kids Nearby</button></h3>
+        <p class="p-kind">Full-stack · live</p>
+        <div class="p-detail" hidden>
           <p class="p-line">Helps parents in Berlin find classes, clubs and events for their kids, filtered by age, day, price and distance, on a map.</p>
           <dl class="facts"><dt>Problem</dt><dd>Kids' activities in Berlin are spread across dozens of sites and languages.</dd><dt>My role</dt><dd>Developer and tester, building it for @momup_app.</dd></dl>
           <div class="switch" role="group" aria-label="Show"><button type="button" data-side="build" aria-pressed="true">The build</button><button type="button" data-side="break" aria-pressed="false">How I tried to break it</button></div>
@@ -394,9 +415,10 @@
             <li>Tested across four languages and on phones, where most parents use it.</li>
           </ul></div>
           <p class="stack">JavaScript · Leaflet · Supabase · GitHub Actions · GitHub Pages</p>
-          <div class="links"><a href="https://momup-app.github.io/" target="_blank" rel="noopener">Open the app ↗</a><a href="https://github.com/momup-app/momup-app.github.io" target="_blank" rel="noopener">Code ↗</a></div>
+          <div class="links"><button class="btn" type="button" data-open="kids">▶ Watch demo</button><a href="https://momup-app.github.io/" target="_blank" rel="noopener">Open the app ↗</a><a href="https://github.com/momup-app/momup-app.github.io" target="_blank" rel="noopener">Code ↗</a></div>
         </div>
       </article>
+      </div>
 
     <p class="sec-sub" style="margin:24px 0 0">More experiments live on <a href="https://github.com/janagrit" target="_blank" rel="noopener">GitHub</a>.</p>
   </section>
@@ -456,6 +478,13 @@
   </div>
 </dialog>
 
+<dialog id="project" aria-labelledby="pd-title">
+  <div class="pd">
+    <div class="pd-head"><div><h2 id="pd-title"></h2><p class="p-kind" id="pd-kind"></p></div><button class="btn ghost" type="button" id="pd-close">Close</button></div>
+    <div class="pd-body" id="pd-body"></div>
+  </div>
+</dialog>
+
 <dialog id="demo" aria-labelledby="d-title">
   <div class="d-media" id="d-media"></div>
   <div class="d-body">
@@ -495,14 +524,32 @@
   media.addEventListener('change', function () { if (!root.hasAttribute('data-theme')) paint(); });
   paint();
 
-  // Build / Break switch on each project.
-  document.querySelectorAll('.switch').forEach(function (sw) {
-    sw.addEventListener('click', function (e) {
-      var b = e.target.closest('button'); if (!b) return;
-      var card = sw.parentElement;
-      sw.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
-      card.querySelectorAll('.side').forEach(function (s) { s.hidden = s.dataset.side !== b.dataset.side; });
+  // Build / Break switch (delegated: the switches live in the project dialog).
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.switch button'); if (!b) return;
+    var sw = b.parentElement, card = sw.parentElement;
+    sw.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+    card.querySelectorAll('.side').forEach(function (s) { s.hidden = s.dataset.side !== b.dataset.side; });
+  });
+
+  // Project dialog: a card's hidden details are copied in when its title (or anywhere on the card) is clicked.
+  var pdlg = document.getElementById('project'), pbody = document.getElementById('pd-body');
+  document.querySelectorAll('[data-detail]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.project');
+      var detail = card.querySelector('.p-detail').cloneNode(true);
+      detail.hidden = false;
+      pbody.replaceChildren(detail);
+      document.getElementById('pd-title').textContent = btn.textContent;
+      document.getElementById('pd-kind').textContent = card.querySelector(':scope > .p-kind').textContent;
+      pdlg.showModal();
+      pdlg.scrollTop = 0;
     });
+  });
+  document.getElementById('pd-close').addEventListener('click', function () { pdlg.close(); });
+  pdlg.addEventListener('click', function (e) {
+    if (e.target === pdlg) pdlg.close();
+    var a = e.target.closest('a[href^="#"]'); if (a) pdlg.close();
   });
 
   // Respect reduced motion: don't autoplay the hero video.
@@ -511,8 +558,9 @@
 
   // Demo dialog: videos load only when opened.
   var dlg = document.getElementById('demo'), box = document.getElementById('d-media');
-  document.querySelectorAll('[data-open]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-open]'); if (!btn) return;
+    (function () {
       var d = DEMOS[btn.dataset.open];
       box.replaceChildren();
       var m;
@@ -525,7 +573,7 @@
       document.getElementById('d-title').textContent = d.title;
       document.getElementById('d-cap').textContent = d.cap;
       dlg.showModal();
-    });
+    })();
   });
   function stop() { var v = box.querySelector('video'); if (v) { v.pause(); v.removeAttribute('src'); v.load(); } }
   document.getElementById('d-close').addEventListener('click', function () { dlg.close(); });
