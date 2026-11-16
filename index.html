@@ -3,24 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Iana Grytsenko · I build it. Then I try to break it.</title>
-  <meta name="description" content="Iana Grytsenko, New York. I take ideas to working products, from AI agents to web apps, and build the tests that prove they hold up.">
+  <title>Iana Grytsenko · SDET, AI testing and evaluation</title>
+  <meta name="description" content="Iana Grytsenko, New York. SDET with a background in test automation, infrastructure, and CI/CD. Building AI-powered products, exploring agentic systems, and bringing engineering discipline to AI testing and evaluation.">
   <link rel="canonical" href="https://janagrit.github.io/">
-  <meta property="og:title" content="Iana Grytsenko · I build it. Then I try to break it.">
-  <meta property="og:description" content="I take ideas to working products, from AI agents to web apps, and build the tests that prove they hold up.">
+  <meta property="og:title" content="Iana Grytsenko · SDET, AI testing and evaluation">
+  <meta property="og:description" content="SDET with a background in test automation, infrastructure, and CI/CD. Building AI-powered products, exploring agentic systems, and bringing engineering discipline to AI testing and evaluation.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://janagrit.github.io/">
-  <meta property="og:image" content="https://janagrit.github.io/images/og.jpg?v=2">
+  <meta property="og:image" content="https://janagrit.github.io/images/og.jpg?v=3">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Iana Grytsenko: I build it. Then I try to break it. Beside it, the Job Scout robot with a magnifying glass.">
+  <meta property="og:image:alt" content="Iana Grytsenko, New York, NY. SDET building AI-powered products and testing them. 7 projects, 2 web platforms, 1 app, 2 hackathons.">
   <meta property="og:site_name" content="Iana Notebook">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Iana Grytsenko · I build it. Then I try to break it.">
-  <meta name="twitter:description" content="I take ideas to working products, from AI agents to web apps, and build the tests that prove they hold up.">
-  <meta name="twitter:image" content="https://janagrit.github.io/images/og.jpg?v=2">
-  <meta name="twitter:image:alt" content="Iana Grytsenko: I build it. Then I try to break it. Beside it, the Job Scout robot with a magnifying glass.">
+  <meta name="twitter:title" content="Iana Grytsenko · SDET, AI testing and evaluation">
+  <meta name="twitter:description" content="SDET with a background in test automation, infrastructure, and CI/CD. Building AI-powered products, exploring agentic systems, and bringing engineering discipline to AI testing and evaluation.">
+  <meta name="twitter:image" content="https://janagrit.github.io/images/og.jpg?v=3">
+  <meta name="twitter:image:alt" content="Iana Grytsenko, New York, NY. SDET building AI-powered products and testing them. 7 projects, 2 web platforms, 1 app, 2 hackathons.">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f8f2e9" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#1c1815" media="(prefers-color-scheme: dark)">
@@ -43,9 +43,9 @@
       if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Iana Grytsenko", "url": "https://janagrit.github.io/", "image": "https://janagrit.github.io/images/og.jpg?v=2", "email": "mailto:ianagrytsenko@gmail.com", "address": {"@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US"}, "knowsAbout": ["Test automation", "Playwright", "TypeScript", "AI agent testing", "API testing", "Accessibility testing", "CI/CD"], "knowsLanguage": ["English", "Ukrainian", "Chinese"], "sameAs": ["https://www.linkedin.com/in/ianagrytsenko", "https://github.com/janagrit"]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Iana Grytsenko", "url": "https://janagrit.github.io/", "image": "https://janagrit.github.io/images/og.jpg?v=3", "email": "mailto:ianagrytsenko@gmail.com", "address": {"@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US"}, "knowsAbout": ["Test automation", "Playwright", "TypeScript", "AI agent testing", "API testing", "Accessibility testing", "CI/CD"], "knowsLanguage": ["English", "Ukrainian", "Chinese"], "sameAs": ["https://www.linkedin.com/in/ianagrytsenko", "https://github.com/janagrit"]}</script>
   <style>
-  /* Layout: one 1160px grid with equal margins. Big two-line hero beside the real Job Scout demo,
+  /* Layout: one 1160px grid with equal margins. Name, location and a short intro at the top,
      then four alternating project rows, each with a "Build / Break" switch, then one focus strip and contact. */
   :root {
     --bg: #f8f2e9;
@@ -79,11 +79,16 @@
 
   /* nav */
   .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 22px; }
-  .mark { font-weight: 700; text-decoration: none; display: flex; gap: 8px; align-items: center; }
+  .mark { text-decoration: none; display: flex; gap: 8px; align-items: flex-start; }
+  .mark .ico { flex: none; width: 22px; line-height: 1.3; }
+  .mark .name { display: block; font-weight: 700; line-height: 1.3; }
+  .mark .loc { display: block; font-size: 12.5px; line-height: 1.4; color: var(--muted); margin-top: 2px; }
+  .mark .nw { white-space: nowrap; }
+  @media (max-width: 560px) { .mark .sep { display: none; } .mark .nw { display: block; } }
   .nav ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; font-size: 14px; }
   .nav ul a { text-decoration: none; color: var(--muted); }
   .nav ul a:hover { color: var(--ink); }
-  .btn { display: inline-flex; align-items: center; gap: 8px; font: 600 14px/1 var(--sans); padding: 10px 16px; border-radius: 999px; background: var(--ink); color: var(--on-ink); text-decoration: none; border: 0; cursor: pointer; transition: transform .16s ease-out; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; font: 600 14px/1 var(--sans); padding: 10px 16px; border-radius: 999px; background: var(--ink); color: var(--on-ink); text-decoration: none; border: 0; cursor: pointer; white-space: nowrap; transition: transform .16s ease-out; }
   .btn:active { transform: scale(.97); }
   .btn.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
   .nav-end { display: flex; align-items: center; gap: 12px; }
@@ -93,20 +98,27 @@
   .theme-toggle svg { width: 18px; height: 18px; }
 
   /* hero */
-  .hero { display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: center; padding-block: 40px 88px; }
-  .hero h1 { font-size: clamp(32px, 4.2vw, 58px); line-height: .98; letter-spacing: -0.035em; font-weight: 800; }
-  .hero h1 span { display: block; }
-  .hero h1 .b { color: var(--break); }
-  .lede { font-size: 17px; line-height: 1.5; margin-top: 24px; max-width: 30em; }
-  .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
-  .hero-media { position: relative; border-radius: 14px; overflow: hidden; background: var(--surface); aspect-ratio: 16 / 10; max-width: 100%; }
-  .hero-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .hero-cap { font-size: 13px; color: var(--muted); margin-top: 12px; }
+  /* Short intro lined up with the name in the nav (22px icon + 8px gap). */
+  .hero { padding-top: 0; padding-bottom: 72px; }
+  .hero-in { padding-left: 30px; max-width: calc(520px + 30px); }
+  .lede { font-size: 15px; line-height: 1.6; }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
   /* work */
   .sec-h { font-size: clamp(26px, 3vw, 38px); letter-spacing: -0.03em; line-height: 1.05; font-weight: 800; margin-bottom: 12px; }
   .sec-sub { color: var(--muted); max-width: 36em; margin-bottom: 56px; }
   /* Project grid: image, title, type. Clicking a card opens its details in the #project dialog. */
+  /* Category tabs above the grid (Devpost-style): count centred over an uppercase label; the pressed one gets a thick accent underline. */
+  .tabs { display: flex; gap: 44px; margin: -16px 0 44px; overflow-x: auto; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tabs button { flex: none; display: grid; justify-items: center; gap: 4px; padding: 0 0 12px; background: none; border: 0; border-bottom: 3px solid transparent; color: var(--muted); font: inherit; cursor: pointer; transition: color .16s ease-out, border-color .16s ease-out; }
+  .tabs b { font-size: 26px; line-height: 1.1; font-weight: 700; color: var(--break); }
+  .tabs span { font-size: 14px; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; }
+  .tabs button:hover { color: var(--ink); }
+  .tabs button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--break); }
+  .tabs button[aria-pressed="true"] b { color: var(--ink); }
+  @media (max-width: 560px) { .tabs { gap: 28px; } .tabs b { font-size: 22px; } .tabs span { font-size: 12.5px; } }
   .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px 28px; }
   .project { position: relative; min-width: 0; }
   .project .media { cursor: pointer; }
@@ -217,9 +229,9 @@
 
   @media (max-width: 860px) {
     .nav ul { display: none; }
-    .hero, .approach .wrap, .writing { grid-template-columns: 1fr; gap: 28px; }
+    .approach .wrap, .writing { grid-template-columns: 1fr; gap: 28px; }
     .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 20px; }
-    .hero { padding-block: 24px 80px; }
+    .hero { padding-bottom: 64px; }
     .approach .wrap { padding-block: 80px; }
     .writing { padding-block: 80px 0; }
     .contact { padding-block: 96px 32px; }
@@ -235,7 +247,7 @@
 <a class="skip" href="#main">Skip to main content</a>
 
 <header class="wrap nav">
-  <a class="mark" href="#top"><span aria-hidden="true">💻</span>Iana Grytsenko</a>
+  <a class="mark" href="#top"><span class="ico" aria-hidden="true">💻</span><span><span class="name">Iana Grytsenko</span><span class="loc"><span class="nw">New York, NY, United States</span> <span class="sep" aria-hidden="true">·</span> <span class="nw">U.S. resident</span></span></span></a>
   <nav aria-label="Main"><ul><li><a href="#work">Work</a></li><li><a href="#approach">Focus</a></li><li><a href="#writing">Writing</a></li><li><a href="#contact">Contact</a></li></ul></nav>
   <div class="nav-end">
     <button class="theme-toggle" type="button" id="theme-toggle"></button>
@@ -245,14 +257,10 @@
 
 <main id="main">
   <section class="wrap hero" id="top" aria-labelledby="hero-h">
-    <div>
-      <h1 id="hero-h"><span>I build it.</span><span class="b">Then I try to break it.</span></h1>
-      <p class="lede">I'm Iana, based in New York. I take ideas to working products, from AI agents to web apps, and build the tests that prove they hold up.</p>
+    <div class="hero-in">
+      <h1 id="hero-h" class="sr-only">Iana Grytsenko</h1>
+      <p class="lede">SDET with a background in test automation, infrastructure, and CI/CD. Building AI-powered products, exploring agentic systems, and bringing engineering discipline to AI testing and evaluation.</p>
       <div class="actions"><a class="btn" href="#work">See the work</a><a class="btn ghost" href="https://calendly.com/ianagrytsenko/30min" target="_blank" rel="noopener">Book a 30-minute call</a></div>
-    </div>
-    <div>
-      <div class="hero-media"><video id="hero-video" src="images/job-scout-agent.mp4" poster="images/job-scout.jpg" autoplay muted loop playsinline aria-label="Job Scout Agent demo"></video></div>
-      <p class="hero-cap">Job Scout Agent, matching a CV to new roles.</p>
     </div>
   </section>
 
@@ -260,8 +268,16 @@
     <h2 class="sec-h" id="work-h">Work</h2>
     <p class="sec-sub">Things I built or helped build. Each one has two sides: what it does, and how I made sure it does it.</p>
 
+    <div class="tabs" role="group" aria-label="Filter projects">
+      <button type="button" data-cat="all" aria-pressed="true"><b>7</b><span>All</span></button>
+      <button type="button" data-cat="web" aria-pressed="false"><b>2</b><span>Web platforms</span></button>
+      <button type="button" data-cat="app" aria-pressed="false"><b>1</b><span>Apps</span></button>
+      <button type="button" data-cat="hackathon" aria-pressed="false"><b>2</b><span>Hackathons</span></button>
+      <button type="button" data-cat="oss" aria-pressed="false"><b>2</b><span>Open source</span></button>
+    </div>
+
       <div class="grid">
-      <article class="project" aria-labelledby="p7">
+      <article class="project" data-cat="hackathon" aria-labelledby="p7">
         <div class="media" aria-hidden="true"><img src="images/nyc-subway-eval.jpg" width="1280" height="800" alt="Chart: correct answers out of 10 for Claude Haiku 5.5 and GPT-6 Luna over 20 runs at low, medium and high reasoning effort" loading="lazy"><span class="chain" style="top:10px;bottom:auto" aria-hidden="true">3rd place · $1,250</span></div>
         <h3 class="c-title"><button type="button" id="p7" data-detail aria-haspopup="dialog">NYC Subway Weekend Task Factory</button></h3>
         <p class="p-kind">Team project · hackathon 3rd place</p>
@@ -283,7 +299,7 @@
           <div class="links"><a href="https://github.com/dchen024/innodata-hackathon-team-2" target="_blank" rel="noopener">Code ↗</a></div>
         </div>
       </article>
-      <article class="project" aria-labelledby="p1">
+      <article class="project" data-cat="web" aria-labelledby="p1">
         <div class="media" aria-hidden="true"><img src="images/job-scout.jpg" width="640" height="400" alt="Job Scout application interface"></div>
         <h3 class="c-title"><button type="button" id="p1" data-detail aria-haspopup="dialog">Job Scout Agent</button></h3>
         <p class="p-kind">AI product · live</p>
@@ -306,7 +322,7 @@
           <div class="links"><button class="btn" type="button" data-open="jobscout">▶ Watch demo</button><a href="https://job-scout-agent.com/" target="_blank" rel="noopener">Open the app ↗</a></div>
         </div>
       </article>
-      <article class="project" aria-labelledby="p6">
+      <article class="project" data-cat="oss" aria-labelledby="p6">
         <div class="media" aria-hidden="true"><img src="images/job-scout-rag-overlay.jpg" width="1280" height="800" alt="Terminal tile: the RAG service's two endpoints and its test result, 78 passed with 98.5% coverage" loading="lazy"></div>
         <h3 class="c-title"><button type="button" id="p6" data-detail aria-haspopup="dialog">Job Scout — RAG &amp; Semantic Retrieval Overlay</button></h3>
         <p class="p-kind">AI engineering · experimental</p>
@@ -330,7 +346,7 @@
           <div class="links"><a href="https://github.com/janagrit/jobscout_rag_overlay" target="_blank" rel="noopener">Code ↗</a></div>
         </div>
       </article>
-      <article class="project" aria-labelledby="p2">
+      <article class="project" data-cat="oss" aria-labelledby="p2">
         <div class="media" aria-hidden="true"><img src="images/agent-eval.jpg" width="640" height="400" alt="Terminal running the evaluation harness" loading="lazy"></div>
         <h3 class="c-title"><button type="button" id="p2" data-detail aria-haspopup="dialog">AI Agent Evaluation &amp; Adversarial Testing Framework</button></h3>
         <p class="p-kind">AI quality · open source</p>
@@ -352,7 +368,7 @@
           <div class="links"><a href="https://github.com/janagrit/voice-agent-eval-harness" target="_blank" rel="noopener">Code ↗</a><a href="#writing">Read the write-up</a></div>
         </div>
       </article>
-      <article class="project" aria-labelledby="p5">
+      <article class="project" data-cat="hackathon" aria-labelledby="p5">
         <div class="media" aria-hidden="true"><img src="images/nearauth.jpg" width="1280" height="732" alt="NEARAuth dashboard: identity vault, exposure tracker and audit ledger" loading="lazy"><span class="chain" aria-hidden="true">NEAR · testnet</span></div>
         <h3 class="c-title"><button type="button" id="p5" data-detail aria-haspopup="dialog">NEARAuth</button></h3>
         <p class="p-kind">QA contribution · blockchain &amp; privacy</p>
@@ -376,10 +392,10 @@
           <div class="links"><button class="btn" type="button" data-open="nearauth">▶ Watch demo</button><a href="https://pauloes-btechs.github.io/NEARAuth/#overview" target="_blank" rel="noopener">Open the demo ↗</a><a href="https://github.com/pauloes-btechs/NEARAuth" target="_blank" rel="noopener">Code ↗</a></div>
         </div>
       </article>
-      <article class="project" aria-labelledby="p3">
+      <article class="project" data-cat="app" aria-labelledby="p3">
         <div class="media contain" aria-hidden="true"><img src="images/moisha-chat.jpg" width="416" height="900" alt="Moisha chat showing a nightly price card" loading="lazy"></div>
         <h3 class="c-title"><button type="button" id="p3" data-detail aria-haspopup="dialog">Moisha</button></h3>
-        <p class="p-kind">Web app · private</p>
+        <p class="p-kind">App · private</p>
         <div class="p-detail" hidden>
           <p class="p-line">A pocket pricing advisor for Airbnb hosts. You talk to him; he compares nearby prices, spots empty dates and suggests a nightly rate.</p>
           <dl class="facts"><dt>Problem</dt><dd>Hosts set prices by guessing, and empty nights cost money nobody sees.</dd><dt>My role</dt><dd>Product, design and build.</dd></dl>
@@ -397,7 +413,7 @@
           <div class="links"><button class="btn" type="button" data-open="moisha">▶ Watch demo</button></div>
         </div>
       </article>
-      <article class="project" aria-labelledby="p4">
+      <article class="project" data-cat="web" aria-labelledby="p4">
         <div class="media" aria-hidden="true"><img src="images/momup.jpg" width="640" height="400" alt="Kids Nearby: activities in Berlin on a map" loading="lazy"></div>
         <h3 class="c-title"><button type="button" id="p4" data-detail aria-haspopup="dialog">Kids Nearby</button></h3>
         <p class="p-kind">Full-stack · live</p>
@@ -524,6 +540,19 @@
   media.addEventListener('change', function () { if (!root.hasAttribute('data-theme')) paint(); });
   paint();
 
+  // Category tabs: counts come from the cards, so they stay right when projects are added.
+  (function () {
+    var tabs = document.querySelectorAll('.tabs button'), cards = document.querySelectorAll('.grid .project');
+    tabs.forEach(function (t) {
+      var c = t.getAttribute('data-cat');
+      t.querySelector('b').textContent = c === 'all' ? cards.length : document.querySelectorAll('.grid .project[data-cat="' + c + '"]').length;
+      t.addEventListener('click', function () {
+        tabs.forEach(function (o) { o.setAttribute('aria-pressed', String(o === t)); });
+        cards.forEach(function (card) { card.hidden = c !== 'all' && card.getAttribute('data-cat') !== c; });
+      });
+    });
+  })();
+
   // Build / Break switch (delegated: the switches live in the project dialog).
   document.addEventListener('click', function (e) {
     var b = e.target.closest('.switch button'); if (!b) return;
@@ -551,10 +580,6 @@
     if (e.target === pdlg) pdlg.close();
     var a = e.target.closest('a[href^="#"]'); if (a) pdlg.close();
   });
-
-  // Respect reduced motion: don't autoplay the hero video.
-  var hero = document.getElementById('hero-video');
-  if (hero && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { hero.removeAttribute('autoplay'); hero.pause(); hero.controls = true; }
 
   // Demo dialog: videos load only when opened.
   var dlg = document.getElementById('demo'), box = document.getElementById('d-media');
