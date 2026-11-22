@@ -10,17 +10,17 @@
   <meta property="og:description" content="SDET with a background in test automation, infrastructure, and CI/CD. Building AI-powered products, exploring agentic systems, and bringing engineering discipline to AI testing and evaluation.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://janagrit.github.io/">
-  <meta property="og:image" content="https://janagrit.github.io/images/og.jpg?v=3">
+  <meta property="og:image" content="https://janagrit.github.io/images/og.jpg?v=4">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Iana Grytsenko, New York, NY. SDET building AI-powered products and testing them. 7 projects, 2 web platforms, 1 app, 2 hackathons.">
+  <meta property="og:image:alt" content="Iana Grytsenko, New York, NY. SDET building AI-powered products and testing them. 8 projects, 2 web platforms, 1 app, 3 hackathons.">
   <meta property="og:site_name" content="Iana Notebook">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Iana Grytsenko · SDET, AI testing and evaluation">
   <meta name="twitter:description" content="SDET with a background in test automation, infrastructure, and CI/CD. Building AI-powered products, exploring agentic systems, and bringing engineering discipline to AI testing and evaluation.">
-  <meta name="twitter:image" content="https://janagrit.github.io/images/og.jpg?v=3">
-  <meta name="twitter:image:alt" content="Iana Grytsenko, New York, NY. SDET building AI-powered products and testing them. 7 projects, 2 web platforms, 1 app, 2 hackathons.">
+  <meta name="twitter:image" content="https://janagrit.github.io/images/og.jpg?v=4">
+  <meta name="twitter:image:alt" content="Iana Grytsenko, New York, NY. SDET building AI-powered products and testing them. 8 projects, 2 web platforms, 1 app, 3 hackathons.">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f8f2e9" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#1c1815" media="(prefers-color-scheme: dark)">
@@ -43,7 +43,7 @@
       if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Iana Grytsenko", "url": "https://janagrit.github.io/", "image": "https://janagrit.github.io/images/og.jpg?v=3", "email": "mailto:ianagrytsenko@gmail.com", "address": {"@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US"}, "knowsAbout": ["Test automation", "Playwright", "TypeScript", "AI agent testing", "API testing", "Accessibility testing", "CI/CD"], "knowsLanguage": ["English", "Ukrainian", "Chinese"], "sameAs": ["https://www.linkedin.com/in/ianagrytsenko", "https://github.com/janagrit"]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Iana Grytsenko", "url": "https://janagrit.github.io/", "image": "https://janagrit.github.io/images/og.jpg?v=4", "email": "mailto:ianagrytsenko@gmail.com", "address": {"@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US"}, "knowsAbout": ["Test automation", "Playwright", "TypeScript", "AI agent testing", "API testing", "Accessibility testing", "CI/CD"], "knowsLanguage": ["English", "Ukrainian", "Chinese"], "sameAs": ["https://www.linkedin.com/in/ianagrytsenko", "https://github.com/janagrit"]}</script>
   <style>
   /* Layout: one 1160px grid with equal margins. Name, location and a short intro at the top,
      then four alternating project rows, each with a "Build / Break" switch, then one focus strip and contact. */
@@ -269,14 +269,36 @@
     <p class="sec-sub">Things I built or helped build. Each one has two sides: what it does, and how I made sure it does it.</p>
 
     <div class="tabs" role="group" aria-label="Filter projects">
-      <button type="button" data-cat="all" aria-pressed="true"><b>7</b><span>All</span></button>
+      <button type="button" data-cat="all" aria-pressed="true"><b>8</b><span>All</span></button>
       <button type="button" data-cat="web" aria-pressed="false"><b>2</b><span>Web platforms</span></button>
       <button type="button" data-cat="app" aria-pressed="false"><b>1</b><span>Apps</span></button>
-      <button type="button" data-cat="hackathon" aria-pressed="false"><b>2</b><span>Hackathons</span></button>
+      <button type="button" data-cat="hackathon" aria-pressed="false"><b>3</b><span>Hackathons</span></button>
       <button type="button" data-cat="oss" aria-pressed="false"><b>2</b><span>Open source</span></button>
     </div>
 
       <div class="grid">
+      <article class="project" data-cat="hackathon" aria-labelledby="p8">
+        <div class="media" aria-hidden="true"><img src="images/agentproof.jpg" width="1280" height="800" alt="AgentProof Audit and Replay Viewer: 3-model Gemini 4 verification pipeline catching 25 of 25 false success claims across browser checkout and live Shopify"><span class="chain" aria-hidden="true">Gemini 4 · NYC</span></div>
+        <h3 class="c-title"><button type="button" id="p8" data-detail aria-haspopup="dialog">AgentProof</button></h3>
+        <p class="p-kind">AI evaluation · hackathon</p>
+        <div class="p-detail" hidden>
+          <p class="p-line">A verification harness that watches an AI shopping agent's screen recording and server traffic, and catches it when it says "Done!" on a dropped order or the wrong price.</p>
+          <dl class="facts"><dt>Problem</dt><dd>A shopping agent that hits a silent order drop or an unapplied promo code still reports success, taking the same steps and time as an honest run.</dd><dt>My role</dt><dd>Design, build, evaluation and live replay viewer, as a solo project at the Gemini 4 NYC Hackathon (Problem Statement One, 5 Sigma), 21 November 2026.</dd><dt>Limits</dt><dd>72 runs in total (48 in the controlled store, 24 on live Shopify). Faults are injected to test the verifiers; on unmutated live Shopify runs the agent made zero natural lies (6 of 6).</dd></dl>
+          <div class="switch" role="group" aria-label="Show"><button type="button" data-side="build" aria-pressed="true">The build</button><button type="button" data-side="break" aria-pressed="false">How I tried to break it</button></div>
+          <div class="side" data-side="build"><ul>
+            <li>Splits verification across three Gemini 4 specialists instead of one model: Hydrogen transcribes the browser video, Carbon checks cent-exact cart maths and HTTP or MCP wire logs, and gemini-decision-1 scores task success, failure mode and severity in zero output tokens.</li>
+            <li>Audits an autonomous gemini-4-argon agent across two environments: a controlled checkout store with Playwright video capture, and real .myshopify.com stores over live Shopify Shop MCP.</li>
+            <li>Blocks checkout and payment tools in code on live Shopify with a six-tool allowlist and redacts cart tokens before saving logs, so real carts are checked without moving money.</li>
+          </ul></div>
+          <div class="side" data-side="break" hidden><ul>
+            <li>Injected 11 fault conditions: seven checkout bugs ($0.01 rounding, unapplied promo codes, ignored quantities, a fake confirmation screen when POST /api/order drops) and four Shop MCP proxy faults.</li>
+            <li>Compared seven verifier setups across 72 real runs: trusting the agent caught 0 of 25 lies, a single-model video check caught 4 of 17 on the store, and the full video-and-wire pipeline caught all 25 of 25 lies across Store and Shopify with zero false alarms.</li>
+            <li>Re-ran with blind prompts stripped of failure-rule hints (16 of 17 on Store, 8 of 8 on Shopify), checked multi-pass judge stability, and covered ground-truth scoring, redaction and the allowlist with 98 unit tests and an end-to-end smoke run.</li>
+          </ul></div>
+          <p class="stack">JavaScript (Node.js) · Gemini 4 &amp; Decisions API · Playwright · Shopify Shop MCP · ffmpeg · GitHub Actions</p>
+          <div class="links"><button class="btn" type="button" data-open="agentproof">▶ Watch demo</button><a href="https://janagrit.github.io/agentproof/" target="_blank" rel="noopener">Open the viewer ↗</a><a href="https://github.com/janagrit/agentproof" target="_blank" rel="noopener">Code ↗</a></div>
+        </div>
+      </article>
       <article class="project" data-cat="hackathon" aria-labelledby="p7">
         <div class="media" aria-hidden="true"><img src="images/nyc-subway-eval.jpg" width="1280" height="800" alt="Chart: correct answers out of 10 for Claude Haiku 5.5 and GPT-6 Luna over 20 runs at low, medium and high reasoning effort" loading="lazy"><span class="chain" style="top:10px;bottom:auto" aria-hidden="true">3rd place · $1,250</span></div>
         <h3 class="c-title"><button type="button" id="p7" data-detail aria-haspopup="dialog">NYC Subway Weekend Task Factory</button></h3>
@@ -512,6 +534,7 @@
 <script>
 (function () {
   var DEMOS = {
+    agentproof: { title: 'AgentProof', cap: 'Auditing an AI shopping agent across browser video and server traffic.', video: 'images/agentproof-demo.mp4', poster: 'images/agentproof.jpg' },
     jobscout: { title: 'Job Scout Agent', cap: 'Daily CV-to-role matching with the Claude API and GitHub Actions.', video: 'images/job-scout-agent.mp4', poster: 'images/job-scout.jpg' },
     moisha: { title: 'Moisha', cap: 'Asking Moisha for a price: the answer arrives as a card in the chat.', video: 'images/moisha-small.mp4', poster: 'images/moisha-chat.jpg' },
     kids: { title: 'Kids Nearby', cap: 'Searching by a Berlin postcode and filtering by age and distance.', video: 'images/mom-small.mp4', poster: 'images/momup.jpg' },

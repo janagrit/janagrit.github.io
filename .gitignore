@@ -5,3 +5,6 @@ data/linkedin/*
 !data/linkedin/README.md
 # Graphify generated files
 graphify-out/
+# Secrets
+.env
+.env.*
